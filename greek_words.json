@@ -100,7 +100,7 @@
             "portugues": "pecado",
             "grego_nominativo": "ἁμαρτία",
             "grego_genitivo": "ἁμαρτίας",
-            "grego_artigo": "ἡ ",
+            "grego_artigo": "ἡ",
             "classificacao": "substantivo",
             "genero": "feminino"
         },
@@ -108,7 +108,7 @@
             "portugues": "reino",
             "grego_nominativo": "βασιλεία",
             "grego_genitivo": "βασιλείας",
-            "grego_artigo": "ἡ ",
+            "grego_artigo": "ἡ",
             "classificacao": "substantivo",
             "genero": "feminino"
         },
@@ -116,7 +116,7 @@
             "portugues": "terra",
             "grego_nominativo": "γῆ",
             "grego_genitivo": "γῆς",
-            "grego_artigo": "ἡ ",
+            "grego_artigo": "ἡ",
             "classificacao": "substantivo",
             "genero": "feminino"
         },
@@ -124,7 +124,7 @@
             "portugues": "glória",
             "grego_nominativo": "δόξα",
             "grego_genitivo": "δόξης",
-            "grego_artigo": "ἡ ",
+            "grego_artigo": "ἡ",
             "classificacao": "substantivo",
             "genero": "feminino"
         },
@@ -132,7 +132,7 @@
             "portugues": "dia",
             "grego_nominativo": "ἡμέρα",
             "grego_genitivo": "ἡμέρας",
-            "grego_artigo": "ἡ ",
+            "grego_artigo": "ἡ",
             "classificacao": "substantivo",
             "genero": "feminino"
         },
@@ -140,7 +140,95 @@
             "portugues": "coração",
             "grego_nominativo": "καρδία",
             "grego_genitivo": "καρδίας",
-            "grego_artigo": "ἡ ",
+            "grego_artigo": "ἡ",
+            "classificacao": "substantivo",
+            "genero": "feminino"
+        },
+        {
+            "portugues": "homem, marido",
+            "grego_nominativo": "ἀνήρ",
+            "grego_genitivo": "ἀνδρός",
+            "grego_artigo": "ὁ",
+            "classificacao": "substantivo",
+            "genero": "masculino"
+        },
+        {
+            "portugues": "pai",
+            "grego_nominativo": "πατήρ",
+            "grego_genitivo": "πατρός",
+            "grego_artigo": "ὁ",
+            "classificacao": "substantivo",
+            "genero": "masculino"
+        },
+        {
+            "portugues": "anjo, mensageiro",
+            "grego_nominativo": "ἄγγελος",
+            "grego_genitivo": "ἀγγέλου",
+            "grego_artigo": "ὁ",
+            "classificacao": "substantivo",
+            "genero": "masculino"
+        },
+        {
+            "portugues": "nação, povo; gentios [plural]",
+            "grego_nominativo": "ἔθνος",
+            "grego_genitivo": "ἔθνους",
+            "grego_artigo": "τό",
+            "classificacao": "substantivo",
+            "genero": "neutro"
+        },
+        {
+            "portugues": "mundo",
+            "grego_nominativo": "κόσμος",
+            "grego_genitivo": "κόσμου",
+            "grego_artigo": "ὁ",
+            "classificacao": "substantivo",
+            "genero": "masculino"
+        },
+        {
+            "portugues": "nome",
+            "grego_nominativo": "ὄνομα",
+            "grego_genitivo": "ὀνόματος",
+            "grego_artigo": "τό",
+            "classificacao": "substantivo",
+            "genero": "neutro"
+        },
+        {
+            "portugues": "vida",
+            "grego_nominativo": "ζωή",
+            "grego_genitivo": "ζωῆς",
+            "grego_artigo": "ἡ",
+            "classificacao": "substantivo",
+            "genero": "feminino"
+        },
+        {
+            "portugues": "lei",
+            "grego_nominativo": "νόμος",
+            "grego_genitivo": "νόμου",
+            "grego_artigo": "ὁ",
+            "classificacao": "substantivo",
+            "genero": "masculino"
+        },
+        {
+            "portugues": "multidão, povo",
+            "grego_nominativo": "ὄχλος",
+            "grego_genitivo": "ὄχλου",
+            "grego_artigo": "ὁ",
+            "classificacao": "substantivo",
+            "genero": "masculino"
+        },
+        {
+            "portugues": "corpo",
+            "grego_nominativo": "σῶμα",
+            "grego_genitivo": "σώματος",
+            "grego_artigo": "τό",
+            "classificacao": "substantivo",
+            "genero": "neutro"
+        },
+        {
+            "portugues": "graça",
+            "grego_nominativo": "χάρις",
+            "grego_genitivo": "χάριτος",
+            "grego_artigo": "ἡ",
             "classificacao": "substantivo",
             "genero": "feminino"
         }

@@ -8,10 +8,10 @@
             "classificação": "verbo"
         },
         {
-            "portugues": "2",
-            "grego_nominativo": "2",
-            "grego_genitivo": "2",
-            "grego_artigo": "2"
+            "portugues": "lau",
+            "grego_nominativo": "u",
+            "grego_genitivo": "la",
+            "grego_artigo": "lau"
         },
         {
             "portugues": "3",
@@ -24,6 +24,12 @@
             "grego_nominativo": "4",
             "grego_genitivo": "4",
             "grego_artigo": "4"
+        },
+        {
+            "portugues": "5",
+            "grego_nominativo": "5",
+            "grego_genitivo": "5",
+            "grego_artigo": "5"
         }
     ]
 }

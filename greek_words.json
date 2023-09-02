@@ -95,6 +95,54 @@
             "grego_artigo": "τό",
             "classificação": "substantivo",
             "genero": "neutro"
+        },
+        {
+            "portugues": "pecado",
+            "grego_nominativo": "ἁμαρτία",
+            "grego_genitivo": "ἁμαρτίας",
+            "grego_artigo": "ἡ ",
+            "classificação": "substantivo",
+            "genero": "feminino"
+        },
+        {
+            "portugues": "reino",
+            "grego_nominativo": "βασιλεία",
+            "grego_genitivo": "βασιλείας",
+            "grego_artigo": "ἡ ",
+            "classificação": "substantivo",
+            "genero": "feminino"
+        },
+        {
+            "portugues": "terra",
+            "grego_nominativo": "γῆ",
+            "grego_genitivo": "γῆς",
+            "grego_artigo": "ἡ ",
+            "classificação": "substantivo",
+            "genero": "feminino"
+        },
+        {
+            "portugues": "glória",
+            "grego_nominativo": "δόξα",
+            "grego_genitivo": "δόξης",
+            "grego_artigo": "ἡ ",
+            "classificação": "substantivo",
+            "genero": "feminino"
+        },
+        {
+            "portugues": "dia",
+            "grego_nominativo": "ἡμέρα",
+            "grego_genitivo": "ἡμέρας",
+            "grego_artigo": "ἡ ",
+            "classificação": "substantivo",
+            "genero": "feminino"
+        },
+        {
+            "portugues": "coração",
+            "grego_nominativo": "καρδία",
+            "grego_genitivo": "καρδίας",
+            "grego_artigo": "ἡ ",
+            "classificação": "substantivo",
+            "genero": "feminino"
         }
         
         

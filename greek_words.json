@@ -13,7 +13,7 @@
             "grego_nominativo": "θεός",
             "grego_genitivo": "θεοῦ",
             "grego_artigo": "ὁ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "masculino"
         },
         {
@@ -21,7 +21,7 @@
             "grego_nominativo": "κύριος",
             "grego_genitivo": "κυρίου",
             "grego_artigo": "ὁ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "masculino"
         },
         {
@@ -29,7 +29,7 @@
             "grego_nominativo": "λόγος",
             "grego_genitivo": "λόγου",
             "grego_artigo": "ὁ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "masculino"
         },
         {
@@ -37,7 +37,7 @@
             "grego_nominativo": "ἀδελφός",
             "grego_genitivo": "ἀδελφοῦ",
             "grego_artigo": "ὁ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "masculino"
         },
         {
@@ -45,7 +45,7 @@
             "grego_nominativo": "οὐρανός",
             "grego_genitivo": "οὐρανοῦ",
             "grego_artigo": "ὁ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "masculino"
         },
         {
@@ -53,7 +53,7 @@
             "grego_nominativo": "υἱός",
             "grego_genitivo": "υἱοῦ",
             "grego_artigo": "ὁ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "masculino"
         },
         {
@@ -61,7 +61,7 @@
             "grego_nominativo": "Χριστός",
             "grego_genitivo": "Χριστοῦ",
             "grego_artigo": "ὁ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "masculino"
         },
         {
@@ -69,7 +69,7 @@
             "grego_nominativo": "ἔργον",
             "grego_genitivo": "ἔργου",
             "grego_artigo": "τό",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "neutro"
         },
         {
@@ -77,7 +77,7 @@
             "grego_nominativo": "τέκνον",
             "grego_genitivo": "τέκνου",
             "grego_artigo": "τό",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "neutro"
         },
         {
@@ -85,7 +85,7 @@
             "grego_nominativo": "ἱερόν",
             "grego_genitivo": "ιερού",
             "grego_artigo": "τό",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "neutro"
         },
         {
@@ -93,7 +93,7 @@
             "grego_nominativo": "εὐαγγέλιον",
             "grego_genitivo": "εὐαγγελίου",
             "grego_artigo": "τό",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "neutro"
         },
         {
@@ -101,7 +101,7 @@
             "grego_nominativo": "ἁμαρτία",
             "grego_genitivo": "ἁμαρτίας",
             "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "feminino"
         },
         {
@@ -109,7 +109,7 @@
             "grego_nominativo": "βασιλεία",
             "grego_genitivo": "βασιλείας",
             "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "feminino"
         },
         {
@@ -117,7 +117,7 @@
             "grego_nominativo": "γῆ",
             "grego_genitivo": "γῆς",
             "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "feminino"
         },
         {
@@ -125,7 +125,7 @@
             "grego_nominativo": "δόξα",
             "grego_genitivo": "δόξης",
             "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "feminino"
         },
         {
@@ -133,7 +133,7 @@
             "grego_nominativo": "ἡμέρα",
             "grego_genitivo": "ἡμέρας",
             "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "feminino"
         },
         {
@@ -141,7 +141,7 @@
             "grego_nominativo": "καρδία",
             "grego_genitivo": "καρδίας",
             "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
+            "classificacao": "substantivo",
             "genero": "feminino"
         }
         

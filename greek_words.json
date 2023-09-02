@@ -1,35 +1,90 @@
 {
     "palavras": [
         {
-            "portugues": "Oi piske",
-            "grego_nominativo": "λέξη",
-            "grego_genitivo": "λέξη",
-            "grego_artigo": "λέξη",
-            "classificação": "verbo"
+            "portugues": "homem",
+            "grego_nominativo": "ἄνθρωπος",
+            "grego_genitivo": "ἀνθρώπου",
+            "grego_artigo": "ὁ",
+            "classificação": "substantivo"
         },
         {
-            "portugues": "lau",
-            "grego_nominativo": "u",
-            "grego_genitivo": "la",
-            "grego_artigo": "lau"
+            "portugues": "Deus",
+            "grego_nominativo": "θεός",
+            "grego_genitivo": "θεοῦ",
+            "grego_artigo": "ὁ",
+            "classificação": "substantivo"
         },
         {
-            "portugues": "3",
-            "grego_nominativo": "3",
-            "grego_genitivo": "3",
-            "grego_artigo": "3"
+            "portugues": "Senhor; senhor",
+            "grego_nominativo": "κύριος",
+            "grego_genitivo": "κυρίου",
+            "grego_artigo": "ὁ",
+            "classificação": "substantivo"
         },
         {
-            "portugues": "4",
-            "grego_nominativo": "4",
-            "grego_genitivo": "4",
-            "grego_artigo": "4"
+            "portugues": "palavra",
+            "grego_nominativo": "λόγος",
+            "grego_genitivo": "λόγου",
+            "grego_artigo": "ὁ",
+            "classificação": "substantivo"
         },
         {
-            "portugues": "5",
-            "grego_nominativo": "5",
-            "grego_genitivo": "5",
-            "grego_artigo": "5"
+            "portugues": "irmão",
+            "grego_nominativo": "ἀδελφός",
+            "grego_genitivo": "ἀδελφοῦ",
+            "grego_artigo": "ὁ",
+            "classificação": "substantivo"
+        },
+        {
+            "portugues": "céu",
+            "grego_nominativo": "οὐρανός",
+            "grego_genitivo": "οὐρανοῦ",
+            "grego_artigo": "ὁ",
+            "classificação": "substantivo"
+        },
+        {
+            "portugues": "filho",
+            "grego_nominativo": "υἱός",
+            "grego_genitivo": "υἱοῦ",
+            "grego_artigo": "ὁ",
+            "classificação": "substantivo"
+        },
+        {
+            "portugues": "Cristo, Messias, Ungido",
+            "grego_nominativo": "Χριστός",
+            "grego_genitivo": "Χριστοῦ",
+            "grego_artigo": "ὁ",
+            "classificação": "substantivo"
+        },
+        {
+            "portugues": "obra, trabalho",
+            "grego_nominativo": "ἔργον",
+            "grego_genitivo": "ἔργου",
+            "grego_artigo": "τό",
+            "classificação": "substantivo"
+        },
+        {
+            "portugues": "criança, filho",
+            "grego_nominativo": "τέκνον",
+            "grego_genitivo": "τέκνου",
+            "grego_artigo": "τό",
+            "classificação": "substantivo"
+        },
+        {
+            "portugues": "templo",
+            "grego_nominativo": "ἱερόν",
+            "grego_genitivo": "ιερού",
+            "grego_artigo": "τό",
+            "classificação": "substantivo"
+        },
+        {
+            "portugues": "evangelho, boas notícias",
+            "grego_nominativo": "εὐαγγέλιον",
+            "grego_genitivo": "εὐαγγελίου",
+            "grego_artigo": "τό",
+            "classificação": "substantivo"
         }
+        
+        
     ]
 }

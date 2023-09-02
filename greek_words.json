@@ -1,0 +1,29 @@
+{
+    "palavras": [
+        {
+            "portugues": "palavra",
+            "grego_nominativo": "λέξη",
+            "grego_genitivo": "λέξη",
+            "grego_artigo": "λέξη",
+            "classificação": "verbo"
+        },
+        {
+            "portugues": "2",
+            "grego_nominativo": "2",
+            "grego_genitivo": "2",
+            "grego_artigo": "2"
+        },
+        {
+            "portugues": "3",
+            "grego_nominativo": "3",
+            "grego_genitivo": "3",
+            "grego_artigo": "3"
+        },
+        {
+            "portugues": "4",
+            "grego_nominativo": "4",
+            "grego_genitivo": "4",
+            "grego_artigo": "4"
+        }
+    ]
+}

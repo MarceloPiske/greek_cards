@@ -1,0 +1,62 @@
+main {
+    height: 100vh;
+    width: 100vw;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.flip-container {
+    width: 90%;
+    height: 90%;
+    perspective: 1000px;
+}
+
+.flipper {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+
+.flipper-back {
+    transform: rotateY(180deg);
+    /* se quiser uma animação na vertical,
+    troque por rotateX(180deg)
+    */
+}
+.new-card {
+    transform: rotateX(360deg);
+}
+.back{
+    transform: rotateY(180deg);
+}
+.front, .back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shandow);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ffff;
+    backface-visibility: hidden;
+    font-size: 5rem;
+    /* padding: var(--padding-1); */
+}
+
+.move {
+    position: absolute;
+    height: 100%;
+    width: 10%;
+    background-color: black;
+    z-index: 10;
+}
+.next {
+    right: 0;
+    top: 0;
+}

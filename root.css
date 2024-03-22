@@ -48,7 +48,23 @@ body {
     height: 100vh;
     font-family: poppins, sans-serif;
     font-size: 0.88rem;
-    background: var(--color-white);
+    background-color: #1d1f28;
+    /* background-image: url("background-body.png"); */
     user-select: none;
     overflow-x: hidden;
+}
+
+.background-image-left {
+    position: fixed;
+    height: 95vh;
+    left: -70px;
+    z-index: -1;
+}
+.background-image-rigth {
+    position: fixed;
+    height: 95vh;
+    transform: rotate(180deg);
+    right: -70px;
+    bottom: 0;
+    z-index: -1;
 }

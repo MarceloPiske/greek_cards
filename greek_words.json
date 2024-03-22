@@ -1,150 +1,117 @@
-{
-    "palavras": [
-        {
-            "portugues": "homem",
-            "grego_nominativo": "ἄνθρωπος",
-            "grego_genitivo": "ἀνθρώπου",
-            "grego_artigo": "ὁ",
-            "classificacao": "substantivo",
-            "genero": "masculino"
-        },
-        {
-            "portugues": "Deus",
-            "grego_nominativo": "θεός",
-            "grego_genitivo": "θεοῦ",
-            "grego_artigo": "ὁ",
-            "classificação": "substantivo",
-            "genero": "masculino"
-        },
-        {
-            "portugues": "Senhor; senhor",
-            "grego_nominativo": "κύριος",
-            "grego_genitivo": "κυρίου",
-            "grego_artigo": "ὁ",
-            "classificação": "substantivo",
-            "genero": "masculino"
-        },
-        {
-            "portugues": "palavra",
-            "grego_nominativo": "λόγος",
-            "grego_genitivo": "λόγου",
-            "grego_artigo": "ὁ",
-            "classificação": "substantivo",
-            "genero": "masculino"
-        },
-        {
-            "portugues": "irmão",
-            "grego_nominativo": "ἀδελφός",
-            "grego_genitivo": "ἀδελφοῦ",
-            "grego_artigo": "ὁ",
-            "classificação": "substantivo",
-            "genero": "masculino"
-        },
-        {
-            "portugues": "céu",
-            "grego_nominativo": "οὐρανός",
-            "grego_genitivo": "οὐρανοῦ",
-            "grego_artigo": "ὁ",
-            "classificação": "substantivo",
-            "genero": "masculino"
-        },
-        {
-            "portugues": "filho",
-            "grego_nominativo": "υἱός",
-            "grego_genitivo": "υἱοῦ",
-            "grego_artigo": "ὁ",
-            "classificação": "substantivo",
-            "genero": "masculino"
-        },
-        {
-            "portugues": "Cristo, Messias, Ungido",
-            "grego_nominativo": "Χριστός",
-            "grego_genitivo": "Χριστοῦ",
-            "grego_artigo": "ὁ",
-            "classificação": "substantivo",
-            "genero": "masculino"
-        },
-        {
-            "portugues": "obra, trabalho",
-            "grego_nominativo": "ἔργον",
-            "grego_genitivo": "ἔργου",
-            "grego_artigo": "τό",
-            "classificação": "substantivo",
-            "genero": "neutro"
-        },
-        {
-            "portugues": "criança, filho",
-            "grego_nominativo": "τέκνον",
-            "grego_genitivo": "τέκνου",
-            "grego_artigo": "τό",
-            "classificação": "substantivo",
-            "genero": "neutro"
-        },
-        {
-            "portugues": "templo",
-            "grego_nominativo": "ἱερόν",
-            "grego_genitivo": "ιερού",
-            "grego_artigo": "τό",
-            "classificação": "substantivo",
-            "genero": "neutro"
-        },
-        {
-            "portugues": "evangelho, boas notícias",
-            "grego_nominativo": "εὐαγγέλιον",
-            "grego_genitivo": "εὐαγγελίου",
-            "grego_artigo": "τό",
-            "classificação": "substantivo",
-            "genero": "neutro"
-        },
-        {
-            "portugues": "pecado",
-            "grego_nominativo": "ἁμαρτία",
-            "grego_genitivo": "ἁμαρτίας",
-            "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
-            "genero": "feminino"
-        },
-        {
-            "portugues": "reino",
-            "grego_nominativo": "βασιλεία",
-            "grego_genitivo": "βασιλείας",
-            "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
-            "genero": "feminino"
-        },
-        {
-            "portugues": "terra",
-            "grego_nominativo": "γῆ",
-            "grego_genitivo": "γῆς",
-            "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
-            "genero": "feminino"
-        },
-        {
-            "portugues": "glória",
-            "grego_nominativo": "δόξα",
-            "grego_genitivo": "δόξης",
-            "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
-            "genero": "feminino"
-        },
-        {
-            "portugues": "dia",
-            "grego_nominativo": "ἡμέρα",
-            "grego_genitivo": "ἡμέρας",
-            "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
-            "genero": "feminino"
-        },
-        {
-            "portugues": "coração",
-            "grego_nominativo": "καρδία",
-            "grego_genitivo": "καρδίας",
-            "grego_artigo": "ἡ ",
-            "classificação": "substantivo",
-            "genero": "feminino"
-        }
-        
-        
-    ]
-}
+[
+    {
+        "Numero": 1,
+        "Vocabulo": "ἄγγελος",
+        "Genitivo": "ἀγγέλου",
+        "Artigo_Definido": "ὁ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Anjos"
+    },
+    {
+        "Numero": 2,
+        "Vocabulo": "ἅγιος, ἁγῖα, ἅγιπν",
+        "Artigo_Definido": "-",
+        "Classificacao": "Adjetivo",
+        "Traducao": "Santo"
+    },
+    {
+        "Numero": 3,
+        "Vocabulo": "ἀδελφός",
+        "Genitivo": "ἀδελφοῦ",
+        "Artigo_Definido": "ὁ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Irmão"
+    },
+    {
+        "Numero": 4,
+        "Vocabulo": "ἀκύω",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Ouço, Escuto"
+    },
+    {
+        "Numero": 5,
+        "Vocabulo": "ἀλἠθεια",
+        "Genitivo": "αλήθειας",
+        "Artigo_Definido": "ή",
+        "Classificacao": "Substantivo",
+        "Traducao": "Verdade"
+    },
+    {
+        "Numero": 6,
+        "Vocabulo": "ἂνθροπος",
+        "Genitivo": "ἀντροπου",
+        "Artigo_Definido": "ὁ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Homem"
+    },
+    {
+        "Numero": 7,
+        "Vocabulo": "βασιλεία",
+        "Genitivo": "βασιλεῖας",
+        "Artigo_Definido": "ἡ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Reino"
+    },
+    {
+        "Numero": 8,
+        "Vocabulo": "δόζα",
+        "Genitivo": "δόσης",
+        "Artigo_Definido": "ἡ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Glória"
+    },
+    {
+        "Numero": 9,
+        "Vocabulo": "εἰμί",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Sou, Estou"
+    },
+    {
+        "Numero": 10,
+        "Vocabulo": "ἔργον",
+        "Genitivo": "ἔργοθ",
+        "Artigo_Definido": "τό",
+        "Classificacao": "Substantivo",
+        "Traducao": "Trabalho, Obra"
+    },
+    {
+        "Numero": 11,
+        "Vocabulo": "εὐαγγέλιον",
+        "Genitivo": "εὐαγγελίου",
+        "Artigo_Definido": "τό",
+        "Classificacao": "Substantivo",
+        "Traducao": "Evangelho, Boas Novas"
+    },
+    {
+        "Numero": 12,
+        "Vocabulo": "θεός",
+        "Genitivo": "θεοῦ",
+        "Artigo_Definido": "ὁ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Deus"
+    },
+    {
+        "Numero": 13,
+        "Vocabulo": "καί",
+        "Artigo_Definido": "-",
+        "Classificacao": "Conjunção",
+        "Traducao": "E, Também"
+    },
+    {
+        "Numero": 14,
+        "Vocabulo": "κύριος",
+        "Genitivo": "κυρίου",
+        "Artigo_Definido": "ὁ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Senhor"
+    },
+    {
+    "Numero": 15,
+    "Vocabulo": "λέγω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Digo, Falo"
+    }
+]

@@ -1,69 +1,72 @@
-const flipper_container = document.getElementById('container-1')
-const flipper = document.getElementById('flipper-1')
+const card_container = document.getElementById('card-container')
 const next = document.getElementById('next')
 const previus = document.getElementById('previus')
+let greek_words = []
+let atual_card_id = 1
 
-flipper_container.addEventListener('click', () => {
-    if (flipper.style.transform != "rotateY(180deg)") {
-        flipper.style.transform = 'rotateY(180deg)'
-    }else{
-        flipper.style.transform = 'rotateY(0deg)'
+//NOTE - Load cards in window
+function insert_cards(greek_words) {
+    let html = ""
+    function shuffleArray(inputArray) {
+        inputArray.sort(() => Math.random() - 0.5);
     }
-})
-
-function greek_card_animation() {
-    if (flipper.style.transform != "rotateX(360deg)") {
-        flipper.style.transform = 'rotateX(360deg)'
-    }else{
-        flipper.style.transform = 'rotateX(0deg)'
+    sorted_words = shuffleArray(greek_words)
+    ramdon_number = 0
+    for (const word of greek_words) {
+        html += `<div onclick="rotate_card(this)" id="card-${ramdon_number + 1}" class="card">
+                    <img class="inferior-left-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
+                    <img class="superior-left-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
+                    <div class="front">
+                        <p id="text-greek">${word.Vocabulo}</p>
+                    </div>
+                    <div class="back">
+                        <p id="text-portuguese">${word.Traducao}</p>
+                    </div>
+                    <img class="inferior-right-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
+                    <img class="superior-right-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
+                </div>`
+        ramdon_number += 1
+        //console.log(html);
     }
+    card_container.innerHTML = html
 }
-
-next.addEventListener('click', () => {
-    greek_card_animation()
-    alterar_palavra(true)
-})
-
-previus.addEventListener('click', () => {
-    greek_card_animation()
-    alterar_palavra(false)
-})
-
-p_greek = document.getElementById("text-greek")
-p_portuguese = document.getElementById("text-portuguese")
-
-function set_greek_word(jsondata) {
-    const atual_word_id = localStorage.getItem("word_id")
-    
-    jsondata = jsondata.palavras[atual_word_id]
-    let text_greek = `${jsondata.grego_nominativo} (${jsondata.grego_genitivo}), ${jsondata.grego_artigo}`
-    let text_portuguese = jsondata.portugues
-    p_greek.innerText = text_greek
-    p_portuguese.innerText = text_portuguese
-}
-
-function set_local_word_id(next) {
-    const atual_word_id = localStorage.getItem("word_id")
-    let next_word_id = parseInt(atual_word_id)
-    
-    if (next == false)
-        next_word_id = parseInt(atual_word_id) - 1
-    else
-        next_word_id = parseInt(atual_word_id) + 1
-    
-    localStorage.setItem("word_id", next_word_id);
-}
-
-function alterar_palavra(next) { 
-    fetch("greek_words.json")
+//Abrir Json
+fetch("greek_words.json")
     .then(response => {
         return response.json();
     })
-    .then(jsondata => {
-        set_local_word_id(next)
-        set_greek_word(jsondata)
+    .then(async jsondata => {
+        greek_words = jsondata;
+        insert_cards(greek_words);
     })
+
+
+function rotate_card(card) {
+    /* se quiser uma animação na vertical,
+    troque por rotateY(180deg)
+    */
+    if (card.style.transform != "rotateX(180deg)") {
+        card.style.transform = 'rotateX(180deg)'
+    } else {
+        card.style.transform = 'rotateX(0deg)'
+    }
 }
 
-localStorage.setItem("word_id", "0");
-alterar_palavra(null)
+
+next.addEventListener('click', () => {
+    atual_card_id += 1
+    card = document.getElementById(`card-${atual_card_id}`)
+    next.setAttribute("href", `#card-${atual_card_id}`)
+})
+
+previus.addEventListener('click', () => {
+    if (atual_card_id != 1)
+        atual_card_id += - 1
+    card = document.getElementById(`card-${atual_card_id}`)
+    previus.setAttribute("href", `#card-${atual_card_id}`)
+})
+
+
+
+
+

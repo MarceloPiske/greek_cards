@@ -4,6 +4,10 @@ const previus = document.getElementById('previus')
 let greek_words = []
 let atual_card_id = 1
 
+if (window.innerWidth < window.innerHeight) {
+    alert("Por favor, gire o dispositivo para a orientação horizontal para uma melhor experiência.");
+}
+
 //NOTE - Load cards in window
 function insert_cards(greek_words) {
     let html = ""

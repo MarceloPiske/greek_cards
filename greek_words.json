@@ -113,5 +113,42 @@
     "Artigo_Definido": "-",
     "Classificacao": "Verbo",
     "Traducao": "Digo, Falo"
-    }
+    },
+    {
+        "Numero": 16,
+        "Vocabulo": "λόγος",
+        "Artigo_Definido": "ὁ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Palavra"
+      },
+      {
+        "Numero": 17,
+        "Vocabulo": "πιστεύω",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Creio"
+      },
+      {
+        "Numero": 18,
+        "Vocabulo": "ποιέω",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Faço"
+      },
+      {
+        "Numero": 19,
+        "Vocabulo": "τέκνον",
+        "Genitivo": "τέκνου",
+        "Artigo_Definido": "τό",
+        "Classificacao": "Substantivo",
+        "Traducao": "Criança, Filho"
+      },
+      {
+        "Numero": 20,
+        "Vocabulo": "υἱός",
+        "Genitivo": "υἱοῦ",
+        "Artigo_Definido": "ὁ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Filho"
+      }
 ]

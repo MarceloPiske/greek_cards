@@ -150,5 +150,43 @@
         "Artigo_Definido": "ὁ",
         "Classificacao": "Substantivo",
         "Traducao": "Filho"
+      },
+      {
+        "Numero": 21,
+        "Vocabulo": "Χριστός",
+        "Artigo_Definido": "ὁ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Cristo, Messias, Ungido"
+      },
+      {
+        "Numero": 22,
+        "Vocabulo": "ἀγαπάω",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Amo"
+      },
+      {
+        "Numero": 23,
+        "Vocabulo": "ἀγάπη",
+        "Genitivo": "ἀφάπης",
+        "Artigo_Definido": "ἡ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Amor"
+      },
+      {
+        "Numero": 24,
+        "Vocabulo": "ἁμαρτία",
+        "Genitivo": "ἀμαρτίας",
+        "Artigo_Definido": "ἡ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Pecado"
+      },
+      {
+        "Numero": 25,
+        "Vocabulo": "ἀνήρ",
+        "Genitivo": "ἀνδρός",
+        "Artigo_Definido": "ὁ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Marido, Homem"
       }
 ]

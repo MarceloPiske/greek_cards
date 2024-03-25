@@ -188,5 +188,41 @@
         "Artigo_Definido": "ὁ",
         "Classificacao": "Substantivo",
         "Traducao": "Marido, Homem"
+      },
+      {
+        "Numero": 26,
+        "Vocabulo": "ἀποκρίνομαι",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Respondo"
+      },
+      {
+        "Numero": 27,
+        "Vocabulo": "γῆ",
+        "Genitivo": "γῆς",
+        "Artigo_Definido": "ἡ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Terra"
+      },
+      {
+        "Numero": 28,
+        "Vocabulo": "γῖνομαι",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Sou, Torno-me, [3ª Pessoa: Acontece]"
+      },
+      {
+        "Numero": 29,
+        "Vocabulo": "γινώσκω",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Conheço, sei"
+      },
+      {
+        "Numero": 30,
+        "Vocabulo": "γράφω",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Escrevo"
       }
 ]

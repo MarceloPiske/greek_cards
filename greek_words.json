@@ -224,5 +224,42 @@
         "Artigo_Definido": "-",
         "Classificacao": "Verbo",
         "Traducao": "Escrevo"
+      },
+      {
+        "Numero": 31,
+        "Vocabulo": "ἑαυτοῦ, ἑαυτῆς, ἑαυτοῦ",
+        "Artigo_Definido": "-",
+        "Classificacao": "Pronome Reflexivo",
+        "Traducao": "De (para) si mesmo"
+      },
+      {
+        "Numero": 32,
+        "Vocabulo": "ἔρχομαι",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Vou, Venho"
+      },
+      {
+        "Numero": 33,
+        "Vocabulo": "ἔχω",
+        "Artigo_Definido": "-",
+        "Classificacao": "Verbo",
+        "Traducao": "Tenho"
+      },
+      {
+        "Numero": 34,
+        "Vocabulo": "ἱερόν",
+        "Genitivo": "ἱεροῦ",
+        "Artigo_Definido": "τό",
+        "Classificacao": "Substantivo",
+        "Traducao": "Templo"
+      },
+      {
+        "Numero": 35,
+        "Vocabulo": "καρδία",
+        "Genitivo": "καρδίας",
+        "Artigo_Definido": "ἡ",
+        "Classificacao": "Substantivo",
+        "Traducao": "Coração"
       }
 ]

@@ -1,265 +1,337 @@
 [
-    {
-        "Numero": 1,
-        "Vocabulo": "ἄγγελος",
-        "Genitivo": "ἀγγέλου",
-        "Artigo_Definido": "ὁ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Anjos"
-    },
-    {
-        "Numero": 2,
-        "Vocabulo": "ἅγιος, ἁγῖα, ἅγιπν",
-        "Artigo_Definido": "-",
-        "Classificacao": "Adjetivo",
-        "Traducao": "Santo"
-    },
-    {
-        "Numero": 3,
-        "Vocabulo": "ἀδελφός",
-        "Genitivo": "ἀδελφοῦ",
-        "Artigo_Definido": "ὁ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Irmão"
-    },
-    {
-        "Numero": 4,
-        "Vocabulo": "ἀκύω",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Ouço, Escuto"
-    },
-    {
-        "Numero": 5,
-        "Vocabulo": "ἀλἠθεια",
-        "Genitivo": "αλήθειας",
-        "Artigo_Definido": "ή",
-        "Classificacao": "Substantivo",
-        "Traducao": "Verdade"
-    },
-    {
-        "Numero": 6,
-        "Vocabulo": "ἂνθροπος",
-        "Genitivo": "ἀντροπου",
-        "Artigo_Definido": "ὁ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Homem"
-    },
-    {
-        "Numero": 7,
-        "Vocabulo": "βασιλεία",
-        "Genitivo": "βασιλεῖας",
-        "Artigo_Definido": "ἡ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Reino"
-    },
-    {
-        "Numero": 8,
-        "Vocabulo": "δόζα",
-        "Genitivo": "δόσης",
-        "Artigo_Definido": "ἡ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Glória"
-    },
-    {
-        "Numero": 9,
-        "Vocabulo": "εἰμί",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Sou, Estou"
-    },
-    {
-        "Numero": 10,
-        "Vocabulo": "ἔργον",
-        "Genitivo": "ἔργοθ",
-        "Artigo_Definido": "τό",
-        "Classificacao": "Substantivo",
-        "Traducao": "Trabalho, Obra"
-    },
-    {
-        "Numero": 11,
-        "Vocabulo": "εὐαγγέλιον",
-        "Genitivo": "εὐαγγελίου",
-        "Artigo_Definido": "τό",
-        "Classificacao": "Substantivo",
-        "Traducao": "Evangelho, Boas Novas"
-    },
-    {
-        "Numero": 12,
-        "Vocabulo": "θεός",
-        "Genitivo": "θεοῦ",
-        "Artigo_Definido": "ὁ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Deus"
-    },
-    {
-        "Numero": 13,
-        "Vocabulo": "καί",
-        "Artigo_Definido": "-",
-        "Classificacao": "Conjunção",
-        "Traducao": "E, Também"
-    },
-    {
-        "Numero": 14,
-        "Vocabulo": "κύριος",
-        "Genitivo": "κυρίου",
-        "Artigo_Definido": "ὁ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Senhor"
-    },
-    {
+  {
+    "Numero": 1,
+    "Vocabulo": "ἄγγελος",
+    "Genitivo": "ἀγγέλου",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Anjos"
+  },
+  {
+    "Numero": 2,
+    "Vocabulo": "ἅγιος, ἁγῖα, ἅγιπν",
+    "Artigo_Definido": "-",
+    "Classificacao": "Adjetivo",
+    "Traducao": "Santo"
+  },
+  {
+    "Numero": 3,
+    "Vocabulo": "ἀδελφός",
+    "Genitivo": "ἀδελφοῦ",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Irmão"
+  },
+  {
+    "Numero": 4,
+    "Vocabulo": "ἀκύω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Ouço, Escuto"
+  },
+  {
+    "Numero": 5,
+    "Vocabulo": "ἀλἠθεια",
+    "Genitivo": "αλήθειας",
+    "Artigo_Definido": "ή",
+    "Classificacao": "Substantivo",
+    "Traducao": "Verdade"
+  },
+  {
+    "Numero": 6,
+    "Vocabulo": "ἂνθροπος",
+    "Genitivo": "ἀντροπου",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Homem"
+  },
+  {
+    "Numero": 7,
+    "Vocabulo": "βασιλεία",
+    "Genitivo": "βασιλεῖας",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Reino"
+  },
+  {
+    "Numero": 8,
+    "Vocabulo": "δόζα",
+    "Genitivo": "δόσης",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Glória"
+  },
+  {
+    "Numero": 9,
+    "Vocabulo": "εἰμί",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Sou, Estou"
+  },
+  {
+    "Numero": 10,
+    "Vocabulo": "ἔργον",
+    "Genitivo": "ἔργοθ",
+    "Artigo_Definido": "τό",
+    "Classificacao": "Substantivo",
+    "Traducao": "Trabalho, Obra"
+  },
+  {
+    "Numero": 11,
+    "Vocabulo": "εὐαγγέλιον",
+    "Genitivo": "εὐαγγελίου",
+    "Artigo_Definido": "τό",
+    "Classificacao": "Substantivo",
+    "Traducao": "Evangelho, Boas Novas"
+  },
+  {
+    "Numero": 12,
+    "Vocabulo": "θεός",
+    "Genitivo": "θεοῦ",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Deus"
+  },
+  {
+    "Numero": 13,
+    "Vocabulo": "καί",
+    "Artigo_Definido": "-",
+    "Classificacao": "Conjunção",
+    "Traducao": "E, Também"
+  },
+  {
+    "Numero": 14,
+    "Vocabulo": "κύριος",
+    "Genitivo": "κυρίου",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Senhor"
+  },
+  {
     "Numero": 15,
     "Vocabulo": "λέγω",
     "Artigo_Definido": "-",
     "Classificacao": "Verbo",
     "Traducao": "Digo, Falo"
-    },
-    {
-        "Numero": 16,
-        "Vocabulo": "λόγος",
-        "Artigo_Definido": "ὁ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Palavra"
-      },
-      {
-        "Numero": 17,
-        "Vocabulo": "πιστεύω",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Creio"
-      },
-      {
-        "Numero": 18,
-        "Vocabulo": "ποιέω",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Faço"
-      },
-      {
-        "Numero": 19,
-        "Vocabulo": "τέκνον",
-        "Genitivo": "τέκνου",
-        "Artigo_Definido": "τό",
-        "Classificacao": "Substantivo",
-        "Traducao": "Criança, Filho"
-      },
-      {
-        "Numero": 20,
-        "Vocabulo": "υἱός",
-        "Genitivo": "υἱοῦ",
-        "Artigo_Definido": "ὁ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Filho"
-      },
-      {
-        "Numero": 21,
-        "Vocabulo": "Χριστός",
-        "Artigo_Definido": "ὁ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Cristo, Messias, Ungido"
-      },
-      {
-        "Numero": 22,
-        "Vocabulo": "ἀγαπάω",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Amo"
-      },
-      {
-        "Numero": 23,
-        "Vocabulo": "ἀγάπη",
-        "Genitivo": "ἀφάπης",
-        "Artigo_Definido": "ἡ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Amor"
-      },
-      {
-        "Numero": 24,
-        "Vocabulo": "ἁμαρτία",
-        "Genitivo": "ἀμαρτίας",
-        "Artigo_Definido": "ἡ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Pecado"
-      },
-      {
-        "Numero": 25,
-        "Vocabulo": "ἀνήρ",
-        "Genitivo": "ἀνδρός",
-        "Artigo_Definido": "ὁ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Marido, Homem"
-      },
-      {
-        "Numero": 26,
-        "Vocabulo": "ἀποκρίνομαι",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Respondo"
-      },
-      {
-        "Numero": 27,
-        "Vocabulo": "γῆ",
-        "Genitivo": "γῆς",
-        "Artigo_Definido": "ἡ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Terra"
-      },
-      {
-        "Numero": 28,
-        "Vocabulo": "γῖνομαι",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Sou, Torno-me, [3ª Pessoa: Acontece]"
-      },
-      {
-        "Numero": 29,
-        "Vocabulo": "γινώσκω",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Conheço, sei"
-      },
-      {
-        "Numero": 30,
-        "Vocabulo": "γράφω",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Escrevo"
-      },
-      {
-        "Numero": 31,
-        "Vocabulo": "ἑαυτοῦ, ἑαυτῆς, ἑαυτοῦ",
-        "Artigo_Definido": "-",
-        "Classificacao": "Pronome Reflexivo",
-        "Traducao": "De (para) si mesmo"
-      },
-      {
-        "Numero": 32,
-        "Vocabulo": "ἔρχομαι",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Vou, Venho"
-      },
-      {
-        "Numero": 33,
-        "Vocabulo": "ἔχω",
-        "Artigo_Definido": "-",
-        "Classificacao": "Verbo",
-        "Traducao": "Tenho"
-      },
-      {
-        "Numero": 34,
-        "Vocabulo": "ἱερόν",
-        "Genitivo": "ἱεροῦ",
-        "Artigo_Definido": "τό",
-        "Classificacao": "Substantivo",
-        "Traducao": "Templo"
-      },
-      {
-        "Numero": 35,
-        "Vocabulo": "καρδία",
-        "Genitivo": "καρδίας",
-        "Artigo_Definido": "ἡ",
-        "Classificacao": "Substantivo",
-        "Traducao": "Coração"
-      }
+  },
+  {
+    "Numero": 16,
+    "Vocabulo": "λόγος",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Palavra"
+  },
+  {
+    "Numero": 17,
+    "Vocabulo": "πιστεύω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Creio"
+  },
+  {
+    "Numero": 18,
+    "Vocabulo": "ποιέω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Faço"
+  },
+  {
+    "Numero": 19,
+    "Vocabulo": "τέκνον",
+    "Genitivo": "τέκνου",
+    "Artigo_Definido": "τό",
+    "Classificacao": "Substantivo",
+    "Traducao": "Criança, Filho"
+  },
+  {
+    "Numero": 20,
+    "Vocabulo": "υἱός",
+    "Genitivo": "υἱοῦ",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Filho"
+  },
+  {
+    "Numero": 21,
+    "Vocabulo": "Χριστός",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Cristo, Messias, Ungido"
+  },
+  {
+    "Numero": 22,
+    "Vocabulo": "ἀγαπάω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Amo"
+  },
+  {
+    "Numero": 23,
+    "Vocabulo": "ἀγάπη",
+    "Genitivo": "ἀφάπης",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Amor"
+  },
+  {
+    "Numero": 24,
+    "Vocabulo": "ἁμαρτία",
+    "Genitivo": "ἀμαρτίας",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Pecado"
+  },
+  {
+    "Numero": 25,
+    "Vocabulo": "ἀνήρ",
+    "Genitivo": "ἀνδρός",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Marido, Homem"
+  },
+  {
+    "Numero": 26,
+    "Vocabulo": "ἀποκρίνομαι",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Respondo"
+  },
+  {
+    "Numero": 27,
+    "Vocabulo": "γῆ",
+    "Genitivo": "γῆς",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Terra"
+  },
+  {
+    "Numero": 28,
+    "Vocabulo": "γῖνομαι",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Sou, Torno-me, [3ª Pessoa: Acontece]"
+  },
+  {
+    "Numero": 29,
+    "Vocabulo": "γινώσκω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Conheço, sei"
+  },
+  {
+    "Numero": 30,
+    "Vocabulo": "γράφω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Escrevo"
+  },
+  {
+    "Numero": 31,
+    "Vocabulo": "ἑαυτοῦ, ἑαυτῆς",
+    "Artigo_Definido": "-",
+    "Classificacao": "Pronome Reflexivo",
+    "Traducao": "De (para) si mesmo"
+  },
+  {
+    "Numero": 32,
+    "Vocabulo": "ἔρχομαι",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Vou, Venho"
+  },
+  {
+    "Numero": 33,
+    "Vocabulo": "ἔχω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Tenho"
+  },
+  {
+    "Numero": 34,
+    "Vocabulo": "ἱερόν",
+    "Genitivo": "ἱεροῦ",
+    "Artigo_Definido": "τό",
+    "Classificacao": "Substantivo",
+    "Traducao": "Templo"
+  },
+  {
+    "Numero": 35,
+    "Vocabulo": "καρδία",
+    "Genitivo": "καρδίας",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Coração"
+  },
+  {
+    "Numero": 36,
+    "Vocabulo": "λαλέω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Falo"
+  },
+  {
+    "Numero": 37,
+    "Vocabulo": "οὐρανός",
+    "Genitivo": "οὐρανοῦ",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Céu"
+  },
+  {
+    "Numero": 38,
+    "Vocabulo": "πᾶς, πᾶσα, πᾶν",
+    "Artigo_Definido": "-",
+    "Classificacao": "Pronome Adjetivo",
+    "Traducao": "Todo(a), Cada"
+  },
+  {
+    "Numero": 39,
+    "Vocabulo": "ἀμέν",
+    "Artigo_Definido": "-",
+    "Classificacao": "Interjeição",
+    "Traducao": "Amém, Verdadeiramente"
+  },
+  {
+    "Numero": 40,
+    "Vocabulo": "ἀγαθός, ἀγαθῆ, ἀγαθόν",
+    "Artigo_Definido": "-",
+    "Classificacao": "Adjetivo",
+    "Traducao": "Bom(a)"
+  },
+  {
+    "Numero": 41,
+    "Vocabulo": "ἀποστέλλω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Envio"
+  },
+  {
+    "Numero": 42,
+    "Vocabulo": "βλέπω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Vejo"
+  },
+  {
+    "Numero": 43,
+    "Vocabulo": "δέ",
+    "Artigo_Definido": "-",
+    "Classificacao": "Conjunção",
+    "Traducao": "Mas, e"
+  },
+  {
+    "Numero": 44,
+    "Vocabulo": "ἐγείρω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Levanto, Ressuscito"
+  },
+  {
+    "Numero": 45,
+    "Vocabulo": "ἔθνος",
+    "Genitivo": "ἔθνους",
+    "Artigo_Definido": "τό",
+    "Classificacao": "Substantivo",
+    "Traducao": "Nação, Povo; Gentios [plural]"
+  }
 ]

@@ -333,5 +333,42 @@
     "Artigo_Definido": "τό",
     "Classificacao": "Substantivo",
     "Traducao": "Nação, Povo; Gentios [plural]"
+  },
+  {
+    "Numero": 46,
+    "Vocabulo": "εἷς, μία, ἕν",
+    "Artigo_Definido": "-",
+    "Classificacao": "Pronome Adjetivo",
+    "Traducao": "Um(a)"
+  },
+  {
+    "Numero": 47,
+    "Vocabulo": "ἡμέρα",
+    "Genitivo": "ἡμέρας",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Dia"
+  },
+  {
+    "Numero": 48,
+    "Vocabulo": "θέλω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Quero"
+  },
+  {
+    "Numero": 49,
+    "Vocabulo": "κόσμος",
+    "Genitivo": "κόσμου",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Mundo"
+  },
+  {
+    "Numero": 50,
+    "Vocabulo": "λαμβάνω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Tomo, Recebo"
   }
 ]

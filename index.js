@@ -59,17 +59,27 @@ function rotate_card(card) {
 
 next.addEventListener('click', () => {
     atual_card_id += 1
-    card = document.getElementById(`card-${atual_card_id}`)
     next.setAttribute("href", `#card-${atual_card_id}`)
-})
+});
 
 previus.addEventListener('click', () => {
     if (atual_card_id != 1)
         atual_card_id += - 1
-    card = document.getElementById(`card-${atual_card_id}`)
     previus.setAttribute("href", `#card-${atual_card_id}`)
 })
 
+document.addEventListener("keydown", (e) => {
+    //console.log(e.code);
+    if (e.code == "ArrowRight") {
+        next.click()
+    }
+    if (e.code == "ArrowLeft") {
+        previus.click()
+    }
+    if (e.code == "Space") {
+        document.getElementById(`card-${atual_card_id}`).click()
+    }
+})
 
 
 

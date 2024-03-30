@@ -70,10 +70,10 @@ previus.addEventListener('click', () => {
 
 document.addEventListener("keydown", (e) => {
     //console.log(e.code);
-    if (e.code == "ArrowRight") {
+    if (e.code == "ArrowRight" || e.code == "KeyD") {
         next.click()
     }
-    if (e.code == "ArrowLeft") {
+    if (e.code == "ArrowLeft" || e.code == "KeyA") {
         previus.click()
     }
     if (e.code == "Space") {

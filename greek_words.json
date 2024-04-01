@@ -5,7 +5,7 @@
     "Genitivo": "ἀγγέλου",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Anjos"
+    "Traducao": "Anjo, Mensageiro"
   },
   {
     "Numero": 2,
@@ -444,5 +444,174 @@
     "Artigo_Definido": "-",
     "Classificacao": "Verbo",
     "Traducao": "Entro"
+  },
+  {
+    "Numero": 61,
+    "Vocabulo": "δοῦλος",
+    "Genitivo": "δούλου",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Escravo, Servo"
+  },
+  {
+    "Numero": 62,
+    "Vocabulo": "δύναμαι",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Posso, Sou Capaz"
+  },
+  {
+    "Numero": 63,
+    "Vocabulo": "εἰς",
+    "Artigo_Definido": "-",
+    "Classificacao": "Preposição",
+    "Traducao": "[Com Acusativo] Para, Para Dentro, Em"
+  },
+  {
+    "Numero": 64,
+    "Vocabulo": "εἰσέρχομαι",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Saio"
+  },
+  {
+    "Numero": 65,
+    "Vocabulo": "ἐν",
+    "Artigo_Definido": "-",
+    "Classificacao": "Preposição",
+    "Traducao": "[Com Acusativo] Em"
+  },
+  {
+    "Numero": 66,
+    "Vocabulo": "ἐσθίω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Como"
+  },
+  {
+    "Numero": 67,
+    "Vocabulo": "εὑρίσκω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Acho, Encontro"
+  },
+  {
+    "Numero": 68,
+    "Vocabulo": "ζητέω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Procuro, Busco"
+  },
+  {
+    "Numero": 69,
+    "Vocabulo": "ζωή",
+    "Genitivo": "ζωῆς",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Vida"
+  },
+  {
+    "Numero": 70,
+    "Vocabulo": "ἵστημι",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Coloco, [transitivo] Estabeleço, [Intransitivo] Fico de pé"
+  },
+  {
+    "Numero": 71,
+    "Vocabulo": "καλός, καλή, καλόν",
+    "Artigo_Definido": "-",
+    "Classificacao": "Adjetivo",
+    "Traducao": "Bom(a), Belo(a)"
+  },
+  {
+    "Numero": 72,
+    "Vocabulo": "κρίνω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Julgo"
+  },
+  {
+    "Numero": 73,
+    "Vocabulo": "νόμος",
+    "Genitivo": "νόμου",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Lei"
+  },
+  {
+    "Numero": 74,
+    "Vocabulo": "νεκρός, νεκρά, νεκρόν",
+    "Artigo_Definido": "-",
+    "Classificacao": "Adjetivo",
+    "Traducao": "Morto(a)"
+  },
+  {
+    "Numero": 75,
+    "Vocabulo": "ὄνομα",
+    "Genitivo": "ὀνόματος",
+    "Artigo_Definido": "τό",
+    "Classificacao": "Substantivo",
+    "Traducao": "Nome"
+  },
+  {
+    "Numero": 76,
+    "Vocabulo": "οὐδεῖς, ουδεμία, οὐδέν",
+    "Artigo_Definido": "-",
+    "Classificacao": "Pronome Indefinido",
+    "Traducao": "Nenhum(a), Nada"
+  },
+  {
+    "Numero": 77,
+    "Vocabulo": "ὄχλος",
+    "Genitivo": "ὄχλου",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Multidão, Povo"
+  },
+  {
+    "Numero": 78,
+    "Vocabulo": "πίστις",
+    "Genitivo": "πίστεως",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Fé, Fidelidade"
+  },
+  {
+    "Numero": 79,
+    "Vocabulo": "πνεῦμα",
+    "Genitivo": "πνεύματος",
+    "Artigo_Definido": "τό",
+    "Classificacao": "Substantivo",
+    "Traducao": "Espírito"
+  },
+  {
+    "Numero": 80,
+    "Vocabulo": "χάρις",
+    "Genitivo": "χάριτος",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Graça"
+  },
+  {
+    "Numero": 81,
+    "Vocabulo": "πολύς, πολλή, πολύ",
+    "Artigo_Definido": "-",
+    "Classificacao": "Pronome Adjetivo",
+    "Traducao": "Muito(a), Grande"
+  },
+  {
+    "Numero": 82,
+    "Vocabulo": "πρῶτος, πρῶτε, πρῶτον",
+    "Artigo_Definido": "-",
+    "Classificacao": "Pronome Adjetivo",
+    "Traducao": "Primeiro(a)"
+  },
+  {
+    "Numero": 83,
+    "Vocabulo": "καλέω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Chamo, Convido"
   }
 ]

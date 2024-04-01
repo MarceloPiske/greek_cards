@@ -370,5 +370,79 @@
     "Artigo_Definido": "-",
     "Classificacao": "Verbo",
     "Traducao": "Tomo, Recebo"
+  },
+  {
+    "Numero": 51,
+    "Vocabulo": "πατήρ",
+    "Genitivo": "πατρός",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Pai"
+  },
+  {
+    "Numero": 52,
+    "Vocabulo": "φωνή",
+    "Genitivo": "φονῆς",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Som, Voz"
+  },
+  {
+    "Numero": 53,
+    "Vocabulo": "ψυχή",
+    "Genitivo": "ψυχῆς",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Alma, Vida"
+  },
+  {
+    "Numero": 54,
+    "Vocabulo": "ἄλλος, ἄλλη, ἄλλο",
+    "Artigo_Definido": "-",
+    "Classificacao": "Pronome Adjetivo",
+    "Traducao": "Outro(a)"
+  },
+  {
+    "Numero": 55,
+    "Vocabulo": "ἀπό",
+    "Artigo_Definido": "-",
+    "Classificacao": "Preposição",
+    "Traducao": "[Preposição com genitivo] de, da parte de"
+  },
+  {
+    "Numero": 56,
+    "Vocabulo": "γυνή",
+    "Genitivo": "γυναικός",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Esposa, mulher"
+  },
+  {
+    "Numero": 57,
+    "Vocabulo": "διά",
+    "Artigo_Definido": "-",
+    "Classificacao": "Preposição",
+    "Traducao": "[Preposição com genitivo] Por meio de, através de; [preposição com acusativo] por causa de"
+  },
+  {
+    "Numero": 58,
+    "Vocabulo": "βάλλω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Lanço, Jogo"
+  },
+  {
+    "Numero": 59,
+    "Vocabulo": "δύναμαι",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Posso, Sou capaz"
+  },
+  {
+    "Numero": 60,
+    "Vocabulo": "εἰσέρχομαι",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Entro"
   }
 ]

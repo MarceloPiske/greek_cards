@@ -40,8 +40,10 @@ fetch("greek_words.json")
         return response.json();
     })
     .then(async jsondata => {
-        greek_words = jsondata;
-        insert_cards(greek_words);
+        insert_cards(jsondata);
+
+        let verbos = jsondata.filter((word) => word.Classificacao == "Verbo")
+        console.log(verbos);
     })
 
 
@@ -80,7 +82,6 @@ document.addEventListener("keydown", (e) => {
         document.getElementById(`card-${atual_card_id}`).click()
     }
 })
-
 
 
 

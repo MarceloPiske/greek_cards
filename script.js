@@ -1,4 +1,4 @@
-[
+json = [
     {
         "tempo": "presente",
         "tipos": [
@@ -194,3 +194,49 @@
         ]
     }
 ]
+
+let table_html = "" 
+for (let tempo of json) {
+    table_html += `<table>`
+    let thead = "<thead>"
+    let tbody = "<tbody>"
+    
+    let html_tempo = `<tr>
+                <th colspan="5">${tempo.tempo}</th>
+            </tr>`
+    let html_tipos = `<tr>
+                <th>Pessoa</th>`
+
+    ps = `<tr> <th>1ª Pessoa Singular</th>`
+    ss = `<tr> <th>2ª Pessoa Singular</th>`
+    ts = `<tr> <th>3ª Pessoa Singular</th>`
+    pp = `<tr> <th>1ª Pessoa Plural</th>`
+    sp = `<tr> <th>2ª Pessoa Plural</th>`
+    tp = `<tr> <th>3ª Pessoa Plural</th>`
+    console.log(tempo.tipos);
+    for (const tipos of tempo.tipos) {
+        html_tipos += `<th>${tipos.tipo}</th>`
+        console.log(tipos);
+        ps += `<td>${tipos.singular.primeira_pessoa}</td>`
+        ss += `<td>${tipos.singular.segunda_pessoa}</td>`
+        ts += `<td>${tipos.singular.terceira_pessoa}</td>`
+
+        pp += `<td>${tipos.plural.primeira_pessoa}</td>`
+        sp += `<td>${tipos.plural.segunda_pessoa}</td>`
+        tp += `<td>${tipos.plural.terceira_pessoa}</td>`
+    }
+
+    html_tipos += "</tr>"
+    thead += html_tempo + html_tipos + "</thead>"
+
+    ps += "</tr>"
+    ss += "</tr>"
+    ts += "</tr>"
+    pp += "</tr>"
+    sp += "</tr>"
+    tp += "</tr>"
+    tbody += ps + ss + ts + pp + sp + tp + "</tbody>"
+
+    table_html += thead + tbody + "</table>"
+}
+document.querySelector("#container").innerHTML = table_html

@@ -1,9 +1,9 @@
 json = [
     {
-        "tempo": "presente",
+        "tempo": "Presente",
         "tipos": [
             {
-                "tipo": "ativo",
+                "tipo": "Ativo",
                 "singular": {
                     "primeira_pessoa": "λύω",
                     "segunda_pessoa": "λύεις",
@@ -16,7 +16,7 @@ json = [
                 }
             },
             {
-                "tipo": "medio_passivo",
+                "tipo": "Médio/Passivo",
                 "singular": {
                     "primeira_pessoa": "λύομαι",
                     "segunda_pessoa": "λύῃ",
@@ -31,23 +31,23 @@ json = [
         ]
     },
     {
-        "tempo": "imperfeito",
+        "tempo": "Imperfeito",
         "tipos": [
             {
-                "tipo": "ativo",
+                "tipo": "Ativo",
                 "singular": {
-                    "primeira_pessoa": "ἔλυον",
-                    "segunda_pessoa": "ἔλυες",
+                    "primeira_pessoa": "ἔλυόν",
+                    "segunda_pessoa": "ἔλύες",
                     "terceira_pessoa": "ἔλυε(ν)"
                 },
                 "plural": {
-                    "primeira_pessoa": "ἔλυομεν",
-                    "segunda_pessoa": "ἔλυετε",
+                    "primeira_pessoa": "ἐλυόμεν",
+                    "segunda_pessoa": "ἐλύετε",
                     "terceira_pessoa": "ἔλυον"
                 }
             },
             {
-                "tipo": "medio_passivo",
+                "tipo": "Médio/Passivo",
                 "singular": {
                     "primeira_pessoa": "ἐλυόμην",
                     "segunda_pessoa": "ἐλύου",
@@ -62,10 +62,10 @@ json = [
         ]
     },
     {
-        "tempo": "aoristo",
+        "tempo": "Aoristo",
         "tipos": [
             {
-                "tipo": "ativo",
+                "tipo": "Ativo",
                 "singular": {
                     "primeira_pessoa": "ἔλυσα",
                     "segunda_pessoa": "ἔλυσας",
@@ -78,7 +78,7 @@ json = [
                 }
             },
             {
-                "tipo": "medio",
+                "tipo": "Médio",
                 "singular": {
                     "primeira_pessoa": "ἐλυσάμην",
                     "segunda_pessoa": "ἐλύσω",
@@ -91,7 +91,7 @@ json = [
                 }
             },
             {
-                "tipo": "aoristo_passivo",
+                "tipo": "Passivo",
                 "singular": {
                     "primeira_pessoa": "ἐλύθην",
                     "segunda_pessoa": "ἐλύθης",
@@ -104,7 +104,7 @@ json = [
                 }
             },
             {
-                "tipo": "aoristo_segundo_ativo",
+                "tipo": "Aoristo Segundo",
                 "singular": {
                     "primeira_pessoa": "ἔλαβον",
                     "segunda_pessoa": "ἔλαβες",
@@ -119,10 +119,10 @@ json = [
         ]
     },
     {
-        "tempo": "futuro",
+        "tempo": "Futuro",
         "tipos": [
             {
-                "tipo": "futuro_ativo",
+                "tipo": "Ativo",
                 "singular": {
                     "primeira_pessoa": "λύσω",
                     "segunda_pessoa": "λύσεις",
@@ -135,20 +135,20 @@ json = [
                 }
             },
             {
-                "tipo": "futuro_medio",
+                "tipo": "Médio",
                 "singular": {
-                    "primeira_pessoa": "λυθήσομαι",
-                    "segunda_pessoa": "λυθήσῃ",
-                    "terceira_pessoa": "λυθήσεται"
+                    "primeira_pessoa": "λύσομαι",
+                    "segunda_pessoa": "λύσῃ",
+                    "terceira_pessoa": "λύσεται"
                 },
                 "plural": {
-                    "primeira_pessoa": "λυθησόμεθα",
-                    "segunda_pessoa": "λυθήσεσθε",
-                    "terceira_pessoa": "λυθήσονται"
+                    "primeira_pessoa": "λυσόμεθα",
+                    "segunda_pessoa": "λύσεσθε",
+                    "terceira_pessoa": "λύσονται"
                 }
             },
             {
-                "tipo": "futuro_passivo",
+                "tipo": "Passivo",
                 "singular": {
                     "primeira_pessoa": "λυθήσομαι",
                     "segunda_pessoa": "λυθήσῃ",
@@ -163,14 +163,14 @@ json = [
         ]
     },
     {
-        "tempo": "perfeito",
+        "tempo": "Perfeito",
         "tipos": [
             {
-                "tipo": "perfeito_ativo",
+                "tipo": "Ativo",
                 "singular": {
-                    "primeira_pessoa": "λελύκα",
-                    "segunda_pessoa": "λελύκας",
-                    "terceira_pessoa": "λελύκε(ν)"
+                    "primeira_pessoa": "λέλυκα",
+                    "segunda_pessoa": "λεέλυκας",
+                    "terceira_pessoa": "λέλυκε(ν)"
                 },
                 "plural": {
                     "primeira_pessoa": "λελύκαμεν",
@@ -179,7 +179,7 @@ json = [
                 }
             },
             {
-                "tipo": "perfeito_medio_passivo",
+                "tipo": "Médio/Passivo",
                 "singular": {
                     "primeira_pessoa": "λέλυμαι",
                     "segunda_pessoa": "λέλυσαι",
@@ -187,7 +187,7 @@ json = [
                 },
                 "plural": {
                     "primeira_pessoa": "λελύμεθα",
-                    "segunda_pessoa": "λελύσθητε",
+                    "segunda_pessoa": "λέλυσθε",
                     "terceira_pessoa": "λέλυνται"
                 }
             }
@@ -207,12 +207,12 @@ for (let tempo of json) {
     let html_tipos = `<tr>
                 <th>Pessoa</th>`
 
-    ps = `<tr> <th>1ª Pessoa Singular</th>`
-    ss = `<tr> <th>2ª Pessoa Singular</th>`
-    ts = `<tr> <th>3ª Pessoa Singular</th>`
-    pp = `<tr> <th>1ª Pessoa Plural</th>`
-    sp = `<tr> <th>2ª Pessoa Plural</th>`
-    tp = `<tr> <th>3ª Pessoa Plural</th>`
+    ps = `<tr> <th>1ª Singular</th>`
+    ss = `<tr> <th>2ª Singular</th>`
+    ts = `<tr> <th>3ª Singular</th>`
+    pp = `<tr> <th>1ª Plural</th>`
+    sp = `<tr> <th>2ª Plural</th>`
+    tp = `<tr> <th>3ª Plural</th>`
     console.log(tempo.tipos);
     for (const tipos of tempo.tipos) {
         html_tipos += `<th>${tipos.tipo}</th>`

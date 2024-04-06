@@ -12,13 +12,44 @@
 </head>
 
 <body>
+    <a class="voltar-index" href="index.html">
+        <span class="material-symbols-sharp">
+            arrow_back
+        </span>
+    </a>
     <img class="background-image-left" src="https://media-public.canva.com/9wWO0/MAFfap9wWO0/1/tl.png" alt="">
     <img class="background-image-rigth" src="https://media-public.canva.com/9wWO0/MAFfap9wWO0/1/tl.png" alt="">
     <main>
         <div class="container">
-            <!-- JS content -->
+            <div class="menu">
+                <div class="select-content">
+                    <span class="material-symbols-sharp">
+                        filter_alt
+                    </span>
+                    <select onchange="filter_json(this.value)" name="" id="">
+                        <option>Todos</option>
+                        <option>Substantivo</option>
+                        <option>Verbo</option>
+                        <option>Adjetivo</option>
+                        <option>Pronome</option>
+                    </select>
+                </div>
+                <div onclick="filter_json('Todos')">
+                    <span class="material-symbols-sharp">
+                        restart_alt
+                    </span>
+                </div>
+                <div class="info" onmouseover="info_card()">
+                    <span class="material-symbols-sharp">
+                        info
+                    </span>
+                    <div class="info-modal">
+                    </div>
+                </div>
+
+            </div>
             <a href="#card-1" id="previus" class="previus"></a>
-            <div id="card-container" class="card-container" >
+            <div id="card-container" class="card-container">
                 <!-- <div id="card-1" class="card">
                     <img class="inferior-left-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
                     <img class="superior-left-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
@@ -42,11 +73,11 @@
                     </div>
                 </div> -->
             </div>
-            <a  id="next" class="next"></a>
+            <a id="next" class="next"></a>
         </div>
     </main>
     <script src="src/scripts/cards.js"></script>
-    
+
 </body>
 
 </html>

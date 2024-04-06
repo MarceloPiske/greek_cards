@@ -17,7 +17,7 @@ function insert_cards(greek_words) {
     sorted_words = shuffleArray(greek_words)
     ramdon_number = 0
     for (const word of greek_words) {
-        html += `<div onclick="rotate_card(this)" id="card-${ramdon_number + 1}" class="card">
+        html += `<div data-json='${JSON.stringify(word)}' onclick="rotate_card(this)" id="card-${ramdon_number + 1}" class="card">
                     <img class="inferior-left-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
                     <img class="superior-left-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
                     <div class="front">
@@ -35,15 +35,31 @@ function insert_cards(greek_words) {
     card_container.innerHTML = html
 }
 //Abrir Json
+
+function filter_json(classification) {
+    fetch("greek_words.json")
+        .then(response => {
+            return response.json();
+        })
+        .then(jsondata => {
+            let filtradas = jsondata.filter((word) => word.Classificacao.includes(classification))
+            if (classification == "Todos") {
+                insert_cards(jsondata);
+            } else {
+                insert_cards(filtradas);
+            }
+        })
+        //ANCHOR - lembrar de transformar em função
+        location.href = `#card-1`
+        atual_card_id = 1
+        //Até aqui
+}
 fetch("greek_words.json")
     .then(response => {
         return response.json();
     })
-    .then(async jsondata => {
+    .then(jsondata => {
         insert_cards(jsondata);
-
-        let verbos = jsondata.filter((word) => word.Classificacao == "Verbo")
-        console.log(verbos);
     })
 
 
@@ -82,6 +98,22 @@ document.addEventListener("keydown", (e) => {
         document.getElementById(`card-${atual_card_id}`).click()
     }
 })
+
+function info_card(){
+    card_data = JSON.parse(document.getElementById(`card-${atual_card_id}`).dataset.json)
+    delete card_data["Numero"]
+    delete card_data["Traducao"]
+    delete card_data["Vocabulo"]
+    text = ""
+    for (const k in card_data) {
+        text += `<div>${k}: ${card_data[k]}</div>`
+    }
+
+    document.querySelector('.info-modal').innerHTML = text
+    
+    console.log();
+}
+//filtro de array
 
 
 

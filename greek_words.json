@@ -10,7 +10,6 @@
   {
     "Numero": 2,
     "Vocabulo": "ἅγιος, ἁγῖα, ἅγιπν",
-    
     "Classificacao": "Adjetivo",
     "Traducao": "Santo"
   },
@@ -25,7 +24,6 @@
   {
     "Numero": 4,
     "Vocabulo": "ἀκύω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Ouço, Escuto"
   },
@@ -64,7 +62,6 @@
   {
     "Numero": 9,
     "Vocabulo": "εἰμί",
-    
     "Classificacao": "Verbo",
     "Traducao": "Sou, Estou"
   },
@@ -95,7 +92,6 @@
   {
     "Numero": 13,
     "Vocabulo": "καί",
-    
     "Classificacao": "Conjunção",
     "Traducao": "E, Também"
   },
@@ -110,7 +106,6 @@
   {
     "Numero": 15,
     "Vocabulo": "λέγω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Digo, Falo"
   },
@@ -124,14 +119,12 @@
   {
     "Numero": 17,
     "Vocabulo": "πιστεύω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Creio"
   },
   {
     "Numero": 18,
     "Vocabulo": "ποιέω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Faço"
   },
@@ -161,7 +154,6 @@
   {
     "Numero": 22,
     "Vocabulo": "ἀγαπάω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Amo"
   },
@@ -192,7 +184,6 @@
   {
     "Numero": 26,
     "Vocabulo": "ἀποκρίνομαι",
-    
     "Classificacao": "Verbo",
     "Traducao": "Respondo"
   },
@@ -207,42 +198,36 @@
   {
     "Numero": 28,
     "Vocabulo": "γῖνομαι",
-    
     "Classificacao": "Verbo",
     "Traducao": "Sou, Torno-me, [3ª Pessoa: Acontece]"
   },
   {
     "Numero": 29,
     "Vocabulo": "γινώσκω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Conheço, sei"
   },
   {
     "Numero": 30,
     "Vocabulo": "γράφω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Escrevo"
   },
   {
     "Numero": 31,
     "Vocabulo": "ἑαυτοῦ, ἑαυτῆς",
-    
     "Classificacao": "Pronome Reflexivo",
     "Traducao": "De (para) si mesmo"
   },
   {
     "Numero": 32,
     "Vocabulo": "ἔρχομαι",
-    
     "Classificacao": "Verbo",
     "Traducao": "Vou, Venho"
   },
   {
     "Numero": 33,
     "Vocabulo": "ἔχω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Tenho"
   },
@@ -265,7 +250,6 @@
   {
     "Numero": 36,
     "Vocabulo": "λαλέω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Falo"
   },
@@ -280,49 +264,42 @@
   {
     "Numero": 38,
     "Vocabulo": "πᾶς, πᾶσα, πᾶν",
-    
     "Classificacao": "Pronome Adjetivo",
     "Traducao": "Todo(a), Cada"
   },
   {
     "Numero": 39,
     "Vocabulo": "ἀμέν",
-    
     "Classificacao": "Interjeição",
     "Traducao": "Amém, Verdadeiramente"
   },
   {
     "Numero": 40,
     "Vocabulo": "ἀγαθός, ἀγαθῆ, ἀγαθόν",
-    
     "Classificacao": "Adjetivo",
     "Traducao": "Bom(a)"
   },
   {
     "Numero": 41,
     "Vocabulo": "ἀποστέλλω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Envio"
   },
   {
     "Numero": 42,
     "Vocabulo": "βλέπω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Vejo"
   },
   {
     "Numero": 43,
     "Vocabulo": "δέ",
-    
     "Classificacao": "Conjunção",
     "Traducao": "Mas, e"
   },
   {
     "Numero": 44,
     "Vocabulo": "ἐγείρω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Levanto, Ressuscito"
   },
@@ -337,7 +314,6 @@
   {
     "Numero": 46,
     "Vocabulo": "εἷς, μία, ἕν",
-    
     "Classificacao": "Pronome Adjetivo",
     "Traducao": "Um(a)"
   },
@@ -352,7 +328,6 @@
   {
     "Numero": 48,
     "Vocabulo": "θέλω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Quero"
   },
@@ -367,7 +342,6 @@
   {
     "Numero": 50,
     "Vocabulo": "λαμβάνω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Tomo, Recebo"
   },
@@ -398,14 +372,12 @@
   {
     "Numero": 54,
     "Vocabulo": "ἄλλος, ἄλλη, ἄλλο",
-    
     "Classificacao": "Pronome Adjetivo",
     "Traducao": "Outro(a)"
   },
   {
     "Numero": 55,
     "Vocabulo": "ἀπό",
-    
     "Classificacao": "Preposição",
     "Traducao": "[Preposição com genitivo] de, da parte de"
   },
@@ -420,28 +392,24 @@
   {
     "Numero": 57,
     "Vocabulo": "διά",
-    
     "Classificacao": "Preposição",
     "Traducao": "[Preposição com genitivo] Por meio de, através de; [preposição com acusativo] por causa de"
   },
   {
     "Numero": 58,
     "Vocabulo": "βάλλω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Lanço, Jogo"
   },
   {
     "Numero": 59,
     "Vocabulo": "δύναμαι",
-    
     "Classificacao": "Verbo",
     "Traducao": "Posso, Sou capaz"
   },
   {
     "Numero": 60,
     "Vocabulo": "εἰσέρχομαι",
-    
     "Classificacao": "Verbo",
     "Traducao": "Entro"
   },
@@ -456,49 +424,42 @@
   {
     "Numero": 62,
     "Vocabulo": "ἐκ, ἐξ",
-    
     "Classificacao": "Preposição",
     "Traducao": "[Com Genitivo] de"
   },
   {
     "Numero": 63,
     "Vocabulo": "εἰς",
-    
     "Classificacao": "Preposição",
     "Traducao": "[Com Acusativo] Para, Para Dentro, Em"
   },
   {
     "Numero": 64,
     "Vocabulo": "ἐξέρχομαι",
-    
     "Classificacao": "Verbo",
     "Traducao": "Saio"
   },
   {
     "Numero": 65,
     "Vocabulo": "ἐν",
-    
     "Classificacao": "Preposição",
     "Traducao": "[Com Acusativo] Em"
   },
   {
     "Numero": 66,
     "Vocabulo": "ἐσθίω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Como"
   },
   {
     "Numero": 67,
     "Vocabulo": "εὑρίσκω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Acho, Encontro"
   },
   {
     "Numero": 68,
     "Vocabulo": "ζητέω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Procuro, Busco"
   },
@@ -513,21 +474,18 @@
   {
     "Numero": 70,
     "Vocabulo": "ἵστημι",
-    
     "Classificacao": "Verbo",
     "Traducao": "Coloco, [transitivo] Estabeleço, [Intransitivo] Fico de pé"
   },
   {
     "Numero": 71,
     "Vocabulo": "καλός, καλή, καλόν",
-    
     "Classificacao": "Adjetivo",
     "Traducao": "Bom(a), Belo(a)"
   },
   {
     "Numero": 72,
     "Vocabulo": "κρίνω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Julgo"
   },
@@ -542,7 +500,6 @@
   {
     "Numero": 74,
     "Vocabulo": "νεκρός, νεκρά, νεκρόν",
-    
     "Classificacao": "Adjetivo",
     "Traducao": "Morto(a)"
   },
@@ -557,7 +514,6 @@
   {
     "Numero": 76,
     "Vocabulo": "οὐδεῖς, ουδεμία, οὐδέν",
-    
     "Classificacao": "Pronome Indefinido",
     "Traducao": "Nenhum(a), Nada"
   },
@@ -596,22 +552,230 @@
   {
     "Numero": 81,
     "Vocabulo": "πολύς, πολλή, πολύ",
-    
     "Classificacao": "Pronome Adjetivo",
     "Traducao": "Muito(a), Grande"
   },
   {
     "Numero": 82,
     "Vocabulo": "πρῶτος, πρῶτε, πρῶτον",
-    
     "Classificacao": "Pronome Adjetivo",
     "Traducao": "Primeiro(a)"
   },
   {
     "Numero": 83,
     "Vocabulo": "καλέω",
-    
     "Classificacao": "Verbo",
     "Traducao": "Chamo, Convido"
+  },
+  {
+    "Numero": 84,
+    "Vocabulo": "δίδωμι",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Dou"
+  },
+  {
+    "Numero": 85,
+    "Vocabulo": "μένω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Permaneço"
+  },
+  {
+    "Numero": 86,
+    "Vocabulo": "οἶδα",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Sei, Conheço"
+  },
+  {
+    "Numero": 87,
+    "Vocabulo": "παρακαλέω",
+    "Artigo_Definido": "-",
+    "Classificacao": "Verbo",
+    "Traducao": "Rogo, Admoesto, Consolo"
+  },
+  {
+    "Numero": 88,
+    "Vocabulo": "ἐπί",
+    "Artigo_Definido": "-",
+    "Classificacao": "Preposição",
+    "Traducao": "Sobre, Em"
+  },
+  {
+    "Numero": 89,
+    "Vocabulo": "κατά",
+    "Artigo_Definido": "-",
+    "Classificacao": "Preposição",
+    "Traducao": "[Genitivo] Para Baixo, Contra [Acusativo] Conforme"
+  },
+  {
+    "Numero": 90,
+    "Vocabulo": "πρός",
+    "Artigo_Definido": "-",
+    "Classificacao": "Preposição",
+    "Traducao": "[Acusativo] Para"
+  },
+  {
+    "Numero": 91,
+    "Vocabulo": "μέγας, μεγάλη, μέγα",
+    "Artigo_Definido": "-",
+    "Classificacao": "Adjetivo",
+    "Traducao": "Grande, Muito"
+  },
+  {
+    "Numero": 92,
+    "Vocabulo": "αἷμα",
+    "Genitivo": "αἵματος",
+    "Artigo_Definido": "τό",
+    "Classificacao": "Substantivo",
+    "Traducao": "Sangue"
+  },
+  {
+    "Numero": 93,
+    "Vocabulo": "λαός",
+    "Genitivo": "λαοῦ",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Povo"
+  },
+  {
+    "Numero": 94,
+    "Vocabulo": "μαθητής",
+    "Genitivo": "ματηθοῦ",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Discípulo"
+  },
+  {
+    "Numero": 95,
+    "Vocabulo": "σάρξ",
+    "Genitivo": "σαρκός",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Carne"
+  },
+  {
+    "Numero": 96,
+    "Vocabulo": "σῶμα",
+    "Genitivo": "σωματος",
+    "Artigo_Definido": "τό",
+    "Classificacao": "Substantivo",
+    "Traducao": "Corpo"
+  },
+  {
+    "Numero": 97,
+    "Vocabulo": "σωτήρ",
+    "Genitivo": "σωτῆρος",
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Salvador"
+  },
+  {
+    "Numero": 98,
+    "Vocabulo": "χείρ",
+    "Genitivo": "χειρός",
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Mão"
+  },
+  {
+    "Numero": 99,
+    "Vocabulo": "αἴρω",
+    "Classificacao": "Verbo",
+    "Traducao": "Levanto, Carrego, Tiro"
+  },
+  {
+    "Numero": 100,
+    "Vocabulo": "ἀνίστημι",
+    "Classificacao": "Verbo",
+    "Traducao": "Levanto, Ressuscito"
+  },
+  {
+    "Numero": 101,
+    "Vocabulo": "ἀπολύω",
+    "Classificacao": "Verbo",
+    "Traducao": "Liberto"
+  },
+  {
+    "Numero": 102,
+    "Vocabulo": "ἀφίημι",
+    "Classificacao": "Verbo",
+    "Traducao": "Perdoo, Deixo ir"
+  },
+  {
+    "Numero": 103,
+    "Vocabulo": "ἀπέρχομαι",
+    "Classificacao": "Verbo",
+    "Traducao": "Retiro-me, Parto, Venho"
+  },
+  {
+    "Numero": 104,
+    "Vocabulo": "ζάω",
+    "Classificacao": "Verbo",
+    "Traducao": "Vivo"
+  },
+  {
+    "Numero": 105,
+    "Vocabulo": "σύν",
+    "Classificacao": "Preposição",
+    "Traducao": "[Dativo] Com"
+  },
+  {
+    "Numero": 106,
+    "Vocabulo": "ὑπέρ",
+    "Classificacao": "Preposição",
+    "Traducao": "[Genitivo] Por, [Acusativo] Acima"
+  },
+  {
+    "Numero": 107,
+    "Vocabulo": "αίών",
+    "casos": {
+      "Nominativo": "αἰών",
+      "Genitivo": "αἰῶνος",
+      "Dativo": "αἰῶνι",
+      "Acusativo": "αἰῶνα"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Era, Idade, Século; Eternidade"
+  },
+  {
+    "Numero": 108,
+    "Vocabulo": "βασιλεύς",
+    "casos": {
+      "Nominativo": "βασιλεύς",
+      "Genitivo": "βασιλέως",
+      "Dativo": "βασιλεῖ",
+      "Acusativo": "βασιλέα"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Rei"
+  },
+  {
+    "Numero": 109,
+    "Vocabulo": "δύναμις",
+    "casos": {
+      "Nominativo": "δύναμις",
+      "Genitivo": "δυνάμεως",
+      "Dativo": "δυνάμει",
+      "Acusativo": "δύναμιν"
+    },
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Poder, [Plural] Milagres"
+  },
+  {
+    "Numero": 110,
+    "Vocabulo": "τίς, τίς, τί (τίνος)",
+    "Classificacao": "Pronome Interrogativo",
+    "Traducao": "Que? Que?, Qual?"
+  },
+  {
+    "Numero": 111,
+    "Vocabulo": "τις, τις, τι (τινός)",
+    "Classificacao": "Pronome Indefinido",
+    "Traducao": "Alguém, Algum, Algo"
   }
 ]

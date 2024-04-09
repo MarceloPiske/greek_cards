@@ -5,7 +5,13 @@
     "Genitivo": "ἀγγέλου",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Anjo, Mensageiro"
+    "Traducao": "Anjo, Mensageiro",
+    "Casos": {
+      "Nominativo": "ἄγγελος",
+      "Genitivo": "ἀγγέλου",
+      "Dativo": "ἀγγέλῳ",
+      "Acusativo": "ἄγγελον"
+    }
   },
   {
     "Numero": 2,
@@ -19,7 +25,13 @@
     "Genitivo": "ἀδελφοῦ",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Irmão"
+    "Traducao": "Irmão",
+    "Casos": {
+      "Nominativo": "ἀδελφός",
+      "Genitivo": "ἀδελφοῦ",
+      "Dativo": "ἀδελφῷ",
+      "Acusativo": "ἀδελφόν"
+    }
   },
   {
     "Numero": 4,
@@ -33,7 +45,13 @@
     "Genitivo": "αλήθειας",
     "Artigo_Definido": "ή",
     "Classificacao": "Substantivo",
-    "Traducao": "Verdade"
+    "Traducao": "Verdade",
+    "Casos": {
+      "Nominativo": "ἀλήθεια",
+      "Genitivo": "αλήθειας",
+      "Dativo": "ἀληθείᾳ",
+      "Acusativo": "ἀλήθειαν"
+    }
   },
   {
     "Numero": 6,
@@ -41,7 +59,13 @@
     "Genitivo": "ἀντροπου",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Homem"
+    "Traducao": "Homem",
+    "Casos": {
+      "Nominativo": "ἂνθρωπος",
+      "Genitivo": "ἀντροπου",
+      "Dativo": "ἀνθρώπῳ",
+      "Acusativo": "ἄνθρωπον"
+    }
   },
   {
     "Numero": 7,
@@ -49,7 +73,13 @@
     "Genitivo": "βασιλεῖας",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Reino"
+    "Traducao": "Reino",
+    "Casos": {
+      "Nominativo": "βασιλεία",
+      "Genitivo": "βασιλεῖας",
+      "Dativo": "βασιλείᾳ",
+      "Acusativo": "βασιλείαν"
+    }
   },
   {
     "Numero": 8,
@@ -57,7 +87,13 @@
     "Genitivo": "δόσης",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Glória"
+    "Traducao": "Glória",
+    "Casos": {
+      "Nominativo": "δόζα",
+      "Genitivo": "δόσης",
+      "Dativo": "δόζῃ",
+      "Acusativo": "δόζαν"
+    }
   },
   {
     "Numero": 9,
@@ -68,10 +104,16 @@
   {
     "Numero": 10,
     "Vocabulo": "ἔργον",
-    "Genitivo": "ἔργοθ",
+    "Genitivo": "ἔργου",
     "Artigo_Definido": "τό",
     "Classificacao": "Substantivo",
-    "Traducao": "Trabalho, Obra"
+    "Traducao": "Trabalho, Obra",
+    "Casos": {
+      "Nominativo": "ἔργον",
+      "Genitivo": "ἔργου",
+      "Dativo": "ἔργῳ",
+      "Acusativo": "ἔργον"
+    }
   },
   {
     "Numero": 11,
@@ -79,7 +121,13 @@
     "Genitivo": "εὐαγγελίου",
     "Artigo_Definido": "τό",
     "Classificacao": "Substantivo",
-    "Traducao": "Evangelho, Boas Novas"
+    "Traducao": "Evangelho, Boas Novas",
+    "Casos": {
+      "Nominativo": "εὐαγγέλιον",
+      "Genitivo": "εὐαγγελίου",
+      "Dativo": "εὐαγγελίῳ",
+      "Acusativo": "εὐαγγέλιον"
+    }
   },
   {
     "Numero": 12,
@@ -87,7 +135,13 @@
     "Genitivo": "θεοῦ",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Deus"
+    "Traducao": "Deus",
+    "Casos": {
+      "Nominativo": "θεός",
+      "Genitivo": "θεοῦ",
+      "Dativo": "θεῷ",
+      "Acusativo": "θεόν"
+    }
   },
   {
     "Numero": 13,
@@ -101,7 +155,13 @@
     "Genitivo": "κυρίου",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Senhor"
+    "Traducao": "Senhor",
+    "Casos": {
+      "Nominativo": "κύριος",
+      "Genitivo": "κυρίου",
+      "Dativo": "κυρίῳ",
+      "Acusativo": "κύριον"
+    }
   },
   {
     "Numero": 15,
@@ -114,7 +174,13 @@
     "Vocabulo": "λόγος",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Palavra"
+    "Traducao": "Palavra",
+    "Casos": {
+      "Nominativo": "λόγος",
+      "Genitivo": "λόγου",
+      "Dativo": "λόγῳ",
+      "Acusativo": "λόγον"
+    }
   },
   {
     "Numero": 17,
@@ -134,7 +200,13 @@
     "Genitivo": "τέκνου",
     "Artigo_Definido": "τό",
     "Classificacao": "Substantivo",
-    "Traducao": "Criança, Filho"
+    "Traducao": "Criança, Filho",
+    "Casos": {
+      "Nominativo": "τέκνον",
+      "Genitivo": "τέκνου",
+      "Dativo": "τέκνῳ",
+      "Acusativo": "τέκνον"
+    }
   },
   {
     "Numero": 20,
@@ -142,14 +214,26 @@
     "Genitivo": "υἱοῦ",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Filho"
+    "Traducao": "Filho",
+    "Casos": {
+      "Nominativo": "υἱός",
+      "Genitivo": "υἱοῦ",
+      "Dativo": "υἱῷ",
+      "Acusativo": "υἱόν"
+    }
   },
   {
     "Numero": 21,
     "Vocabulo": "Χριστός",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Cristo, Messias, Ungido"
+    "Traducao": "Cristo, Messias, Ungido",
+    "Casos": {
+      "Nominativo": "Χριστός",
+      "Genitivo": "Χριστοῦ",
+      "Dativo": "Χριστῷ",
+      "Acusativo": "Χριστόν"
+    }
   },
   {
     "Numero": 22,
@@ -163,7 +247,13 @@
     "Genitivo": "ἀφάπης",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Amor"
+    "Traducao": "Amor",
+    "Casos": {
+      "Nominativo": "ἀγάπη",
+      "Genitivo": "ἀγάπης",
+      "Dativo": "ἀγάπῃ",
+      "Acusativo": "ἀγάπην"
+    }
   },
   {
     "Numero": 24,
@@ -171,7 +261,13 @@
     "Genitivo": "ἀμαρτίας",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Pecado"
+    "Traducao": "Pecado",
+    "Casos": {
+      "Nominativo": "ἁμαρτία",
+      "Genitivo": "ἁμαρτίας",
+      "Dativo": "ἁμαρτίᾳ",
+      "Acusativo": "ἁμαρτίαν"
+    }
   },
   {
     "Numero": 25,
@@ -179,7 +275,13 @@
     "Genitivo": "ἀνδρός",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Marido, Homem"
+    "Traducao": "Marido, Homem",
+    "Casos": {
+      "Nominativo": "ἀνήρ",
+      "Genitivo": "ἀνδρός",
+      "Dativo": "ἀνδρί",
+      "Acusativo": "ἄνδρα"
+    }
   },
   {
     "Numero": 26,
@@ -193,7 +295,13 @@
     "Genitivo": "γῆς",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Terra"
+    "Traducao": "Terra",
+    "Casos": {
+      "Nominativo": "γῆ",
+      "Genitivo": "γῆς",
+      "Dativo": "γῇ",
+      "Acusativo": "γῆν"
+    }
   },
   {
     "Numero": 28,
@@ -237,7 +345,13 @@
     "Genitivo": "ἱεροῦ",
     "Artigo_Definido": "τό",
     "Classificacao": "Substantivo",
-    "Traducao": "Templo"
+    "Traducao": "Templo",
+    "Casos": {
+      "Nominativo": "ἱερόν",
+      "Genitivo": "ἱεροῦ",
+      "Dativo": "ἱερῷ",
+      "Acusativo": "ἱερόν"
+    }
   },
   {
     "Numero": 35,
@@ -245,7 +359,13 @@
     "Genitivo": "καρδίας",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Coração"
+    "Traducao": "Coração",
+    "Casos": {
+      "Nominativo": "καρδία",
+      "Genitivo": "καρδίας",
+      "Dativo": "καρδίᾳ",
+      "Acusativo": "καρδίαν"
+    }
   },
   {
     "Numero": 36,
@@ -259,7 +379,13 @@
     "Genitivo": "οὐρανοῦ",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Céu"
+    "Traducao": "Céu",
+    "Casos": {
+      "Nominativo": "οὐρανός",
+      "Genitivo": "οὐρανοῦ",
+      "Dativo": "οὐρανῷ",
+      "Acusativo": "οὐρανόν"
+    }
   },
   {
     "Numero": 38,
@@ -309,7 +435,13 @@
     "Genitivo": "ἔθνους",
     "Artigo_Definido": "τό",
     "Classificacao": "Substantivo",
-    "Traducao": "Nação, Povo; Gentios [plural]"
+    "Traducao": "Nação, Povo; Gentios [plural]",
+    "Casos": {
+      "Nominativo": "ἔθνος",
+      "Genitivo": "ἔθνους",
+      "Dativo": "ἔθνει",
+      "Acusativo": "ἔθνος"
+    }
   },
   {
     "Numero": 46,
@@ -323,7 +455,13 @@
     "Genitivo": "ἡμέρας",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Dia"
+    "Traducao": "Dia",
+    "Casos": {
+      "Nominativo": "ἡμέρα",
+      "Genitivo": "ἡμέρας",
+      "Dativo": "ἡμέρᾳ",
+      "Acusativo": "ἡμέραν"
+    }
   },
   {
     "Numero": 48,
@@ -337,7 +475,13 @@
     "Genitivo": "κόσμου",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Mundo"
+    "Traducao": "Mundo",
+    "Casos": {
+      "Nominativo": "κόσμος",
+      "Genitivo": "κόσμου",
+      "Dativo": "κόσμῳ",
+      "Acusativo": "κόσμον"
+    }
   },
   {
     "Numero": 50,
@@ -351,7 +495,13 @@
     "Genitivo": "πατρός",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Pai"
+    "Traducao": "Pai",
+    "Casos": {
+      "Nominativo": "πατήρ",
+      "Genitivo": "πατρός",
+      "Dativo": "πατρί",
+      "Acusativo": "πατέρα"
+    }
   },
   {
     "Numero": 52,
@@ -359,7 +509,13 @@
     "Genitivo": "φονῆς",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Som, Voz"
+    "Traducao": "Som, Voz",
+    "Casos": {
+      "Nominativo": "φωνή",
+      "Genitivo": "φωνῆς",
+      "Dativo": "φωνῇ",
+      "Acusativo": "φωνήν"
+    }
   },
   {
     "Numero": 53,
@@ -367,7 +523,13 @@
     "Genitivo": "ψυχῆς",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Alma, Vida"
+    "Traducao": "Alma, Vida",
+    "Casos": {
+      "Nominativo": "ψυχή",
+      "Genitivo": "ψυχῆς",
+      "Dativo": "ψυχῇ",
+      "Acusativo": "ψυχήν"
+    }
   },
   {
     "Numero": 54,
@@ -387,7 +549,13 @@
     "Genitivo": "γυναικός",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Esposa, mulher"
+    "Traducao": "Mulher",
+    "Casos": {
+      "Nominativo": "γυνή",
+      "Genitivo": "γυναικός",
+      "Dativo": "γυναικί",
+      "Acusativo": "γυναῖκα"
+    }
   },
   {
     "Numero": 57,
@@ -419,13 +587,19 @@
     "Genitivo": "δούλου",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Escravo, Servo"
+    "Traducao": "Escravo, Servo",
+    "Casos": {
+      "Nominativo": "δοῦλος",
+      "Genitivo": "δούλου",
+      "Dativo": "δούλῳ",
+      "Acusativo": "δοῦλον"
+    }
   },
   {
     "Numero": 62,
     "Vocabulo": "ἐκ, ἐξ",
     "Classificacao": "Preposição",
-    "Traducao": "[Com Genitivo] de"
+    "Traducao": "[Genitivo] de"
   },
   {
     "Numero": 63,
@@ -443,7 +617,7 @@
     "Numero": 65,
     "Vocabulo": "ἐν",
     "Classificacao": "Preposição",
-    "Traducao": "[Com Acusativo] Em"
+    "Traducao": "[Acusativo] Em"
   },
   {
     "Numero": 66,
@@ -469,7 +643,13 @@
     "Genitivo": "ζωῆς",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Vida"
+    "Traducao": "Vida",
+    "Casos": {
+      "Nominativo": "ζωή",
+      "Genitivo": "ζωῆς",
+      "Dativo": "ζωῇ",
+      "Acusativo": "ζωήν"
+    }
   },
   {
     "Numero": 70,
@@ -495,7 +675,13 @@
     "Genitivo": "νόμου",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Lei"
+    "Traducao": "Lei",
+    "Casos": {
+      "Nominativo": "νόμος",
+      "Genitivo": "νόμου",
+      "Dativo": "νόμῳ",
+      "Acusativo": "νόμον"
+    }
   },
   {
     "Numero": 74,
@@ -509,7 +695,13 @@
     "Genitivo": "ὀνόματος",
     "Artigo_Definido": "τό",
     "Classificacao": "Substantivo",
-    "Traducao": "Nome"
+    "Traducao": "Nome",
+    "Casos": {
+      "Nominativo": "ὄνομα",
+      "Genitivo": "ὀνόματος",
+      "Dativo": "ὀνόματι",
+      "Acusativo": "ὄνομα"
+    }
   },
   {
     "Numero": 76,
@@ -523,7 +715,13 @@
     "Genitivo": "ὄχλου",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Multidão, Povo"
+    "Traducao": "Multidão, Povo",
+    "Casos": {
+      "Nominativo": "ὄχλος",
+      "Genitivo": "ὄχλου",
+      "Dativo": "ὄχλῳ",
+      "Acusativo": "ὄχλον"
+    }
   },
   {
     "Numero": 78,
@@ -531,7 +729,13 @@
     "Genitivo": "πίστεως",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Fé, Fidelidade"
+    "Traducao": "Fé, Fidelidade",
+    "Casos": {
+      "Nominativo": "πίστις",
+      "Genitivo": "πίστεως",
+      "Dativo": "πίστει",
+      "Acusativo": "πίστιν"
+    }
   },
   {
     "Numero": 79,
@@ -539,7 +743,13 @@
     "Genitivo": "πνεύματος",
     "Artigo_Definido": "τό",
     "Classificacao": "Substantivo",
-    "Traducao": "Espírito"
+    "Traducao": "Espírito",
+    "Casos": {
+      "Nominativo": "πνεῦμα",
+      "Genitivo": "πνεύματος",
+      "Dativo": "πνεύματι",
+      "Acusativo": "πνεῦμα"
+    }
   },
   {
     "Numero": 80,
@@ -547,7 +757,13 @@
     "Genitivo": "χάριτος",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Graça"
+    "Traducao": "Graça",
+    "Casos": {
+      "Nominativo": "χάρις",
+      "Genitivo": "χάριτος",
+      "Dativo": "χάριτι",
+      "Acusativo": "χάριν"
+    }
   },
   {
     "Numero": 81,
@@ -570,56 +786,48 @@
   {
     "Numero": 84,
     "Vocabulo": "δίδωμι",
-    "Artigo_Definido": "-",
     "Classificacao": "Verbo",
     "Traducao": "Dou"
   },
   {
     "Numero": 85,
     "Vocabulo": "μένω",
-    "Artigo_Definido": "-",
     "Classificacao": "Verbo",
     "Traducao": "Permaneço"
   },
   {
     "Numero": 86,
     "Vocabulo": "οἶδα",
-    "Artigo_Definido": "-",
     "Classificacao": "Verbo",
     "Traducao": "Sei, Conheço"
   },
   {
     "Numero": 87,
     "Vocabulo": "παρακαλέω",
-    "Artigo_Definido": "-",
     "Classificacao": "Verbo",
     "Traducao": "Rogo, Admoesto, Consolo"
   },
   {
     "Numero": 88,
     "Vocabulo": "ἐπί",
-    "Artigo_Definido": "-",
     "Classificacao": "Preposição",
     "Traducao": "Sobre, Em"
   },
   {
     "Numero": 89,
     "Vocabulo": "κατά",
-    "Artigo_Definido": "-",
     "Classificacao": "Preposição",
     "Traducao": "[Genitivo] Para Baixo, Contra [Acusativo] Conforme"
   },
   {
     "Numero": 90,
     "Vocabulo": "πρός",
-    "Artigo_Definido": "-",
     "Classificacao": "Preposição",
     "Traducao": "[Acusativo] Para"
   },
   {
     "Numero": 91,
     "Vocabulo": "μέγας, μεγάλη, μέγα",
-    "Artigo_Definido": "-",
     "Classificacao": "Adjetivo",
     "Traducao": "Grande, Muito"
   },
@@ -629,7 +837,13 @@
     "Genitivo": "αἵματος",
     "Artigo_Definido": "τό",
     "Classificacao": "Substantivo",
-    "Traducao": "Sangue"
+    "Traducao": "Sangue",
+    "Casos": {
+      "Nominativo": "αἷμα",
+      "Genitivo": "αἵματος",
+      "Dativo": "αἵματι",
+      "Acusativo": "αἷμα"
+    }
   },
   {
     "Numero": 93,
@@ -637,7 +851,13 @@
     "Genitivo": "λαοῦ",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Povo"
+    "Traducao": "Povo",
+    "Casos": {
+      "Nominativo": "λαός",
+      "Genitivo": "λαοῦ",
+      "Dativo": "λαῷ",
+      "Acusativo": "λαόν"
+    }
   },
   {
     "Numero": 94,
@@ -645,7 +865,13 @@
     "Genitivo": "ματηθοῦ",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Discípulo"
+    "Traducao": "Discípulo",
+    "Casos": {
+      "Nominativo": "μαθητής",
+      "Genitivo": "μαθητοῦ",
+      "Dativo": "μαθητῇ",
+      "Acusativo": "μαθητήν"
+    }
   },
   {
     "Numero": 95,
@@ -653,7 +879,13 @@
     "Genitivo": "σαρκός",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Carne"
+    "Traducao": "Carne",
+    "Casos": {
+      "Nominativo": "σάρξ",
+      "Genitivo": "σαρκός",
+      "Dativo": "σαρκί",
+      "Acusativo": "σάρκα"
+    }
   },
   {
     "Numero": 96,
@@ -661,7 +893,13 @@
     "Genitivo": "σωματος",
     "Artigo_Definido": "τό",
     "Classificacao": "Substantivo",
-    "Traducao": "Corpo"
+    "Traducao": "Corpo",
+    "Casos": {
+      "Nominativo": "σῶμα",
+      "Genitivo": "σωματος",
+      "Dativo": "σώματι",
+      "Acusativo": "σῶμα"
+    }
   },
   {
     "Numero": 97,
@@ -669,7 +907,13 @@
     "Genitivo": "σωτῆρος",
     "Artigo_Definido": "ὁ",
     "Classificacao": "Substantivo",
-    "Traducao": "Salvador"
+    "Traducao": "Salvador",
+    "Casos": {
+      "Nominativo": "σωτήρ",
+      "Genitivo": "σωτῆρος",
+      "Dativo": "σωτῆρι",
+      "Acusativo": "σωτῆρα"
+    }
   },
   {
     "Numero": 98,
@@ -677,7 +921,13 @@
     "Genitivo": "χειρός",
     "Artigo_Definido": "ἡ",
     "Classificacao": "Substantivo",
-    "Traducao": "Mão"
+    "Traducao": "Mão",
+    "Casos": {
+      "Nominativo": "χείρ",
+      "Genitivo": "χειρός",
+      "Dativo": "χειρί",
+      "Acusativo": "χεῖρα"
+    }
   },
   {
     "Numero": 99,
@@ -777,5 +1027,104 @@
     "Vocabulo": "τις, τις, τι (τινός)",
     "Classificacao": "Pronome Indefinido",
     "Traducao": "Alguém, Algum, Algo"
+  },
+  {
+    "Numero": 112,
+    "Vocabulo": "ἀποθνήσκω",
+    "Classificacao": "Verbo",
+    "Traducao": "Morro"
+  },
+  {
+    "Numero": 113,
+    "Vocabulo": "γεννάω",
+    "Classificacao": "Verbo",
+    "Traducao": "Gero"
+  },
+  {
+    "Numero": 114,
+    "Vocabulo": "διδάσκω",
+    "Classificacao": "Verbo",
+    "Traducao": "Ensino"
+  },
+  {
+    "Numero": 115,
+    "Vocabulo": "παραδίδωμι",
+    "Classificacao": "Verbo",
+    "Traducao": "Entrego, Traio, Transmito"
+  },
+  {
+    "Numero": 116,
+    "Vocabulo": "αὐτός, αὐτή, αὐτό",
+    "Classificacao": "Pronome",
+    "Traducao": "Ele, Ela"
+  },
+  {
+    "Numero": 117,
+    "Vocabulo": "ἐγώ",
+    "Classificacao": "Pronome",
+    "Traducao": "Eu"
+  },
+  {
+    "Numero": 118,
+    "Vocabulo": "σύ",
+    "Classificacao": "Pronome",
+    "Traducao": "Tu, Você"
+  },
+  {
+    "Numero": 119,
+    "Vocabulo": "ἀρχιερεύς",
+    "casos": {
+      "Nominativo": "ἀρχιερεύς",
+      "Genitivo": "ἀρχιερέως",
+      "Dativo": "ἀρχιερεῖ",
+      "Acusativo": "ἀρχιερέα"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Sumo Sacerdote"
+  },
+  {
+    "Numero": 120,
+    "Vocabulo": "ἐκκλησία",
+    "casos": {
+      "Nominativo": "ἐκκλησία",
+      "Genitivo": "ἐκκλησίας",
+      "Dativo": "ἐκκλησίᾳ",
+      "Acusativo": "ἐκκλησίαν"
+    },
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Igreja, Assembleia"
+  },
+  {
+    "Numero": 121,
+    "Vocabulo": "προφέτης",
+    "casos": {
+      "Nominativo": "προφήτης",
+      "Genitivo": "προφήτου",
+      "Dativo": "προφήτῃ",
+      "Acusativo": "προφήτην"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Profeta"
+  },
+  {
+    "Numero": 122,
+    "Vocabulo": "ὑπό",
+    "Classificacao": "Preposição",
+    "Traducao": "[Genitivo] Por, [Acusativo] Debaixo de"
+  },
+  {
+    "Numero": 123,
+    "Vocabulo": "μετά",
+    "Classificacao": "Preposição",
+    "Traducao": "[Genitivo] Com, [Acusativo] Após"
+  },
+  {
+    "Numero": 124,
+    "Vocabulo": "περί",
+    "Classificacao": "Preposição",
+    "Traducao": "[Genitivo] A Respeito De, [Acusativo] Ao Redor De"
   }
 ]

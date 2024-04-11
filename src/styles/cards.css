@@ -59,7 +59,7 @@ main {
     height: 100%;
     background-color: #032776;
     backface-visibility: hidden;
-    font-size: 5rem;
+    font-size: xxx-large;
     /* padding: var(--padding-1); */
 }
 
@@ -127,6 +127,9 @@ main {
 }
 .menu:hover {
     opacity: 100;
+}
+.menu span{
+    cursor: pointer;
 }
 .info-modal {
     transition: all 200ms ease;

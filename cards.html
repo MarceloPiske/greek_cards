@@ -8,7 +8,8 @@
     <link rel="icon" href="img/alpha-889309_1920.png" type="image/png">
     <link rel="stylesheet" href="src/styles/root.css">
     <link rel="stylesheet" href="src/styles/cards.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -27,7 +28,10 @@
                         filter_alt
                     </span>
                     <select onchange="filter_json(this.value)" name="" id="">
+                        <option></option>
                         <option>Todos</option>
+                        <option>Decorados</option>
+                        <option>Não Decorados</option>
                         <option>Substantivo</option>
                         <option>Verbo</option>
                         <option>Adjetivo</option>
@@ -37,6 +41,11 @@
                 <div onclick="filter_json('Todos')">
                     <span class="material-symbols-sharp">
                         restart_alt
+                    </span>
+                </div>
+                <div class="decorado">
+                    <span onclick="foi_decorado()" class="material-symbols-sharp">
+                        verified
                     </span>
                 </div>
                 <div class="info" onmouseover="info_card()">

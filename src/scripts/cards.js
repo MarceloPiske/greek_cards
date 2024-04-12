@@ -123,12 +123,13 @@ async function verificarDado(filtro) {
                         if (request_result) {
                             switch (filtro.not_key) {
                                 case false:
-                                    if (request_result.value[filtro.campo].includes(filtro.valor) && request_result.value[filtro.campo] != undefined) {
+                                    //NOTE - Corrigir essas verificações, pois estão ruins
+                                    if (`${request_result.value[filtro.campo]}`.includes(filtro.valor) && request_result.value[filtro.campo] != undefined) {
                                         data_return.push(request_result.value)
                                     }
                                     break;
                                 case true:
-                                    if (request_result.value[filtro.campo].includes(filtro.valor) || request_result.value[filtro.campo] == undefined) {
+                                    if (`${request_result.value[filtro.campo]}`.includes(filtro.valor) || request_result.value[filtro.campo] == undefined) {
                                         data_return.push(request_result.value)
                                     }
                                     break;

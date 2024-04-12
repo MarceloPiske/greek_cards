@@ -29,6 +29,7 @@ function abrirBancoDeDados() {
             objectStore.createIndex("Classificacao", "Classificacao", { unique: false });
             objectStore.createIndex("Casos", "Casos", { unique: false });
             objectStore.createIndex("Decorado", "Decorado", { unique: false });
+            objectStore.createIndex("Aoristo_Segundo", "Aoristo_Segundo", { unique: false });
         };
     });
 }
@@ -41,7 +42,7 @@ async function inserirDados(jsondata) {
     const store = transaction.objectStore("words");
 
     for (let word of jsondata) {
-        const request = store.get(1);
+        const request = store.get(word.id);
         request.onsuccess = function (event) {
             const pessoa = event.target.result;
             if (pessoa) {
@@ -182,12 +183,16 @@ function insert_cards(greek_words) {
         localStorage.setItem('greek_words', JSON.stringify(greek_words))
 
     for (const word of greek_words) {
-        html += `<div data-json='${JSON.stringify(word)}' onclick="rotate_card(this)" id="card-${ramdon_number + 1}" class="card">
+        html += `<div data-id="${word.id}" data-json='${JSON.stringify(word)}' onclick="rotate_card(this)" id="card-${ramdon_number + 1}" class="card">
                     <img class="inferior-left-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
                     <img class="superior-left-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
                     <div class="front">
                         <p id="text-greek">${word.Vocabulo}</p>
-                    </div>
+                    `
+        if (word.Aoristo_Segundo) {
+            html += `<p class="aor_seg">${word.Aoristo_Segundo}</p>`
+        }
+        html += `</div>
                     <div class="back">
                         <p id="text-portuguese">${word.Traducao}</p>
                     </div>
@@ -197,6 +202,7 @@ function insert_cards(greek_words) {
         ramdon_number += 1
     }
     card_container.innerHTML = html
+
     //Verifica se aquele card está decorado
     esta_decorado(atual_card_id)
 }

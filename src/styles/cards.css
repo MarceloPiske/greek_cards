@@ -51,6 +51,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     /* border-radius: var(--border-radius-2);
     box-shadow: var(--box-shandow); */
     position: absolute;
@@ -62,7 +63,9 @@ main {
     font-size: xxx-large;
     /* padding: var(--padding-1); */
 }
-
+.aor_seg{
+    font-size: xx-large;
+}
 
 .inferior-left-image {
     object-fit: contain;

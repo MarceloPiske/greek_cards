@@ -1,0 +1,17 @@
+{
+    "name": "Aprenda Grego Koine",
+    "short_name": "Greek Cards",
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "display": "standalone",
+    "orientation": "landscape",
+    "fullscreen": true,
+    "icons": [
+      {
+        "src": "img/icon.png",
+        "sizes": "72x72"
+      }
+    ]
+  }
+  

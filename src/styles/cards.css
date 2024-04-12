@@ -1,16 +1,18 @@
 main {
     height: 100vh;
-    width: 90vw;
+    width: 100vw;
 }
 .container {
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 .previus, .next {
+    display: none;
     z-index: 1;
     position: absolute;
     width: 7.5%;

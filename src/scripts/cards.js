@@ -3,6 +3,7 @@ const next = document.getElementById('next')
 const previus = document.getElementById('previus')
 let atual_card_id = 1
 
+let json_version = parseInt(localStorage.getItem("json_version"))
 //IndexDB
 //db.deleteObjectStore('books')
 
@@ -25,17 +26,17 @@ function abrirBancoDeDados() {
             const objectStore = db.createObjectStore("words", { keyPath: "id" });
             objectStore.createIndex("id", "id", { unique: true });
             objectStore.createIndex("Vocabulo", "Vocabulo", { unique: false });
-            objectStore.createIndex("Artigo_Definido", "Artigo_Definido", { unique: false });
-            objectStore.createIndex("Classificacao", "Classificacao", { unique: false });
-            objectStore.createIndex("Casos", "Casos", { unique: false });
-            objectStore.createIndex("Decorado", "Decorado", { unique: false });
+            //objectStore.createIndex("Artigo_Definido", "Artigo_Definido", { unique: false });
+            //objectStore.createIndex("Classificacao", "Classificacao", { unique: false });
+            //objectStore.createIndex("Casos", "Casos", { unique: false });
+            //objectStore.createIndex("Decorado", "Decorado", { unique: false });
             objectStore.createIndex("Aoristo_Segundo", "Aoristo_Segundo", { unique: false });
         };
     });
 }
 
 // Função para inserir dados
-async function inserirDados(jsondata) {
+async function atualizar_database(jsondata) {
     const db = await abrirBancoDeDados();
 
     const transaction = db.transaction(["words"], "readwrite");
@@ -49,7 +50,7 @@ async function inserirDados(jsondata) {
                 //console.log("Dado encontrado:", pessoa);
             } else {
                 console.log("Dado não encontrado.");
-                let request = store.add(word);
+                let request = store.put(word);
                 request.onsuccess = function (event) {
                     console.log("Dados inseridos com sucesso!");
                 };
@@ -168,6 +169,7 @@ async function verificarDado(filtro) {
 }
 
 if (window.innerWidth < window.innerHeight) {
+    //document.querySelector("body").style.transform = 'rotate(90deg)'
     alert("Por favor, gire o dispositivo para a orientação horizontal para uma melhor experiência.");
 }
 
@@ -233,9 +235,12 @@ fetch("greek_words.json")
     .then(response => {
         return response.json();
     })
-    .then(jsondata => {
-        inserirDados(jsondata);
-        insert_cards(jsondata);
+    .then(json => {
+        if (json.version != json_version) {
+            atualizar_database(json.data);
+            localStorage.setItem("json_version", json.version)
+        }
+        insert_cards(json.data);
     })
 
 
@@ -324,3 +329,23 @@ async function verificar_decorado(atual_card_id) {
 
 
 
+const container = document.getElementById("container")
+let startPositionX = 0;
+
+container.addEventListener("touchstart", (event) => {
+    startPositionX = event.changedTouches[0].clientX;
+})
+container.addEventListener("touchend", (event) => {
+    currentPositionX = event.changedTouches[0].clientX;
+
+    // Calcula a distância percorrida pelo dedo
+    const deltaX = currentPositionX - startPositionX;
+    if (deltaX < -100) {
+        next.click()
+    } else {
+        if (deltaX > 100) {
+            previus.click()
+        }
+
+    }
+})

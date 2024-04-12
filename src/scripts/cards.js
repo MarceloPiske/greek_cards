@@ -184,9 +184,9 @@ function insert_cards(greek_words) {
     ramdon_number = 0
 
     for (const word of greek_words) {
-        html += `<div data-id="${word.id}" data-json='${JSON.stringify(word)}' onclick="rotate_card(this)" id="card-${ramdon_number + 1}" class="card">
-                    <img class="inferior-left-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
-                    <img class="superior-left-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
+        html += `<div data-id="${word.id}" onclick="rotate_card(this)" id="card-${ramdon_number + 1}" class="card">
+                    <img class="inferior-left-image" src="/img/tl.png" alt="">
+                    <img class="superior-left-image" src="/img/tl.png" alt="">
                     <div class="front">
                         <p id="text-greek">${word.Vocabulo}</p>
                     `
@@ -197,8 +197,8 @@ function insert_cards(greek_words) {
                     <div class="back">
                         <p id="text-portuguese">${word.Traducao}</p>
                     </div>
-                    <img class="inferior-right-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
-                    <img class="superior-right-image" src="https://media-public.canva.com/mO-Oc/MAFaRVmO-Oc/1/tl.png" alt="">
+                    <img class="inferior-right-image" src="/img/tl.png" alt="">
+                    <img class="superior-right-image" src="/img/tl.png" alt="">
                 </div>`
         ramdon_number += 1
     }
@@ -280,8 +280,9 @@ document.addEventListener("keydown", (e) => {
     }
 })
 
-function info_card() {
-    card_data = JSON.parse(document.getElementById(`card-${atual_card_id}`).dataset.json)
+async function info_card() {
+    word_id = parseInt(document.getElementById(`card-${atual_card_id}`).dataset.id)
+    card_data = await verificarDado({ flag: "id", id: word_id });
     delete card_data["id"]
     delete card_data["Traducao"]
     delete card_data["Vocabulo"]
@@ -340,10 +341,10 @@ container.addEventListener("touchend", (event) => {
 
     // Calcula a distância percorrida pelo dedo
     const deltaX = currentPositionX - startPositionX;
-    if (deltaX < -100) {
+    if (deltaX < -70) {
         next.click()
     } else {
-        if (deltaX > 100) {
+        if (deltaX > 70) {
             previus.click()
         }
 

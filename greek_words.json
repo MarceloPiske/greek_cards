@@ -313,7 +313,8 @@
     "id": 29,
     "Vocabulo": "γινώσκω",
     "Classificacao": "Verbo",
-    "Traducao": "Conheço, sei"
+    "Traducao": "Conheço, sei",
+    "Aoristo_Segundo": "ἔγνων"
   },
   {
     "id": 30,
@@ -331,7 +332,8 @@
     "id": 32,
     "Vocabulo": "ἔρχομαι",
     "Classificacao": "Verbo",
-    "Traducao": "Vou, Venho"
+    "Traducao": "Vou, Venho",
+    "Aoristo_Segundo": "ἦλθον"
   },
   {
     "id": 33,
@@ -415,7 +417,8 @@
     "id": 42,
     "Vocabulo": "βλέπω",
     "Classificacao": "Verbo",
-    "Traducao": "Vejo"
+    "Traducao": "Vejo",
+    "Aoristo_Segundo": "εἶδον"
   },
   {
     "id": 43,
@@ -487,7 +490,8 @@
     "id": 50,
     "Vocabulo": "λαμβάνω",
     "Classificacao": "Verbo",
-    "Traducao": "Tomo, Recebo"
+    "Traducao": "Tomo, Recebo",
+    "Aoristo_Segundo": "ἔλαβον"
   },
   {
     "id": 51,
@@ -567,7 +571,8 @@
     "id": 58,
     "Vocabulo": "βάλλω",
     "Classificacao": "Verbo",
-    "Traducao": "Lanço, Jogo"
+    "Traducao": "Lanço, Jogo",
+    "Aoristo_Segundo": "ἔβαλον"
   },
   {
     "id": 59,
@@ -623,7 +628,8 @@
     "id": 66,
     "Vocabulo": "ἐσθίω",
     "Classificacao": "Verbo",
-    "Traducao": "Como"
+    "Traducao": "Como",
+    "Aoristo_Segundo": "ἔφαγον"
   },
   {
     "id": 67,
@@ -1126,5 +1132,365 @@
     "Vocabulo": "περί",
     "Classificacao": "Preposição",
     "Traducao": "[Genitivo] A Respeito De, [Acusativo] Ao Redor De"
+  },
+  {
+    "id": 125,
+    "Vocabulo": "ἀκολουθέω",
+    "Classificacao": "Verbo",
+    "Traducao": "Sigo"
+  },
+  {
+    "id": 126,
+    "Vocabulo": "ἀναβαίνω",
+    "Classificacao": "Verbo",
+    "Traducao": "Subo"
+  },
+  {
+    "id": 127,
+    "Vocabulo": "περιπατέω",
+    "Classificacao": "Verbo",
+    "Traducao": "Ando, Caminho"
+  },
+  {
+    "id": 128,
+    "Vocabulo": "σῴζω",
+    "Classificacao": "Verbo",
+    "Traducao": "Salvo, Livro"
+  },
+  {
+    "id": 129,
+    "Vocabulo": "ἀλλήλων",
+    "Classificacao": "Pronome",
+    "Traducao": "Uns aos outros, Mutuamente"
+  },
+  {
+    "id": 130,
+    "Vocabulo": "ὅστις",
+    "Classificacao": "Pronome",
+    "Traducao": "[definido] o/a que, o/a qual; [indefinido] qualquer que"
+  },
+  {
+    "id": 131,
+    "Vocabulo": "ἄρτος",
+    "casos": {
+      "Nominativo": "ἄρτος",
+      "Genitivo": "ἄρτου",
+      "Dativo": "ἄρτῳ",
+      "Acusativo": "ἄρτον"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Pão"
+  },
+  {
+    "id": 132,
+    "Vocabulo": "εἰρήνη",
+    "casos": {
+      "Nominativo": "εἰρήνη",
+      "Genitivo": "εἰρήνης",
+      "Dativo": "εἰρήνῃ",
+      "Acusativo": "εἰρήνην"
+    },
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Paz"
+  },
+  {
+    "id": 133,
+    "Vocabulo": "δικαιοσύνη",
+    "casos": {
+      "Nominativo": "δικαιοσύνη",
+      "Genitivo": "δικαιοσύνης",
+      "Dativo": "δικαιοσύνῃ",
+      "Acusativo": "δικαιοσύνην"
+    },
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Justiça"
+  },
+  {
+    "id": 134,
+    "Vocabulo": "ἐξουσία",
+    "casos": {
+      "Nominativo": "ἐξουσία",
+      "Genitivo": "ἐξουσίας",
+      "Dativo": "ἐξουσίᾳ",
+      "Acusativo": "ἐξουσίαν"
+    },
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Autoridade, Poder"
+  },
+  {
+    "id": 135,
+    "Vocabulo": "θάνατος",
+    "casos": {
+      "Nominativo": "θάνατος",
+      "Genitivo": "θανάτου",
+      "Dativo": "θανάτῳ",
+      "Acusativo": "θάνατον"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Morte"
+  },
+  {
+    "id": 136,
+    "Vocabulo": "ὁδός",
+    "casos": {
+      "Nominativo": "ὁδός",
+      "Genitivo": "ὁδοῦ",
+      "Dativo": "ὁδῷ",
+      "Acusativo": "ὁδόν"
+    },
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "Caminho"
+  },
+  {
+    "id": 137,
+    "Vocabulo": "ἀπόλλυμι",
+    "Classificacao": "Verbo",
+    "Traducao": "destruo; voz média: pereço"
+  },
+  {
+    "id": 138,
+    "Vocabulo": "ἄρχομαι",
+    "Classificacao": "Verbo",
+    "Traducao": "começo (verbo começar); voz média: governo (verbo governar)"
+  },
+  {
+    "id": 139,
+    "Vocabulo": "δεῖ",
+    "Classificacao": "Verbo",
+    "Traducao": "é necessário (verbo auxiliar, com Infinitivo)"
+  },
+  {
+    "id": 140,
+    "Vocabulo": "ἐκβάλλω",
+    "Classificacao": "Verbo",
+    "Traducao": "expulso, despeço"
+  },
+  {
+    "id": 141,
+    "Vocabulo": "ὁράω",
+    "Classificacao": "Verbo",
+    "Traducao": "vejo, contemplo"
+  },
+  {
+    "id": 142,
+    "Vocabulo": "ἕτερος",
+    "Classificacao": "Adjetivo",
+    "Traducao": "outro(a)"
+  },
+  {
+    "id": 143,
+    "Vocabulo": "ἰδίος",
+    "Classificacao": "Adjetivo",
+    "Traducao": "próprio(a)"
+  },
+  {
+    "id": 144,
+    "Vocabulo": "ὅλος",
+    "Classificacao": "Adjetivo",
+    "Traducao": "todo(a), inteiro(a), completo(a)"
+  },
+  {
+    "id": 145,
+    "Vocabulo": "θάλασσα",
+    "casos": {
+      "Nominativo": "θάλασσα",
+      "Genitivo": "θαλάσσης",
+      "Dativo": "θαλάσσῃ",
+      "Acusativo": "θάλασσαν"
+    },
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "mar"
+  },
+  {
+    "id": 146,
+    "Vocabulo": "καιρός",
+    "casos": {
+      "Nominativo": "καιρός",
+      "Genitivo": "καιροῦ",
+      "Dativo": "καιρῷ",
+      "Acusativo": "καιρόν"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "época, tempo; ocasião, oportunidade"
+  },
+  {
+    "id": 147,
+    "Vocabulo": "μήτηρ",
+    "casos": {
+      "Nominativo": "μήτηρ",
+      "Genitivo": "μητρός",
+      "Dativo": "μητρί",
+      "Acusativo": "μήτηρ"
+    },
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "mãe"
+  },
+  {
+    "id": 148,
+    "Vocabulo": "οἶκος",
+    "casos": {
+      "Nominativo": "οἶκος",
+      "Genitivo": "οἴκου",
+      "Dativo": "οἴκῳ",
+      "Acusativo": "οἶκον"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "casa; lar; família"
+  },
+  {
+    "id": 149,
+    "Vocabulo": "οἰκία",
+    "casos": {
+      "Nominativo": "οἰκία",
+      "Genitivo": "οἰκίας",
+      "Dativo": "οἰκίᾳ",
+      "Acusativo": "οἰκίαν"
+    },
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "casa, família"
+  },
+  {
+    "id": 150,
+    "Vocabulo": "ἐκεῖνος",
+    "Classificacao": "Pronome",
+    "Traducao": "aquele, aquela, aquilo"
+  },
+  {
+    "id": 151,
+    "Vocabulo": "αἰτέω",
+    "Classificacao": "Verbo",
+    "Traducao": "peço, solicito"
+  },
+  {
+    "id": 152,
+    "Vocabulo": "βαπτίζω",
+    "Classificacao": "Verbo",
+    "Traducao": "batizo"
+  },
+  {
+    "id": 153,
+    "Vocabulo": "μέλλω",
+    "Classificacao": "Verbo",
+    "Traducao": "estou prestes a; vou [verbo auxiliar, usado com Infinitivo]"
+  },
+  {
+    "id": 154,
+    "Vocabulo": "πίπτω",
+    "Classificacao": "Verbo",
+    "Traducao": "caio",
+    "Aoristo_Segundo": "ἔπεσον"
+  },
+  {
+    "id": 155,
+    "Vocabulo": "πληρόω",
+    "Classificacao": "Verbo",
+    "Traducao": "completo, cumpro"
+  },
+  {
+    "id": 156,
+    "Vocabulo": "ἀγαπητός",
+    "Classificacao": "Adjetivo",
+    "Traducao": "amado(a)"
+  },
+  {
+    "id": 157,
+    "Vocabulo": "ἕκαστος",
+    "Classificacao": "Adjetivo",
+    "Traducao": "cada, todo"
+  },
+  {
+    "id": 158,
+    "Vocabulo": "ἀπόστολος",
+    "casos": {
+      "Nominativo": "ἀπόστολος",
+      "Genitivo": "ἀποστόλου",
+      "Dativo": "ἀποστόλῳ",
+      "Acusativo": "ἀπόστολον"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "apóstolo"
+  },
+  {
+    "id": 159,
+    "Vocabulo": "γραμματεύς",
+    "casos": {
+      "Nominativo": "γραμματεύς",
+      "Genitivo": "γραμματέως",
+      "Dativo": "γραμματεῖ",
+      "Acusativo": "γραμματέα"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "escriba"
+  },
+  {
+    "id": 160,
+    "Vocabulo": "ὀφθαλμός",
+    "casos": {
+      "Nominativo": "ὀφθαλμός",
+      "Genitivo": "ὀφθαλμοῦ",
+      "Dativo": "ὀφθαλμῷ",
+      "Acusativo": "ὀφθαλμόν"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "olho"
+  },
+  {
+    "id": 161,
+    "Vocabulo": "τόπος",
+    "casos": {
+      "Nominativo": "τόπος",
+      "Genitivo": "τόπου",
+      "Dativo": "τόπῳ",
+      "Acusativo": "τόπον"
+    },
+    "Artigo_Definido": "ὁ",
+    "Classificacao": "Substantivo",
+    "Traducao": "lugar"
+  },
+  {
+    "id": 162,
+    "Vocabulo": "ὥρα",
+    "casos": {
+      "Nominativo": "ὥρα",
+      "Genitivo": "ὥρας",
+      "Dativo": "ὥρᾳ",
+      "Acusativo": "ὥραν"
+    },
+    "Artigo_Definido": "ἡ",
+    "Classificacao": "Substantivo",
+    "Traducao": "hora"
+  },
+  {
+    "id": 163,
+    "Vocabulo": "ὅς",
+    "Classificacao": "Pronome",
+    "Traducao": "que; o qual, a qual"
+  },
+  {
+    "id": 164,
+    "Vocabulo": "οὗτος",
+    "Classificacao": "Pronome",
+    "Traducao": "este, esta, isto"
+  },
+  {
+    "id": 165,
+    "Vocabulo": "ἁμαρτάνω",
+    "Classificacao": "Verbo",
+    "Traducao": "Peco",
+    "Aoristo_Segundo": "ἧμαρτον"
   }
 ]

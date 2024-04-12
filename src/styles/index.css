@@ -13,11 +13,11 @@ body div {
     display: flex;
     padding: 2rem;
     border-radius: 10px;
-    background-color: blue;
+    background-color: #032776;
     width: 30%;
     font-size: 1.5rem;
     cursor: pointer;
-    border: 1px solid blue;
+    border: 1px solid #032776;
 }
 body div:hover {
     background-color: white;
@@ -28,5 +28,5 @@ body div a {
     color: white;
 }
 body div:hover a {
-    color: blue;
+    color: #032776;
 }

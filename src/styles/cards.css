@@ -136,7 +136,7 @@ main {
 }
 .info-modal {
     transition: all 200ms ease;
-    display: flex;
+    display: none;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -149,6 +149,7 @@ main {
     opacity: 0;
 }
 .info:hover .info-modal{
+    display: flex;
     opacity: 100;
 }
 .info-modal div {

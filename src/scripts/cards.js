@@ -123,12 +123,12 @@ async function verificarDado(filtro) {
                         if (request_result) {
                             switch (filtro.not_key) {
                                 case false:
-                                    if (request_result.value[filtro.campo] == filtro.valor && request_result.value[filtro.campo] != undefined) {
+                                    if (request_result.value[filtro.campo].includes(filtro.valor) && request_result.value[filtro.campo] != undefined) {
                                         data_return.push(request_result.value)
                                     }
                                     break;
                                 case true:
-                                    if (request_result.value[filtro.campo] == filtro.valor || request_result.value[filtro.campo] == undefined) {
+                                    if (request_result.value[filtro.campo].includes(filtro.valor) || request_result.value[filtro.campo] == undefined) {
                                         data_return.push(request_result.value)
                                     }
                                     break;
@@ -179,8 +179,6 @@ function insert_cards(greek_words) {
     }
     sorted_words = shuffleArray(greek_words)
     ramdon_number = 0
-    if (!localStorage.getItem('greek_words'))
-        localStorage.setItem('greek_words', JSON.stringify(greek_words))
 
     for (const word of greek_words) {
         html += `<div data-id="${word.id}" data-json='${JSON.stringify(word)}' onclick="rotate_card(this)" id="card-${ramdon_number + 1}" class="card">
@@ -204,7 +202,7 @@ function insert_cards(greek_words) {
     card_container.innerHTML = html
 
     //Verifica se aquele card está decorado
-    esta_decorado(atual_card_id)
+    verificar_decorado(atual_card_id)
 }
 //Abrir Json
 async function filter_json(classification) {
@@ -254,14 +252,14 @@ function rotate_card(card) {
 next.addEventListener('click', () => {
     atual_card_id += 1
     next.setAttribute("href", `#card-${atual_card_id}`)
-    esta_decorado(atual_card_id)
+    verificar_decorado(atual_card_id)
 });
 
 previus.addEventListener('click', () => {
     if (atual_card_id != 1)
         atual_card_id += - 1
     previus.setAttribute("href", `#card-${atual_card_id}`)
-    esta_decorado(atual_card_id)
+    verificar_decorado(atual_card_id)
 })
 
 document.addEventListener("keydown", (e) => {
@@ -283,7 +281,6 @@ function info_card() {
     delete card_data["Vocabulo"]
     text = ""
     for (const k in card_data) {
-
         if (k == "Casos") {
             text += `<div>Nominativo: ${JSON.stringify(card_data[k].Nominativo)}</div>
             <div>Genitivo: ${JSON.stringify(card_data[k].Genitivo)}</div>
@@ -300,7 +297,7 @@ function info_card() {
 //Marcar como Decorada
 
 async function foi_decorado() {
-    word_id = JSON.parse(document.getElementById(`card-${atual_card_id}`).dataset.json).id
+    word_id = parseInt(document.getElementById(`card-${atual_card_id}`).dataset.id)
     //console.log(word_id);
     dadoDB = await verificarDado({ flag: "id", id: word_id });
     //console.log(dadoDB);
@@ -309,11 +306,11 @@ async function foi_decorado() {
     } else {
         atualizarDados(word_id, true)
     }
-    esta_decorado(atual_card_id)
+    verificar_decorado(atual_card_id)
 }
 
-async function esta_decorado(atual_card_id) {
-    word_id = JSON.parse(document.getElementById(`card-${atual_card_id}`).dataset.json).id
+async function verificar_decorado(atual_card_id) {
+    word_id = parseInt(document.getElementById(`card-${atual_card_id}`).dataset.id)
     //console.log(word_id);
     dadoDB = await verificarDado({ flag: "id", id: word_id });
     //console.log(dadoDB.Decorado);

@@ -4,19 +4,19 @@ self.addEventListener('install', function(event) {
       caches.open('meu-app-cache')
         .then(function(cache) {
           return cache.addAll([
-            '/',
-            '/index.html',
-            '/cards.html',
-            '/tables.html',
-            '/src/styles/index.css',
-            '/src/styles/cards.css',
-            '/src/styles/root.css',
-            '/src/styles/style.css',
+            './',
+            './index.html',
+            './cards.html',
+            './tables.html',
+            './src/styles/index.css',
+            './src/styles/cards.css',
+            './src/styles/root.css',
+            './src/styles/style.css',
 
-            '/src/scripts/cards.js',
-            '/src/scripts/script.js',
-            '/img/icon.png',
-            '/img/tl.png',
+            './src/scripts/cards.js',
+            './src/scripts/script.js',
+            './img/icon.png',
+            './img/tl.png',
           ]);
         })
     );

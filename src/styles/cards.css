@@ -42,7 +42,11 @@ main {
     transition: transform .75s;
     transform-style: preserve-3d;
 }
-
+.back p {
+    width: 80%;
+    height: max-content;
+    max-height: 80%;
+}
 .back{
     transform: rotateX(180deg);
     /* se quiser uma animação na vertical,
@@ -175,4 +179,39 @@ select {
     line-height: 1.1;
     background-color: #fff;
     background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    overflow: hidden;
+    max-height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+footer .instrucoes {
+    display: flex;
+    width: max-content;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+footer .instrucoes div {
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+footer .instrucoes div:first-child {
+    margin-left: 0px;
+}
+footer .instrucoes img {
+    object-fit: contain;
+    height: 50px;
 }

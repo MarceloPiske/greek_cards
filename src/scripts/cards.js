@@ -271,12 +271,15 @@ previus.addEventListener('click', () => {
 document.addEventListener("keydown", (e) => {
     if (e.code == "ArrowRight" || e.code == "KeyD") {
         next.click()
+        esconde_intruções()
     }
     if (e.code == "ArrowLeft" || e.code == "KeyA") {
         previus.click()
+        esconde_intruções()
     }
     if (e.code == "Space") {
         document.getElementById(`card-${atual_card_id}`).click()
+        esconde_intruções()
     }
 })
 
@@ -330,6 +333,7 @@ async function verificar_decorado(atual_card_id) {
 
 
 
+//Touch controle
 const container = document.getElementById("container")
 let startPositionX = 0;
 
@@ -350,3 +354,16 @@ container.addEventListener("touchend", (event) => {
 
     }
 })
+
+
+//Instruções
+function esconde_intruções() {
+    document.querySelector("footer").style.display = "none"
+}
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+if (isMobile()) {
+    esconde_intruções()
+}

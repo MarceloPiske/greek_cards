@@ -309,7 +309,7 @@
       "id": 28,
       "Vocabulo": "γῖνομαι",
       "Classificacao": "Verbo",
-      "Traducao": "Sou, Torno-me, [3ª Pessoa: Acontece]"
+      "Traducao": "Sou, Torno-me, \n[3ª Pessoa: Acontece]"
     },
     {
       "id": 29,
@@ -547,7 +547,7 @@
       "id": 55,
       "Vocabulo": "ἀπό",
       "Classificacao": "Preposição",
-      "Traducao": "[Preposição com genitivo] de, da parte de"
+      "Traducao": "[genitivo] de, da parte de"
     },
     {
       "id": 56,
@@ -567,7 +567,7 @@
       "id": 57,
       "Vocabulo": "διά",
       "Classificacao": "Preposição",
-      "Traducao": "[Preposição com genitivo] Por meio de, através de; [preposição com acusativo] por causa de"
+      "Traducao": "[genitivo] Por meio de, através de;\n [acusativo] por causa de"
     },
     {
       "id": 58,
@@ -612,7 +612,7 @@
       "id": 63,
       "Vocabulo": "εἰς",
       "Classificacao": "Preposição",
-      "Traducao": "[Com Acusativo] Para, Para Dentro, Em"
+      "Traducao": "[Acusativo] Para, Para Dentro, Em"
     },
     {
       "id": 64,
@@ -1259,13 +1259,13 @@
       "id": 138,
       "Vocabulo": "ἄρχομαι",
       "Classificacao": "Verbo",
-      "Traducao": "começo (verbo começar); voz média: governo (verbo governar)"
+      "Traducao": "começo; [voz média] governo"
     },
     {
       "id": 139,
       "Vocabulo": "δεῖ",
       "Classificacao": "Verbo",
-      "Traducao": "é necessário (verbo auxiliar, com Infinitivo)"
+      "Traducao": "é necessário [Verbo auxiliar, Infinitivo]"
     },
     {
       "id": 140,
@@ -1384,7 +1384,7 @@
       "id": 153,
       "Vocabulo": "μέλλω",
       "Classificacao": "Verbo",
-      "Traducao": "estou prestes a; vou [verbo auxiliar, usado com Infinitivo]"
+      "Traducao": "estou prestes a; \nvou [Verbo auxiliar, Infinitivo]"
     },
     {
       "id": 154,

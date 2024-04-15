@@ -214,10 +214,10 @@ function desenha_tabela(json) {
         pp = `<tr> <th>1ª Plural</th>`
         sp = `<tr> <th>2ª Plural</th>`
         tp = `<tr> <th>3ª Plural</th>`
-        console.log(tempo.tipos);
+        //console.log(tempo.tipos);
         for (const tipos of tempo.tipos) {
             html_tipos += `<th>${tipos.tipo}</th>`
-            console.log(tipos);
+            //console.log(tipos);
             ps += `<td>${tipos.singular.primeira_pessoa}</td>`
             ss += `<td>${tipos.singular.segunda_pessoa}</td>`
             ts += `<td>${tipos.singular.terceira_pessoa}</td>`

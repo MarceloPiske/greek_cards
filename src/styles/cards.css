@@ -46,6 +46,7 @@ main {
     width: 80%;
     height: max-content;
     max-height: 80%;
+    text-align: center;
 }
 .back{
     transform: rotateX(180deg);

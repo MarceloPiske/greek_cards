@@ -195,48 +195,152 @@ json = [
     }
 ]
 
-let table_html = "" 
-for (let tempo of json) {
-    table_html += `<table>`
-    let thead = "<thead>"
-    let tbody = "<tbody>"
-    
-    let html_tempo = `<tr>
+function desenha_tabela(json) {
+    let table_html = ""
+    for (let tempo of json) {
+        table_html += `<table>`
+        let thead = "<thead>"
+        let tbody = "<tbody>"
+
+        let html_tempo = `<tr>
                 <th colspan="5">${tempo.tempo}</th>
             </tr>`
-    let html_tipos = `<tr>
+        let html_tipos = `<tr>
                 <th>Pessoa</th>`
 
-    ps = `<tr> <th>1ª Singular</th>`
-    ss = `<tr> <th>2ª Singular</th>`
-    ts = `<tr> <th>3ª Singular</th>`
-    pp = `<tr> <th>1ª Plural</th>`
-    sp = `<tr> <th>2ª Plural</th>`
-    tp = `<tr> <th>3ª Plural</th>`
-    console.log(tempo.tipos);
-    for (const tipos of tempo.tipos) {
-        html_tipos += `<th>${tipos.tipo}</th>`
-        console.log(tipos);
-        ps += `<td>${tipos.singular.primeira_pessoa}</td>`
-        ss += `<td>${tipos.singular.segunda_pessoa}</td>`
-        ts += `<td>${tipos.singular.terceira_pessoa}</td>`
+        ps = `<tr> <th>1ª Singular</th>`
+        ss = `<tr> <th>2ª Singular</th>`
+        ts = `<tr> <th>3ª Singular</th>`
+        pp = `<tr> <th>1ª Plural</th>`
+        sp = `<tr> <th>2ª Plural</th>`
+        tp = `<tr> <th>3ª Plural</th>`
+        console.log(tempo.tipos);
+        for (const tipos of tempo.tipos) {
+            html_tipos += `<th>${tipos.tipo}</th>`
+            console.log(tipos);
+            ps += `<td>${tipos.singular.primeira_pessoa}</td>`
+            ss += `<td>${tipos.singular.segunda_pessoa}</td>`
+            ts += `<td>${tipos.singular.terceira_pessoa}</td>`
 
-        pp += `<td>${tipos.plural.primeira_pessoa}</td>`
-        sp += `<td>${tipos.plural.segunda_pessoa}</td>`
-        tp += `<td>${tipos.plural.terceira_pessoa}</td>`
+            pp += `<td>${tipos.plural.primeira_pessoa}</td>`
+            sp += `<td>${tipos.plural.segunda_pessoa}</td>`
+            tp += `<td>${tipos.plural.terceira_pessoa}</td>`
+        }
+
+        html_tipos += "</tr>"
+        thead += html_tempo + html_tipos + "</thead>"
+
+        ps += "</tr>"
+        ss += "</tr>"
+        ts += "</tr>"
+        pp += "</tr>"
+        sp += "</tr>"
+        tp += "</tr>"
+        tbody += ps + ss + ts + pp + sp + tp + "</tbody>"
+
+        table_html += thead + tbody + "</table>"
     }
-
-    html_tipos += "</tr>"
-    thead += html_tempo + html_tipos + "</thead>"
-
-    ps += "</tr>"
-    ss += "</tr>"
-    ts += "</tr>"
-    pp += "</tr>"
-    sp += "</tr>"
-    tp += "</tr>"
-    tbody += ps + ss + ts + pp + sp + tp + "</tbody>"
-
-    table_html += thead + tbody + "</table>"
+    return table_html
 }
-document.querySelector("#container").innerHTML = table_html
+
+let to_insert = desenha_tabela(json)
+
+
+
+imperativo = [
+    {
+        "tempo": "Presente",
+        "tipos": [
+            {
+                "tipo": "Ativo",
+                "singular": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λύε",
+                    "terceira_pessoa": "λυέτω"
+                },
+                "plural": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λυέτω",
+                    "terceira_pessoa": "λυέτωσαν"
+                }
+            },
+            {
+                "tipo": "Médio/Passivo",
+                "singular": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λύου",
+                    "terceira_pessoa": "λυέσθω"
+                },
+                "plural": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λύεσθε",
+                    "terceira_pessoa": "λυέσθωσαν"
+                }
+            }
+        ]
+    },
+    {
+        "tempo": "Aoristo",
+        "tipos": [
+            {
+                "tipo": "Ativo",
+                "singular": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λῦσον",
+                    "terceira_pessoa": "λυσάτω"
+                },
+                "plural": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λύσατε",
+                    "terceira_pessoa": "λυσάτωσαν"
+                }
+            },
+            {
+                "tipo": "Médio",
+                "singular": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λῦσαι",
+                    "terceira_pessoa": "λυσάσθω"
+                },
+                "plural": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λύσασθε",
+                    "terceira_pessoa": "λυσάσθωσαν"
+                }
+            },
+            {
+                "tipo": "Passivo",
+                "singular": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λύθητι",
+                    "terceira_pessoa": "λυθήτω"
+                },
+                "plural": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λύθητε",
+                    "terceira_pessoa": "λυθήτωσαν"
+                }
+            },
+            {
+                "tipo": "Aoristo Segundo",
+                "singular": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λάβε",
+                    "terceira_pessoa": "λαβέτω"
+                },
+                "plural": {
+                    "primeira_pessoa": "-",
+                    "segunda_pessoa": "λάβετε",
+                    "terceira_pessoa": "λαβέτωσαν"
+                }
+            }
+        ]
+    }
+]
+
+to_insert += "<h2>Imperativo</h2>"
+to_insert += desenha_tabela(imperativo)
+
+
+
+document.querySelector("#container").innerHTML = to_insert

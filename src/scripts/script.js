@@ -260,7 +260,7 @@ imperativo = [
                 },
                 "plural": {
                     "primeira_pessoa": "-",
-                    "segunda_pessoa": "λυέτω",
+                    "segunda_pessoa": "λύετε",
                     "terceira_pessoa": "λυέτωσαν"
                 }
             },

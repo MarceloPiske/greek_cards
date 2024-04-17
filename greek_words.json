@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "data": [
     {
       "id": 1,
@@ -1478,13 +1478,13 @@
     },
     {
       "id": 163,
-      "Vocabulo": "ὅς",
+      "Vocabulo": "ὅς, ἥ, ὅ",
       "Classificacao": "Pronome",
       "Traducao": "que; o qual, a qual"
     },
     {
       "id": 164,
-      "Vocabulo": "οὗτος",
+      "Vocabulo": "οὗτος, αὕτη, τοῦτο",
       "Classificacao": "Pronome",
       "Traducao": "este, esta, isto"
     },

@@ -1,5 +1,5 @@
 {
-  "version": 2.01,
+  "version": 2.2,
   "data": [
     {
       "id": 1,
@@ -636,6 +636,7 @@
     {
       "id": 67,
       "Vocabulo": "εὑρίσκω",
+      "Aoristo_Segundo": "εὗρον",
       "Classificacao": "Verbo",
       "Traducao": "Acho, Encontro"
     },
@@ -1607,6 +1608,122 @@
       "Vocabulo": "ἑπτά",
       "Classificacao": "Número",
       "Traducao": "Sete"
+    },
+    {
+      "id": 178,
+      "Vocabulo": "δοκέω",
+      "Classificacao": "Verbo",
+      "Traducao": "penso, considero; parece"
+    },
+    {
+      "id": 179,
+      "Vocabulo": "ἔσχον",
+      "Forma_Aoristo": "Αor. 2 de ἔχω",
+      "Classificacao": "Verbo",
+      "Traducao": "tive [ter]"
+    },
+    {
+      "id": 180,
+      "Vocabulo": "κάθημαι",
+      "Classificacao": "Verbo",
+      "Traducao": "eu me assento"
+    },
+    {
+      "id": 181,
+      "Vocabulo": "καταβαίνω",
+      "Aoristo_Segundo": "κατέβην",
+      "Classificacao": "Verbo",
+      "Traducao": "Desço"
+    },
+    {
+      "id": 182,
+      "Vocabulo": "κηρύσσω",
+      "Classificacao": "Verbo",
+      "Traducao": "proclamo, anuncio"
+    },
+    {
+      "id": 183,
+      "Vocabulo": "μαρτυρέω",
+      "Classificacao": "Verbo",
+      "Traducao": "testemunho, testifico"
+    },
+    {
+      "id": 184,
+      "Vocabulo": "πέμπω",
+      "Classificacao": "Verbo",
+      "Traducao": "envio"
+    },
+    {
+      "id": 185,
+      "Vocabulo": "προσέρχομαι",
+      "Classificacao": "Verbo",
+      "Traducao": "eu me aproximo"
+    },
+    {
+      "id": 186,
+      "Vocabulo": "προσεύχομαι",
+      "Classificacao": "Verbo",
+      "Traducao": "eu oro"
+    },
+    {
+      "id": 187,
+      "Vocabulo": "ἐντολή",
+      "Casos": {
+        "Nominativo": "ἐντολή",
+        "Acusativo": "ἐντολήν",
+        "Genitivo": "ἐντολῆς",
+        "Dativo": "ἐντολῇ"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "vontade"
+    },
+    {
+      "id": 188,
+      "Vocabulo": "θέλημα",
+      "Casos": {
+        "Nominativo": "θέλημα",
+        "Acusativo": "θέλημα",
+        "Genitivo": "θελήματος",
+        "Dativo": "θελήματι"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "vontade"
+    },
+    {
+      "id": 189,
+      "Vocabulo": "νύξ",
+      "Casos": {
+        "Nominativo": "νύξ",
+        "Acusativo": "νύκτα",
+        "Genitivo": "νυκτός",
+        "Dativo": "νυκτί"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "noite"
+    },
+    {
+      "id": 190,
+      "Vocabulo": "πούς",
+      "Casos": {
+        "Nominativo": "πούς",
+        "Acusativo": "πόδα",
+        "Genitivo": "ποδός",
+        "Dativo": "ποδί"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "pé"
+    },
+    {
+      "id": 191,
+      "Vocabulo": "αἰώνιος , αἰώνιον",
+      "Classificacao": "Adjetivo",
+      "Traducao": "eterno(a)"
+    },
+    {
+      "id": 192,
+      "Vocabulo": "δίκαιος , δικαία , δίκαιον",
+      "Classificacao": "Adjetivo",
+      "Traducao": "justo(a)"
     }
   ]
 }

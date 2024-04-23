@@ -3,7 +3,7 @@ const next = document.getElementById('next')
 const previus = document.getElementById('previus')
 let atual_card_id = 1
 
-let json_version = parseInt(localStorage.getItem("json_version"))
+let json_version = parseFloat(localStorage.getItem("json_version"))
 //IndexDB
 //db.deleteObjectStore('books')
 

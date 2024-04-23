@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 2.01,
   "data": [
     {
       "id": 1,
@@ -1028,7 +1028,7 @@
       "id": 110,
       "Vocabulo": "τίς, τίς, τί (τίνος)",
       "Classificacao": "Pronome Interrogativo",
-      "Traducao": "Que? Que?, Qual?"
+      "Traducao": "Quem?, Que?, Qual?"
     },
     {
       "id": 111,
@@ -1494,6 +1494,119 @@
       "Classificacao": "Verbo",
       "Traducao": "Peco",
       "Aoristo_Segundo": "ἧμαρτον"
+    },
+    {
+      "id": 165,
+      "Vocabulo": "ἄγω",
+      "Classificacao": "Verbo",
+      "Traducao": "vou, guio, conduzo"
+    },
+    {
+      "id": 166,
+      "Vocabulo": "ἁμαρτάνω",
+      "Classificacao": "Verbo",
+      "Traducao": "peco"
+    },
+    {
+      "id": 167,
+      "Vocabulo": "τίθημι",
+      "Classificacao": "Verbo",
+      "Traducao": "ponho, coloco"
+    },
+    {
+      "id": 168,
+      "Vocabulo": "μηδεῖς",
+      "Classificacao": "Pronome",
+      "Traducao": "ninguém, nada, nenhum; advérbio: de modo nenhum"
+    },
+    {
+      "id": 169,
+      "Vocabulo": "παρά",
+      "Classificacao": "Preposição",
+      "Traducao": "(preposição) ao lado de, com"
+    },
+    {
+      "id": 170,
+      "Vocabulo": "ἀρχή",
+      "casos": {
+        "Nominativo": "ἀρχή",
+        "Genitivo": "ἀρχῆς",
+        "Dativo": "ἀρχῇ",
+        "Acusativo": "ἀρχήν"
+      },
+      "Artigo_Definido": "ἡ",
+      "Classificacao": "Substantivo",
+      "Traducao": "começo, princípio"
+    },
+    {
+      "id": 171,
+      "Vocabulo": "γραφή",
+      "casos": {
+        "Nominativo": "γραφή",
+        "Genitivo": "γραφῆς",
+        "Dativo": "γραφῇ",
+        "Acusativo": "γραφήν"
+      },
+      "Artigo_Definido": "ἡ",
+      "Classificacao": "Substantivo",
+      "Traducao": "Escritura"
+    },
+    {
+      "id": 172,
+      "Vocabulo": "δαιμόνιον",
+      "casos": {
+        "Nominativo": "δαιμόνιον",
+        "Genitivo": "δαιμονίου",
+        "Dativo": "δαιμονίῳ",
+        "Acusativo": "δαιμόνιον"
+      },
+      "Artigo_Definido": "τό",
+      "Classificacao": "Substantivo",
+      "Traducao": "demônio"
+    },
+    {
+      "id": 173,
+      "Vocabulo": "θρόνος",
+      "casos": {
+        "Nominativo": "θρόνος",
+        "Genitivo": "θρόνου",
+        "Dativo": "θρόνῳ",
+        "Acusativo": "θρόνον"
+      },
+      "Artigo_Definido": "ὁ",
+      "Classificacao": "Substantivo",
+      "Traducao": "trono"
+    },
+    {
+      "id": 174,
+      "Vocabulo": "κεφαλή",
+      "casos": {
+        "Nominativo": "κεφαλή",
+        "Genitivo": "κεφαλῆς",
+        "Dativo": "κεφαλῇ",
+        "Acusativo": "κεφαλήν"
+      },
+      "Artigo_Definido": "ἡ",
+      "Classificacao": "Substantivo",
+      "Traducao": "cabeça"
+    },
+    {
+      "id": 175,
+      "Vocabulo": "δύο",
+      "Classificacao": "Número",
+      "Traducao": "Dois"
+    },
+    {
+      "id": 176,
+      "Vocabulo": "δώδεκα",
+      "Classificacao": "Número",
+      "Traducao": "Doze"
+    },
+    {
+      "id": 177,
+      "Vocabulo": "ἑπτά",
+      "Classificacao": "Número",
+      "Traducao": "Sete"
     }
   ]
 }

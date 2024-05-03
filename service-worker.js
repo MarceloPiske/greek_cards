@@ -14,8 +14,8 @@ self.addEventListener('install', function(event) {
             './src/styles/style.css',
 
             './src/scripts/cards.js',
-            './src/scripts/script.js',
-            './img/icon.png',
+            './src/scripts/tables.js',
+            './img/icon.jpg',
             './img/tl.png',
           ]);
         })

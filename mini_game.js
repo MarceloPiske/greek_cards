@@ -1,7 +1,7 @@
 
 //Criando elementos do game
-const col_esquerda = document.getElementById("col-esquerda")
-const col_direita = document.getElementById("col-direita")
+const col_esquerda = document.createElement("div")
+const col_direita = document.createElement("div")
 const content_colunms = document.querySelector(".content-colunms")
 let dados_do_banco = false
 
@@ -16,8 +16,11 @@ window.onload = async () => {
 
 function drawn_words(dados_do_banco, to_remove) {
     //console.log(dados_do_banco);
+    col_esquerda.id = "col-esquerda"
     col_esquerda.innerHTML = ""
-    col_direita.innerHTML = ""
+    col_direita.id = "col-direita"
+    col_direita.innerHTML  = ""
+
     let filter = dados_do_banco.filter(f => !to_remove.includes(f.id))
     //console.log(filter);
     filter = filter.slice(0, 5)
@@ -53,6 +56,9 @@ function drawn_words(dados_do_banco, to_remove) {
             div_d.appendChild(span_d)
             col_direita.appendChild(div_d)
         })
+        content_colunms.innerHTML = ""
+        content_colunms.appendChild(col_esquerda)
+        content_colunms.appendChild(col_direita)
     }
 }
 

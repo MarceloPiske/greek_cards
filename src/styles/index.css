@@ -1,12 +1,23 @@
 body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bt-content {
+    height: 85%;
+    width: 40%;
+    background-color: #363949;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 1rem;
+    border-radius: 1rem;
 }
-
-body div {
+body .bt-content div {
     transition: all 300ms ease;
     justify-content: center;
     align-items: center;
@@ -14,19 +25,20 @@ body div {
     padding: 2rem;
     border-radius: 10px;
     background-color: #032776;
-    width: 30%;
+    width: 60%;
     font-size: 1.5rem;
     cursor: pointer;
     border: 1px solid #032776;
 }
-body div:hover {
+body .bt-content div:hover {
     background-color: white;
 }
-body div a {
+body .bt-content div a {
     width: 100%;
     height: 100%;
     color: white;
 }
-body div:hover a {
+body .bt-content div:hover a {
     color: #032776;
 }
+

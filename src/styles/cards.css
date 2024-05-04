@@ -116,7 +116,7 @@ main {
     right: 0;
     transform: rotate(180deg);
 }
-
+/* Menu CSS */
 .menu {
     transition: all 300ms ease;
     position: absolute;
@@ -182,7 +182,7 @@ select {
     background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
 }
 
-
+/* FOOTER CSS */
 footer {
     position: absolute;
     width: 100%;

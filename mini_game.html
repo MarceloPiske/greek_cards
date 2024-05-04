@@ -20,11 +20,26 @@
     </a>
     <nav></nav>
     <main>
-        <button class="reset_game" onclick="reset_game()"><span class="material-symbols-sharp">
-                refresh
-            </span></button>
-        <div class="game_content">
+        <div class="menu">
+            <div class="select-content">
+                <span class="material-symbols-sharp">
+                    filter_alt
+                </span>
+                <select onchange="filter_json(this.value)" name="" id="">
+                    <option selected>Todos</option>
+                    <option>Decorados</option>
+                    <option>Não Decorados</option>
+                </select>
+            </div>
+            <div onclick="reset_game()">
+                <span class="material-symbols-sharp">
+                    restart_alt
+                </span>
+            </div>
+        </div>
+        <div class="game_content" >
             <h2>Associe as palavras a suas traduções</h2>
+            
             <div class="content-colunms">
                 <div id="col-esquerda">
                     <!-- <div onclick="active_option(this)" id="1E">

@@ -1,4 +1,3 @@
-
 function abrirBancoDeDados() {
     return new Promise((resolve, reject) => {
         const request = window.indexedDB.open("greek_words", 1);
@@ -128,7 +127,7 @@ async function atualizar_database(jsondata) {
     }
 }
 let json_version = parseFloat(localStorage.getItem("json_version"))
-fetch("greek_words.json")
+fetch("/greek_words.json")
     .then(response => {
         return response.json();
     })

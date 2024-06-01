@@ -55,8 +55,8 @@ function insert_cards(greek_words) {
 
     for (const word of greek_words) {
         html += `<div data-id="${word.id}" onclick="rotate_card(this)" id="card-${ramdon_number + 1}" class="card">
-                    <img class="inferior-left-image" src="./img/tl.png" alt="">
-                    <img class="superior-left-image" src="./img/tl.png" alt="">
+                    <img class="inferior-left-image" src="/img/tl.png" alt="">
+                    <img class="superior-left-image" src="/img/tl.png" alt="">
                     <div class="front">
                         <p id="text-greek">${word.Vocabulo}</p>
                     `
@@ -67,8 +67,8 @@ function insert_cards(greek_words) {
                     <div class="back">
                         <p id="text-portuguese">${word.Traducao}</p>
                     </div>
-                    <img class="inferior-right-image" src="./img/tl.png" alt="">
-                    <img class="superior-right-image" src="./img/tl.png" alt="">
+                    <img class="inferior-right-image" src="/img/tl.png" alt="">
+                    <img class="superior-right-image" src="/img/tl.png" alt="">
                 </div>`
         ramdon_number += 1
     }

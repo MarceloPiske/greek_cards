@@ -6,8 +6,8 @@ self.addEventListener('install', function(event) {
           return cache.addAll([
             './',
             './index.html',
-            './cards.html',
-            './tables.html',
+            './src/html/cards.html',
+            './src/html/tables.html',
             './src/styles/index.css',
             './src/styles/cards.css',
             './src/styles/root.css',
@@ -28,6 +28,7 @@ self.addEventListener('install', function(event) {
       caches.match(event.request)
         .then(function(response) {
           if (response) {
+            console.log(response);
             // Retorna o recurso do cache se disponível
             return response;
           }
@@ -54,6 +55,7 @@ self.addEventListener('install', function(event) {
             cacheNames.map(function(cacheName) {
               if (cacheName !== 'meu-app-cache') {
                 // Exclui caches antigos
+                console.log("cache alualizado");
                 return caches.delete(cacheName);
               }
             })

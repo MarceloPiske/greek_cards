@@ -129,7 +129,7 @@ async function atualizar_database(jsondata) {
 let json_version = parseFloat(localStorage.getItem("json_version"))
 let location_url = new URL(window.location.href).origin
 
-location_url.includes("marcelo") ?  location_url+"/greek_cards" : location_url
+location_url.includes("marcelo") ?  `${location_url}/greek_cards` : location_url
 console.log(location_url.includes("marcelo"), location_url);
 fetch(location_url+"/greek_words.json")
     .then(response => {

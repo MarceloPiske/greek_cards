@@ -1,5 +1,5 @@
 {
-  "version": 2.2,
+  "version": 2.4,
   "data": [
     {
       "id": 1,
@@ -1724,6 +1724,282 @@
       "Vocabulo": "δίκαιος , δικαία , δίκαιον",
       "Classificacao": "Adjetivo",
       "Traducao": "justo(a)"
+    },
+    {
+      "id": 193,
+      "Vocabulo": "δεξιός , δεξία , δεξιόν",
+      "Classificacao": "Adjetivo",
+      "Traducao": "direito(a), destro(a)"
+    },
+    {
+      "id": 194,
+      "Vocabulo": "πρεσβύτερος , πρεσβυτέρα , πρεσβύτερον",
+      "Classificacao": "Adjetivo",
+      "Traducao": "ancião(ã)"
+    },
+    {
+      "id": 195,
+      "Vocabulo": "μόνος , μόνη , μόνον",
+      "Classificacao": "Adjetivo",
+      "Traducao": "só, sozinho(a); único(a)"
+    },
+    {
+      "id": 196,
+      "Vocabulo": "πιστός , πιστή , πιστόν",
+      "Classificacao": "Adjetivo",
+      "Traducao": "crente, fiel"
+    },
+    {
+      "id": 197,
+      "Vocabulo": "πονηρός , πονηρά , πονηρόν",
+      "Classificacao": "Adjetivo",
+      "Traducao": "mau, má"
+    },
+    {
+      "id": 198,
+      "Vocabulo": "γλῶσσα",
+      "Casos": {
+        "Nominativo": "γλῶσσα",
+        "Acusativo": "γλῶσσαν",
+        "Genitivo": "γλώσσης",
+        "Dativo": "γλώσσῃ"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "língua, linguagem"
+    },
+    {
+      "id": 199,
+      "Vocabulo": "διδάσκαλος",
+      "Casos": {
+        "Nominativo": "διδάσκαλος",
+        "Acusativo": "διδάσκαλον",
+        "Genitivo": "διδασκάλου",
+        "Dativo": "διδασκάλῳ"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "mestre, professor"
+    },
+    {
+      "id": 200,
+      "Vocabulo": "ἐλπίς",
+      "Casos": {
+        "Nominativo": "ἐλπίς",
+        "Acusativo": "ἐλπίδα",
+        "Genitivo": "ἐλπίδος",
+        "Dativo": "ἐλπίδι"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "esperança"
+    },
+    {
+      "id": 201,
+      "Vocabulo": "ἐπαγγελία",
+      "Casos": {
+        "Nominativo": "ἐπαγγελία",
+        "Acusativo": "ἐπαγγελίαν",
+        "Genitivo": "ἐπαγγελίας",
+        "Dativo": "ἐπαγγελίᾳ"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "promessa"
+    },
+    {
+      "id": 202,
+      "Vocabulo": "καρπός",
+      "Casos": {
+        "Nominativo": "καρπός",
+        "Acusativo": "καρπόν",
+        "Genitivo": "καρποῦ",
+        "Dativo": "καρπῷ"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "fruto"
+    },
+    {
+      "id": 203,
+      "Vocabulo": "ὄρος",
+      "Casos": {
+        "Nominativo": "ὄρος",
+        "Acusativo": "ὄρος",
+        "Genitivo": "ὄρους",
+        "Dativo": "ὄρει"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "monte, montanha"
+    },
+    {
+      "id": 204,
+      "Vocabulo": "σάββατον",
+      "Casos": {
+        "Nominativo": "σάββατον",
+        "Acusativo": "σάββατον",
+        "Genitivo": "σαββάτου",
+        "Dativo": "σαββάτῳ"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "sábado (plural: semana)"
+    },
+    {
+      "id": 205,
+      "Vocabulo": "σημεῖον",
+      "Casos": {
+        "Nominativo": "σημεῖον",
+        "Acusativo": "σημεῖον",
+        "Genitivo": "σημείου",
+        "Dativo": "σημείῳ"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "sinal"
+    },
+    {
+      "id": 206,
+      "Vocabulo": "φῶς",
+      "Casos": {
+        "Nominativo": "φῶς",
+        "Acusativo": "φῶς",
+        "Genitivo": "φωτός",
+        "Dativo": "φωτί"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "luz"
+    },
+    {
+      "id": 207,
+      "Vocabulo": "πλοῖον",
+      "Casos": {
+        "Nominativo": "πλοῖον",
+        "Acusativo": "πλοῖον",
+        "Genitivo": "πλοίου",
+        "Dativo": "πλοίῳ"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "barco"
+    },
+    {
+      "id": 208,
+      "Vocabulo": "πρόσωπον",
+      "Casos": {
+        "Nominativo": "πρόσωπον",
+        "Acusativo": "πρόσωπον",
+        "Genitivo": "προσώπου",
+        "Dativo": "προσώπῳ"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "rosto, face"
+    },
+    {
+      "id": 209,
+      "Vocabulo": "πύρ",
+      "Casos": {
+        "Nominativo": "πύρ",
+        "Acusativo": "πῦρ",
+        "Genitivo": "πυρός",
+        "Dativo": "πυρί"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "fogo"
+    },
+    {
+      "id": 210,
+      "Vocabulo": "ῥῆμα",
+      "Casos": {
+        "Nominativo": "ῥῆμα",
+        "Acusativo": "ῥῆμα",
+        "Genitivo": "ῥήματος",
+        "Dativo": "ῥήματι"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "palavra"
+    },
+    {
+      "id": 211,
+      "Vocabulo": "στόμα",
+      "Casos": {
+        "Nominativo": "στόμα",
+        "Acusativo": "στόμα",
+        "Genitivo": "στόματος",
+        "Dativo": "στόματι"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "boca"
+    },
+    {
+      "id": 212,
+      "Vocabulo": "ὕδωρ",
+      "Casos": {
+        "Nominativo": "ὕδωρ",
+        "Acusativo": "ὕδωρ",
+        "Genitivo": "ὕδατος",
+        "Dativo": "ὕδατι"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "água"
+    },
+    {
+      "id": 213,
+      "Vocabulo": "παραβολή",
+      "Casos": {
+        "Nominativo": "παραβολή",
+        "Acusativo": "παραβολήν",
+        "Genitivo": "παραβολῆς",
+        "Dativo": "παραβολῇ"
+      },
+      "Classificacao": "Substantivo",
+      "Traducao": "parábola, ilustração"
+    },
+    {
+      "id": 214,
+      "Vocabulo": "ἀποκτείνω",
+      "Classificacao": "Verbo",
+      "Traducao": "mato (verbo matar)"
+    },
+    {
+      "id": 215,
+      "Vocabulo": "τηρέω",
+      "Classificacao": "Verbo",
+      "Traducao": "guardo"
+    },
+    {
+      "id": 216,
+      "Vocabulo": "φοβέομαι",
+      "Classificacao": "Verbo",
+      "Traducao": "temo"
+    },
+    {
+      "id": 217,
+      "Vocabulo": "ἀσπάζομαι",
+      "Classificacao": "Verbo",
+      "Traducao": "saúdo"
+    },
+    {
+      "id": 218,
+      "Vocabulo": "δέχομαι",
+      "Classificacao": "Verbo",
+      "Traducao": "recebo, acolho"
+    },
+    {
+      "id": 219,
+      "Vocabulo": "πίνω",
+      "Classificacao": "Verbo",
+      "Traducao": "bebo"
+    },
+    {
+      "id": 220,
+      "Vocabulo": "συνάγω",
+      "Classificacao": "Verbo",
+      "Traducao": "reúno"
+    },
+    {
+      "id": 221,
+      "Vocabulo": "φημί",
+      "Classificacao": "Verbo",
+      "Traducao": "falo"
+    },
+    {
+      "id": 222,
+      "Vocabulo": "χαίρω",
+      "Classificacao": "Verbo",
+      "Traducao": "me alegro, regozijo-me"
     }
   ]
 }

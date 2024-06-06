@@ -127,7 +127,9 @@ async function atualizar_database(jsondata) {
     }
 }
 let json_version = parseFloat(localStorage.getItem("json_version"))
-fetch("../../greek_words.json")
+let location_url = new URL(window.location.href).origin
+console.log(location_url);
+fetch(location_url+"/greek_words.json")
     .then(response => {
         return response.json();
     })

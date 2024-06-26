@@ -28,7 +28,7 @@ self.addEventListener('install', function(event) {
       caches.match(event.request)
         .then(function(response) {
           if (response) {
-            console.log(response);
+            //console.log(response);
             // Retorna o recurso do cache se disponível
             return response;
           }

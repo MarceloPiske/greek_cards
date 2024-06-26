@@ -1,5 +1,5 @@
 {
-  "version": 2.4,
+  "version": 2.6,
   "data": [
     {
       "id": 1,
@@ -2000,6 +2000,249 @@
       "Vocabulo": "χαίρω",
       "Classificacao": "Verbo",
       "Traducao": "me alegro, regozijo-me"
+    },
+    {
+      "id": 223,
+      "Vocabulo": "ἀνάστασις",
+      "Casos": {
+        "Nominativo": "ἀνάστασις",
+        "Genitivo": "ἀναστάσεως",
+        "Dativo": "ἀναστάσει",
+        "Acusativo": "ἀνάστασιν"
+      },
+      "Artigo_Definido": "ἡ",
+      "Classificacao": "Substantivo",
+      "Traducao": "ressurreição"
+    },
+    {
+      "id": 224,
+      "Vocabulo": "ἱμάτιον",
+      "Casos": {
+        "Nominativo": "ἱμάτιον",
+        "Genitivo": "ἱματίου",
+        "Dativo": "ἱματίῳ",
+        "Acusativo": "ἱμάτιον"
+      },
+      "Artigo_Definido": "τό",
+      "Classificacao": "Substantivo",
+      "Traducao": "veste"
+    },
+    {
+      "id": 225,
+      "Vocabulo": "σωτηρία",
+      "Casos": {
+        "Nominativo": "σωτηρία",
+        "Genitivo": "σωτηρίας",
+        "Dativo": "σωτηρίᾳ",
+        "Acusativo": "σωτηρίαν"
+      },
+      "Artigo_Definido": "ἡ",
+      "Classificacao": "Substantivo",
+      "Traducao": "salvação"
+    },
+    {
+      "id": 226,
+      "Vocabulo": "φόβος",
+      "Casos": {
+        "Nominativo": "φόβος",
+        "Genitivo": "φόβου",
+        "Dativo": "φόβῳ",
+        "Acusativo": "φόβον"
+      },
+      "Artigo_Definido": "ὁ",
+      "Classificacao": "Substantivo",
+      "Traducao": "temor, medo"
+    },
+    {
+      "id": 227,
+      "Vocabulo": "λίθος",
+      "Casos": {
+        "Nominativo": "λίθος",
+        "Genitivo": "λίθου",
+        "Dativo": "λίθῳ",
+        "Acusativo": "λίθον"
+      },
+      "Artigo_Definido": "ὁ",
+      "Classificacao": "Substantivo",
+      "Traducao": "pedra"
+    },
+    {
+      "id": 228,
+      "Vocabulo": "παιδίον",
+      "Casos": {
+        "Nominativo": "παιδίον",
+        "Genitivo": "παιδίου",
+        "Dativo": "παιδίῳ",
+        "Acusativo": "παιδίον"
+      },
+      "Artigo_Definido": "τό",
+      "Classificacao": "Substantivo",
+      "Traducao": "criança; recém-nascido"
+    },
+    {
+      "id": 229,
+      "Vocabulo": "σοφία",
+      "Casos": {
+        "Nominativo": "σοφία",
+        "Genitivo": "σοφίας",
+        "Dativo": "σοφίᾳ",
+        "Acusativo": "σοφίαν"
+      },
+      "Artigo_Definido": "ἡ",
+      "Classificacao": "Substantivo",
+      "Traducao": "sabedoria"
+    },
+    {
+      "id": 230,
+      "Vocabulo": "συναγωγή",
+      "Casos": {
+        "Nominativo": "συναγωγή",
+        "Genitivo": "συναγωγῆς",
+        "Dativo": "συναγωγῇ",
+        "Acusativo": "συναγωγήν"
+      },
+      "Artigo_Definido": "ἡ",
+      "Classificacao": "Substantivo",
+      "Traducao": "sinagoga"
+    },
+    {
+      "id": 231,
+      "Vocabulo": "χρόνος",
+      "Casos": {
+        "Nominativo": "χρόνος",
+        "Genitivo": "χρόνου",
+        "Dativo": "χρόνῳ",
+        "Acusativo": "χρόνον"
+      },
+      "Artigo_Definido": "ὁ",
+      "Classificacao": "Substantivo",
+      "Traducao": "tempo"
+    },
+    {
+      "id": 232,
+      "Vocabulo": "ἁμαρτολός, ἁμαρτολόν",
+      "Classificacao": "Adjetivo",
+      "Traducao": "pecador(a); pecaminoso(a)"
+    },
+    {
+      "id": 233,
+      "Vocabulo": "λοιπός, λοιπή, λοιπόν",
+      "Classificacao": "Adjetivo",
+      "Traducao": "resto (adjetivo); finalmente (advérbio)"
+    },
+    {
+      "id": 234,
+      "Vocabulo": "μέσος, μέση, μέσον",
+      "Classificacao": "Adjetivo",
+      "Traducao": "central; do meio"
+    },
+    {
+      "id": 235,
+      "Vocabulo": "πλείον",
+      "Classificacao": "Adjetivo",
+      "Traducao": "maior; mais que (comparativo)"
+    },
+    {
+      "id": 236,
+      "Vocabulo": "ἔσχατος, ἐσχάτη, ἔσχατον",
+      "Classificacao": "Adjetivo",
+      "Traducao": "último(a)"
+    },
+    {
+      "id": 237,
+      "Vocabulo": "μακάριος, μακαρία, μακάριον",
+      "Classificacao": "Adjetivo",
+      "Traducao": "feliz, abençoado(a), bem-aventurado(a)"
+    },
+    {
+      "id": 238,
+      "Vocabulo": "ἐπερωτάω",
+      "Classificacao": "Verbo",
+      "Traducao": "pergunto; exijo"
+    },
+    {
+      "id": 239,
+      "Vocabulo": "ἐρῶ",
+      "Classificacao": "Verbo",
+      "Traducao": "falarei, direi (futuro de λέγω)"
+    },
+    {
+      "id": 240,
+      "Vocabulo": "ἐρωτάω",
+      "Classificacao": "Verbo",
+      "Traducao": "pergunto; peço"
+    },
+    {
+      "id": 241,
+      "Vocabulo": "εὐαγγελίζω",
+      "Classificacao": "Verbo",
+      "Traducao": "anuncio boas novas, evangelizo"
+    },
+    {
+      "id": 242,
+      "Vocabulo": "θεωρέω",
+      "Classificacao": "Verbo",
+      "Traducao": "contemplo, vejo"
+    },
+    {
+      "id": 243,
+      "Vocabulo": "ὑπάγω",
+      "Classificacao": "Verbo",
+      "Traducao": "eu parto (verbo partir)"
+    },
+    {
+      "id": 244,
+      "Vocabulo": "φέρω",
+      "Classificacao": "Verbo",
+      "Traducao": "carrego, conduzo"
+    },
+    {
+      "id": 245,
+      "Vocabulo": "ἀπαγγέλλω",
+      "Classificacao": "Verbo",
+      "Traducao": "anuncio, relato"
+    },
+    {
+      "id": 246,
+      "Vocabulo": "κράζω",
+      "Classificacao": "Verbo",
+      "Traducao": "(eu) grito"
+    },
+    {
+      "id": 247,
+      "Vocabulo": "οἰκοδομέω",
+      "Classificacao": "Verbo",
+      "Traducao": "construo, edifico"
+    },
+    {
+      "id": 248,
+      "Vocabulo": "πείθω",
+      "Classificacao": "Verbo",
+      "Traducao": "persuado, convenço"
+    },
+    {
+      "id": 249,
+      "Vocabulo": "προσκυνέω",
+      "Classificacao": "Verbo",
+      "Traducao": "adoro; me prostro"
+    },{
+      "id": 250,
+      "Vocabulo": "ἐμός, ἐμή, ἐμόν",
+      "Classificacao": "Pronome Possessivo",
+      "Traducao": "meu, minha"
+    },
+    {
+      "id": 251,
+      "Vocabulo": "τρεῖς",
+      "Classificacao": "Numeral",
+      "Traducao": "três"
+    },
+    {
+      "id": 252,
+      "Vocabulo": "τρίτος, τρίτη, τρίτον",
+      "Classificacao": "Numeral",
+      "Traducao": "terceiro"
     }
+
   ]
 }

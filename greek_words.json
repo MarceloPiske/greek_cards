@@ -2225,7 +2225,8 @@
       "Vocabulo": "προσκυνέω",
       "Classificacao": "Verbo",
       "Traducao": "adoro; me prostro"
-    },{
+    },
+    {
       "id": 250,
       "Vocabulo": "ἐμός, ἐμή, ἐμόν",
       "Classificacao": "Pronome Possessivo",
@@ -2242,7 +2243,124 @@
       "Vocabulo": "τρίτος, τρίτη, τρίτον",
       "Classificacao": "Numeral",
       "Traducao": "terceiro"
+    },
+    {
+      "id": 253,
+      "Vocabulo": "ἀποδίδωμι",
+      "Classificacao": "Verbo",
+      "Traducao": "devolvo; pago; voz média: vendo"
+    },
+    {
+      "id": 254,
+      "Vocabulo": "δέω",
+      "Classificacao": "Verbo",
+      "Traducao": "prendo, amarro"
+    },
+    {
+      "id": 255,
+      "Vocabulo": "διώκω",
+      "Classificacao": "Verbo",
+      "Traducao": "persigo; sigo"
+    },
+    {
+      "id": 256,
+      "Vocabulo": "ἐγγίζω",
+      "Classificacao": "Verbo",
+      "Traducao": "me aproximo"
+    },
+    {
+      "id": 257,
+      "Vocabulo": "ἐργάζομαι",
+      "Classificacao": "Verbo",
+      "Traducao": "trabalho; opero; faço"
+    },
+    {
+      "id": 258,
+      "Vocabulo": "θεραπεύω",
+      "Classificacao": "Verbo",
+      "Traducao": "(eu) curo"
+    },
+    {
+      "id": 259,
+      "Vocabulo": "παραλαμβάνω",
+      "Classificacao": "Verbo",
+      "Traducao": "recebo"
+    },
+    {
+      "id": 260,
+      "Vocabulo": "ὑπάρχω",
+      "Classificacao": "Verbo",
+      "Traducao": "vivo, existo, subsisto (No partic. Neutro plural = pertences)"
+    },
+    {
+      "id": 261,
+      "Vocabulo": "γενεά",
+      "Casos": {
+        "Nominativo": "γενεά",
+        "Genitivo": "γενεᾶς",
+        "Dativo": "γενεᾷ",
+        "Acusativo": "γενεάν"
+      },
+      "Artigo_Definido": "ἡ",
+      "Classificacao": "Substantivo",
+      "Traducao": "geração"
+    },
+    {
+      "id": 262,
+      "Vocabulo": "κρίσις",
+      "Casos": {
+        "Nominativo": "κρίσις",
+        "Genitivo": "κρίσεως",
+        "Dativo": "κρίσει",
+        "Acusativo": "κρίσιν"
+      },
+      "Artigo_Definido": "ἡ",
+      "Classificacao": "Substantivo",
+      "Traducao": "julgamento, juízo"
+    },
+    {
+      "id": 263,
+      "Vocabulo": "ναός",
+      "Casos": {
+        "Nominativo": "ναός",
+        "Genitivo": "ναοῦ",
+        "Dativo": "ναῷ",
+        "Acusativo": "ναόν"
+      },
+      "Artigo_Definido": "ὁ",
+      "Classificacao": "Substantivo",
+      "Traducao": "templo"
+    },
+    {
+      "id": 264,
+      "Vocabulo": "χαρά",
+      "Casos": {
+        "Nominativo": "χαρά",
+        "Genitivo": "χαράς",
+        "Dativo": "χαρᾷ",
+        "Acusativo": "χαράν"
+      },
+      "Artigo_Definido": "ἡ",
+      "Classificacao": "Substantivo",
+      "Traducao": "alegria"
+    },
+    {
+        "id": 265,
+        "Vocabulo": "καινός, καινή, καινόν",
+        "Classificacao": "Adjetivo",
+        "Traducao": "novo(a)"
+    },
+    {
+        "id": 266,
+        "Vocabulo": "τιφλός, τιφλή, τιφλόν",
+        "Classificacao": "Adjetivo",
+        "Traducao": "cego(a)"
+    },
+    {
+        "id": 267,
+        "Vocabulo": "τοιοῦτος, τοιαύτη, τοιοῦτον",
+        "Classificacao": "Adjetivo",
+        "Traducao": "tal, desse tipo"
     }
-
   ]
 }

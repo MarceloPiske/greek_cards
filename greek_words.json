@@ -17,7 +17,7 @@
     },
     {
       "id": 2,
-      "Vocabulo": "ἅγιος, ἁγῖα, ἅγιπν",
+      "Vocabulo": "ἅγιος, ἁγίᾱ, ἅγῐον",
       "Classificacao": "Adjetivo",
       "Traducao": "Santo"
     },
@@ -37,7 +37,7 @@
     },
     {
       "id": 4,
-      "Vocabulo": "ἀκύω",
+      "Vocabulo": "ἀκούω",
       "Classificacao": "Verbo",
       "Traducao": "Ouço, Escuto"
     },
@@ -57,14 +57,13 @@
     },
     {
       "id": 6,
-      "Vocabulo": "ἂνθροπος",
-      "Genitivo": "ἀντροπου",
+      "Vocabulo": "ἂνθρωπος",
       "Artigo_Definido": "ὁ",
       "Classificacao": "Substantivo",
       "Traducao": "Homem",
       "Casos": {
         "Nominativo": "ἂνθρωπος",
-        "Genitivo": "ἀντροπου",
+        "Genitivo": "ἀντρωπου",
         "Dativo": "ἀνθρώπῳ",
         "Acusativo": "ἄνθρωπον"
       }
@@ -307,7 +306,7 @@
     },
     {
       "id": 28,
-      "Vocabulo": "γῖνομαι",
+      "Vocabulo": "γίνομαι",
       "Classificacao": "Verbo",
       "Traducao": "Sou, Torno-me, \n[3ª Pessoa: Acontece]"
     },
@@ -782,7 +781,7 @@
     },
     {
       "id": 82,
-      "Vocabulo": "πρῶτος, πρῶτε, πρῶτον",
+      "Vocabulo": "πρῶτος, πρώτη, πρῶτον",
       "Classificacao": "Pronome Adjetivo",
       "Traducao": "Primeiro(a)"
     },
@@ -988,7 +987,7 @@
     },
     {
       "id": 107,
-      "Vocabulo": "αίών",
+      "Vocabulo": "αἰών",
       "Casos": {
         "Nominativo": "αἰών",
         "Genitivo": "αἰῶνος",
@@ -1107,7 +1106,7 @@
     },
     {
       "id": 121,
-      "Vocabulo": "προφέτης",
+      "Vocabulo": "προφήτης",
       "Casos": {
         "Nominativo": "προφήτης",
         "Genitivo": "προφήτου",
@@ -1288,7 +1287,7 @@
     },
     {
       "id": 143,
-      "Vocabulo": "ἰδίος",
+      "Vocabulo": "ἴδιος",
       "Classificacao": "Adjetivo",
       "Traducao": "próprio(a)"
     },

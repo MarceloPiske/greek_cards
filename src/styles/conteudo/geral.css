@@ -1,0 +1,156 @@
+/* Estilos globais */
+body {
+    /* font-family: Arial, sans-serif; */
+    line-height: 1.6;
+    /* margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333; */
+}
+
+header {
+    background-color: #032776;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #032776;
+    border-bottom: 2px solid #032776;
+    padding-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-top: 30px;
+    color: #666;
+}
+
+p {
+    margin: 10px 0;
+}
+
+blockquote {
+    background-color: #e1eff7;
+    padding: 15px;
+    border-left: 6px solid #00509e;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+blockquote p {
+    margin: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #032776;
+    color: white;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Links */
+a {
+    color: #032776;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.example {
+    background-color: #e1eff7;
+    padding: 15px;
+    border-left: 6px solid #00509e;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.translation {
+    font-style: italic;
+    color: #555;
+}
+
+.note {
+    background-color: #fff4e0;
+    padding: 15px;
+    border-left: 6px solid #ffa726;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+code {
+    /* background-color: #f4f4f4; */
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 0.95em;
+}
+/* TABLE CSS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+td {
+    background-color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.2em;
+    }
+    main {
+        padding: 0 10px;
+    }
+
+    blockquote {
+        padding: 10px;
+    }
+}

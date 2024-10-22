@@ -7,7 +7,7 @@ body {
 .bt-content {
     height: 85%;
     width: 40%;
-    background-color: #363949;
+    background-color: var(--color-dark);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,12 +30,12 @@ body .bt-content div {
     border: 1px solid #032776;
 }
 body .bt-content div:hover {
-    background-color: white;
+    background-color: var(--color-white);
 }
 body .bt-content div a {
     width: 100%;
     height: 100%;
-    color: white;
+    color: var(--color-white);
 }
 body .bt-content div:hover a {
     color: #032776;

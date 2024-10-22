@@ -14,7 +14,7 @@ main {
     /* aspect-ratio: 4 / 2; */
     border-radius: 1rem;
     padding: 1rem;
-    background-color: #363949;
+    background-color: var(--color-dark);
 }
 
 h2 {
@@ -116,7 +116,7 @@ main .content-colunms {
     margin-left: auto;
     margin-right: auto;
     top: 20px;
-    background-color: white;
+    background-color: var(--color-white);
     z-index: 2;
     border-radius: 10px;
     padding: 5px;

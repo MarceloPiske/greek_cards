@@ -10,7 +10,7 @@ body {
 
 header {
     background-color: #032776;
-    color: white;
+    color: var(--color-white);
     padding: 20px;
     text-align: center;
 }
@@ -24,7 +24,7 @@ main {
     max-width: 800px;
     margin: 20px auto;
     padding: 1rem;
-    background-color: white;
+    background-color: var(--color-white);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
@@ -66,7 +66,7 @@ footer {
     text-align: center;
     padding: 20px;
     background-color: #032776;
-    color: white;
+    color: var(--color-white);
     margin-top: 40px;
 }
 

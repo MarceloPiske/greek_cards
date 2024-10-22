@@ -16,14 +16,14 @@ const ASSETS_TO_CACHE = [
   './img/icon.jpg',
   './img/tl.png',
 
-  '/src/html/conteudo/genitivo_absoluto/genitivo_absoluto.html',
-  '/src/html/conteudo/modo_optativo/modo_optativo_morfologia.html',
-  '/src/html/conteudo/modo_optativo/modo_optativo_sintaxe.html',
-  '/src/html/conteudo/subjuntivo/subjuntivo_morfologia.html',
-  '/src/html/conteudo/subjuntivo/subjuntivo_sintaxe.html',
-  '/src/html/conteudo/participio/participio_morfologia.html',
-  '/src/html/conteudo/participio/participio_sintaxe.html',
-  '/src/html/conteudo/oracoes_condicionais/oracoes_condicionais.html'
+  './src/html/conteudo/genitivo_absoluto/genitivo_absoluto.html',
+  './src/html/conteudo/modo_optativo/modo_optativo_morfologia.html',
+  './src/html/conteudo/modo_optativo/modo_optativo_sintaxe.html',
+  './src/html/conteudo/subjuntivo/subjuntivo_morfologia.html',
+  './src/html/conteudo/subjuntivo/subjuntivo_sintaxe.html',
+  './src/html/conteudo/participio/participio_morfologia.html',
+  './src/html/conteudo/participio/participio_sintaxe.html',
+  './src/html/conteudo/oracoes_condicionais/oracoes_condicionais.html'
 ];
 
 // Evento 'install' – adiciona arquivos ao cache

@@ -13,12 +13,13 @@
     align-items: flex-start;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 .ag-courses_item {
-    -ms-flex-preferred-size: calc(25% - 10px);
-    flex-basis: calc(25% - 10px);
-    margin: 0 5px 5px;
+    -ms-flex-preferred-size: calc(25% - 12px);
+    flex-basis: calc(25% - 12px);
+    /* margin: 0 5px 5px; */
     overflow: hidden;
     border-radius: var(--card-border-radius);
 }

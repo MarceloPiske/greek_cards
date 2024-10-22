@@ -93,7 +93,7 @@ a:hover {
 
 .translation {
     font-style: italic;
-    color: #555;
+    /* color: #555; */
 }
 
 .note {
@@ -137,7 +137,15 @@ th {
 td {
     background-color: #fff;
 }
+.greek {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.1em;
+}
 
+.vocabList {
+    list-style: none;
+    padding: 0;
+}
 /* Responsividade */
 @media (max-width: 600px) {
     header h1 {

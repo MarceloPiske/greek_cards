@@ -146,6 +146,14 @@ td {
     list-style: none;
     padding: 0;
 }
+.section {
+    margin-bottom: 30px;
+}
+
+.highlight {
+    color: #006699;
+    font-weight: bold;
+}
 /* Responsividade */
 @media (max-width: 600px) {
     header h1 {
@@ -155,10 +163,29 @@ td {
         font-size: 1.2em;
     }
     main {
-        padding: 0 10px;
+        padding: 10px;
+        width: calc(100% - 20px);
+        min-width: calc(100% - 20px);
+        position: relative;
+        height: fit-content;
+        margin: 0;
+        overflow: hidden;
     }
 
     blockquote {
         padding: 10px;
+    }
+    table {
+        max-width: 100%;
+    }
+    td {
+        padding: 5px;
+    }
+    th{
+        padding: 5px;
+        text-align: center;
+    }
+    footer{
+        display: none;
     }
 }

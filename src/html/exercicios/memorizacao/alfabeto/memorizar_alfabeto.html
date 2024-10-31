@@ -1,0 +1,577 @@
+<html>
+
+<head>
+    <base href="." />
+    <title>Greek Alphabet Practice</title>
+    <style>
+        :root {
+            --bg-color: #f0f0f0;
+            --container-bg: white;
+            --text-color: #333;
+            --input-border: #ddd;
+            --button-bg: #4a90e2;
+            --button-hover: #357abd;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #222;
+            --container-bg: #333;
+            --text-color: #fff;
+            --input-border: #555;
+            --button-bg: #2d5a8e;
+            --button-hover: #1d3c5e;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .practice-container {
+            background: var(--container-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .letter {
+            font-size: 72px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .transliteration {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .pronunciation {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .input-group {
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid var(--input-border);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background: var(--container-bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .input-group input.correct {
+            border-color: #28a745;
+            background-color: rgba(40, 167, 69, 0.1);
+        }
+
+        .input-group input.incorrect {
+            border-color: #dc3545;
+            background-color: rgba(220, 53, 69, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background: var(--button-bg);
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: var(--button-hover);
+        }
+
+        #themeToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        .progress {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .examples {
+            margin-top: 15px;
+            font-size: 16px;
+            color: var(--text-color);
+            padding: 10px;
+            background: var(--bg-color);
+            border-radius: 4px;
+            border-left: 4px solid var(--button-bg);
+        }
+
+        .alert-overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 8px;
+            font-size: 24px;
+            z-index: 1000;
+            animation: fadeInOut 1s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .timer {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--button-bg);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 24px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="themeToggle">Alternar Tema</button>
+
+    <div id="startContainer" style="text-align: center; margin: 20px;">
+        <h1>Prática do Alfabeto Grego</h1>
+        <p>Aprenda o alfabeto grego através de exercícios de memorização.</p>
+        <button id="startExercise" style="font-size: 24px; padding: 15px 30px;">Começar Exercício</button>
+    </div>
+
+    <div id="alertOverlay" class="alert-overlay" style="display: none;">Memorize!</div>
+    <div id="timer" class="timer">10</div>
+    <div id="app" style="display: none;">
+        <h1>Prática do Alfabeto Grego</h1>
+
+        <div class="practice-container">
+            <div class="progress">Letra <span id="current">1</span> de <span id="total">24</span></div>
+            <div id="letter" class="letter"></div>
+            <div id="transliteration" class="transliteration"></div>
+            <div id="pronunciation" class="pronunciation"></div>
+
+            <div class="input-group">
+                <label>Letra Grega:</label>
+                <input type="text" id="letterInput" placeholder="Escreva a letra grega">
+            </div>
+
+            <div class="input-group">
+                <label>Transliteração:</label>
+                <input type="text" id="transliterationInput" placeholder="Escreva a transliteração">
+            </div>
+
+            <div class="input-group">
+                <label>Nome da Letra:</label>
+                <input type="text" id="nameInput" placeholder="Escreva o nome da letra">
+            </div>
+
+            <div class="button-group">
+                <button id="previous">Letra Anterior</button>
+                <button id="review">Rever Letra</button>
+                <button id="check">Verificar Resposta</button>
+                <button id="next">Próxima Letra</button>
+            </div>
+
+            <div id="feedback" class="feedback"></div>
+            <div id="examples" class="examples"></div>
+        </div>
+    </div>
+
+    <script>
+        let isStudyMode = true;
+        let studyTimer = null;
+        let countDownInterval = null;
+
+        function showAlert(message) {
+            const alert = document.getElementById('alertOverlay');
+            alert.textContent = message;
+            alert.style.display = 'block';
+
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 1000);
+        }
+
+        const greekAlphabet = [
+            {
+                letter: 'Α α',
+                transliteration: 'a',
+                pronunciation: 'alfa',
+                examples: 'Como em: ἀγάπη (agapē) - amor, ἄνθρωπος (anthrōpos) - homem'
+            },
+            {
+                letter: 'Β β',
+                transliteration: 'b',
+                pronunciation: 'beta',
+                examples: 'Como em: βίβλος (biblos) - livro, βασιλεύς (basileus) - rei'
+            },
+            {
+                letter: 'Γ γ',
+                transliteration: 'g',
+                pronunciation: 'gama',
+                examples: 'Como em: γλυκύς (glykýs) - doce, γλώσσα (glōssa) - língua'
+            },
+            {
+                letter: 'Δ δ',
+                transliteration: 'd',
+                pronunciation: 'delta',
+                examples: 'Como em: δένδρο (déndro) - árvore, δύναμη (dýnami) - poder'
+            },
+            {
+                letter: 'Ε ε',
+                transliteration: 'e',
+                pronunciation: 'épsilon',
+                examples: 'Como em: ἔργο (érgo) - trabalho, ἐλπίς (elpís) - esperança'
+            },
+            {
+                letter: 'Ζ ζ',
+                transliteration: 'z',
+                pronunciation: 'zeta',
+                examples: 'Como em: ζωή (zoē) - vida, ζήτημα (zētēma) - questão'
+            },
+            {
+                letter: 'Η η',
+                transliteration: 'ē',
+                pronunciation: 'eta',
+                examples: 'Como em: ἤλιος (ēlios) - sol, ἡμέρα (hēméra) - dia'
+            },
+            {
+                letter: 'Θ θ',
+                transliteration: 'th',
+                pronunciation: 'theta',
+                examples: 'Como em: θάνατος (thánatos) - morte, ἐθνολογικός (ethnologikós) - etnológico'
+            },
+            {
+                letter: 'Ι ι',
+                transliteration: 'i',
+                pronunciation: 'iota',
+                examples: 'Como em: ἰχθύς (ichthýs) - peixe, ἱστορία (historía) - história'
+            },
+            {
+                letter: 'Κ κ',
+                transliteration: 'k',
+                pronunciation: 'kappa',
+                examples: 'Como em: κατά (katá) - de acordo, κόσμος (kósmos) - mundo'
+            },
+            {
+                letter: 'Λ λ',
+                transliteration: 'l',
+                pronunciation: 'lambda',
+                examples: 'Como em: λόγος (lógos) - palavra, λαμπρός (lamprós) - brilhante'
+            },
+            {
+                letter: 'Μ μ',
+                transliteration: 'm',
+                pronunciation: 'mu',
+                examples: 'Como em: μήτηρ (mētēr) - mãe, μεσόγειος (mesógeios) - Mediterrâneo'
+            },
+            {
+                letter: 'Ν ν',
+                transliteration: 'n',
+                pronunciation: 'nu',
+                examples: 'Como em: νύχτα (nýchta) - noite, νόμος (nómos) - lei'
+            },
+            {
+                letter: 'Ξ ξ',
+                transliteration: 'x',
+                pronunciation: 'ksi',
+                examples: 'Como em: ξένος (xénos) - estranho, ξυράφι (xyráfi) - lâmina'
+            },
+            {
+                letter: 'Ο ο',
+                transliteration: 'o',
+                pronunciation: 'ômicron',
+                examples: 'Como em: Ὀδυσσεύς (Odysseús) - Odisseu, ὀρνίθιον (orníthion) - aves'
+            },
+            {
+                letter: 'Π π',
+                transliteration: 'p',
+                pronunciation: 'pi',
+                examples: 'Como em: πίστη (písti) - fé, πιθανός (pithanós) - provável'
+            },
+            {
+                letter: 'Ρ ρ',
+                transliteration: 'r',
+                pronunciation: 'rô',
+                examples: 'Como em: ῥίγος (rígus) - frio, ῥόδο (ródon) - rosa'
+            },
+            {
+                letter: 'Σ σ ς',
+                transliteration: 's',
+                pronunciation: 'sigma',
+                examples: 'Como em: σάκος (sákos) - saco, σοφία (sophía) - sabedoria'
+            },
+            {
+                letter: 'Τ τ',
+                transliteration: 't',
+                pronunciation: 'tau',
+                examples: 'Como em: τύπος (týpos) - tipo, ταχύς (tachýs) - rápido'
+            },
+            {
+                letter: 'Υ υ',
+                transliteration: 'u/y',
+                pronunciation: 'upsilon',
+                examples: 'Como em: ύπνος (ýpnos) - sono, ύπαρξη (ýparxi) - existência'
+            },
+            {
+                letter: 'Φ φ',
+                transliteration: 'ph',
+                pronunciation: 'phi',
+                examples: 'Como em: φιλοσοφία (philosophía) - filosofia, φύσις (phýsis) - natureza'
+            },
+            {
+                letter: 'Χ χ',
+                transliteration: 'ch',
+                pronunciation: 'chi',
+                examples: 'Como em: χρυσός (chrysós) - ouro, χημεία (chimía) - química'
+            },
+            {
+                letter: 'Ψ ψ',
+                transliteration: 'ps',
+                pronunciation: 'psi',
+                examples: 'Como em: ψυχή (psychē) - alma, ψάρι (psári) - peixe'
+            },
+            {
+                letter: 'Ω ω',
+                transliteration: 'ō',
+                pronunciation: 'ômega',
+                examples: 'Como em: ὦρα (ōra) - hora, ὄνειρος (óneiros) - sonho'
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function updateDisplay() {
+            document.getElementById('current').textContent = currentIndex + 1;
+            document.getElementById('total').textContent = greekAlphabet.length;
+
+            const letter = document.getElementById('letter');
+            const transliteration = document.getElementById('transliteration');
+            const pronunciation = document.getElementById('pronunciation');
+            const examples = document.getElementById('examples');
+            const inputGroups = document.querySelectorAll('.input-group');
+            const buttonGroup = document.querySelector('.button-group');
+
+            if (isStudyMode) {
+                showAlert('Memorize!');
+
+                letter.style.display = 'block';
+                transliteration.style.display = 'block';
+                pronunciation.style.display = 'block';
+                examples.style.display = 'block';
+                inputGroups.forEach(group => group.style.display = 'none');
+                buttonGroup.style.display = 'none';
+
+                letter.textContent = greekAlphabet[currentIndex].letter;
+                transliteration.textContent = `Transliteração: ${greekAlphabet[currentIndex].transliteration}`;
+                pronunciation.textContent = `Nome: ${greekAlphabet[currentIndex].pronunciation}`;
+                examples.textContent = greekAlphabet[currentIndex].examples;
+
+                const timer = document.getElementById('timer');
+                timer.style.display = 'block';
+                let timeLeft = 10;
+
+                // Clear any existing intervals
+                if (countDownInterval) clearInterval(countDownInterval);
+
+                countDownInterval = setInterval(() => {
+                    timeLeft--;
+                    timer.textContent = timeLeft;
+
+                    if (timeLeft <= 0) {
+                        clearInterval(countDownInterval);
+                        timer.style.display = 'none';
+                    }
+                }, 1000);
+
+                // Clear any existing study timer
+                if (studyTimer) clearTimeout(studyTimer);
+
+                studyTimer = setTimeout(() => {
+                    showAlert('Agora responda!');
+                    setTimeout(() => {
+                        isStudyMode = false;
+                        updateDisplay();
+                    }, 1000);
+                }, 10000);
+
+            } else {
+                // Clear any existing timers when switching to answer mode
+                if (countDownInterval) clearInterval(countDownInterval);
+                if (studyTimer) clearTimeout(studyTimer);
+
+                const timer = document.getElementById('timer');
+                timer.style.display = 'none';
+                letter.style.display = 'none';
+                transliteration.style.display = 'none';
+                pronunciation.style.display = 'none';
+                examples.style.display = 'none';
+                inputGroups.forEach(group => group.style.display = 'block');
+                buttonGroup.style.display = 'flex';
+            }
+
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('feedback').textContent = '';
+
+            // Clear inputs
+            resetInputStyles();
+            document.getElementById('letterInput').value = '';
+            document.getElementById('transliterationInput').value = '';
+            document.getElementById('nameInput').value = '';
+        }
+
+        function checkAnswer() {
+            const letterInput = document.getElementById('letterInput');
+            const transliterationInput = document.getElementById('transliterationInput');
+            const nameInput = document.getElementById('nameInput');
+            const current = greekAlphabet[currentIndex];
+
+            const letterValue = letterInput.value.toLowerCase();
+            const transliterationValue = transliterationInput.value.toLowerCase();
+            const nameValue = nameInput.value.toLowerCase();
+
+            const isLetterCorrect = letterValue.includes(current.letter.toLowerCase());
+            const isTransliterationCorrect = transliterationValue.includes(current.transliteration);
+            const isNameCorrect = nameValue.includes(current.pronunciation.toLowerCase());
+
+            // Update input styles based on correctness
+            letterInput.className = isLetterCorrect ? 'correct' : 'incorrect';
+            transliterationInput.className = isTransliterationCorrect ? 'correct' : 'incorrect';
+            nameInput.className = isNameCorrect ? 'correct' : 'incorrect';
+
+            const feedback = document.getElementById('feedback');
+
+            if (isLetterCorrect && isTransliterationCorrect && isNameCorrect) {
+                feedback.className = 'feedback success';
+                feedback.textContent = 'Correto! Você identificou a letra, transliteração e nome corretamente!';
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = 'Tente novamente. Respostas corretas:\n' +
+                    `- A letra grega: ${current.letter}\n` +
+                    `- A transliteração: ${current.transliteration}\n` +
+                    `- O nome da letra: ${current.pronunciation}`;
+            }
+        }
+
+        function resetInputStyles() {
+            const inputs = document.querySelectorAll('.input-group input');
+            inputs.forEach(input => {
+                input.className = '';
+            });
+        }
+
+        document.getElementById('check').addEventListener('click', checkAnswer);
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % greekAlphabet.length;
+            isStudyMode = true;
+            resetInputStyles();
+            updateDisplay();
+        });
+
+        document.getElementById('previous').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + greekAlphabet.length) % greekAlphabet.length;
+            isStudyMode = true;
+            resetInputStyles();
+            updateDisplay();
+        });
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+        });
+
+        document.getElementById('review').addEventListener('click', () => {
+            // Clear any existing timers
+            if (countDownInterval) clearInterval(countDownInterval);
+            if (studyTimer) clearTimeout(studyTimer);
+
+            isStudyMode = true;
+            updateDisplay();
+        });
+
+        document.getElementById('startExercise').addEventListener('click', () => {
+            document.getElementById('startContainer').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+            currentIndex = 0;
+            isStudyMode = true;
+            updateDisplay();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1706 @@
+{
+    "lexicon": [
+        {
+            "id": "1",
+            "greek_word": "Α, α",
+            "definition": "primeira letra do alfabeto grego",
+            "notes": [
+                "'a' como numeral indica 'um' ou 'primeiro', especialmente em títulos (1 Co).",
+                "Ver também 'άλφα'."
+            ]
+        },
+        {
+            "id": "2",
+            "greek_word": "Ἀαρών",
+            "definition": "Arão, irmão de Moisés",
+            "references": [
+                "Êx 4.14",
+                "Lc 1.5",
+                "At 7.40",
+                "Hb 5.4",
+                "Hb 7.11",
+                "Hb 9.4"
+            ]
+        },
+        {
+            "id": "3",
+            "greek_word": "Ἀβαδδών",
+            "definition": "Abadon (hebraico: destruição), nome de um anjo líder no inferno",
+            "greek_synonym": {
+                "word": "Ἀπολλύων",
+                "definition": "Destruidor"
+            },
+            "reference": "Ap 9.11"
+        },
+        {
+            "id": "4",
+            "greek_word": "ἀβαρής",
+            "definition": "não sendo pesado, sem ser um fardo",
+            "usage_example": "Eu me guardei de vos ser um fardo (2 Co 11.9)"
+        },
+        {
+            "id": "5",
+            "greek_word": "ἀββά",
+            "definition": "(aramaico) expressão especial de intimidade para 'Pai'",
+            "usage_example": "(Oh!) Pai",
+            "references": [
+                "Mc 14.36",
+                "Rm 8.15",
+                "Gl 4.6"
+            ]
+        },
+        {
+            "id": "6",
+            "greek_word": "Ἄβελ",
+            "definition": "Abel, filho de Adão e Eva",
+            "references": [
+                "Gn 4",
+                "Mt 23.35",
+                "Hb 12.24"
+            ]
+        },
+        {
+            "id": "7",
+            "greek_word": "Ἀβια",
+            "definition": "1. Filho de Roboão. 2. Fundador da classe sacerdotal de Zacarias.",
+            "references": [
+                "1 Cr 3.10",
+                "Mt 1.7",
+                "Lc 1.5"
+            ]
+        },
+        {
+            "id": "8",
+            "greek_word": "Ἀβιαθάρ",
+            "definition": "Abiatar, sacerdote em Nobe",
+            "reference": "1 Sm 22.20",
+            "new_testament_reference": "Mc 2.26"
+        },
+        {
+            "id": "9",
+            "greek_word": "Ἀβιληνή",
+            "definition": "Território ao redor da cidade de Abila, noroeste de Damasco",
+            "reference": "Lc 3.1"
+        },
+        {
+            "id": "10",
+            "greek_word": "Ἀβιοῦδ",
+            "definition": "Abiúde, ancestral na linhagem de Jesus",
+            "reference": "Mt 1.13"
+        },
+        {
+            "id": "11",
+            "greek_word": "Ἀβραάμ",
+            "definition": "Ancestral do povo hebreu e, metaforicamente, pai dos cristãos",
+            "references": [
+                "Gn 12.1-3",
+                "Rm 4"
+            ]
+        },
+        {
+            "id": "12",
+            "greek_word": "ἄβυσσος",
+            "definition": "profundidade insondável, abismo, mundo subterrâneo",
+            "usage": "habitação dos mortos (Rm 10.7); de demônios (Lc 8.31); da besta (Ap 11.7)"
+        },
+        {
+            "id": "13",
+            "greek_word": "Ἄγαβος",
+            "definition": "Ágabo, profeta cristão",
+            "references": [
+                "At 11.28",
+                "At 21.10"
+            ]
+        },
+        {
+            "id": "14",
+            "greek_word": "ἄγαγεῖν, ἄγάγετε, ἀγαγών",
+            "definition": "2º aoristo ativo de ἄγω; usado em infinitivo, imperativo e particípio"
+        },
+        {
+            "id": "15",
+            "greek_word": "ἀγαθοεργέω",
+            "definition": "fazer o bem, beneficiar, praticar bondade",
+            "references": [
+                "At 14.17",
+                "1 Tm 6.18"
+            ]
+        },
+        {
+            "id": "16",
+            "greek_word": "ἀγαθοεργός",
+            "definition": "aquele que pratica o bem; usado como substantivo",
+            "reference": "Rm 13.3"
+        },
+        {
+            "id": "17",
+            "greek_word": "ἀγαθοποιέω",
+            "definition": [
+                "1. fazer o bem, ajudar",
+                "2. fazer o que é certo"
+            ],
+            "references": [
+                "Lc 6.9",
+                "Lc 6.33",
+                "1 Pe 2.15",
+                "1 Pe 2.20"
+            ]
+        },
+        {
+            "id": "18",
+            "greek_word": "ἀγαθοποιΐα",
+            "definition": "ação boa ou correta",
+            "reference": "1 Pe 4.19"
+        },
+        {
+            "id": "19",
+            "greek_word": "ἀγαθοποός",
+            "definition": "pessoa que faz o bem; um bom cidadão",
+            "reference": "1 Pe 2.14"
+        },
+        {
+            "id": "20",
+            "greek_word": "ἀγαθός, ή, όν",
+            "definition": [
+                "1. aplicado a pessoas: bom, benéfico; moralmente bom, reto, justo; de Cristo (Jo 7.12), de pessoas (Mt 12.35)",
+                "2. aplicado a coisas: fértil, são, benéfico, íntegro, útil, próspero, limpo, confiável",
+                "3. usado como substantivo neutro em sentido moral: o que é bom, boas obras, bens e propriedades"
+            ],
+            "references": [
+                "Mc 10.18",
+                "Mt 12.35",
+                "At 11.24",
+                "Lc 8.8",
+                "Mt 7.17",
+                "Ef 4.29",
+                "1 Pe 3.10",
+                "2 Ts 2.16",
+                "Lc 10.42",
+                "Rm 2.10",
+                "Jo 5.29",
+                "Rm 8.28",
+                "Lc 12.18",
+                "Lc 16.25"
+            ]
+        },
+        {
+            "id": "21",
+            "greek_word": "ἀγαθουργέω",
+            "definition": "ver ἀγαθοεργέω"
+        },
+        {
+            "id": "22",
+            "greek_word": "ἀγαθωσύνη",
+            "definition": "bondade, retidão, generosidade",
+            "references": [
+                "Rm 15.14",
+                "Ef 5.9",
+                "2 Ts 1.11",
+                "Gl 5.22"
+            ]
+        },
+        {
+            "id": "23",
+            "greek_word": "ἀγαλλίασις",
+            "definition": "regozijo, exultação, grande alegria",
+            "notes": [
+                "usado em 'ἔλαιον' = óleo para unção em ocasiões festivas"
+            ],
+            "reference": "Hb 1.9"
+        },
+        {
+            "id": "24",
+            "greek_word": "ἀγαλλιάω",
+            "definition": "regozijar-se, estar cheio de alegria, exultar",
+            "notes": [
+                "usado no gerúndio médio",
+                "com dativo: regozijar-se em ou por causa de algo"
+            ],
+            "references": [
+                "Lc 10.21",
+                "1 Pe 1.8"
+            ]
+        },
+        {
+            "id": "25",
+            "greek_word": "ἄγαμος",
+            "definition": "homem ou mulher não casados, solteiro",
+            "references": [
+                "1 Co 7.8",
+                "1 Co 7.11",
+                "1 Co 7.32",
+                "1 Co 7.34"
+            ]
+        },
+        {
+            "id": "26",
+            "greek_word": "ἀγανακτέω",
+            "definition": "indignar-se, irar-se, ficar zangado; expressar desprazer",
+            "references": [
+                "Mc 14.4",
+                "Lc 13.14"
+            ]
+        },
+        {
+            "id": "27",
+            "greek_word": "ἀγανάκτησις",
+            "definition": "indignação, ira, zanga",
+            "reference": "2 Co 7.11"
+        },
+        {
+            "id": "28",
+            "greek_word": "ἀγαπάω",
+            "definition": [
+                "1. amar, ter afeição por; aplicado a pessoas: amor de Deus (Jo 3.16), amor de Jesus (Mc 10.21), pessoas humanas (2 Co 12.15)",
+                "2. amor a coisas: ansiar, valorizar, ter em alta estima"
+            ],
+            "references": [
+                "Jo 3.16",
+                "Mc 10.21",
+                "2 Co 12.15",
+                "Jo 21.15-17",
+                "Lc 11.43",
+                "Jo 12.43",
+                "2 Tm 4.8"
+            ]
+        },
+        {
+            "id": "29",
+            "greek_word": "ἀγάπη",
+            "definition": [
+                "I. amor, afeição, estima; a mais sublime virtude cristã",
+                "II. festa de amor, refeição comunitária da Igreja Primitiva"
+            ],
+            "references": [
+                "1 Co 13.13",
+                "Gl 5.22",
+                "Jo 15.10",
+                "Rm 5.8",
+                "1 Jo 4.8",
+                "Jo 5.42",
+                "Rm 13.10",
+                "1 Co 8.1",
+                "Jd 12",
+                "2 Pe 2.13"
+            ]
+        },
+        {
+            "id": "30",
+            "greek_word": "ἀγαπητός",
+            "definition": "amado, querido; usado para crianças, amigos e companheiros cristãos; também usado para o Messias com conotação de escolha especial de Deus",
+            "reference": "Mt 3.17"
+        },
+        {
+            "id": "31",
+            "greek_word": "Ἄγάρ",
+            "definition": "Hagar, serva de Sara; símbolo da lei mosaica",
+            "references": [
+                "Gn 16",
+                "Gl 4.24"
+            ]
+        },
+        {
+            "id": "32",
+            "greek_word": "ἀγγαρεύω",
+            "definition": "convocar para o serviço, forçar, obrigar",
+            "notes": [
+                "originalmente usado para posto real da Pérsia; nos tempos romanos, aplicável a serviços civil ou militar"
+            ],
+            "references": [
+                "Mt 5.41",
+                "Mt 27.32",
+                "Mc 15.21"
+            ]
+        },
+        {
+            "id": "33",
+            "greek_word": "ἀγγεῖον",
+            "definition": "frasco, recipiente, vasilha",
+            "references": [
+                "Mt 25.4",
+                "Mt 13.48"
+            ]
+        },
+        {
+            "id": "34",
+            "greek_word": "ἀγγελία",
+            "definition": "mensagem, notícia; também usada para mandamento, ordem",
+            "references": [
+                "1 Jo 1.5",
+                "1 Jo 3.11"
+            ]
+        },
+        {
+            "id": "35",
+            "greek_word": "ἀγγέλλω",
+            "definition": "anunciar, contar",
+            "reference": "Jo 20.18, Jo 4.51"
+        },
+        {
+            "id": "36",
+            "greek_word": "ἄγγελος",
+            "definition": [
+                "1. mensageiro, enviado",
+                "2. Anjo, ser sobrenatural que age como mensageiro, guardião, intermediário, servo dos santos"
+            ],
+            "notes": [
+                "pode referir-se tanto a anjos bons quanto a anjos maus, demônios"
+            ],
+            "references": [
+                "Lc 7.24",
+                "Mt 1.20",
+                "At 12.15",
+                "Gl 3.19",
+                "Hb 1.14",
+                "Mt 25.41"
+            ]
+        },
+        {
+            "id": "37",
+            "greek_word": "ἀγγος",
+            "definition": "recipiente, cesto para peixes",
+            "reference": "Mt 13.48"
+        },
+        {
+            "id": "38",
+            "greek_word": "ἄγε",
+            "definition": "agora, eia; usado como interjeição",
+            "references": [
+                "Tg 4.13",
+                "Tg 5.1"
+            ]
+        },
+        {
+            "id": "39",
+            "greek_word": "ἀγέλη",
+            "definition": "vara de porcos",
+            "reference": "Mt 8.30-32"
+        },
+        {
+            "id": "40",
+            "greek_word": "ἀγενεαλόγητος",
+            "definition": "sem genealogia",
+            "reference": "Hb 7.3"
+        },
+        {
+            "id": "41",
+            "greek_word": "ἀγενής",
+            "definition": "ordinário, insignificante, inferior; literalmente, não de nobre nascimento",
+            "reference": "1 Co 1.28"
+        },
+        {
+            "id": "42",
+            "greek_word": "ἁγιάζω",
+            "definition": [
+                "santificar, consagrar, dedicar, purificar",
+                "de coisas: Mt 23.17,19",
+                "de pessoas: Jo 10.36, 1 Co 7.14, Hb 9.13"
+            ],
+            "notes": [
+                "cristãos são considerados santificados, purificados",
+                "considerar como santo, ter reverência"
+            ],
+            "references": [
+                "At 20.23",
+                "1 Pe 3.15",
+                "Mt 6.9"
+            ]
+        },
+        {
+            "id": "43",
+            "greek_word": "ἁγιασμός",
+            "definition": "santidade, santificação, consagração",
+            "notes": [
+                "outorgada por Deus em ou através de Cristo"
+            ],
+            "references": [
+                "Rm 6.19",
+                "1 Tm 2.15",
+                "1 Co 1.30"
+            ]
+        },
+        {
+            "id": "44",
+            "greek_word": "ἅγιος",
+            "definition": [
+                "santo, puro, separado por ou para Deus",
+                "de coisas: sagrado, consagrado",
+                "neutro como substantivo: comida sagrada, templo, santuário",
+                "de pessoas: separado, moralmente perfeito, digno de Deus"
+            ],
+            "references": [
+                "1 Co 3.17",
+                "Jd 20",
+                "Mt 7.6",
+                "Hb 9.12",
+                "Jo 17.11",
+                "Ef 1.4"
+            ]
+        },
+        {
+            "id": "45",
+            "greek_word": "ἁγιότης",
+            "definition": "santidade, pureza, sinceridade",
+            "references": [
+                "2 Co 1.12",
+                "Hb 12.10"
+            ]
+        },
+        {
+            "id": "46",
+            "greek_word": "ἁγιωσύνη",
+            "definition": "santidade, retidão",
+            "references": [
+                "Rm 1.4",
+                "2 Co 7.1",
+                "1 Ts 3.13"
+            ]
+        },
+        {
+            "id": "47",
+            "greek_word": "ἀγκάλη",
+            "definition": "braço",
+            "reference": "Lc 2.28"
+        },
+        {
+            "id": "48",
+            "greek_word": "ἄγκιστρον",
+            "definition": "anzol",
+            "reference": "Mt 17.27"
+        },
+        {
+            "id": "49",
+            "greek_word": "ἄγκυρα",
+            "definition": "âncora, lit.",
+            "references": [
+                "At 27.29",
+                "At 27.30",
+                "At 27.40",
+                "Hb 6.19"
+            ]
+        },
+        {
+            "id": "50",
+            "greek_word": "ἄγναφος",
+            "definition": "não lavado, não alvejado, pano novo",
+            "references": [
+                "Mt 9.16",
+                "Mc 2.21"
+            ]
+        },
+        {
+            "id": "51",
+            "greek_word": "ἁγνεία",
+            "definition": "pureza, especialmente castidade",
+            "references": [
+                "1 Tm 4.12",
+                "1 Tm 5.2"
+            ]
+        },
+        {
+            "id": "52",
+            "greek_word": "ἁγνίζω",
+            "definition": "limpar, purificar, cerimonialmente ou moralmente",
+            "references": [
+                "At 21.24",
+                "At 21.26",
+                "Tg 4.8"
+            ]
+        },
+        {
+            "id": "53",
+            "greek_word": "ἁγνίσθητι",
+            "definition": "purificar, usado como imperativo passivo do aoristo de ἁγνίζω",
+            "reference": "Tg 4.8"
+        },
+        {
+            "id": "54",
+            "greek_word": "ἁγνισμός",
+            "definition": "purificação cerimonial",
+            "reference": "At 21.26"
+        },
+        {
+            "id": "55",
+            "greek_word": "ἀγνοέω",
+            "definition": "ignorar, desconhecer, não poder entender; com neg., conhecer, ter certeza",
+            "references": [
+                "Rm 2.4",
+                "Rm 1.13",
+                "2 Co 2.11",
+                "Mc 9.32",
+                "Hb 5.2",
+                "1 Co 14.38"
+            ]
+        },
+        {
+            "id": "56",
+            "greek_word": "ἁγνόημα",
+            "definition": "pecado cometido por ignorância",
+            "reference": "Hb 9.7"
+        },
+        {
+            "id": "57",
+            "greek_word": "ἁγνοια",
+            "definition": "ignorância, desculpável ou voluntária",
+            "references": [
+                "At 3.17",
+                "At 17.30",
+                "Ef 4.18",
+                "1 Pe 1.14",
+                "2 Pe 2.13"
+            ]
+        },
+        {
+            "id": "58",
+            "greek_word": "ἀγνός",
+            "definition": "santo, puro; eticamente casto ou inocente",
+            "references": [
+                "Fp 4.8",
+                "Tg 3.17",
+                "Tt 2.5",
+                "2 Co 7.11"
+            ]
+        },
+        {
+            "id": "59",
+            "greek_word": "ἁγνότης",
+            "definition": "pureza, sinceridade",
+            "references": [
+                "2 Co 6.6",
+                "2 Co 11.3"
+            ]
+        },
+        {
+            "id": "60",
+            "greek_word": "ἁγνῶς",
+            "definition": "puramente, sinceramente",
+            "reference": "Fp 1.17"
+        },
+        {
+            "id": "61",
+            "greek_word": "ἁγνωσία",
+            "definition": "ignorância, cegueira espiritual",
+            "references": [
+                "1 Co 15.34",
+                "1 Pe 2.15"
+            ]
+        },
+        {
+            "id": "62",
+            "greek_word": "ἄγνωστος",
+            "definition": "desconhecido",
+            "reference": "At 17.23"
+        },
+        {
+            "id": "63",
+            "greek_word": "ἀγορά",
+            "definition": "mercado; Ágora em Atenas",
+            "references": [
+                "At 17.17",
+                "Mc 7.4"
+            ]
+        },
+        {
+            "id": "64",
+            "greek_word": "ἀγοράζω",
+            "definition": "comprar, adquirir, lit. ou fig.",
+            "references": [
+                "Mt 13.44",
+                "1 Co 6.20"
+            ]
+        },
+        {
+            "id": "65",
+            "greek_word": "ἀγοραίος",
+            "definition": "pertencente ao mercado; como substantivo: vadio, desocupado",
+            "references": [
+                "At 17.5",
+                "At 19.38"
+            ]
+        },
+        {
+            "id": "66",
+            "greek_word": "ἄγρα",
+            "definition": "pesca, pescaria",
+            "references": [
+                "Lc 5.4",
+                "Lc 5.9"
+            ]
+        },
+        {
+            "id": "67",
+            "greek_word": "ἀγράμματος",
+            "definition": "iliterato, sem estudos",
+            "reference": "At 4.13"
+        },
+        {
+            "id": "68",
+            "greek_word": "ἀγραυλέω",
+            "definition": "estar ao ar livre, viver fora da cidade",
+            "reference": "Lc 2.8"
+        },
+        {
+            "id": "69",
+            "greek_word": "ἄγρεύω",
+            "definition": "apanhar, pegar; fig. pegar numa armadilha",
+            "reference": "Mc 12.13"
+        },
+        {
+            "id": "70",
+            "greek_word": "ἄγριέλαιος",
+            "definition": "oliveira silvestre",
+            "references": [
+                "Rm 11.24",
+                "Rm 11.17"
+            ]
+        },
+        {
+            "id": "71",
+            "greek_word": "ἄγριος",
+            "definition": "selvagem, silvestre, violento",
+            "references": [
+                "Mt 3.4",
+                "Mc 1.6",
+                "Jd 13"
+            ]
+        },
+        {
+            "id": "72",
+            "greek_word": "Ἄγρίππας",
+            "definition": "Agripa, ou Herodes Agripa II, irmão de Berenice",
+            "references": [
+                "At 25",
+                "At 26",
+                "At 12.1ss"
+            ]
+        },
+        {
+            "id": "73",
+            "greek_word": "ἀγρός",
+            "definition": "campo, terreno; plural: sítios, fazendas",
+            "references": [
+                "Mt 6.28",
+                "Lc 17.7",
+                "Mc 15.21",
+                "Lc 9.12"
+            ]
+        },
+        {
+            "id": "74",
+            "greek_word": "ἀγρυπνέω",
+            "definition": "manter-se acordado, estar alerta; fig. vigiar, cuidar de",
+            "references": [
+                "Mc 13.33",
+                "Ef 6.18",
+                "Hb 13.17"
+            ]
+        },
+        {
+            "id": "75",
+            "greek_word": "ἀγρυπνία",
+            "definition": "insônia, vigília, noite em claro",
+            "references": [
+                "2 Co 6.5",
+                "2 Co 11.27"
+            ]
+        },
+        {
+            "id": "76",
+            "greek_word": "ἄγω",
+            "definition": "guiar, trazer, conduzir; fig. guiar, orientar; ir (como exortação); idiomático: gastar tempo ou reunir sessões",
+            "references": [
+                "Mt 21.7",
+                "At 17.15",
+                "At 20.12",
+                "At 6.12",
+                "At 9.2",
+                "Rm 2.4",
+                "Gl 5.18",
+                "Lc 24.21",
+                "Mc 1.38",
+                "Jo 11.7",
+                "Tg 4.13",
+                "Tg 5.1"
+            ]
+        },
+        {
+            "id": "77",
+            "greek_word": "ἀγωγή",
+            "definition": "estilo de vida, conduta, comportamento",
+            "reference": "2 Tm 3.10"
+        },
+        {
+            "id": "78",
+            "greek_word": "ἀγών",
+            "definition": "competição, corrida atlética; luta, combate; fig. ansiedade, preocupação",
+            "references": [
+                "Hb 12.1",
+                "Fp 1.30",
+                "1 Ts 2.2",
+                "Cl 2.1"
+            ]
+        },
+        {
+            "id": "79",
+            "greek_word": "ἀγωνία",
+            "definition": "agonia, ansiedade",
+            "reference": "Lc 22.44"
+        },
+        {
+            "id": "80",
+            "greek_word": "ἀγωνίζομαι",
+            "definition": "competir, lutar, esforçar-se, fazer o máximo possível",
+            "references": [
+                "1 Co 9.25",
+                "Jo 18.36",
+                "Cl 4.12",
+                "1 Tm 4.10",
+                "Lc 13.24"
+            ]
+        },
+        {
+            "id": "81",
+            "greek_word": "Ἀδάμ",
+            "definition": "Adão; fig. o último Adão: Cristo",
+            "references": [
+                "Gn 1.27",
+                "Rm 5.14",
+                "1 Co 15.45"
+            ]
+        },
+        {
+            "id": "82",
+            "greek_word": "ἀδάπανος",
+            "definition": "gratuito, sem preço",
+            "reference": "1 Co 9.18"
+        },
+        {
+            "id": "83",
+            "greek_word": "Ἀδδί",
+            "definition": "Adi",
+            "reference": "Lc 3.28"
+        },
+        {
+            "id": "84",
+            "greek_word": "ἀδελφή",
+            "definition": "irmã: lit.; fig.",
+            "references": [
+                "Lc 10.39",
+                "Rm 16.1",
+                "2 Jo 13"
+            ]
+        },
+        {
+            "id": "85",
+            "greek_word": "ἀδελφός",
+            "definition": "irmão: lit.; fig.; compatriota; próximo; plural: irmãos e irmãs, comunidade cristã",
+            "references": [
+                "Jo 1.41",
+                "Mc 3.35",
+                "Fl 1.14",
+                "Rm 9.3",
+                "Mt 5.22",
+                "Lc 21.16",
+                "Ef 6.23"
+            ]
+        },
+        {
+            "id": "86",
+            "greek_word": "ἀδελφότης",
+            "definition": "irmandade, comunidade cristã",
+            "references": [
+                "1 Pe 2.17",
+                "1 Pe 5.9"
+            ]
+        },
+        {
+            "id": "87",
+            "greek_word": "ἀδηλος",
+            "definition": "invisível; incerto",
+            "references": [
+                "Lc 11.44",
+                "1 Co 14.8"
+            ]
+        },
+        {
+            "id": "88",
+            "greek_word": "ἀδηλότης",
+            "definition": "incerteza, insegurança",
+            "reference": "1 Tm 6.17"
+        },
+        {
+            "id": "89",
+            "greek_word": "ἀδήλως",
+            "definition": "sem rumo fixo, às cegas",
+            "reference": "1 Co 9.26"
+        },
+        {
+            "id": "90",
+            "greek_word": "ἀδημονέω",
+            "definition": "afligir-se, entristecer-se, preocupar-se",
+            "references": [
+                "Mt 26.37",
+                "Mc 14.33"
+            ]
+        },
+        {
+            "id": "91",
+            "greek_word": "ᾅδης",
+            "definition": "Hades (heb. Sheol), o mundo subterrâneo como o lugar dos mortos",
+            "references": [
+                "Lc 16.23",
+                "Ap 20.13",
+                "Mt 11.23",
+                "Mt 16.18",
+                "Lc 10.15",
+                "At 2.27",
+                "1 Co 15.55",
+                "Ap 1.18",
+                "Ap 6.8"
+            ]
+        },
+        {
+            "id": "92",
+            "greek_word": "ἀδιάκριτος",
+            "definition": "sem preconceitos, imparcial",
+            "reference": "Tg 3.17"
+        },
+        {
+            "id": "93",
+            "greek_word": "ἀδιάλειπτος",
+            "definition": "incessante, constante",
+            "references": [
+                "Rm 9.2",
+                "2 Tm 1.3"
+            ]
+        },
+        {
+            "id": "94",
+            "greek_word": "ἀδιαλείπτως",
+            "definition": "incessantemente, constantemente",
+            "references": [
+                "Rm 1.9",
+                "1 Ts 1.2",
+                "1 Ts 2.13",
+                "1 Ts 5.17"
+            ]
+        },
+        {
+            "id": "95",
+            "greek_word": "ἀδιαφθορία",
+            "definition": "sinceridade, integridade",
+            "reference": "Tt 2.7"
+        },
+        {
+            "id": "96",
+            "greek_word": "ἀδικέω",
+            "definition": "fazer mal; estar em erro; injuriar, ofender, prejudicar",
+            "references": [
+                "Cl 3.25",
+                "Ap 22.11",
+                "At 25.11",
+                "Mt 20.13",
+                "At 7.26",
+                "Gl 4.12",
+                "2 Pe 2.13",
+                "Ap 9.4",
+                "Fm 18"
+            ]
+        },
+        {
+            "id": "97",
+            "greek_word": "ἀδίκημα",
+            "definition": "erro, crime, delito",
+            "references": [
+                "At 18.14",
+                "At 24.20",
+                "Ap 18.5"
+            ]
+        },
+        {
+            "id": "98",
+            "greek_word": "ἀδικία",
+            "definition": "injustiça; erro (ironicamente); impiedade, iniqüidade",
+            "references": [
+                "Rm 9.14",
+                "2 Co 12.13",
+                "Rm 6.13",
+                "1 Co 13.6",
+                "1 Jo 5.17",
+                "Lc 16.8",
+                "Lc 16.9",
+                "Lc 18.6"
+            ]
+        },
+        {
+            "id": "99",
+            "greek_word": "ἀδικοκρίτης",
+            "definition": "juiz injusto",
+            "reference": "Tt 1.9"
+        },
+        {
+            "id": "100",
+            "greek_word": "ἄδικος",
+            "definition": "injusto, ímpio; desonesto",
+            "references": [
+                "Mt 5.45",
+                "1 Co 6.1",
+                "1 Pe 3.18",
+                "Lc 16.10"
+            ]
+        },
+        {
+            "id": "101",
+            "greek_word": "ἀδίκως",
+            "definition": "injustamente",
+            "references": [
+                "1 Pe 2.19",
+                "1 Pe 2.23"
+            ]
+        },
+        {
+            "id": "102",
+            "greek_word": "Ἀδμίν",
+            "definition": "Admin",
+            "reference": "Lc 3.33"
+        },
+        {
+            "id": "103",
+            "greek_word": "ἀδόκιμος",
+            "definition": "sem valor, reprovado; desqualificado; indigno; inútil",
+            "references": [
+                "2 Co 13.5",
+                "1 Co 9.27",
+                "Rm 1.28",
+                "Hb 6.8"
+            ]
+        },
+        {
+            "id": "104",
+            "greek_word": "ἄδολος",
+            "definition": "puro, sem adulteração, inalterado",
+            "reference": "1 Pe 2.2"
+        },
+        {
+            "id": "105",
+            "greek_word": "Ἀδραμυττηνός",
+            "definition": "de Adramítio, um porto marítimo no noroeste da Ásia Menor, Mar Egeu",
+            "reference": "At 27.2"
+        },
+        {
+            "id": "106",
+            "greek_word": "Ἀδρίας",
+            "definition": "Mar Adriático (inclui o mar entre Creta e Sicília)",
+            "reference": "At 27.27"
+        },
+        {
+            "id": "107",
+            "greek_word": "ἀδρότης",
+            "definition": "abundância, prodigalidade; fig. grande soma de dinheiro",
+            "reference": "2 Co 8.20"
+        },
+        {
+            "id": "108",
+            "greek_word": "ἀδυνατέω",
+            "definition": "não ter poder; usado impessoalmente: 'é impossível'",
+            "references": [
+                "Mt 17.20",
+                "Lc 1.37"
+            ]
+        },
+        {
+            "id": "109",
+            "greek_word": "ἀδύνατος",
+            "definition": "impotente, fraco (pessoas); impossível (coisas)",
+            "references": [
+                "At 14.8",
+                "Rm 15.1",
+                "Rm 8.3",
+                "Hb 6.4",
+                "Hb 6.18"
+            ]
+        },
+        {
+            "id": "110",
+            "greek_word": "ᾄδω",
+            "definition": "cantar",
+            "references": [
+                "Ef 5.9",
+                "Cl 3.16",
+                "Ap 5.9",
+                "Ap 14.3",
+                "Ap 15.3"
+            ]
+        },
+        {
+            "id": "111",
+            "greek_word": "ἀεί",
+            "definition": "sempre; continuamente, constantemente; de tempos em tempos",
+            "references": [
+                "2 Co 6.10",
+                "1 Pe 3.15",
+                "At 7.51",
+                "2 Co 4.11",
+                "2 Pe 1.12"
+            ]
+        },
+        {
+            "id": "112",
+            "greek_word": "ἀετός",
+            "definition": "águia; abutre",
+            "references": [
+                "Ap 12.14",
+                "Lc 17.37"
+            ]
+        },
+        {
+            "id": "113",
+            "greek_word": "ἄζυμος",
+            "definition": "sem fermento, asmo; fig. usado para pães asmos e festa dos pães asmos",
+            "references": [
+                "1 Co 5.7",
+                "Lc 22.1",
+                "Mc 14.1"
+            ]
+        },
+        {
+            "id": "114",
+            "greek_word": "Ἀζώρ",
+            "definition": "Azor",
+            "references": [
+                "Mt 1.13",
+                "Lc 3.23"
+            ]
+        },
+        {
+            "id": "115",
+            "greek_word": "Ἄζωτος",
+            "definition": "Azoto, a Asdode do A.T., uma cidade filistéia na costa sul da Palestina",
+            "reference": "At 8.40"
+        },
+        {
+            "id": "116",
+            "greek_word": "ἀηδία",
+            "definition": "inimizade",
+            "reference": "Lc 23.12"
+        },
+        {
+            "id": "117",
+            "greek_word": "ἀήρ",
+            "definition": "ar, regiões celestes",
+            "references": [
+                "At 22.23",
+                "1 Co 9.26",
+                "Ef 2.2"
+            ]
+        },
+        {
+            "id": "118",
+            "greek_word": "ἀθανασία",
+            "definition": "imortalidade",
+            "references": [
+                "1 Co 15.53",
+                "1 Tm 6.16"
+            ]
+        },
+        {
+            "id": "119",
+            "greek_word": "ἀθάνατος",
+            "definition": "imortal",
+            "reference": "1 Tm 1.17"
+        },
+        {
+            "id": "120",
+            "greek_word": "ἀθέμιτος",
+            "definition": "ilegal; ilícito; libertinagem, devassidão",
+            "references": [
+                "At 10.28",
+                "1 Pe 4.3"
+            ]
+        },
+        {
+            "id": "121",
+            "greek_word": "ἄθεος",
+            "definition": "sem Deus; não pertencentes ao Deus de Israel",
+            "reference": "Ef 2.12"
+        },
+        {
+            "id": "122",
+            "greek_word": "ἄθεσμος",
+            "definition": "imoral; sem princípios; mau",
+            "references": [
+                "2 Pe 2.7",
+                "2 Pe 3.17"
+            ]
+        },
+        {
+            "id": "123",
+            "greek_word": "ἀθετέω",
+            "definition": "invalidar, anular; rejeitar, ignorar; quebrar um compromisso",
+            "references": [
+                "Mc 7.9",
+                "Gl 2.21",
+                "1 Co 1.19",
+                "Lc 10.16",
+                "Mc 6.26"
+            ]
+        },
+        {
+            "id": "124",
+            "greek_word": "ἀθέτησις",
+            "definition": "anulamento, termo técnico legal; remoção",
+            "references": [
+                "Hb 7.18",
+                "Hb 9.26"
+            ]
+        },
+        {
+            "id": "125",
+            "greek_word": "Ἀθήναι",
+            "definition": "Atenas",
+            "references": [
+                "At 17.15",
+                "At 17.16"
+            ]
+        },
+        {
+            "id": "126",
+            "greek_word": "Ἀθηναῖος",
+            "definition": "ateniense",
+            "reference": "At 17.21"
+        },
+        {
+            "id": "127",
+            "greek_word": "ἀθλέω",
+            "definition": "competir numa competição atlética",
+            "reference": "2 Tm 2.5"
+        },
+        {
+            "id": "128",
+            "greek_word": "ἄθλησις",
+            "definition": "competição; fig. luta",
+            "reference": "Hb 10.32"
+        },
+        {
+            "id": "129",
+            "greek_word": "ἀθροίζω",
+            "definition": "reunir, juntar",
+            "reference": "Lc 24.33"
+        },
+        {
+            "id": "130",
+            "greek_word": "ἀθυμέω",
+            "definition": "desanimar, desalentar-se, perder o ânimo",
+            "reference": "Cl 3.21"
+        },
+        {
+            "id": "131",
+            "greek_word": "ἀθῷος",
+            "definition": "inocente",
+            "references": [
+                "Mt 27.4",
+                "Mt 27.24"
+            ]
+        },
+        {
+            "id": "132",
+            "greek_word": "αἰγεῖος",
+            "definition": "(algo) de cabra",
+            "reference": "Hb 11.37"
+        },
+        {
+            "id": "133",
+            "greek_word": "αἰγιαλός",
+            "definition": "praia, costa",
+            "references": [
+                "Mt 13.2",
+                "At 27.39"
+            ]
+        },
+        {
+            "id": "134",
+            "greek_word": "Αἰγύπτιος",
+            "definition": "egípcio",
+            "reference": "At 7.24"
+        },
+        {
+            "id": "135",
+            "greek_word": "Αἴγυπτος",
+            "definition": "Egito; fig. lugar de opressão",
+            "references": [
+                "Mt 2.13",
+                "Ap 11.8"
+            ]
+        },
+        {
+            "id": "136",
+            "greek_word": "ἀΐδιος",
+            "definition": "eterno, perene",
+            "references": [
+                "Rm 1.20",
+                "Jd 6"
+            ]
+        },
+        {
+            "id": "137",
+            "greek_word": "αἰδώς",
+            "definition": "despretensioso, modesto; reverência, respeito",
+            "references": [
+                "1 Tm 2.9",
+                "Hb 12.28"
+            ]
+        },
+        {
+            "id": "138",
+            "greek_word": "Αἰθίοψ",
+            "definition": "etíope",
+            "reference": "At 8.27"
+        },
+        {
+            "id": "139",
+            "greek_word": "αἷμα",
+            "definition": "sangue; natureza humana; assassínio; purificação pelo sangue",
+            "references": [
+                "Gl 1.16",
+                "Hb 2.14",
+                "Ap 6.10",
+                "Mt 27.6",
+                "Hb 10.4",
+                "Cl 1.20",
+                "1 Pe 1.19"
+            ]
+        },
+        {
+            "id": "140",
+            "greek_word": "αἱματεκχυσία",
+            "definition": "derramamento de sangue",
+            "reference": "Hb 9.22"
+        },
+        {
+            "id": "141",
+            "greek_word": "αἱμορῥέω",
+            "definition": "padecer de um fluxo de sangue; hemorragia",
+            "reference": "Mt 9.20"
+        },
+        {
+            "id": "142",
+            "greek_word": "Αἰνέας",
+            "definition": "Enéas",
+            "references": [
+                "At 9.33",
+                "At 9.34"
+            ]
+        },
+        {
+            "id": "143",
+            "greek_word": "αἴνεσις",
+            "definition": "louvor",
+            "reference": "Hb 13.15"
+        },
+        {
+            "id": "144",
+            "greek_word": "αἰνέω",
+            "definition": "louvar, exaltar",
+            "reference": "Ap 19.5"
+        },
+        {
+            "id": "145",
+            "greek_word": "αἴνιγμα",
+            "definition": "enigma; imagem indireta, confusa",
+            "reference": "1 Co 13.12"
+        },
+        {
+            "id": "146",
+            "greek_word": "αἶνος",
+            "definition": "louvor",
+            "references": [
+                "Mt 21.16",
+                "Lc 18.43"
+            ]
+        },
+        {
+            "id": "147",
+            "greek_word": "Αἰνών",
+            "definition": "Enom, uma região no vale alto do Jordão",
+            "reference": "Jo 3.23"
+        },
+        {
+            "id": "148",
+            "greek_word": "αἴξ, αἰγός",
+            "definition": "cabra",
+            "reference": "Lc 15.29"
+        },
+        {
+            "id": "149",
+            "greek_word": "αἱρέομαι",
+            "definition": "escolher; preferir",
+            "references": [
+                "2 Ts 2.13",
+                "Fl 1.22",
+                "Hb 11.25"
+            ]
+        },
+        {
+            "id": "150",
+            "greek_word": "αἵρεσις",
+            "definition": "seita religiosa; dissensão; opinião, doutrina herética",
+            "references": [
+                "At 5.17",
+                "At 24.5",
+                "At 28.22",
+                "1 Co 11.19",
+                "Gl 5.20",
+                "2 Pe 2.1"
+            ]
+        },
+        {
+            "id": "151",
+            "greek_word": "αἱρετίζω",
+            "definition": "escolher, selecionar",
+            "reference": "Mt 12.18"
+        },
+        {
+            "id": "152",
+            "greek_word": "αἱρετικός",
+            "definition": "faccioso; causador de divisões",
+            "reference": "Tt 3.10"
+        },
+        {
+            "id": "153",
+            "greek_word": "αἴρω",
+            "definition": "levantar; carregar; tirar, remover; matar; conquistar; expulsar",
+            "references": [
+                "Mt 16.24",
+                "Jo 1.29",
+                "Lc 6.29",
+                "Jo 2.16",
+                "Jo 11.48",
+                "1 Co 5.2",
+                "Jo 15.2"
+            ]
+        },
+        {
+            "id": "154",
+            "greek_word": "αἰσθάνομαι",
+            "definition": "compreender, entender",
+            "reference": "Lc 9.45"
+        },
+        {
+            "id": "155",
+            "greek_word": "αἴσθησις",
+            "definition": "percepção; compreensão, 'insight'",
+            "reference": "Fp 1.9"
+        },
+        {
+            "id": "156",
+            "greek_word": "αἰσθητήριον",
+            "definition": "sentidos; faculdades; capacidade de discernir",
+            "reference": "Hb 5.14"
+        },
+        {
+            "id": "157",
+            "greek_word": "αἰσχροκερδής",
+            "definition": "ambicioso; avarento",
+            "references": [
+                "1 Tm 3.8",
+                "Tt 1.7"
+            ]
+        },
+        {
+            "id": "158",
+            "greek_word": "αἰσχροκερδῶς",
+            "definition": "ambiciosamente; de modo avaro",
+            "reference": "1 Pe 5.2"
+        },
+        {
+            "id": "159",
+            "greek_word": "αἰσχρολογία",
+            "definition": "palavra indecente; obscenidade; fala abusiva",
+            "reference": "Cl 3.8"
+        },
+        {
+            "id": "160",
+            "greek_word": "αἰσχρός",
+            "definition": "vergonhoso; desonesto",
+            "references": [
+                "1 Co 11.16",
+                "Ef 5.12",
+                "Tt 1.11"
+            ]
+        },
+        {
+            "id": "161",
+            "greek_word": "αἰσχρότης",
+            "definition": "indecência",
+            "reference": "Ef 5.4"
+        },
+        {
+            "id": "162",
+            "greek_word": "αἰσχύνη",
+            "definition": "vergonha; desgraça; ignomínia; ação vergonhosa",
+            "references": [
+                "2 Co 4.2",
+                "Fp 3.19",
+                "Hb 12.2",
+                "Ap 3.18",
+                "Lc 14.9",
+                "Jd 13"
+            ]
+        },
+        {
+            "id": "163",
+            "greek_word": "αἰσχύνομαι",
+            "definition": "envergonhar-se; ser envergonhado",
+            "references": [
+                "Lc 16.3",
+                "1 Pe 4.16",
+                "1 Jo 2.28",
+                "2 Co 10.8",
+                "Fp 1.20"
+            ]
+        },
+        {
+            "id": "164",
+            "greek_word": "αἰτέω",
+            "definition": "pedir; solicitar; requerer",
+            "references": [
+                "Mt 27.20",
+                "At 16.29",
+                "13.28",
+                "Mt 7.9",
+                "1 Co 1.22"
+            ]
+        },
+        {
+            "id": "165",
+            "greek_word": "αἴτημα",
+            "definition": "petição; demanda; exigência",
+            "references": [
+                "Fp 4.6",
+                "1 Jo 5.15",
+                "Lc 23.24"
+            ]
+        },
+        {
+            "id": "166",
+            "greek_word": "αἰτία",
+            "definition": "causa; razão; acusação; fundamento para um caso",
+            "references": [
+                "Mt 19.3",
+                "At 10.21",
+                "Jo 18.38",
+                "At 25.18",
+                "25.27"
+            ]
+        },
+        {
+            "id": "167",
+            "greek_word": "αἴτιαμα",
+            "definition": "acusação; queixa",
+            "reference": "At 25.7"
+        },
+        {
+            "id": "168",
+            "greek_word": "αἰτιάομαι",
+            "definition": "acusar",
+            "reference": "Rm 3.9"
+        },
+        {
+            "id": "169",
+            "greek_word": "αἴτιος",
+            "definition": "responsável; culpado; causa; culpa; motivo",
+            "references": [
+                "Hb 5.9",
+                "At 19.40",
+                "Lc 23.4",
+                "Lc 23.14",
+                "Lc 23.22"
+            ]
+        },
+        {
+            "id": "170",
+            "greek_word": "αἴτιωμα",
+            "definition": "acusação; queixa; denúncia",
+            "reference": "At 25.7"
+        },
+        {
+            "id": "171",
+            "greek_word": "αἰφνίδιος",
+            "definition": "de repente; de surpresa",
+            "references": [
+                "Lc 21.34",
+                "1 Ts 5.3"
+            ]
+        },
+        {
+            "id": "172",
+            "greek_word": "αἰχμαλωσία",
+            "definition": "cativeiro; prisioneiros de guerra",
+            "references": [
+                "Ap 13.10",
+                "Ef 4.8",
+                "Hb 7.1"
+            ]
+        },
+        {
+            "id": "173",
+            "greek_word": "αἰχμαλωτεύω",
+            "definition": "prender; tomar cativo",
+            "references": [
+                "Ef 4.8",
+                "2 Tm 3.6"
+            ]
+        },
+        {
+            "id": "174",
+            "greek_word": "αἰχμαλωτίζω",
+            "definition": "capturar; prender; subjugar; enganar",
+            "references": [
+                "Lc 21.24",
+                "Rm 7.23",
+                "2 Co 10.5",
+                "2 Tm 3.6"
+            ]
+        },
+        {
+            "id": "175",
+            "greek_word": "αἰχμάλωτος",
+            "definition": "cativo; prisioneiro",
+            "reference": "Lc 4.18"
+        },
+        {
+            "id": "176",
+            "greek_word": "αἰών",
+            "definition": "tempo muito longo; eternidade; era; mundo; Eão (espírito maligno)",
+            "references": [
+                "Lc 1.70",
+                "Jo 9.32",
+                "Jo 6.51",
+                "Rm 16.27",
+                "Hb 1.2",
+                "Ef 2.2",
+                "Mc 10.30"
+            ]
+        },
+        {
+            "id": "177",
+            "greek_word": "αἰώνιος",
+            "definition": "eterno; perpétuo; sem começo e sem fim",
+            "references": [
+                "Rm 16.25",
+                "Rm 16.26",
+                "Mt 25.46",
+                "Lc 10.25",
+                "Hb 13.20"
+            ]
+        },
+        {
+            "id": "178",
+            "greek_word": "ἀκαθαρσία",
+            "definition": "impureza; imoralidade; más intenções",
+            "references": [
+                "Mt 23.27",
+                "Rm 1.24",
+                "Gl 5.19",
+                "1 Ts 2.3"
+            ]
+        },
+        {
+            "id": "179",
+            "greek_word": "ἀκαθαρτης",
+            "definition": "imundícia",
+            "reference": "Ap 17.4"
+        },
+        {
+            "id": "180",
+            "greek_word": "ἀκάθαρτος",
+            "definition": "impuro; imundo; sujo; acerca de demônios",
+            "references": [
+                "At 10.14",
+                "1 Co 7.14",
+                "Ef 5.5",
+                "Mc 1.23"
+            ]
+        },
+        {
+            "id": "181",
+            "greek_word": "ἀκαιρέομαι",
+            "definition": "não ter tempo; não ter oportunidade",
+            "reference": "Fp 4.10"
+        },
+        {
+            "id": "182",
+            "greek_word": "ἀκαίρως",
+            "definition": "fora de época; inoportunamente",
+            "reference": "2 Tm 4.2"
+        },
+        {
+            "id": "183",
+            "greek_word": "ἀκακος",
+            "definition": "inocente; limpo; sem mancha; simples",
+            "references": [
+                "Hb 7.26",
+                "Rm 16.18"
+            ]
+        },
+        {
+            "id": "184",
+            "greek_word": "ἄκανθα",
+            "definition": "planta espinhosa; espinhos",
+            "references": [
+                "Mt 13.7",
+                "Mt 27.29"
+            ]
+        },
+        {
+            "id": "185",
+            "greek_word": "ἀκάνθινος",
+            "definition": "feito de espinhos; espinhoso",
+            "references": [
+                "Mc 15.17",
+                "Jo 19.5"
+            ]
+        },
+        {
+            "id": "186",
+            "greek_word": "ἄκαρπος",
+            "definition": "infrutífero; inútil; improdutivo",
+            "references": [
+                "Jd 12",
+                "Mc 4.19",
+                "1 Co 14.14",
+                "Ef 5.11"
+            ]
+        },
+        {
+            "id": "187",
+            "greek_word": "ἀκατάγνωστος",
+            "definition": "irrepreensível; acima de críticas",
+            "reference": "Tt 2.8"
+        },
+        {
+            "id": "188",
+            "greek_word": "ἀκατάκάλυπτος",
+            "definition": "descoberto",
+            "references": [
+                "1 Co 11.5",
+                "1 Co 11.13"
+            ]
+        },
+        {
+            "id": "189",
+            "greek_word": "ἀκατάκριτος",
+            "definition": "uma pessoa não condenada; sem julgamento legal",
+            "references": [
+                "At 16.37",
+                "At 22.25"
+            ]
+        },
+        {
+            "id": "190",
+            "greek_word": "ἀκατάλυτος",
+            "definition": "indestrutível; indissolúvel; sem fim",
+            "reference": "Hb 7.16"
+        }
+    ]
+}

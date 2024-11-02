@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Greek</title>
+  <link rel="icon" href="../../img/icon.svg" type="image/png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="src/styles/root.css">
+  <link rel="stylesheet" href="src/styles/index.css">
+</head>
+
+<body>
+  <div class="bt-content">
+    <div>
+      <a href="./src/html/cards.html">Cards</a>
+    </div>
+    <div>
+      <a href="./src/html/mini_game.html">Mini Game</a>
+    </div>
+    <div>
+      <a href="./src/html/conteudo/conteudo.html">Gramática</a>
+    </div>
+    <!-- <div>
+      <a href="./src/html/tables.html">Tabelas</a>
+    </div> -->
+  </div>
+
+  <script src="./src/scripts/upgrade_indexeddb.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(function (registration) {
+            console.log('Service Worker registrado com sucesso:', registration);
+          })
+          .catch(function (error) {
+            console.error('Falha ao registrar o Service Worker:', error);
+          });
+      });
+    }
+  </script>
+
+</body>
+
+</html>

@@ -152,7 +152,7 @@
         .topics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+            gap: 2rem;
             margin: 1rem 0;
         }
 
@@ -277,6 +277,9 @@
             box-shadow: 0 -4px 20px var(--shadow);
         }
 
+        .footer-links{
+            padding: .5rem 0;
+        }
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -290,7 +293,7 @@
         }
 
         .donation-section {
-            margin-top: 2rem;
+            /* margin-top: 2rem; */
             padding-top: 2rem;
             border-top: 1px solid var(--shadow);
         }
@@ -422,6 +425,27 @@
             position: absolute;
             width: 100%;
             height: 100%;
+        }
+        @media (max-width: 768px) {
+            .header {
+                min-height: 80%;
+            }
+            .main-content {
+                padding: 1rem;
+            }
+            .topics-grid {
+                margin: 0;
+            }
+            .exercises-section {
+                padding: 1rem;
+            }
+            .footer {
+                padding: 1rem;
+            }
+            .donation-section {
+                margin: 0;
+                padding-top: 1rem;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />

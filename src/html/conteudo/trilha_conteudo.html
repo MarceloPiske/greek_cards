@@ -4,13 +4,13 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Koiné Grego - Trilha de Estudos</title>
     <link rel="icon" href="../../../img/icon.svg" type="image/png">
-    
+
     <link rel="stylesheet" href="../../styles/root.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
-    
+
     <style>
         body {
             background: var(--bg-primary);
@@ -72,10 +72,13 @@
         }
 
         .learning-path {
-            display: grid;
+            display: flex;
             gap: 2rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            perspective: 1000px;
+            /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+            /* perspective: 1000px; */
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            flex-direction: column;
         }
 
         .module {
@@ -110,6 +113,12 @@
             font-size: 1.1rem;
             opacity: 0.9;
             margin-bottom: 1.5rem;
+        }
+
+        .module a {
+            width: 100%;
+            height: 100%;
+            position: absolute;
         }
 
         .progress-bar {
@@ -232,29 +241,17 @@
         }
 
         @media (max-width: 768px) {
-            .learning-path {
-                grid-template-columns: 1fr;
+            .container {
+                padding: 1rem;
+            }
+            .module {
+                padding: 1rem;
+            }
+            .module h2 {
+                font-size: 1.5rem;
             }
         }
-        .but-home {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            background: var(--accent) !important;
-            border: none;
-            padding: 0.8rem;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            width: 45px;
-            height: 45px;
-            z-index: 1;
-        }
+
         .header .title {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
@@ -273,29 +270,29 @@
         <div class="clip-path"></div>
         <div class="clip-path"></div>
     </div>
-    <a href="../../../new_index.html" class="but-home">
+    <a href="../../../index.html" class="but-home">
         <span class="material-symbols-sharp">home</span>
     </a>
     <button class="theme-toggle" aria-label="Toggle theme">
         <!-- <div class="theme-icon"> -->
-            <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" style="display: none;">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
+        <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" style="display: none;">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
         <!-- </div> -->
     </button>
 
@@ -315,14 +312,16 @@
         const modulesData = {
             modules: [
                 {
-                    title: "Módulo 1: Alfabeto e Pronúncia",
+                    title: "Módulo 1: O Alfabeto Grego Koiné",
                     description: "Fundamentos essenciais para começar sua jornada",
                     lessons: [
-                        "Alfabeto Grego",
-                        "Vogais e Consoantes",
-                        "Ditongos",
-                        "Exercícios de Pronúncia"
+                        "1.1 Visão Geral do Alfabeto",
+                        "1.2 Vogais e Consoantes",
+                        "1.3 Dicas de Pronúncia",
+                        "1.4 Exercício Virtual",
+                        "1.5 Exercícios Práticos"
                     ],
+                    lession_link: "/src/html/conteudo/alfabeto/cap_1_alfabeto.html",
                     progress: 0
                 },
                 {
@@ -356,21 +355,22 @@
 
             data.modules.forEach((module, index) => {
                 const moduleHTML = `
-          <div class="module">
-            <h2>${module.title}</h2>
-            <p>${module.description}</p>
-            <ul class="lessons">
-              ${module.lessons.map(lesson => `
-                <li class="lesson">
-                  <span class="lesson-status"></span>${lesson}
-                </li>
-              `).join('')}
-            </ul>
-            <div class="progress-bar">
-              <div class="progress" style="width: ${module.progress}%"></div>
-            </div>
-          </div>
-        `;
+                <div class="module">
+                    <a href="${module.lession_link}"></a>
+                    <h2>${module.title}</h2>
+                    <p>${module.description}</p>
+                    <ul class="lessons">
+                    ${module.lessons.map(lesson => `
+                        <li class="lesson">
+                        <span class="lesson-status"></span>${lesson}
+                        </li>
+                    `).join('')}
+                    </ul>
+                    <div class="progress-bar">
+                    <div class="progress" style="width: ${module.progress}%"></div>
+                    </div>
+                </div>
+                `;
                 learningPath.insertAdjacentHTML('beforeend', moduleHTML);
             });
 
@@ -407,7 +407,7 @@
             sunIcon.style.display = isDark ? 'block' : 'none';
             moonIcon.style.display = isDark ? 'none' : 'block';
         });
-        
+
         document.addEventListener('DOMContentLoaded', function () {
             /* const savedTheme = localStorage.getItem('theme') || 'ligth';
             const root = document.documentElement;

@@ -154,6 +154,22 @@ td {
     color: #006699;
     font-weight: bold;
 }
+
+.complete-button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.complete {
+    background-color: var(--color-success);
+}
+
 /* Responsividade */
 @media (max-width: 600px) {
     header h1 {

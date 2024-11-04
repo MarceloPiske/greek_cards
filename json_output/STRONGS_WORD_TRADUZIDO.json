@@ -1084,7 +1084,13 @@
         "ORIGEM": "De aiteo; algo pedido ou (abstratamente) um pedido.",
         "UTILIZACAO": "petição, solicitação, necessário."
     },
-    "```python\n{\n    \"ID\": \"g156\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"uma causa, motivo, desculpa; uma acusação, acusativo; culpa; circunstâncias, caso.\",\n    \"ORIGIN\": \"Do mesmo que aiteo; uma causa (como se solicitada), ou seja, razão lógica (motivo, assunto), crime (alegado ou provado).\",\n    \"USAGE\": \"acusação, caso, causa, crime, culpa, por que, por que razão.\"\n}\n```",
+    {
+        "ID": "g156",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "uma causa, motivo, desculpa; uma acusação, acusativo; culpa; circunstâncias, caso.",
+        "ORIGIN": "Do mesmo que aiteo; uma causa (como se solicitada), ou seja, razão lógica (motivo, assunto), crime (alegado ou provado).",
+        "USAGE": "acusação, caso, causa, crime, culpa, por que, por que razão."
+    },
     {
         "ID": "g157",
         "PART_OF_SPEECH": "Substantivo, Neutro",
@@ -1330,7 +1336,13 @@
         "ORIGIN": "Um verbo primário; ouvir (em vários sentidos).",
         "USAGE": "dar (à) audiência (de), chegar (aos ouvidos), (deve) ouvir(-se, -es), ser divulgado, ser reportado, entender."
     },
-    "```python\n{\n    \"ID\": \"g192\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"incontinência, intemperança (em amplo sentido), falta de restrição.\",\n    \"ORIGIN\": \"Do termo akrates; falta de autocontrole.\",\n    \"USAGE\": \"excesso, incontinência.\"\n}\n```",
+    {
+        "ID": "g192",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "incontinência, intemperança (em amplo sentido), falta de restrição.",
+        "ORIGIN": "Do termo akrates; falta de autocontrole.",
+        "USAGE": "excesso, incontinência."
+    },
     {
         "ID": "g193",
         "PART_OF_SPEECH": "Adjetivo",
@@ -3445,7 +3457,13 @@
         "ORIGIN": "Do mesmo que Antipas; Antipátris, um lugar na Palestina.",
         "USAGE": "Antipátris."
     },
-    "```json\n{\n    \"ID\": \"g495\",\n    \"PART_OF_SPEECH\": \"Advérbio\",\n    \"DEFINITION\": \"do lado oposto ou margem.\",\n    \"ORIGIN\": \"De anti e peran; do lado oposto.\",\n    \"USAGE\": \"diante de.\"\n}\n```",
+    {
+        "ID": "g495",
+        "PART_OF_SPEECH": "Advérbio",
+        "DEFINITION": "do lado oposto ou margem.",
+        "ORIGIN": "De anti e peran; do lado oposto.",
+        "USAGE": "diante de."
+    },
     {
         "ID": "g496",
         "PART_OF_SPEECH": "Verbo",
@@ -5910,7 +5928,13 @@
         "ORIGIN": "Genitivo (ou seja, possessivo) de autos, usado como um advérbio de localização; propriamente, pertencente ao mesmo local, ou seja, neste (ou naquele) lugar.",
         "USAGE": "(a-)li."
     },
-    "```python\n{\n    \"ID\": \"g848\",\n    \"PART_OF_SPEECH\": \"-\",\n    \"DEFINITION\": \"sua própria, dele mesmo, deles próprios, a si mesmos, eles.\",\n    \"ORIGIN\": \"Contraído de heautou; si mesmo (em algum caso oblíquo ou reflexivamente, relacionado).\",\n    \"USAGE\": \"dela (própria), (de) si mesmo, dele (próprio), disso, de ti, deles (próprios), a si mesmos, eles.\"\n}\n```",
+    {
+        "ID": "g848",
+        "PART_OF_SPEECH": "-",
+        "DEFINITION": "sua própria, dele mesmo, deles próprios, a si mesmos, eles.",
+        "ORIGIN": "Contraído de heautou; si mesmo (em algum caso oblíquo ou reflexivamente, relacionado).",
+        "USAGE": "dela (própria), (de) si mesmo, dele (próprio), disso, de ti, deles (próprios), a si mesmos, eles."
+    },
     {
         "ID": "g849",
         "PART_OF_SPEECH": "Adjetivo",
@@ -6331,7 +6355,13 @@
         "ORIGIN": "Do batismo; batismo (tecnicamente ou figurativamente).",
         "USAGE": "batismo."
     },
-    "```json\n{\n    \"ID\": \"g909\",\n    \"PART_OF_SPEECH\": \"Substantivo, Masculino\",\n    \"DEFINITION\": \"imersão, lavagem (de caráter cerimonial).\",\n    \"ORIGIN\": \"Do baptizo; ablução (cerimonial ou cristã).\",\n    \"USAGE\": \"batismo, lavagem.\"\n}\n```",
+    {
+        "ID": "g909",
+        "PART_OF_SPEECH": "Substantivo, Masculino",
+        "DEFINITION": "imersão, lavagem (de caráter cerimonial).",
+        "ORIGIN": "Do baptizo; ablução (cerimonial ou cristã).",
+        "USAGE": "batismo, lavagem."
+    },
     {
         "ID": "g910",
         "PART_OF_SPEECH": "Substantivo, Masculino",
@@ -7634,8 +7664,20 @@
         "ORIGIN": "Do geras; tornar-se senescente.",
         "USAGE": "ficar (encarquilhado) velho."
     },
-    "```python\n{\n    \"ID\": \"g1096\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"vir a ser, nascer, tornar-se, ocorrer, acontecer.\",\n    \"ORIGIN\": \"Uma prolongação e uma forma de voz média de um verbo primário; fazer existir (\\\"gen\\\"-erar), ou seja, (reflexivamente) tornar-se (vir a ser), usado com grande latitude (literal, figurativo, intensivo, etc.).\",\n    \"USAGE\": \"surgir, ser reunido, ser(-tornar, -cair, -ter-se), ser trazido (a acontecer), (ser) tornar-se (a acontecer), continuar, ser dividido, atrair, chegar ao fim, cair, ser concluído, seguir, ser encontrado, ser cumprido, + Deus o livre, crescer, acontecer, ter, ser mantido, ser feito, ser casado, ser ordenado a ser, participar, passar, ser realizado, ser publicado, requerer, parecer, ser mostrado, assim que foi, soar, ser tomado, ser transformado, usar, tornar-se, querer, seria, ser elaborado.\"\n}\n```",
-    "{\n    \"ID\": \"g1097\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"adquirir conhecimento, vir a saber, aprender; aoristo: certificar, compreender.\",\n    \"ORIGIN\": \"Uma forma prolongada de um verbo primário; \"saber\" (absolutamente) em uma grande variedade de aplicações e com muitas implicações (como seguir, com outras não expressas de forma tão clara).\",\n    \"USAGE\": \"permitir, estar ciente (de), sentir, (ter) conhecimento, perceber, resolver, poder falar, ter certeza, compreender.\"\n}",
+    {
+        "ID": "g1096",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "vir a ser, nascer, tornar-se, ocorrer, acontecer.",
+        "ORIGIN": "Uma prolongação e uma forma de voz média de um verbo primário; fazer existir (\\\"gen\\\"-erar), ou seja, (reflexivamente) tornar-se (vir a ser), usado com grande latitude (literal, figurativo, intensivo, etc.).",
+        "USAGE": "surgir, ser reunido, ser(-tornar, -cair, -ter-se), ser trazido (a acontecer), (ser) tornar-se (a acontecer), continuar, ser dividido, atrair, chegar ao fim, cair, ser concluído, seguir, ser encontrado, ser cumprido, + Deus o livre, crescer, acontecer, ter, ser mantido, ser feito, ser casado, ser ordenado a ser, participar, passar, ser realizado, ser publicado, requerer, parecer, ser mostrado, assim que foi, soar, ser tomado, ser transformado, usar, tornar-se, querer, seria, ser elaborado."
+    },
+    {
+        "ID": "g1097",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "adquirir conhecimento, vir a saber, aprender; aoristo: certificar, compreender.",
+        "ORIGIN": "Uma forma prolongada de um verbo primário; \"saber\" (absolutamente) em uma grande variedade de aplicações e com muitas implicações (como seguir, com outras não expressas de forma tão clara).",
+        "USAGE": "permitir, estar ciente (de), sentir, (ter) conhecimento, perceber, resolver, poder falar, ter certeza, compreender."
+    },
     {
         "ID": "g1098",
         "PART_OF_SPEECH": "Substantivo, Neutro",
@@ -7881,7 +7923,13 @@
         "ORIGIN": "Do gumnos; nudez (absoluta ou comparativa).",
         "USAGE": "nudez."
     },
-    "```python\n{\n    \"ID\": \"g1133\",\n    \"PART_OF_SPEECH\": \"Substantivo, Neutro\",\n    \"DEFINITION\": \"uma mulher, com todas as fraquezas de uma mulher, uma pobre mulher fraca, uma mulher boba.\",\n    \"ORIGIN\": \"Um diminutivo de gune; uma pequena (ou seja, boba) mulher.\",\n    \"USAGE\": \"mulher boba.\"\n}\n```",
+    {
+        "ID": "g1133",
+        "PART_OF_SPEECH": "Substantivo, Neutro",
+        "DEFINITION": "uma mulher, com todas as fraquezas de uma mulher, uma pobre mulher fraca, uma mulher boba.",
+        "ORIGIN": "Um diminutivo de gune; uma pequena (ou seja, boba) mulher.",
+        "USAGE": "mulher boba."
+    },
     {
         "ID": "g1134",
         "PART_OF_SPEECH": "Adjetivo",
@@ -8540,7 +8588,13 @@
         "ORIGIN": "De dia e blepo; para olhar através, ou seja, recuperar a visão completa.",
         "USAGE": "ver claramente."
     },
-    "```json\n{\n    \"ID\": \"g1228\",\n    \"PART_OF_SPEECH\": \"Adjetivo\",\n    \"DEFINITION\": \"(adj. usado frequentemente como um substantivo), difamatório; com o artigo: o Difamador (por excelência), o Diabo.\",\n    \"ORIGIN\": \"Do diaballo; um difamador; especialmente, Satanás (comparar satanás).\",\n    \"USAGE\": \"acusador falso, diabo, difamador.\"\n}\n```",
+    {
+        "ID": "g1228",
+        "PART_OF_SPEECH": "Adjetivo",
+        "DEFINITION": "(adj. usado frequentemente como um substantivo), difamatório; com o artigo: o Difamador (por excelência), o Diabo.",
+        "ORIGIN": "Do diaballo; um difamador; especialmente, Satanás (comparar satanás).",
+        "USAGE": "acusador falso, diabo, difamador."
+    },
     {
         "ID": "g1229",
         "PART_OF_SPEECH": "Verbo",
@@ -8828,7 +8882,13 @@
         "ORIGIN": "Do dia e neuo; acenar (ou expressar por sinais) através de um espaço intermediário.",
         "USAGE": "chamar."
     },
-    "```python\n{\n    \"ID\": \"g1270\",\n    \"PART_OF_SPEECH\": \"Substantivo, Neutro\",\n    \"DEFINITION\": \"um raciocínio, pensamento, cogitação.\",\n    \"ORIGIN\": \"De um composto de dia e noieo; algo pensado detalhadamente, ou seja, um sentimento.\",\n    \"USAGE\": \"pensado.\"\n}\n```",
+    {
+        "ID": "g1270",
+        "PART_OF_SPEECH": "Substantivo, Neutro",
+        "DEFINITION": "um raciocínio, pensamento, cogitação.",
+        "ORIGIN": "De um composto de dia e noieo; algo pensado detalhadamente, ou seja, um sentimento.",
+        "USAGE": "pensado."
+    },
     {
         "ID": "g1271",
         "PART_OF_SPEECH": "Substantivo, Feminino",
@@ -9088,7 +9148,13 @@
         "ORIGIN": "De dia e phaino; aparecendo através, ou seja, \"diafano\".",
         "USAGE": "transparente."
     },
-    "{\n    \"ID\": \"g1308\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"(a) trans: carregar através, para cá e para lá, (b) intrans: ser diferente, diferir e às vezes: superar, exceder.\",\n    \"ORIGIN\": \"De dia e phero; suportar através, ou seja, (literalmente) transportar; geralmente suportar separadamente, ou seja, (objetivamente) jogar para lá e para cá (figurativamente, relatar); subjetivamente, \"diferir\", ou (por implicação) surpass.\",\n    \"USAGE\": \"ser melhor, carregar, diferir de, conduzir para cima e para baixo, ser (mais) excelente, fazer valer a pena, publicar, ter mais valor.\"\n}",
+    {
+        "ID": "g1308",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "(a) trans: carregar através, para cá e para lá, (b) intrans: ser diferente, diferir e às vezes: superar, exceder.",
+        "ORIGIN": "De dia e phero; suportar através, ou seja, (literalmente) transportar; geralmente suportar separadamente, ou seja, (objetivamente) jogar para lá e para cá (figurativamente, relatar); subjetivamente, \"diferir\", ou (por implicação) surpass.",
+        "USAGE": "ser melhor, carregar, diferir de, conduzir para cima e para baixo, ser (mais) excelente, fazer valer a pena, publicar, ter mais valor."
+    },
     {
         "ID": "g1309",
         "PART_OF_SPEECH": "Verbo",
@@ -9215,7 +9281,13 @@
         "ORIGIN": "De dia e egeiro; acordar completamente; ou seja, Arouse (literalmente ou figurativamente).",
         "USAGE": "surgir, acordar, levantar, agitar."
     },
-    "```python\n{\n    \"ID\": \"g1327\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"um ponto de encontro de estradas, um local público em uma cidade.\",\n    \"ORIGIN\": \"Do dia e exodos; uma saída através, isto é, provavelmente uma praça aberta (de onde estradas divergem).\",\n    \"USAGE\": \"estrada.\"\n}\n```",
+    {
+        "ID": "g1327",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "um ponto de encontro de estradas, um local público em uma cidade.",
+        "ORIGIN": "Do dia e exodos; uma saída através, isto é, provavelmente uma praça aberta (de onde estradas divergem).",
+        "USAGE": "estrada."
+    },
     {
         "ID": "g1328",
         "PART_OF_SPEECH": "Substantivo, Masculino",
@@ -9265,7 +9337,13 @@
         "ORIGIN": "De dia e hegeomai; relatar completamente.",
         "USAGE": "declarar, mostrar, contar."
     },
-    "```python\n{\n    \"ID\": \"g1335\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"uma narrativa.\",\n    \"ORIGIN\": \"Do termo grego 'diegeomai'; um relato.\",\n    \"USAGE\": \"declaração.\"\n}\n```",
+    {
+        "ID": "g1335",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "uma narrativa.",
+        "ORIGIN": "Do termo grego 'diegeomai'; um relato.",
+        "USAGE": "declaração."
+    },
     {
         "ID": "g1336",
         "PART_OF_SPEECH": "Adjetivo",
@@ -10547,7 +10625,13 @@
         "ORIGIN": "Do eirenopoios e poieo; pacificatório, ou seja, (subjetivamente) pacífico.",
         "USAGE": "pacificador."
     },
-    "```python\n{\n    \"ID\": \"g1519\",\n    \"PART_OF_SPEECH\": \"Preposição\",\n    \"DEFINITION\": \"para ou em (indicando o ponto alcançado ou entrado, de lugar, tempo, propósito, resultado).\",\n    \"ORIGIN\": \"Uma preposição primária; para ou em (indicando o ponto alcançado ou entrado), de lugar, tempo, ou (figurativamente) propósito (resultado, etc.); também em frases adverbiais.\",\n    \"USAGE\": \"(abundantemente), contra, entre, como, em, de volta, para trás, antes, por, concernente, + continuamente, + muito mais excedente, para (intenção, propósito), antecipadamente, + adiante, em (entre, em, até, -tanto que, -para), com a intenção de que, + de uma mente, + nunca, de, acima, + sobre, + perecer, + estabelecer novamente em um só, (tão) que, portanto(-até), por todo lado, até, para (ser, o fim, -em direção a), (aqui-)até(-para),...em direção a, (onde-)por que, com. Frequentemente usado em composição com o mesmo significado geral, mas somente com verbos (etc.) Expressando movimento (literalmente ou figurativamente).\"\n}\n```",
+    {
+        "ID": "g1519",
+        "PART_OF_SPEECH": "Preposição",
+        "DEFINITION": "para ou em (indicando o ponto alcançado ou entrado, de lugar, tempo, propósito, resultado).",
+        "ORIGIN": "Uma preposição primária; para ou em (indicando o ponto alcançado ou entrado), de lugar, tempo, ou (figurativamente) propósito (resultado, etc.); também em frases adverbiais.",
+        "USAGE": "(abundantemente), contra, entre, como, em, de volta, para trás, antes, por, concernente, + continuamente, + muito mais excedente, para (intenção, propósito), antecipadamente, + adiante, em (entre, em, até, -tanto que, -para), com a intenção de que, + de uma mente, + nunca, de, acima, + sobre, + perecer, + estabelecer novamente em um só, (tão) que, portanto(-até), por todo lado, até, para (ser, o fim, -em direção a), (aqui-)até(-para),...em direção a, (onde-)por que, com. Frequentemente usado em composição com o mesmo significado geral, mas somente com verbos (etc.) Expressando movimento (literalmente ou figurativamente)."
+    },
     {
         "ID": "g1520",
         "PART_OF_SPEECH": "Adjetivo",
@@ -10947,7 +11031,13 @@
         "ORIGIN": "De ek e kleio; para fechar (literalmente ou figurativamente).",
         "USAGE": "excluir."
     },
-    "```python\n{\n    \"ID\": \"g1577\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"uma assembleia, congregação, igreja; a Igreja, o corpo inteiro dos crentes cristãos.\",\n    \"ORIGIN\": \"De um composto de ek e um derivado de kaleo; um chamado, isto é, (concretamente) uma reunião popular, especialmente uma congregação religiosa (sinagoga judaica, ou comunidade cristã de membros na terra ou santos no céu ou ambos).\",\n    \"USAGE\": \"assembleia, igreja.\"\n}\n```",
+    {
+        "ID": "g1577",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "uma assembleia, congregação, igreja; a Igreja, o corpo inteiro dos crentes cristãos.",
+        "ORIGIN": "De um composto de ek e um derivado de kaleo; um chamado, isto é, (concretamente) uma reunião popular, especialmente uma congregação religiosa (sinagoga judaica, ou comunidade cristã de membros na terra ou santos no céu ou ambos).",
+        "USAGE": "assembleia, igreja."
+    },
     {
         "ID": "g1578",
         "PART_OF_SPEECH": "Verbo",
@@ -11746,7 +11836,13 @@
         "ORIGIN": "Uma forma prolongada de mim; eu.",
         "USAGE": "Eu, mim, meu(-mesmo)."
     },
-    "```python\n{\n    \"ID\": \"g1692\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"vomitar para fora.\",\n    \"ORIGIN\": \"De origem incerta; vomitar.\",\n    \"USAGE\": \"(vai) vomitar.\"\n}\n```",
+    {
+        "ID": "g1692",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "vomitar para fora.",
+        "ORIGIN": "De origem incerta; vomitar.",
+        "USAGE": "(vai) vomitar."
+    },
     {
         "ID": "g1693",
         "PART_OF_SPEECH": "Verbo",
@@ -11950,7 +12046,13 @@
         "ORIGIN": "Do inglês e um derivado de phuo; implantado (figurativamente).",
         "USAGE": "enxertado."
     },
-    "```python\n{\n  \"ID\": \"g1722\",\n  \"PART_OF_SPEECH\": \"Preposição\",\n  \"DEFINITION\": \"em, no, na, por, com.\",\n  \"ORIGIN\": \"Uma preposição primária denotando posição (fixa) (em lugar, tempo ou estado), e (por implicação) instrumentalidade (medialmente ou construtivamente), ou seja, uma relação de repouso (intermediária entre eis e ek); \\\"em,\\\" em, (sobre-)em, por, etc..\",\n  \"USAGE\": \"sobre, depois, contra, + quase, X completamente, entre, X como, em, antes, entre, (aqui-)por (+ todos os meios), por (causa de), + se entregar totalmente a, (aqui-)em(-para, -para dentro), X poderosamente, (porque) de, (sobre-)em, (aberto-)mente, X exteriormente, um, X rapidamente, X rapidamente, (rápido-)mente, X isso, X ali(-dentro, -em), através(-em toda parte), (não-)para(-em direção), sob, quando, onde(-com), enquanto, com(-em). Muitas vezes usado em compostos, com importância substancialmente a mesma; raramente com verbos de movimento, e então não para indicar direção, exceto (elipticamente) por uma preposição separada (e diferente).\"\n}\n```",
+    {
+        "ID": "g1722",
+        "PART_OF_SPEECH": "Preposição",
+        "DEFINITION": "em, no, na, por, com.",
+        "ORIGIN": "Uma preposição primária denotando posição (fixa) (em lugar, tempo ou estado), e (por implicação) instrumentalidade (medialmente ou construtivamente), ou seja, uma relação de repouso (intermediária entre eis e ek); \\\"em,\\\" em, (sobre-)em, por, etc..",
+        "USAGE": "sobre, depois, contra, + quase, X completamente, entre, X como, em, antes, entre, (aqui-)por (+ todos os meios), por (causa de), + se entregar totalmente a, (aqui-)em(-para, -para dentro), X poderosamente, (porque) de, (sobre-)em, (aberto-)mente, X exteriormente, um, X rapidamente, X rapidamente, (rápido-)mente, X isso, X ali(-dentro, -em), através(-em toda parte), (não-)para(-em direção), sob, quando, onde(-com), enquanto, com(-em). Muitas vezes usado em compostos, com importância substancialmente a mesma; raramente com verbos de movimento, e então não para indicar direção, exceto (elipticamente) por uma preposição separada (e diferente)."
+    },
     {
         "ID": "g1723",
         "PART_OF_SPEECH": "Verbo",
@@ -13141,7 +13243,13 @@
         "ORIGIN": "De epi e egeiro; para excitar sobre, ou seja, (figurativamente) para excitar contra.",
         "USAGE": "provocar, incitar."
     },
-    "```json\n{\n    \"ID\": \"g1893\",\n    \"PART_OF_SPEECH\": \"Conjunção\",\n    \"DEFINITION\": \"de tempo: quando, depois; de causa: pois, porque; de outro modo: senão.\",\n    \"ORIGIN\": \"De epi e ei; então, ou seja, Desde (de tempo ou causa).\",\n    \"USAGE\": \"pois, senão, porque, então (tanto quanto), de outro modo, visto que, quando.\"\n}\n```",
+    {
+        "ID": "g1893",
+        "PART_OF_SPEECH": "Conjunção",
+        "DEFINITION": "de tempo: quando, depois; de causa: pois, porque; de outro modo: senão.",
+        "ORIGIN": "De epi e ei; então, ou seja, Desde (de tempo ou causa).",
+        "USAGE": "pois, senão, porque, então (tanto quanto), de outro modo, visto que, quando."
+    },
     {
         "ID": "g1894",
         "CLASSE_GRAMATICAL": "Conjunção",
@@ -13261,7 +13369,13 @@
         "ORIGIN": "De epi e a base de basis; caminhar sobre, ou seja, montar, ascender, embarcar, chegar.",
         "USAGE": "chegar (em), entrar em, ir para o exterior, sentar-se sobre, embarcar em um navio."
     },
-    "```python\n{\n  \"ID\": \"g1911\",\n  \"PART_OF_SPEECH\": \"Verbo\",\n  \"DEFINITION\": \"(a) jogar sobre, lançar sobre, (b) colocar sobre, (c) pôr, (d) intrans: bater sobre, arremeter.\",\n  \"ORIGIN\": \"De epi e ballo; jogar sobre (literal ou figurativamente, transitivo ou reflexivo; geralmente com mais ou menos força); especialmente (com heautou implícito) refletir; impessoalmente, pertencer a.\",\n  \"USAGE\": \"insistir, jogar sobre, cair, colocar (sobre), estender, pensar sobre.\"\n}\n```",
+    {
+        "ID": "g1911",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "(a) jogar sobre, lançar sobre, (b) colocar sobre, (c) pôr, (d) intrans: bater sobre, arremeter.",
+        "ORIGIN": "De epi e ballo; jogar sobre (literal ou figurativamente, transitivo ou reflexivo; geralmente com mais ou menos força); especialmente (com heautou implícito) refletir; impessoalmente, pertencer a.",
+        "USAGE": "insistir, jogar sobre, cair, colocar (sobre), estender, pensar sobre."
+    },
     {
         "ID": "g1912",
         "PART_OF_SPEECH": "Verbo",
@@ -13710,7 +13824,13 @@
         "ORIGIN": "De epi e poreuomai; viajar mais longe, isto é, viajar (alcançar).",
         "USAGE": "vir."
     },
-    "```json\n{\n    \"ID\": \"g1976\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"costurar sobre.\",\n    \"ORIGIN\": \"De epi e a base de rhaphis; costurar sobre, isto é, fixar com a agulha.\",\n    \"USAGE\": \"costurar em.\"\n}\n```",
+    {
+        "ID": "g1976",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "costurar sobre.",
+        "ORIGIN": "De epi e a base de rhaphis; costurar sobre, isto é, fixar com a agulha.",
+        "USAGE": "costurar em."
+    },
     {
         "ID": "g1977",
         "PART_OF_SPEECH": "Verbo",
@@ -13900,7 +14020,13 @@
         "ORIGIN": "Do epitasso; uma injunção ou decreto; por implicação, autoridade.",
         "USAGE": "autoridade, mandamento."
     },
-    "```python\n{\n    \"ID\": \"g2004\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"dar ordem, comandar, encarregar.\",\n    \"ORIGIN\": \"De epi e tasso; para arranjar sobre, ou seja, Ordem.\",\n    \"USAGE\": \"encargo, comando, ordenar.\"\n}\n```",
+    {
+        "ID": "g2004",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "dar ordem, comandar, encarregar.",
+        "ORIGIN": "De epi e tasso; para arranjar sobre, ou seja, Ordem.",
+        "USAGE": "encargo, comando, ordenar."
+    },
     {
         "ID": "g2005",
         "PART_OF_SPEECH": "Verbo",
@@ -14307,7 +14433,13 @@
         "ORIGIN": "Neutro de um derivado de herpo (rastejar); um réptil, ou seja, (por hebraísmo (compare remes)) um animal pequeno.",
         "USAGE": "criatura rastejante, serpente."
     },
-    "```python\n{\n    \"ID\": \"g2063\",\n    \"PART_OF_SPEECH\": \"Adjetivo\",\n    \"DEFINITION\": \"vermelho.\",\n    \"ORIGIN\": \"De afinidade incerta; vermelho, ou seja, (com thalassa) o Mar Vermelho.\",\n    \"USAGE\": \"vermelho.\"\n}\n```",
+    {
+        "ID": "g2063",
+        "PART_OF_SPEECH": "Adjetivo",
+        "DEFINITION": "vermelho.",
+        "ORIGIN": "De afinidade incerta; vermelho, ou seja, (com thalassa) o Mar Vermelho.",
+        "USAGE": "vermelho."
+    },
     {
         "ID": "g2064",
         "PART_OF_SPEECH": "Verbo",
@@ -16534,7 +16666,13 @@
         "ORIGIN": "De origem caldaica (compare ta'owm); o gêmeo; Tomé, um cristão.",
         "USAGE": "Tomé."
     },
-    "```json\n{\n    \"ID\": \"g2382\",\n    \"PART_OF_SPEECH\": \"Substantivo, Masculino\",\n    \"DEFINITION\": \"uma couraça, corselete, couraça.\",\n    \"ORIGIN\": \"De afinidade incerta; o peito (\\\"tórax\\\"), ou seja, (por implicação) um corselete.\",\n    \"USAGE\": \"couraça.\"\n}\n```",
+    {
+        "ID": "g2382",
+        "PART_OF_SPEECH": "Substantivo, Masculino",
+        "DEFINITION": "uma couraça, corselete, couraça.",
+        "ORIGIN": "De afinidade incerta; o peito (\\\"tórax\\\"), ou seja, (por implicação) um corselete.",
+        "USAGE": "couraça."
+    },
     {
         "ID": "g2383",
         "PART_OF_SPEECH": "Substantivo, Masculino",
@@ -16766,7 +16904,13 @@
         "ORIGIN": "De Hierosoluma; um Hierosolimita, ou seja, habitante de Hierosolyma.",
         "USAGE": "de Jerusalém."
     },
-    "```python\n{\n    \"ID\": \"g2416\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"cometer sacrilégio, roubar um templo.\",\n    \"ORIGIN\": \"De hierosulos; ser um ladrão de templo (figurativamente).\",\n    \"USAGE\": \"cometer sacrilégio.\"\n}\n```",
+    {
+        "ID": "g2416",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "cometer sacrilégio, roubar um templo.",
+        "ORIGIN": "De hierosulos; ser um ladrão de templo (figurativamente).",
+        "USAGE": "cometer sacrilégio."
+    },
     {
         "ID": "g2417",
         "PART_OF_SPEECH": "Adjetivo",
@@ -17222,7 +17366,13 @@
         "ORIGIN": "Advérbio de isos; provavelmente, ou seja, talvez.",
         "USAGE": "pode ser."
     },
-    "```python\n{\n    \"ID\": \"g2482\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"Itália, uma região da Europa Ocidental.\",\n    \"ORIGIN\": \"Provavelmente de origem estrangeira; Italia, uma região da Europa.\",\n    \"USAGE\": \"Itália.\"\n}\n```",
+    {
+        "ID": "g2482",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "Itália, uma região da Europa Ocidental.",
+        "ORIGIN": "Provavelmente de origem estrangeira; Italia, uma região da Europa.",
+        "USAGE": "Itália."
+    },
     {
         "ID": "g2483",
         "PART_OF_SPEECH": "Adjetivo",
@@ -17370,7 +17520,13 @@
         "ORIGIN": "De origem hebraica (a décima letra do alfabeto hebraico); \"iota\", o nome da oitava letra do alfabeto grego, usada (figurativamente) para uma parte muito pequena de algo.",
         "USAGE": "uma pequena quantidade."
     },
-    "```python\n{\n    \"ID\": \"g2504\",\n    \"PART_OF_SPEECH\": \"Pronome Pessoal\",\n    \"DEFINITION\": \"também, também, mas.\",\n    \"ORIGIN\": \"De kai e ego; então também o caso dativo kamoi (kam-oy'), e o caso acusativo kame (kam-eh') e (ou também, até, etc.) eu, (para) mim.\",\n    \"USAGE\": \"(e, até, mesmo assim, assim) Eu (também, da mesma maneira), tanto eu, eu também.\"\n}\n```",
+    {
+        "ID": "g2504",
+        "PART_OF_SPEECH": "Pronome Pessoal",
+        "DEFINITION": "também, também, mas.",
+        "ORIGIN": "De kai e ego; então também o caso dativo kamoi (kam-oy'), e o caso acusativo kame (kam-eh') e (ou também, até, etc.) eu, (para) mim.",
+        "USAGE": "(e, até, mesmo assim, assim) Eu (também, da mesma maneira), tanto eu, eu também."
+    },
     {
         "ID": "g2505",
         "PART_OF_SPEECH": "Advérbio",
@@ -18155,7 +18311,13 @@
         "ORIGIN": "De kata e um derivado de dunastes; exercer domínio contra, ou seja, oprimir.",
         "USAGE": "oprimir."
     },
-    "```python\n{\n    \"ID\": \"g2617\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"envergonhar, desonrar, trazer vergonha, colocar em completa confusão, frustrar.\",\n    \"ORIGIN\": \"De kata e aischunomai; envergonhar para baixo, ou seja, desonrar ou (por implicação) fazer corar.\",\n    \"USAGE\": \"confundir, desonrar, (estar, fazer) vergonha.\"\n}\n```",
+    {
+        "ID": "g2617",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "envergonhar, desonrar, trazer vergonha, colocar em completa confusão, frustrar.",
+        "ORIGIN": "De kata e aischunomai; envergonhar para baixo, ou seja, desonrar ou (por implicação) fazer corar.",
+        "USAGE": "confundir, desonrar, (estar, fazer) vergonha."
+    },
     {
         "ID": "g2618",
         "PART_OF_SPEECH": "Verbo",
@@ -18485,7 +18647,13 @@
         "ORIGIN": "De kata e pauo; estabelecer-se, ou seja, (literalmente) colonizar, ou (figurativamente) fazer desistir.",
         "USAGE": "cessar, (dar) descanso (abster)."
     },
-    "```python\n{\n    \"ID\": \"g2665\",\n    \"PART_OF_SPEECH\": \"Substantivo, Neutro\",\n    \"DEFINITION\": \"(literalmente: aquilo que é estendido para baixo, aquilo que pende), uma cortina, véu, daquilo que separava o Santo dos Santos das partes externas do templo em Jerusalém, também de uma cortina externa na entrada do Santo Lugar no mesmo templo.\",\n    \"ORIGIN\": \"De um composto de kata e um congênere de petomai; algo espalhado completamente, ou seja, (especialmente) a tela da porta (para o Lugar Santíssimo) no Templo Judaico.\",\n    \"USAGE\": \"véu.\"\n}\n```",
+    {
+        "ID": "g2665",
+        "PART_OF_SPEECH": "Substantivo, Neutro",
+        "DEFINITION": "(literalmente: aquilo que é estendido para baixo, aquilo que pende), uma cortina, véu, daquilo que separava o Santo dos Santos das partes externas do templo em Jerusalém, também de uma cortina externa na entrada do Santo Lugar no mesmo templo.",
+        "ORIGIN": "De um composto de kata e um congênere de petomai; algo espalhado completamente, ou seja, (especialmente) a tela da porta (para o Lugar Santíssimo) no Templo Judaico.",
+        "USAGE": "véu."
+    },
     {
         "ID": "g2666",
         "PART_OF_SPEECH": "Verbo",
@@ -18535,7 +18703,13 @@
         "ORIGIN": "Voz média de katara; amaldiçoar; por analogia, condenar.",
         "USAGE": "amaldiçoar."
     },
-    "```python\n{\n    \"ID\": \"g2673\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"(a) tornar ocioso (inativo), tornar sem efeito, anular, abolir, anular, (b) descarregar, separar, separar de.\",\n    \"ORIGIN\": \"De kata e argeo; estar (tornar) completamente ocioso (inútil), literalmente ou figurativamente.\",\n    \"USAGE\": \"abolir, cessar, atrapalhar, entregar, destruir, acabar com, tornar (fazer) sem efeito nenhum, falhar, soltar, trazer (chegar) a nada, colocar fora (abaixo), desaparecer, tornar nulo.\"\n}\n```",
+    {
+        "ID": "g2673",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "(a) tornar ocioso (inativo), tornar sem efeito, anular, abolir, anular, (b) descarregar, separar, separar de.",
+        "ORIGIN": "De kata e argeo; estar (tornar) completamente ocioso (inútil), literalmente ou figurativamente.",
+        "USAGE": "abolir, cessar, atrapalhar, entregar, destruir, acabar com, tornar (fazer) sem efeito nenhum, falhar, soltar, trazer (chegar) a nada, colocar fora (abaixo), desaparecer, tornar nulo."
+    },
     {
         "ID": "g2674",
         "PART_OF_SPEECH": "Verbo",
@@ -19040,7 +19214,13 @@
         "ORIGIN": "Do kauchaomai; se gabando (adequadamente, o ato; por implicação, o objeto), em um sentido bom ou ruim.",
         "USAGE": "se gabando, do qual posso me gloriar, glorificação, regozijo."
     },
-    "```python\n{\n    \"ID\": \"g2747\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"Cencreia, o porto de Corinto no Golfo Saronico.\",\n    \"ORIGIN\": \"Provavelmente de kegchros (millet); Cencreia, um porto de Corinto.\",\n    \"USAGE\": \"Cencreia.\"\n}\n```",
+    {
+        "ID": "g2747",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "Cencreia, o porto de Corinto no Golfo Saronico.",
+        "ORIGIN": "Provavelmente de kegchros (millet); Cencreia, um porto de Corinto.",
+        "USAGE": "Cencreia."
+    },
     {
         "ID": "g2748",
         "PART_OF_SPEECH": "Substantivo Próprio, Indeclinável",
@@ -20126,7 +20306,13 @@
         "ORIGIN": "De kratos; usar força, ou seja, apoderar-se ou reter (literalmente ou figurativamente).",
         "USAGE": "agarrar (por, firmemente), manter, colocar a mão (agarrar) em, obter, reter, pegar (por)."
     },
-    "```json\n{\n    \"ID\": \"g2903\",\n    \"PART_OF_SPEECH\": \"Adjetivo\",\n    \"DEFINITION\": \"excelentíssimo, um epíteto oficial, usado para se dirigir a um romano de alta patente, e no século II de patente equestre (distinguindo-se da patente senatorial).\",\n    \"ORIGIN\": \"Superlativo de um derivado de kratos; o mais forte, ou seja, (em dignidade) muito honorável.\",\n    \"USAGE\": \"excelentíssimo (nobre).\"\n}\n```",
+    {
+        "ID": "g2903",
+        "PART_OF_SPEECH": "Adjetivo",
+        "DEFINITION": "excelentíssimo, um epíteto oficial, usado para se dirigir a um romano de alta patente, e no século II de patente equestre (distinguindo-se da patente senatorial).",
+        "ORIGIN": "Superlativo de um derivado de kratos; o mais forte, ou seja, (em dignidade) muito honorável.",
+        "USAGE": "excelentíssimo (nobre)."
+    },
     {
         "ID": "g2904",
         "PART_OF_SPEECH": "Substantivo, Neutro",
@@ -21079,7 +21265,13 @@
         "ORIGIN": "Do termo likmos, equivalente a liknon (um ventilador ou cesto de joeirar); joeirar, ou seja, (por analogia), triturar.",
         "USAGE": "moer até reduzir a pó."
     },
-    "```json\n{\n    \"ID\": \"g3040\",\n    \"PART_OF_SPEECH\": \"Substantivo, Masculino\",\n    \"DEFINITION\": \"um porto, porto, refúgio.\",\n    \"ORIGIN\": \"Aparentemente uma palavra primária; um porto.\",\n    \"USAGE\": \"refúgio. Compare Kaloi Limenes.\"\n}\n```",
+    {
+        "ID": "g3040",
+        "PART_OF_SPEECH": "Substantivo, Masculino",
+        "DEFINITION": "um porto, porto, refúgio.",
+        "ORIGIN": "Aparentemente uma palavra primária; um porto.",
+        "USAGE": "refúgio. Compare Kaloi Limenes."
+    },
     {
         "ID": "g3041",
         "PART_OF_SPEECH": "Substantivo, feminino",
@@ -21752,7 +21944,13 @@
         "ORIGIN": "Provavelmente de origem Caldéia (significando senhora); Marta, uma mulher cristã.",
         "USAGE": "Marta."
     },
-    "```python\n{\n    \"ID\": \"g3137\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino; Nome Próprio, Indeclinável\",\n    \"DEFINITION\": \"Maria, Miriam, (a) a mãe de Jesus, (b) de Magdala, (c) irmã de Marta e Lázaro, (d) esposa de Cleopas, (e) mãe de João Marcos, (f) uma mulher Cristã em Roma.\",\n    \"ORIGIN\": \"Ou Mariam (mar-ee-am') de origem Hebraica (Miryam); Maria ou Mariam (ou seja, Mirjam), o nome de seis mulheres Cristãs.\",\n    \"USAGE\": \"Maria.\"\n}\n```",
+    {
+        "ID": "g3137",
+        "PART_OF_SPEECH": "Substantivo, Feminino; Nome Próprio, Indeclinável",
+        "DEFINITION": "Maria, Miriam, (a) a mãe de Jesus, (b) de Magdala, (c) irmã de Marta e Lázaro, (d) esposa de Cleopas, (e) mãe de João Marcos, (f) uma mulher Cristã em Roma.",
+        "ORIGIN": "Ou Mariam (mar-ee-am') de origem Hebraica (Miryam); Maria ou Mariam (ou seja, Mirjam), o nome de seis mulheres Cristãs.",
+        "USAGE": "Maria."
+    },
     {
         "ID": "g3138",
         "PART_OF_SPEECH": "Substantivo, Masculino",
@@ -23076,7 +23274,13 @@
         "ORIGIN": "De origem latina; um modius, ou seja, uma certa medida para coisas secas (a quantidade ou o utensílio).",
         "USAGE": "alqueire."
     },
-    "```json\n{\n    \"ID\": \"g3427\",\n    \"PART_OF_SPEECH\": \"-\",\n    \"DEFINITION\": \"Eu, mim, meu, minha.\",\n    \"ORIGIN\": \"A forma mais simples de emoi; para mim.\",\n    \"USAGE\": \"Eu, mim, meu, minha.\"\n}\n```",
+    {
+        "ID": "g3427",
+        "PART_OF_SPEECH": "-",
+        "DEFINITION": "Eu, mim, meu, minha.",
+        "ORIGIN": "A forma mais simples de emoi; para mim.",
+        "USAGE": "Eu, mim, meu, minha."
+    },
     {
         "ID": "g3428",
         "PART_OF_SPEECH": "Substantivo, Feminino",
@@ -23210,7 +23414,13 @@
         "ORIGIN": "Do grego morphoo; formação, ou seja, (por implicação), aparência (semelhança ou (concretamente) fórmula).",
         "USAGE": "forma."
     },
-    "```json\n{\n    \"ID\": \"g3447\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"fazer um bezerro (como uma imagem).\",\n    \"ORIGIN\": \"De moschos e poieo; fabricar a imagem de um boi.\",\n    \"USAGE\": \"fazer um bezerro.\"\n}\n```",
+    {
+        "ID": "g3447",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "fazer um bezerro (como uma imagem).",
+        "ORIGIN": "De moschos e poieo; fabricar a imagem de um boi.",
+        "USAGE": "fazer um bezerro."
+    },
     {
         "ID": "g3448",
         "PART_OF_SPEECH": "Substantivo, Masculino",
@@ -23435,7 +23645,13 @@
         "ORIGIN": "De Nazaré; um Nazareno, ou seja, habitante de Nazaré.",
         "USAGE": "de Nazaré."
     },
-    "```python\n{\n    \"ID\": \"g3480\",\n    \"PART_OF_SPEECH\": \"Substantivo, Masculino\",\n    \"DEFINITION\": \"um nazareno, um habitante de Nazaré.\",\n    \"ORIGIN\": \"De Nazaré; um nazareno, ou seja, um habitante de Nazaré; por extensão, um Cristão.\",\n    \"USAGE\": \"Nazareno, de Nazaré.\"\n}\n```",
+    {
+        "ID": "g3480",
+        "PART_OF_SPEECH": "Substantivo, Masculino",
+        "DEFINITION": "um nazareno, um habitante de Nazaré.",
+        "ORIGIN": "De Nazaré; um nazareno, ou seja, um habitante de Nazaré; por extensão, um Cristão.",
+        "USAGE": "Nazareno, de Nazaré."
+    },
     {
         "ID": "g3481",
         "PART_OF_SPEECH": "Substantivo Próprio, Indeclinável",
@@ -24423,7 +24639,13 @@
         "ORIGIN": "Do oikonomos; gerenciar (uma casa, ou seja, uma propriedade).",
         "USAGE": "ser mordomo."
     },
-    "```python\n{\n    \"ID\": \"g3622\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"gestão de assuntos domésticos, administração de bens, administração.\",\n    \"ORIGIN\": \"Do oikonomos; administração (de uma casa ou propriedade); especialmente, uma \\\"economia\\\" (religiosa).\",\n    \"USAGE\": \"dispensação, administração.\"\n}\n```",
+    {
+        "ID": "g3622",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "gestão de assuntos domésticos, administração de bens, administração.",
+        "ORIGIN": "Do oikonomos; administração (de uma casa ou propriedade); especialmente, uma \\\"economia\\\" (religiosa).",
+        "USAGE": "dispensação, administração."
+    },
     {
         "ID": "g3623",
         "PART_OF_SPEECH": "Substantivo, Masculino",
@@ -25187,7 +25409,13 @@
         "ORIGIN": "De horme; um ataque, ou seja, (abstratamente) precipitação.",
         "USAGE": "violência."
     },
-    "```json\n{\n    \"ID\": \"g3732\",\n    \"PART_OF_SPEECH\": \"Substantivo, Neutro\",\n    \"DEFINITION\": \"um pássaro, ave.\",\n    \"ORIGIN\": \"Neutro de um derivado presumido de ornis; um passarinho.\",\n    \"USAGE\": \"pássaro, ave.\"\n}\n```",
+    {
+        "ID": "g3732",
+        "PART_OF_SPEECH": "Substantivo, Neutro",
+        "DEFINITION": "um pássaro, ave.",
+        "ORIGIN": "Neutro de um derivado presumido de ornis; um passarinho.",
+        "USAGE": "pássaro, ave."
+    },
     {
         "ID": "g3733",
         "PART_OF_SPEECH": "Substantivo, Feminino",
@@ -25293,7 +25521,13 @@
         "ORIGIN": "Ou contraído 'ostoun' (os-toon') de origem incerta; um osso.",
         "USAGE": "osso."
     },
-    "```python\n{\n    \"ID\": \"g3748\",\n    \"PART_OF_SPEECH\": \"Pronome Relativo\",\n    \"DEFINITION\": \"quem quer que, qualquer que seja, o que quer que seja.\",\n    \"ORIGIN\": \"Incluindo o feminino hetis (hay'-tis) e o neutro ho,ti (hot'-ee) de hos e tis; o que alguns chamam, ou seja, qualquer que; também (definido) o mesmo que.\",\n    \"USAGE\": \"E (eles), (tais) como, (eles) que, na medida em que, o que for, visto que ye, (eles) que, quem quer que seja. Comparar hoti.\"\n}\n```",
+    {
+        "ID": "g3748",
+        "PART_OF_SPEECH": "Pronome Relativo",
+        "DEFINITION": "quem quer que, qualquer que seja, o que quer que seja.",
+        "ORIGIN": "Incluindo o feminino hetis (hay'-tis) e o neutro ho,ti (hot'-ee) de hos e tis; o que alguns chamam, ou seja, qualquer que; também (definido) o mesmo que.",
+        "USAGE": "E (eles), (tais) como, (eles) que, na medida em que, o que for, visto que ye, (eles) que, quem quer que seja. Comparar hoti."
+    },
     {
         "ID": "g3749",
         "PART_OF_SPEECH": "Adjetivo",
@@ -25539,7 +25773,13 @@
         "ORIGIN": "Do (o alternativo de) opheilo; algo devido, ou seja, (figurativamente) um débito; moralmente, uma falha.",
         "USAGE": "dívida."
     },
-    "```python\n{\n  \"ID\": \"g3784\",\n  \"PART_OF_SPEECH\": \"Verbo\",\n  \"DEFINITION\": \"dever, dever a, obrigação.\",\n  \"ORIGIN\": \"Ou (em certos tempos), sua forma prolongada opheileo (of-i-leh'-o) provavelmente da base de ophelos (através da ideia de acumulação); dever (pecuniariamente); figurativamente, estar sob obrigação (dever, é preciso, deveria); moralmente, falhar no dever.\",\n  \"USAGE\": \"convir, ser obrigado, (ser) devedor, (ser) devido(-oso), ser culpado (endividado), (deve) necessidade(-s), dever, dever a, deveria. Ver também ophelon.\"\n}\n```",
+    {
+        "ID": "g3784",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "dever, dever a, obrigação.",
+        "ORIGIN": "Ou (em certos tempos), sua forma prolongada opheileo (of-i-leh'-o) provavelmente da base de ophelos (através da ideia de acumulação); dever (pecuniariamente); figurativamente, estar sob obrigação (dever, é preciso, deveria); moralmente, falhar no dever.",
+        "USAGE": "convir, ser obrigado, (ser) devedor, (ser) devido(-oso), ser culpado (endividado), (deve) necessidade(-s), dever, dever a, deveria. Ver também ophelon."
+    },
     {
         "ID": "g3785",
         "PART_OF_SPEECH": "Verbo",
@@ -25953,7 +26193,13 @@
         "ORIGIN": "Advérbio de pas; totalmente; especialmente, em todos os casos, (com negativo, seguindo) de forma alguma.",
         "USAGE": "por todos os meios, totalmente, em tudo, necessidades, sem dúvida, de nenhuma maneira, com certeza."
     },
-    "```python\n{\n    \"ID\": \"g3844\",\n    \"PART_OF_SPEECH\": \"Preposição\",\n    \"DEFINITION\": \"gen: de; dat: ao lado, na presença de; acc: ao lado de.\",\n    \"ORIGIN\": \"Uma preposição primária; corretamente, perto; ou seja (com caso genitivo) de ao lado (literalmente ou figurativamente), (com caso dativo) na (ou em) proximidade de (objetivamente ou subjetivamente), (com caso acusativo) até a proximidade com (local (especialmente além ou oposto a) ou causal (por conta de).\",\n    \"USAGE\": \"acima, contra, entre, em, antes, por, em contrário a, X amigo, de, + dar (tais coisas como elas), + que (ela) tinha, X dele, em, mais que, perto de, (fora) de, passado, exceto, ao lado...de, à vista de, do que, (ali-)por isso, com. Em compostos, mantém a mesma variedade de aplicações.\"\n}\n```",
+    {
+        "ID": "g3844",
+        "PART_OF_SPEECH": "Preposição",
+        "DEFINITION": "gen: de; dat: ao lado, na presença de; acc: ao lado de.",
+        "ORIGIN": "Uma preposição primária; corretamente, perto; ou seja (com caso genitivo) de ao lado (literalmente ou figurativamente), (com caso dativo) na (ou em) proximidade de (objetivamente ou subjetivamente), (com caso acusativo) até a proximidade com (local (especialmente além ou oposto a) ou causal (por conta de).",
+        "USAGE": "acima, contra, entre, em, antes, por, em contrário a, X amigo, de, + dar (tais coisas como elas), + que (ela) tinha, X dele, em, mais que, perto de, (fora) de, passado, exceto, ao lado...de, à vista de, do que, (ali-)por isso, com. Em compostos, mantém a mesma variedade de aplicações."
+    },
     {
         "ID": "g3845",
         "PART_OF_SPEECH": "Verbo",
@@ -26626,7 +26872,13 @@
         "ORIGIN": "De paroikos; residência estrangeira.",
         "USAGE": "estadia, X como estrangeiros."
     },
-    "```python\n{\n    \"ID\": \"g3941\",\n    \"PART_OF_SPEECH\": \"Adjetivo\",\n    \"DEFINITION\": \"estrangeiro, alienígena, subst: um estrangeiro, morador temporário.\",\n    \"ORIGIN\": \"De para e oikos; tendo uma casa próxima, isto é, (como substantivo) um morador (residente estrangeiro).\",\n    \"USAGE\": \"estrangeiro, moradia temporária, desconhecido.\"\n}\n```",
+    {
+        "ID": "g3941",
+        "PART_OF_SPEECH": "Adjetivo",
+        "DEFINITION": "estrangeiro, alienígena, subst: um estrangeiro, morador temporário.",
+        "ORIGIN": "De para e oikos; tendo uma casa próxima, isto é, (como substantivo) um morador (residente estrangeiro).",
+        "USAGE": "estrangeiro, moradia temporária, desconhecido."
+    },
     {
         "ID": "g3942",
         "PART_OF_SPEECH": "Substantivo, Feminino",
@@ -26725,7 +26977,13 @@
         "ORIGIN": "Voz média de parrhesia; ser franco na expressão, ou confiante em espírito e maneira.",
         "USAGE": "ser audacioso, (pregar, falar) ousadamente."
     },
-    "```python\n{\n    \"ID\": \"g3956\",\n    \"PART_OF_SPEECH\": \"Adjetivo\",\n    \"DEFINITION\": \"todo, o todo, todo tipo de.\",\n    \"ORIGIN\": \"Incluindo todas as formas de declinação; aparentemente uma palavra primária; todo, qualquer, cada, o todo.\",\n    \"USAGE\": \"todo (maneira de, meio), sempre, qualquer (um), diariamente, + sempre, cada (um, maneira), tantos como, + nada, completamente, absolutamente, inteiro, quem quer que.\"\n}\n```",
+    {
+        "ID": "g3956",
+        "PART_OF_SPEECH": "Adjetivo",
+        "DEFINITION": "todo, o todo, todo tipo de.",
+        "ORIGIN": "Incluindo todas as formas de declinação; aparentemente uma palavra primária; todo, qualquer, cada, o todo.",
+        "USAGE": "todo (maneira de, meio), sempre, qualquer (um), diariamente, + sempre, cada (um, maneira), tantos como, + nada, completamente, absolutamente, inteiro, quem quer que."
+    },
     {
         "ID": "g3957",
         "PART_OF_SPEECH": "Palavra Aramaica Transliterada (Indeclinável)",
@@ -26866,7 +27124,13 @@
         "ORIGIN": "Originalmente de pous; um grilhão para os pés.",
         "USAGE": "algema."
     },
-    "```python\n{\n    \"ID\": \"g3977\",\n    \"PART_OF_SPEECH\": \"Adjetivo\",\n    \"DEFINITION\": \"nivelado, de baixa altitude, plano.\",\n    \"ORIGIN\": \"De um derivado de pous (significando o chão); nivelado (como fácil para os pés).\",\n    \"USAGE\": \"simples.\"\n}\n```",
+    {
+        "ID": "g3977",
+        "PART_OF_SPEECH": "Adjetivo",
+        "DEFINITION": "nivelado, de baixa altitude, plano.",
+        "ORIGIN": "De um derivado de pous (significando o chão); nivelado (como fácil para os pés).",
+        "USAGE": "simples."
+    },
     {
         "ID": "g3978",
         "PART_OF_SPEECH": "Verbo",
@@ -27490,7 +27754,13 @@
         "ORIGIN": "De peri e chora; ao redor da região, ou seja, Circunjacente (como substantivo, com ge implicando vizinhança).",
         "USAGE": "país (redondo) ao redor, região (que está) ao redor."
     },
-    "```python\n{\n    \"ID\": \"g4067\",\n    \"PART_OF_SPEECH\": \"Substantivo, Neutro\",\n    \"DEFINITION\": \"raspas, borras, sujeira limpa.\",\n    \"ORIGIN\": \"De um comparativo de peri e psao (esfregar); algo escovado por completo, ou seja, raspas (figurativamente, escória).\",\n    \"USAGE\": \"escória.\"\n}\n```",
+    {
+        "ID": "g4067",
+        "PART_OF_SPEECH": "Substantivo, Neutro",
+        "DEFINITION": "raspas, borras, sujeira limpa.",
+        "ORIGIN": "De um comparativo de peri e psao (esfregar); algo escovado por completo, ou seja, raspas (figurativamente, escória).",
+        "USAGE": "escória."
+    },
     {
         "ID": "g4068",
         "PART_OF_SPEECH": "Verbo",
@@ -27974,7 +28244,13 @@
         "ORIGIN": "Do termo plerophoreo; confiança total.",
         "USAGE": "(plena) garantia."
     },
-    "```python\n{\n    \"ID\": \"g4137\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"preencher, cumprir, completar.\",\n    \"ORIGIN\": \"Do pleres; tornar repleto, ou seja, (literalmente) encher (uma rede), nivelar (um vazio), ou (figurativamente) fornecer (ou impregnar, difundir, influenciar), satisfazer, exercer (um ofício), concluir (um período ou tarefa), confirmar (ou coincidir com uma previsão), etc..\",\n    \"USAGE\": \"realizar, X depois, (ser) completo, fim, expirar, encher, cumprir, (ser, tornar) pleno (vir), pregar totalmente, perfeito, fornecer.\"\n}\n```",
+    {
+        "ID": "g4137",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "preencher, cumprir, completar.",
+        "ORIGIN": "Do pleres; tornar repleto, ou seja, (literalmente) encher (uma rede), nivelar (um vazio), ou (figurativamente) fornecer (ou impregnar, difundir, influenciar), satisfazer, exercer (um ofício), concluir (um período ou tarefa), confirmar (ou coincidir com uma previsão), etc..",
+        "USAGE": "realizar, X depois, (ser) completo, fim, expirar, encher, cumprir, (ser, tornar) pleno (vir), pregar totalmente, perfeito, fornecer."
+    },
     {
         "ID": "g4138",
         "PART_OF_SPEECH": "Substantivo, Neutro",
@@ -28066,7 +28342,13 @@
         "ORIGIN": "Uma forma prolongada de um pluo obsoleto (para \"fluir\"); \"mergulhar\", ou seja, Lavar roupas.",
         "USAGE": "lavar. Comparar com louo, nipto."
     },
-    "```python\n{\n    \"ID\": \"g4151\",\n    \"PART_OF_SPEECH\": \"Substantivo, Neutro\",\n    \"DEFINITION\": \"vento, respiração, espírito.\",\n    \"ORIGIN\": \"Do pneo; uma corrente de ar, ou seja, respiração (rajada) ou uma brisa; por analogia ou figurativamente, um espírito, ou seja, (humano) a alma racional, (por implicação) princípio vital, disposição mental, etc., ou (super-humano) um anjo, demônio, ou (divino) Deus, espírito de Cristo, o Espírito Santo.\",\n    \"USAGE\": \"fantasma, vida, espírito(-ual, -ualmente), mente. Comparar psuche.\"\n}\n```",
+    {
+        "ID": "g4151",
+        "PART_OF_SPEECH": "Substantivo, Neutro",
+        "DEFINITION": "vento, respiração, espírito.",
+        "ORIGIN": "Do pneo; uma corrente de ar, ou seja, respiração (rajada) ou uma brisa; por analogia ou figurativamente, um espírito, ou seja, (humano) a alma racional, (por implicação) princípio vital, disposição mental, etc., ou (super-humano) um anjo, demônio, ou (divino) Deus, espírito de Cristo, o Espírito Santo.",
+        "USAGE": "fantasma, vida, espírito(-ual, -ualmente), mente. Comparar psuche."
+    },
     {
         "ID": "g4152",
         "PART_OF_SPEECH": "Adjetivo",
@@ -28284,7 +28566,13 @@
         "ORIGIN": "De polus e poikilos; muito variegado, ou seja, multifacetado.",
         "USAGE": "manifold."
     },
-    "```python\n{\n    \"ID\": \"g4183\",\n    \"PART_OF_SPEECH\": \"Adjetivo\",\n    \"DEFINITION\": \"muito, muitos; frequentemente.\",\n    \"ORIGIN\": \"Incluindo as formas do pollos alternativo; (singular) muito (em qualquer aspecto) ou (plural) muitos; neutro (singular) como advérbio, em grande parte; neutro (plural) como advérbio ou substantivo, frequentemente, principalmente, em grande parte.\",\n    \"USAGE\": \"abundante, + completamente, comum, + longe (passado, gasto), (+ ser de) grande (idade, quantidade, -mente, enquanto), longo, muitos, muito, frequentemente (- vezes), abundante, grave, estreitamente. Comparar pleistos, pleion.\"\n}\n```",
+    {
+        "ID": "g4183",
+        "PART_OF_SPEECH": "Adjetivo",
+        "DEFINITION": "muito, muitos; frequentemente.",
+        "ORIGIN": "Incluindo as formas do pollos alternativo; (singular) muito (em qualquer aspecto) ou (plural) muitos; neutro (singular) como advérbio, em grande parte; neutro (plural) como advérbio ou substantivo, frequentemente, principalmente, em grande parte.",
+        "USAGE": "abundante, + completamente, comum, + longe (passado, gasto), (+ ser de) grande (idade, quantidade, -mente, enquanto), longo, muitos, muito, frequentemente (- vezes), abundante, grave, estreitamente. Comparar pleistos, pleion."
+    },
     {
         "ID": "g4184",
         "PART_OF_SPEECH": "Adjetivo",
@@ -28327,7 +28615,13 @@
         "ORIGIN": "Do grego poneros; depravação, ou seja, (especialmente) malícia; plural (concretamente) tramas, pecados.",
         "USAGE": "iniquidade, malvadeza."
     },
-    "```python\n{\n  \"ID\": \"g4190\",\n  \"PART_OF_SPEECH\": \"Adjetivo\",\n  \"DEFINITION\": \"mal, mau, perverso, malicioso, preguiçoso.\",\n  \"ORIGIN\": \"De um derivado de ponos; prejudicial, ou seja, mal (propriamente, no efeito ou influência, e assim diferenciando de kakos, que se refere mais ao caráter essencial, bem como de sapros, que indica degeneração da virtude original); figurativamente, calamitoso; também (passivamente) doente, ou seja, doente; mas especialmente (moralmente) culpável, ou seja, negligente, vicioso, facinoroso; neutro (singular) dano, malícia, ou (plural) culpa; masculino (singular) o diabo, ou (plural) pecadores.\",\n  \"USAGE\": \"mal, mau, prejudicial, dano, impuro, malicioso, perversidade. Ver também poneroteros.\"\n}\n```",
+    {
+        "ID": "g4190",
+        "PART_OF_SPEECH": "Adjetivo",
+        "DEFINITION": "mal, mau, perverso, malicioso, preguiçoso.",
+        "ORIGIN": "De um derivado de ponos; prejudicial, ou seja, mal (propriamente, no efeito ou influência, e assim diferenciando de kakos, que se refere mais ao caráter essencial, bem como de sapros, que indica degeneração da virtude original); figurativamente, calamitoso; também (passivamente) doente, ou seja, doente; mas especialmente (moralmente) culpável, ou seja, negligente, vicioso, facinoroso; neutro (singular) dano, malícia, ou (plural) culpa; masculino (singular) o diabo, ou (plural) pecadores.",
+        "USAGE": "mal, mau, prejudicial, dano, impuro, malicioso, perversidade. Ver também poneroteros."
+    },
     {
         "ID": "g4191",
         "PART_OF_SPEECH": "Adjetivo",
@@ -29385,7 +29679,13 @@
         "ORIGIN": "Voz média de pros e kaleo; chamar para si, isto é, convocar, convidar.",
         "USAGE": "chamar (para, a, em direção a)."
     },
-    "```python\n{\n  \"ID\": \"g4342\",\n  \"PART_OF_SPEECH\": \"Verbo\",\n  \"DEFINITION\": \"persistir, perseverar, continuar firme em; esperar por.\",\n  \"ORIGIN\": \"Do grego pros e kartereo; ser sério em relação a algo, ou seja, (em relação a uma coisa) perseverar, ser constantemente diligente, ou (em um lugar) assistir assiduamente a todos os exercícios, ou (em relação a uma pessoa) aderir de perto (como um servente).\",\n  \"USAGE\": \"estar (dedicado) continuamente (a), continuar (em, instantâneo em, com), esperar por (continuamente).\"\n}\n```  ",
+    {
+        "ID": "g4342",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "persistir, perseverar, continuar firme em; esperar por.",
+        "ORIGIN": "Do grego pros e kartereo; ser sério em relação a algo, ou seja, (em relação a uma coisa) perseverar, ser constantemente diligente, ou (em um lugar) assistir assiduamente a todos os exercícios, ou (em relação a uma pessoa) aderir de perto (como um servente).",
+        "USAGE": "estar (dedicado) continuamente (a), continuar (em, instantâneo em, com), esperar por (continuamente)."
+    },
     {
         "ID": "g4343",
         "PART_OF_SPEECH": "Substantivo, Feminino",
@@ -30338,7 +30638,13 @@
         "ORIGIN": "De origem hebraica (Raquel); Raquel, esposa de Jacó.",
         "USAGE": "Raquel."
     },
-    "```python\n{\n    \"ID\": \"g4479\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"Rebeca, esposa do patriarca Isaac.\",\n    \"ORIGIN\": \"De origem hebraica (Ribqah); Rebeca (ou Ribkah), esposa de Isaac.\",\n    \"USAGE\": \"Rebeca.\"\n}\n```",
+    {
+        "ID": "g4479",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "Rebeca, esposa do patriarca Isaac.",
+        "ORIGIN": "De origem hebraica (Ribqah); Rebeca (ou Ribkah), esposa de Isaac.",
+        "USAGE": "Rebeca."
+    },
     {
         "ID": "g4480",
         "PART_OF_SPEECH": "Substantivo, Feminino",
@@ -31340,7 +31646,13 @@
         "ORIGIN": "De origem hebraica (Tsiyown); Sião (ou Tsijon), uma colina de Jerusalém; figurativamente, a Igreja (militante ou triunfante).",
         "USAGE": "Sião."
     },
-    "```python\n{\n    \"ID\": \"g4623\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"guardar silêncio, ficar em silêncio, seja voluntariamente ou involuntariamente.\",\n    \"ORIGIN\": \"Do siope (silêncio, ou seja, um silêncio; propriamente, mudez, ou seja, imobilidade involuntária, ou incapacidade de falar; e assim diferindo de sige, que é mais uma recusa voluntária ou indisposição para falar, embora os termos sejam frequentemente usados como sinônimos); ficar mudo (mas não surdo também, como kophos propriamente); figurativamente, ficar calmo (como água tranquila).\",\n    \"USAGE\": \"mudo, (manter) paz.\"\n}\n```",
+    {
+        "ID": "g4623",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "guardar silêncio, ficar em silêncio, seja voluntariamente ou involuntariamente.",
+        "ORIGIN": "Do siope (silêncio, ou seja, um silêncio; propriamente, mudez, ou seja, imobilidade involuntária, ou incapacidade de falar; e assim diferindo de sige, que é mais uma recusa voluntária ou indisposição para falar, embora os termos sejam frequentemente usados como sinônimos); ficar mudo (mas não surdo também, como kophos propriamente); figurativamente, ficar calmo (como água tranquila).",
+        "USAGE": "mudo, (manter) paz."
+    },
     {
         "ID": "g4624",
         "PART_OF_SPEECH": "Verbo",
@@ -32114,7 +32426,7 @@
     {
         "ID": "g4734",
         "PART_OF_SPEECH": "Substantivo, Masculino",
-        "DEFINITION": "\"coroado\",  Stephanas, um cristão em Corinto.",
+        "DEFINITION": "\"coroado\", Stephanas, um cristão em Corinto.",
         "ORIGIN": "Provavelmente uma contração de stephanotos (coroado; de stephanoo); Stephanas, um cristão.",
         "USAGE": "Stephanas."
     },
@@ -32146,7 +32458,13 @@
         "ORIGIN": "De histemi (como ficando proeminente); o (inteiro externo) seio, ou seja, torso.",
         "USAGE": "peito."
     },
-    "```json\n{\n    \"ID\": \"g4739\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"manter-se firme, permanecer firme, perseverar.\",\n    \"ORIGIN\": \"Do tempo perfeito de histemi; estar estacionário, ou seja, (figurativamente) perseverar.\",\n    \"USAGE\": \"manter-se firme.\"\n}\n```",
+    {
+        "ID": "g4739",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "manter-se firme, permanecer firme, perseverar.",
+        "ORIGIN": "Do tempo perfeito de histemi; estar estacionário, ou seja, (figurativamente) perseverar.",
+        "USAGE": "manter-se firme."
+    },
     {
         "ID": "g4740",
         "PART_OF_SPEECH": "Substantivo, Masculino",
@@ -33281,7 +33599,13 @@
         "ORIGIN": "De sun e epimartureo; testemunhar em conjunto, isto é, unir-se para adicionar evidências.",
         "USAGE": "também dar testemunho."
     },
-    "{\n    \"ID\": \"g4902\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"acompanhar, seguir com.\",\n    \"ORIGIN\": \"Voz média do sūn e um primário hep",
+    {
+        "ID": "g4902",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "acompanhar, seguir com.",
+        "ORIGIN": "Voz média de sun e de uma raiz primária hepo (seguir); estar presente (viajar) em companhia de.",
+        "USAGE": "acompanhar"
+    },
     {
         "ID": "g4903",
         "PART_OF_SPEECH": "Verbo",
@@ -33387,7 +33711,13 @@
         "ORIGIN": "Do grego sun e thlao (esmagar); chocar-se, ou seja, despedaçar.",
         "USAGE": "quebrar"
     },
-    "```python\n{\n  \"ID\": \"g4918\",\n  \"PART_OF_SPEECH\": \"Verbo\",\n  \"DEFINITION\": \"pressionar de todos os lados, aglomerar-se.\",\n  \"ORIGIN\": \"De sun e thlibo; comprimir, ou seja, aglomerar de todos os lados.\",\n  \"USAGE\": \"multidão.\"\n}\n```",
+    {
+        "ID": "g4918",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "pressionar de todos os lados, aglomerar-se.",
+        "ORIGIN": "De sun e thlibo; comprimir, ou seja, aglomerar de todos os lados.",
+        "USAGE": "multidão."
+    },
     {
         "ID": "g4919",
         "PART_OF_SPEECH": "Verbo",
@@ -33402,7 +33732,13 @@
         "ORIGIN": "Do grego sun e hiemi (enviar); reunir, ou seja, (mentalmente) compreender; por implicação, agir piedosamente.",
         "USAGE": "considerar, entender, ser sábio."
     },
-    "```python\n{\n    \"ID\": \"g4921\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"colocar juntos, recomendar, comprovar, exibir; intransitivo: estar com; ser composto de, coeso.\",\n    \"ORIGIN\": \"Ou (reforçado) sunistano (soon-is-tan'-o), ou sunistemi (soon-is'-tay-mee) de sun e histemi (incluindo suas formas colaterais); colocar juntos, ou seja, (por implicação) introduzir (favoravelmente) ou (figurativamente) exibir; intransitivo, ficar perto, ou (figurativamente) constituir.\",\n    \"USAGE\": \"aprovar, recomendar, consistir, fazer, estar (com).\"\n}\n```",
+    {
+        "ID": "g4921",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "colocar juntos, recomendar, comprovar, exibir; intransitivo: estar com; ser composto de, coeso.",
+        "ORIGIN": "Ou (reforçado) sunistano (soon-is-tan'-o), ou sunistemi (soon-is'-tay-mee) de sun e histemi (incluindo suas formas colaterais); colocar juntos, ou seja, (por implicação) introduzir (favoravelmente) ou (figurativamente) exibir; intransitivo, ficar perto, ou (figurativamente) constituir.",
+        "USAGE": "aprovar, recomendar, consistir, fazer, estar (com)."
+    },
     {
         "ID": "g4922",
         "PART_OF_SPEECH": "Verbo",
@@ -33522,7 +33858,13 @@
         "ORIGIN": "De suntribo; concussão ou fratura total (corretamente, concretamente), ou seja, ruína completa.",
         "USAGE": "destruição."
     },
-    "{\n    \"ID\": \"g4939\",\n    \"PART_OF_SPEECH\": \"Adjetivo\",\n    \"DEFINITION\": \"alguém que foi criado com, um irmão adotivo ou amigo íntimo.\",\n    \"ORIGIN\": \"Do grego \"sun\" (com) e \"trophos\" (em um sentido passivo); um companheiro de enfermagem, ou seja, colega.\",\n    \"USAGE\": \"criado com\"\n}",
+    {
+        "ID": "g4939",
+        "PART_OF_SPEECH": "Adjetivo",
+        "DEFINITION": "alguém que foi criado com, um irmão adotivo ou amigo íntimo.",
+        "ORIGIN": "Do grego \"sun\" (com) e \"trophos\" (em um sentido passivo); um companheiro de enfermagem, ou seja, colega.",
+        "USAGE": "criado com"
+    },
     {
         "ID": "g4940",
         "PART_OF_SPEECH": "Verbo",
@@ -34055,7 +34397,13 @@
         "ORIGIN": "De afinidade incerta; agitar ou mexer (água agitada).",
         "USAGE": "incomodar."
     },
-    "```python\n{\n    \"ID\": \"g5016\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"uma perturbação, tumulto, sedição, problema.\",\n    \"ORIGIN\": \"Feminino de tarasso; perturbação, ou seja, (da água) agitação, ou (de uma multidão) sedição.\",\n    \"USAGE\": \"problema, incomodar.\"\n}\n```",
+    {
+        "ID": "g5016",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "uma perturbação, tumulto, sedição, problema.",
+        "ORIGIN": "Feminino de tarasso; perturbação, ou seja, (da água) agitação, ou (de uma multidão) sedição.",
+        "USAGE": "problema, incomodar."
+    },
     {
         "ID": "g5017",
         "PART_OF_SPEECH": "Substantivo, Masculino",
@@ -34329,7 +34677,13 @@
         "ORIGIN": "Do grego telos; terminar, isto é, completar, executar, concluir, liquidar (uma dívida).",
         "USAGE": "realizar, concluir, expirar, preencher, finalizar, revisar, pagar, executar."
     },
-    "```json\n{\n    \"ID\": \"g5056\",\n    \"PART_OF_SPEECH\": \"Substantivo, Neutro\",\n    \"DEFINITION\": \"(a) um fim, (b) evento ou questão, (c) o fim principal, alvo, propósito, (d) um imposto.\",\n    \"ORIGIN\": \"De um tello primário (para partir em direção a um ponto ou objetivo definido); corretamente, o ponto visado como um limite, ou seja, (por implicação) a conclusão de um ato ou estado (terminação (literal, figurativa ou indefinidamente), resultado (imediato, último ou profético), propósito); especialmente, um imposto ou taxa (como pago).\",\n    \"USAGE\": \"+ contínuo, costume, fim(-indo), finalmente, extremo. Comparar phoros.\"\n}\n```",
+    {
+        "ID": "g5056",
+        "PART_OF_SPEECH": "Substantivo, Neutro",
+        "DEFINITION": "(a) um fim, (b) evento ou questão, (c) o fim principal, alvo, propósito, (d) um imposto.",
+        "ORIGIN": "De um tello primário (para partir em direção a um ponto ou objetivo definido); corretamente, o ponto visado como um limite, ou seja, (por implicação) a conclusão de um ato ou estado (terminação (literal, figurativa ou indefinidamente), resultado (imediato, último ou profético), propósito); especialmente, um imposto ou taxa (como pago).",
+        "USAGE": "+ contínuo, costume, fim(-indo), finalmente, extremo. Comparar phoros."
+    },
     {
         "ID": "g5057",
         "PART_OF_SPEECH": "Substantivo, Masculino",
@@ -34379,7 +34733,13 @@
         "ORIGIN": "De tessarakonta e etos; de quarenta anos de idade.",
         "USAGE": "(+ completo, de) quarenta anos (de idade)."
     },
-    "```python\n{\n    \"ID\": \"g5064\",\n    \"PART_OF_SPEECH\": \"Adjetivo\",\n    \"DEFINITION\": \"quatro.\",\n    \"ORIGIN\": \"Ou neutro tessara (tes'-sar-ah) um número plural; quatro.\",\n    \"USAGE\": \"quatro.\"\n}\n```",
+    {
+        "ID": "g5064",
+        "PART_OF_SPEECH": "Adjetivo",
+        "DEFINITION": "quatro.",
+        "ORIGIN": "Ou neutro tessara (tes'-sar-ah) um número plural; quatro.",
+        "USAGE": "quatro."
+    },
     {
         "ID": "g5065",
         "PART_OF_SPEECH": "Adjetivo",
@@ -35605,7 +35965,13 @@
         "ORIGIN": "De huper e ekteino; estender excessivamente.",
         "USAGE": "esticar além."
     },
-    "```json\n{\n    \"ID\": \"g5240\",\n    \"PART_OF_SPEECH\": \"Verbo\",\n    \"DEFINITION\": \"derramar de forma que transborda\",\n    \"ORIGIN\": \"De huper e a forma alternativa de ekcheo; derramar sobre, isto é, (passivamente) transbordar\",\n    \"USAGE\": \"transbordar\"\n}\n```",
+    {
+        "ID": "g5240",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "derramar de forma que transborda",
+        "ORIGIN": "De huper e a forma alternativa de ekcheo; derramar sobre, isto é, (passivamente) transbordar",
+        "USAGE": "transbordar"
+    },
     {
         "ID": "g5241",
         "PART_OF_SPEECH": "Verbo",
@@ -37678,7 +38044,13 @@
         "ORIGIN": "Algo útil ou necessário, ou seja, Riqueza, preço.",
         "USAGE": "dinheiro, riquezas."
     },
-    "```python\n{\n  \"ID\": \"g5537\",\n  \"PART_OF_SPEECH\": \"Verbo\",\n  \"DEFINITION\": \"(originalmente: transacionar negócios), (a) ato de Deus: advertir; passiva: ser advertido por Deus (provavelmente em resposta a uma indagação sobre o dever de alguém), (b) (retirar um nome dos negócios públicos, daí) receber um nome, ser chamado publicamente.\",\n  \"ORIGIN\": \"De chrema; proferir um oráculo (comparar com o sentido original de chraomai), ou seja, intimar divinamente; por implicação, (comparar com o sentido secular de chreia) constituir uma firma para negócios, ou seja, (geralmente) usar como título.\",\n  \"USAGE\": \"ser chamado, ser advertido por Deus, revelar, falar.\"\n}\n```",
+    {
+        "ID": "g5537",
+        "PART_OF_SPEECH": "Verbo",
+        "DEFINITION": "(originalmente: transacionar negócios), (a) ato de Deus: advertir; passiva: ser advertido por Deus (provavelmente em resposta a uma indagação sobre o dever de alguém), (b) (retirar um nome dos negócios públicos, daí) receber um nome, ser chamado publicamente.",
+        "ORIGIN": "De chrema; proferir um oráculo (comparar com o sentido original de chraomai), ou seja, intimar divinamente; por implicação, (comparar com o sentido secular de chreia) constituir uma firma para negócios, ou seja, (geralmente) usar como título.",
+        "USAGE": "ser chamado, ser advertido por Deus, revelar, falar."
+    },
     {
         "ID": "g5538",
         "PART_OF_SPEECH": "Substantivo, Masculino",
@@ -37840,7 +38212,13 @@
         "ORIGIN": "Aparentemente uma palavra primária; \"manco\", ou seja, mancando.",
         "USAGE": "aleijado, coxo, manco."
     },
-    "```python\n{\n    \"ID\": \"g5561\",\n    \"PART_OF_SPEECH\": \"Substantivo, Feminino\",\n    \"DEFINITION\": \"(a) um país ou região, (b) a terra, em oposição ao mar, (c) o campo, distinto da cidade, (d) pl.: campos.\",\n    \"ORIGIN\": \"Feminino de um derivado da base de chasma através da ideia de extensão vazia; espaço, ou seja, um território (mais ou menos extenso; frequentemente incluindo seus habitantes).\",\n    \"USAGE\": \"costa, condado, campos, solo, terra, região. Comparar com topos.\"\n}\n```",
+    {
+        "ID": "g5561",
+        "PART_OF_SPEECH": "Substantivo, Feminino",
+        "DEFINITION": "(a) um país ou região, (b) a terra, em oposição ao mar, (c) o campo, distinto da cidade, (d) pl.: campos.",
+        "ORIGIN": "Feminino de um derivado da base de chasma através da ideia de extensão vazia; espaço, ou seja, um território (mais ou menos extenso; frequentemente incluindo seus habitantes).",
+        "USAGE": "costa, condado, campos, solo, terra, região. Comparar com topos."
+    },
     {
         "ID": "g5562",
         "PART_OF_SPEECH": "Verbo",

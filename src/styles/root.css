@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp");
 /* ========== ROOT VARIABLES ========== */
 
 :root {
@@ -43,6 +43,7 @@
     --text-primary: #ffffff;
     --text-secondary: #e0e0e0;
     --accent: #64b5f6;
+    --accent-variable: #64f6a6;
     --shadow: rgba(0, 0, 0, 0.2);
     --gradient: linear-gradient(135deg, #4a90e2, #34495e);
 }
@@ -105,10 +106,7 @@ body {
     z-index: 2;
 }
 
-.but-home {
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
+.action-but-class {    
     background: var(--accent) !important;
     border: none;
     padding: 0.8rem;
@@ -122,5 +120,32 @@ body {
     transition: all 0.3s ease;
     width: 45px;
     height: 45px;
+    
+}
+
+.action-but-content {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
     z-index: 1;
+    padding: .5rem;
+    border-radius: 1.2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: .5rem;
+    /* background-color: #0a3fcd; */
+}
+
+.action-but-class:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    background: var(--text-primary);
+}
+
+.success {
+    color: var(--color-success);
+    background-color: green!important;
 }

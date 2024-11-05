@@ -86,7 +86,7 @@
             border-radius: 15px;
             padding: 2rem;
             transition: all 0.3s ease;
-            cursor: pointer;
+            /* cursor: pointer; */
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -188,31 +188,7 @@
             fill: var(--accent);
         }
 
-        .theme-toggle {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: var(--accent) !important;
-            border: none;
-            padding: 0.8rem;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            width: 45px;
-            height: 45px;
-            z-index: 1;
-        }
-
-        .theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
-            background: var(--text-primary);
-        }
+        
 
         @keyframes moduleFloat {
 
@@ -270,32 +246,33 @@
         <div class="clip-path"></div>
         <div class="clip-path"></div>
     </div>
-    <a href="../../../index.html" class="but-home">
-        <span class="material-symbols-sharp">home</span>
-    </a>
-    <button class="theme-toggle" aria-label="Toggle theme">
-        <!-- <div class="theme-icon"> -->
-        <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" style="display: none;">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        <!-- </div> -->
-    </button>
-
+    <div class="action-but-content">
+        <a href="../../../index.html" class="action-but-class">
+            <span class="material-symbols-sharp">home</span>
+        </a>
+        <button id="theme-toggle" class="action-but-class" aria-label="Toggle theme">
+            <!-- <div class="theme-icon"> -->
+            <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="display: none;">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <!-- </div> -->
+        </button>
+    </div>
     <div class="container">
         <header class="header">
             <h1 class="title">Koiné Grego</h1>
@@ -312,38 +289,27 @@
         const modulesData = {
             modules: [
                 {
-                    title: "Módulo 1: O Alfabeto Grego Koiné",
-                    description: "Fundamentos essenciais para começar sua jornada",
+                    title: "Introdução ao Grego Koiné e ao Novo Testamento",
+                    id: 1,
+                    description: "Fundamentos históricos essenciais para começar sua jornada",
                     lessons: [
-                        "1.1 Visão Geral do Alfabeto",
-                        "1.2 Vogais e Consoantes",
-                        "1.3 Dicas de Pronúncia",
-                        "1.4 Exercício Virtual",
-                        "1.5 Exercícios Práticos"
+                        {
+                            id: "1a",
+                            lession: "História e Contexto do Grego Koiné: Origens e Diferenças em Relação ao Grego Clássico.",
+                            lession_link: "/src/html/conteudo/introducao/historia.html",
+                        },
+                        {   
+                            id: "1b",
+                            lession: "O grego do Novo Testamento: Contexto histórico, influências linguísticas, e o koiné em diferentes textos.",
+                            lession_link: "/src/html/conteudo/introducao/novo_testamento.html",
+                        },
+                        {   
+                            id: "1c",
+                            lession: "Importância da exegese e hermenêutica: Aplicação da gramática para interpretação bíblica.",
+                            lession_link: "/src/html/conteudo/introducao/importancia.html",
+                        }
                     ],
-                    lession_link: "/src/html/conteudo/alfabeto/cap_1_alfabeto.html",
-                    progress: 0
-                },
-                {
-                    title: "Módulo 2: Substantivos e Artigos",
-                    description: "Aprenda sobre gênero, número e caso",
-                    lessons: [
-                        "Casos Nominais",
-                        "Artigos Definidos",
-                        "1ª e 2ª Declinações",
-                        "Exercícios Práticos"
-                    ],
-                    progress: 0
-                },
-                {
-                    title: "Módulo 3: Verbos - Tempo Presente",
-                    description: "Introdução aos verbos gregos",
-                    lessons: [
-                        "Conjugação no Presente",
-                        "Verbos -ω",
-                        "Verbos -μι",
-                        "Prática de Tradução"
-                    ],
+                    
                     progress: 0
                 }
             ]
@@ -356,14 +322,16 @@
             data.modules.forEach((module, index) => {
                 const moduleHTML = `
                 <div class="module">
-                    <a href="${module.lession_link}"></a>
+                    
                     <h2>${module.title}</h2>
                     <p>${module.description}</p>
                     <ul class="lessons">
                     ${module.lessons.map(lesson => `
-                        <li class="lesson">
-                        <span class="lesson-status"></span>${lesson}
+                        <li data-id="${lesson.id}" class="lesson">
+                        <span class="lesson-status"></span>${lesson.lession}
+                        <a href="${lesson.lession_link}"></a>
                         </li>
+                        
                     `).join('')}
                     </ul>
                     <div class="progress-bar">
@@ -376,11 +344,13 @@
 
             // Add click events to lessons
             document.querySelectorAll('.lesson').forEach(lesson => {
-                lesson.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    this.classList.toggle('completed');
-                    updateModuleProgress(this.closest('.module'));
-                });
+                console.log(lesson);
+                
+                if (localStorage.getItem("check"+lesson.dataset.id)== "true") {
+                    /* e.stopPropagation(); */
+                    lesson.classList.toggle('completed');
+                    updateModuleProgress(lesson.closest('.module'));
+                };
             });
         }
 
@@ -396,7 +366,7 @@
             progressBar.style.width = `${progress}%`;
         }
 
-        const themeSwitch = document.querySelector('.theme-toggle');
+        const themeSwitch = document.querySelector('#theme-toggle');
         const sunIcon = themeSwitch.querySelector('.sun');
         const moonIcon = themeSwitch.querySelector('.moon');
         let isDark = false;

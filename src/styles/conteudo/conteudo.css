@@ -4,14 +4,16 @@ body {
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
+    height: fit-content;
 }
 
 header {
     text-align: center;
-    padding: 2rem;
-    background-color: #032776;
-    color: var(--color-white);
-    height: calc(15% - 4rem);
+    padding: 1rem;
+    background: var(--bg-secondary);
+    box-shadow: 0 4px 20px var(--shadow);
+    color: var(--text-primary);
+    height: fit-content;
 }
 
 h1 {
@@ -22,47 +24,21 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    height: fit-content;
+    min-height: 80%;
     padding: 1rem;
-    max-width: 80%;
-    width: 80%;
-    background-color: var(--color-dark);
-    border-radius: 10px;
-}
-
-.card {
-    background-color: var(--color-white);
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 15px;
-    padding: 20px;
-    width: 250px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    border-radius: 10px;   
+    /* overflow: auto;  */
 }
 
 footer {
     text-align: center;
     padding: 1rem;
-    background-color: #032776;
-    color: var(--color-white);
-    position: relative;
-    bottom: 0;
-    height: calc(5% - 2rem);
-    width: calc(100% - 2rem);
+    background: var(--bg-secondary);
+    box-shadow: 0 4px 20px var(--shadow);
+    color: var(--text-primary);
+    height: fit-content;
+    width: calc(100%);
+    overflow: hidden;
 }

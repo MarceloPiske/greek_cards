@@ -27,3 +27,15 @@ function check_color() {
     }
 }
 check_color()
+
+const themeSwitch = document.querySelector('#theme-toggle');
+        const sunIcon = themeSwitch.querySelector('.sun');
+        const moonIcon = themeSwitch.querySelector('.moon');
+        let isDark = false;
+
+        themeSwitch.addEventListener('click', () => {
+            isDark = !isDark;
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            sunIcon.style.display = isDark ? 'block' : 'none';
+            moonIcon.style.display = isDark ? 'none' : 'block';
+        });

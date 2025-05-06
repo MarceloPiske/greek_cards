@@ -2,8 +2,8 @@
  * Módulo para UI de trilhas de estudo 
  */
 
-import { loadProgress } from '/indexedDB.js';
-import { showToast } from '/src/js/utils/toast.js';
+import { loadProgress } from 'indexedDB.js';
+import { showToast } from 'src/js/utils/toast.js';
 
 // Gera o HTML de um módulo da trilha
 export function gerarHTMLModulo(trilha, index, container) {
@@ -210,7 +210,7 @@ export function atualizarUIModulo(modulo, progresso, index) {
 // Verifica quantas atividades existem no módulo
 export async function verificarModuloCompleto(moduloId) {
     try {
-        const response = await fetch(`/trilhas/${moduloId}.json`);
+        const response = await fetch(`trilhas/${moduloId}.json`);
         if (response.ok) {
             const data = await response.json();
             return data.trilha ? data.trilha.length : 5;

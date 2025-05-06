@@ -16,7 +16,7 @@ import {
 // Carrega a trilha de estudo
 async function carregarTrilha(trilhaId = 'modulo_1') {
     try {
-        const response = await fetch(`/trilhas/${trilhaId}.json`);
+        const response = await fetch(`trilhas/${trilhaId}.json`);
         if (!response.ok) {
             throw new Error('Não foi possível carregar a trilha');
         }

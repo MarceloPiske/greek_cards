@@ -2,7 +2,7 @@
  * Módulo para carregamento e gerenciamento de trilhas de estudo
  */
 
-import { loadProgress } from '/indexedDB.js';
+import { loadProgress } from 'indexedDB.js';
 
 // Função para obter informações sobre todas as trilhas disponíveis
 export async function carregarTrilhasDisponiveis() {

@@ -2,8 +2,8 @@
  * Módulo para UI de trilhas de estudo 
  */
 
-import { loadProgress } from 'indexedDB.js';
-import { showToast } from 'src/js/utils/toast.js';
+import { loadProgress } from '../../../indexedDB.js';
+import { showToast } from '../utils/toast.js';
 
 // Gera o HTML de um módulo da trilha
 export function gerarHTMLModulo(trilha, index, container) {

@@ -1,257 +1,24 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Koiné Grego - Trilha de Estudos</title>
+    <title>Trilhas de Estudo - Koiné</title>
     <link rel="icon" href="../../../img/icon.svg" type="image/png">
-
-    <link rel="stylesheet" href="../../styles/root.css">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
-
-    <style>
-        body {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.1;
-        }
-
-        .clip-path {
-            position: absolute;
-            background: var(--accent);
-            animation: morphing 15s ease-in-out infinite;
-        }
-
-        .clip-path:nth-child(1) {
-            top: -50%;
-            left: -50%;
-            width: 100%;
-            height: 100%;
-            animation-delay: -5s;
-        }
-
-        .clip-path:nth-child(2) {
-            top: 50%;
-            right: -50%;
-            width: 80%;
-            height: 80%;
-            animation-delay: -10s;
-        }
-
-        .header {
-            text-align: center;
-            padding: 2rem 0;
-            border-bottom: 2px solid var(--accent);
-            margin-bottom: 2rem;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .learning-path {
-            display: flex;
-            gap: 2rem;
-            /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
-            /* perspective: 1000px; */
-            flex-wrap: nowrap;
-            justify-content: space-around;
-            flex-direction: column;
-        }
-
-        .module {
-            background: var(--bg-secondary);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            /* cursor: pointer; */
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: stretch;
-            flex-wrap: nowrap;
-        }
-
-        .module:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .module h2 {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .module p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
-        }
-
-        .module a {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 12px;
-            background: rgba(42, 53, 72, 0.3);
-            border-radius: 8px;
-            margin-top: 1.5rem;
-            overflow: hidden;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-        }
-
-        .progress {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), #57cbff);
-            transition: width 0.5s ease;
-        }
-
-        .lessons {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .lesson {
-            display: flex;
-            align-items: center;
-            margin: 0.8rem 0;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            backdrop-filter: blur(5px);
-            background: var(--bg-primary-opacity);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .lesson:hover {
-            transform: translateX(10px) scale(1.02);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .lesson-status {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            margin-right: 1rem;
-            background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(100, 255, 218, 0.3);
-        }
-
-        .completed .lesson-status {
-            background: var(--color-success);
-            border-color: var(--color-success);
-            transform: scale(1.1);
-        }
-
-        .achievement-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 30px;
-            height: 30px;
-            fill: var(--accent);
-        }
-
-        
-
-        @keyframes moduleFloat {
-
-            0%,
-            100% {
-                transform: translateY(0) rotateX(0);
-            }
-
-            50% {
-                transform: translateY(-10px) rotateX(2deg);
-            }
-        }
-
-        @keyframes morphing {
-            0% {
-                border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
-            }
-
-            50% {
-                border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
-            }
-
-            100% {
-                border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            .module {
-                padding: 1rem;
-            }
-            .module h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        .header .title {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-        }
-    </style>
-
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/src/styles/root.css">
+    <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="/css/trilha.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
 </head>
-
 <body>
-    <div class="animated-bg">
-        <div class="clip-path"></div>
-        <div class="clip-path"></div>
-    </div>
-    <div class="action-but-content">
-        <a href="../../../index.html" class="action-but-class">
-            <span class="material-symbols-sharp">home</span>
-        </a>
-        <button id="theme-toggle" class="action-but-class" aria-label="Toggle theme">
-            <!-- <div class="theme-icon"> -->
+    <header class="header" role="banner" style="padding: 2rem;">
+        <div class="action-but-content">
+            <button class="action-but-class" id="back-button">
+                <span class="material-symbols-sharp">arrow_back</span>
+            </button>
+        </div>
+        <button class="theme-switch" aria-label="Alternar tema claro/escuro">
             <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" style="display: none;">
@@ -270,142 +37,57 @@
                 stroke-linejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
-            <!-- </div> -->
         </button>
-    </div>
-    <div class="container">
-        <header class="header">
-            <h1 class="title">Koiné Grego</h1>
-            <h2>Jornada de Aprendizado</h2>
-            <p>Sua trilha personalizada para dominar o grego koiné</p>
-        </header>
+        <h1 class="logo">Trilhas de Estudo</h1>
+        <p class="welcome-text" role="doc-introduction">
+            Escolha uma das trilhas de estudo abaixo para começar sua jornada no aprendizado do grego Koiné.
+        </p>
+    </header>
 
-        <div class="learning-path" id="learning-path">
-            <!-- Modules will be inserted here -->
+    <main class="main-content" role="main">
+        <section class="trilhas-section">
+            <div class="trilha-container" id="trilhas-container">
+                <div class="trilha-timeline" id="trilha-timeline">
+                    <!-- Conteúdo será gerado dinamicamente via JavaScript -->
+                    <div class="loading-trilhas">
+                        <span class="material-symbols-sharp loading-icon">sync</span>
+                        <p>Carregando trilhas de estudo...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="moduloInfoModal">
+        <div class="modal-content modulo-info-content">
+            <button class="close-modal">&times;</button>
+            <h2 id="modulo-info-titulo">Título do Módulo</h2>
+            <div class="modulo-descricao" id="modulo-info-descricao">
+                Descrição do módulo aparecerá aqui.
+            </div>
+            <div class="modulo-stats">
+                <div class="stat-item">
+                    <span class="material-symbols-sharp">assignment</span>
+                    <span id="modulo-info-atividades">0 atividades</span>
+                </div>
+                <div class="stat-item">
+                    <span class="material-symbols-sharp">schedule</span>
+                    <span id="modulo-info-tempo">15 min</span>
+                </div>
+            </div>
+            <div class="modulo-acoes">
+                <button id="modulo-iniciar" class="modulo-acao-btn primary">
+                    <span class="material-symbols-sharp">play_arrow</span> Iniciar módulo
+                </button>
+                <button id="modulo-info" class="modulo-acao-btn secondary">
+                    <span class="material-symbols-sharp">info</span> Mais informações
+                </button>
+            </div>
         </div>
     </div>
 
-    <script>
-        const modulesData = {
-            modules: [
-                {
-                    title: "Introdução ao Grego Koiné e ao Novo Testamento",
-                    id: 1,
-                    description: "Fundamentos históricos essenciais para começar sua jornada",
-                    lessons: [
-                        {
-                            id: "1a",
-                            lession: "História e Contexto do Grego Koiné: Origens e Diferenças em Relação ao Grego Clássico.",
-                            lession_link: "../../html/conteudo/introducao/historia.html",
-                        },
-                        {   
-                            id: "1b",
-                            lession: "O grego do Novo Testamento: Contexto histórico, influências linguísticas, e o koiné em diferentes textos.",
-                            lession_link: "../../html/conteudo/introducao/novo_testamento.html",
-                        },
-                        {   
-                            id: "1c",
-                            lession: "Importância da exegese e hermenêutica: Aplicação da gramática para interpretação bíblica.",
-                            lession_link: "../../html/conteudo/introducao/importancia.html",
-                        }
-                    ],
-                    
-                    progress: 0
-                }
-            ]
-        };
-
-        function renderModules(data) {
-            const learningPath = document.getElementById('learning-path');
-            learningPath.innerHTML = '';
-
-            data.modules.forEach((module, index) => {
-                const moduleHTML = `
-                <div class="module">
-                    
-                    <h2>${module.title}</h2>
-                    <p>${module.description}</p>
-                    <ul class="lessons">
-                    ${module.lessons.map(lesson => `
-                        <li data-id="${lesson.id}" class="lesson">
-                        <span class="lesson-status"></span>${lesson.lession}
-                        <a href="${lesson.lession_link}"></a>
-                        </li>
-                        
-                    `).join('')}
-                    </ul>
-                    <div class="progress-bar">
-                    <div class="progress" style="width: ${module.progress}%"></div>
-                    </div>
-                </div>
-                `;
-                learningPath.insertAdjacentHTML('beforeend', moduleHTML);
-            });
-
-            // Add click events to lessons
-            document.querySelectorAll('.lesson').forEach(lesson => {
-                console.log(lesson);
-                
-                if (localStorage.getItem("check"+lesson.dataset.id)== "true") {
-                    /* e.stopPropagation(); */
-                    lesson.classList.toggle('completed');
-                    updateModuleProgress(lesson.closest('.module'));
-                };
-            });
-        }
-
-        function updateModuleProgress(moduleElement) {
-            const lessons = moduleElement.querySelectorAll('.lesson');
-            const progressBar = moduleElement.querySelector('.progress');
-
-            const completedCount = [...lessons].filter(lesson =>
-                lesson.classList.contains('completed')
-            ).length;
-
-            const progress = (completedCount / lessons.length) * 100;
-            progressBar.style.width = `${progress}%`;
-        }
-
-        const themeSwitch = document.querySelector('#theme-toggle');
-        const sunIcon = themeSwitch.querySelector('.sun');
-        const moonIcon = themeSwitch.querySelector('.moon');
-        let isDark = false;
-
-        themeSwitch.addEventListener('click', () => {
-            isDark = !isDark;
-            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-            sunIcon.style.display = isDark ? 'block' : 'none';
-            moonIcon.style.display = isDark ? 'none' : 'block';
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            /* const savedTheme = localStorage.getItem('theme') || 'ligth';
-            const root = document.documentElement;
-
-            if (savedTheme === 'dark') {
-                root.setAttribute('data-theme', 'ligth');
-            } else {
-                root.removeAttribute('data-theme');
-            } */
-
-            // Render initial modules
-            renderModules(modulesData);
-        });
-
-        // Function to add new module
-        function addModule(moduleData) {
-            modulesData.modules.push(moduleData);
-            renderModules(modulesData);
-        }
-
-        // Example usage:
-        // addModule({
-        //   title: "Módulo 4: Novo Módulo",
-        //   description: "Descrição do novo módulo",
-        //   lessons: ["Lição 1", "Lição 2", "Lição 3"],
-        //   progress: 0
-        // });
-    </script>
+    <script src="/app.js"></script>
+    <script type="module" src="/indexedDB.js"></script>
+    <script type="module" src="/src/js/trilhas/app.js"></script>
 </body>
-
 </html>

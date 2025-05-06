@@ -1,0 +1,20 @@
+[
+  {
+    "id": "modulo_1",
+    "titulo": "Contexto Histórico do Grego Koiné",
+    "descricao": "Primeiros passos no estudo do grego bíblico, incluindo vocabulário básico e leitura interlinear.",
+    "icone": "school",
+    "tempoEstimado": "35 min",
+    "numeroAtividades": 4,
+    "nivel": "iniciante"
+  },
+  {
+    "id": "modulo_2",
+    "titulo": "Alfabeto e Pronúncia",
+    "descricao": "Aprenda a reconhecer e pronunciar as letras do alfabeto grego, a base para ler textos originais.",
+    "icone": "abc",
+    "tempoEstimado": "35 min",
+    "numeroAtividades": 3,
+    "nivel": "iniciante"
+  }
+]

@@ -1,0 +1,482 @@
+/* Leitor de Trilhas Styles */
+header {
+    background: var(--bg-primary);
+    padding: 2rem;
+    height: fit-content;
+    width: 100%;
+    min-height: 14vh;
+    /* border-radius: 20px; */
+    display: flex;
+    box-shadow: 0 10px 30px var(--shadow);
+    margin-bottom: 2rem;
+    position: relative;
+}
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background-color: var(--bg-secondary);
+    margin: 1rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.verificar-resposta {
+    background: var(--bg-secondary);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--gradient);
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+#activity-container {
+    margin: 1rem 0;
+    min-height: 300px;
+}
+
+.activity-card {
+    background: var(--bg-secondary);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow);
+    margin-bottom: 3rem;
+    position: relative;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    border-top: 5px solid var(--accent);
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px var(--shadow);
+}
+
+.activity-title {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    position: relative;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.activity-title .activity-number {
+    background: var(--accent);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.instrucoes {
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    background: var(--bg-primary);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    border-left: 5px solid var(--accent);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+/* Vocabulário */
+.vocabulario-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2.5rem 0;
+}
+
+.vocabulario-item {
+    padding: 2rem;
+    background: var(--bg-primary);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.vocabulario-item::after {
+    content: '';
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background: var(--accent);
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.vocabulario-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px var(--shadow);
+}
+
+.vocabulario-item:hover::after {
+    transform: scaleX(1);
+}
+
+.grego-palavra {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.translit-palavra {
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    font-style: italic;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.significado-palavra {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding-top: 0.8rem;
+    border-top: 1px dashed var(--shadow);
+    margin-top: auto;
+}
+
+/* Interlinear */
+.interlinear-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+    align-items: stretch;
+    justify-content: center;
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: inset 0 2px 10px var(--shadow);
+}
+
+.versiculo-referencia {
+    font-weight: bold;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem 2rem;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 5px 15px var(--shadow);
+    border-left: 5px solid var(--accent);
+    color: var(--text-primary);
+}
+
+.interlinear-palavra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    min-width: 120px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.interlinear-palavra::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.interlinear-palavra:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px var(--shadow);
+}
+
+.interlinear-palavra:hover::before {
+    opacity: 1;
+}
+
+.grego-original {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.morfologia-tag {
+    font-size: 0.75rem;
+    background: var(--accent);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 10px rgba(74, 144, 226, 0.3);
+}
+
+.traducao-palavra {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* Quiz */
+.quiz-pergunta {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.quiz-alternativas {
+    margin-bottom: 1.5rem;
+}
+
+.alternativa-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.alternativa-item:hover {
+    background: var(--shadow);
+}
+
+.quiz-resultado {
+    margin-top: 1.5rem;
+}
+
+.sucesso {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.erro {
+    color: #F44336;
+    font-weight: bold;
+}
+
+/* Botões de navegação */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+}
+
+.nav-button {
+    padding: 0.8rem 1.5rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.nav-button:disabled {
+    background: var(--shadow);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Botão de marcar como concluído */
+.mark-complete {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    border-radius: 35px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    margin-top: 3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mark-complete:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(74, 144, 226, 0.5);
+}
+
+.mark-complete:active {
+    transform: translateY(2px);
+}
+
+.mark-complete span {
+    font-size: 1.5rem;
+}
+
+/* Badge de atividade concluída */
+.completed-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    background-color: rgba(74, 144, 226, 0.1);
+    color: var(--accent);
+    padding: 1.2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: 1px dashed var(--accent);
+}
+
+.completed-badge span {
+    font-size: 1.5rem;
+    color: #4CAF50;
+}
+
+/* Module Completion Modal */
+.conclusao-content {
+    text-align: center;
+}
+
+.conclusao-header {
+    margin-bottom: 1.5rem;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.conclusao-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-item .material-symbols-sharp {
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+.conclusao-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.conclusao-button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.conclusao-button.primary {
+    background: var(--accent);
+    color: white;
+}
+
+.conclusao-button.secondary {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--accent);
+}
+
+.conclusao-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+/* Loading and error states */
+.loading, .error-message {
+    text-align: center;
+    padding: 2rem;
+}
+
+.error-message h3 {
+    color: #F44336;
+    margin-bottom: 1rem;
+}
+
+.error-message button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+#conteudo {
+    padding: 2rem;
+    background: var(--bg-primary);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow);
+    margin-bottom: 3rem;
+}
+/* Adaptações para mobile */
+@media (max-width: 768px) {
+    .vocabulario-lista {
+        grid-template-columns: 1fr;
+    }
+    
+    .interlinear-container {
+        flex-direction: column;
+    }
+    
+    .interlinear-palavra {
+        width: 100%;
+    }
+}

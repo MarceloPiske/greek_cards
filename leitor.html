@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitor de Trilhas - Koiné</title>
+    <link rel="icon" href="../img/icon.svg" type="image/png">
+    <link rel="stylesheet" href="/src/styles/root.css">
+    <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="/styles.css">
+    
+    <link rel="stylesheet" href="src/styles/conteudo/geral.css">
+    <link rel="stylesheet" href="/css/feedback.css">
+    <link rel="stylesheet" href="/css/leitor.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
+    <style>
+        body {
+          font-family: 'Inter', sans-serif;
+          background-color: #f9fafb;
+          color: #1f2937;
+        }
+        .titulo {
+          font-size: 1.875rem;
+          font-weight: 700;
+        }
+        .subtitulo {
+          font-size: 1.25rem;
+          font-weight: 500;
+        }
+        .caixa-conteudo {
+          background-color: white;
+          border-radius: 0.75rem;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+          padding: 2rem;
+          margin-top: 1.5rem;
+        }
+        .botao-proximo {
+          background-color: #3b82f6;
+          color: white;
+          padding: 0.75rem 1.5rem;
+          border-radius: 0.5rem;
+          font-weight: 600;
+          transition: background-color 0.2s;
+        }
+        .botao-proximo:hover {
+          background-color: #2563eb;
+        }
+      </style>
+</head>
+<body>
+    <header>
+        <div class="action-but-content">
+            <button class="action-but-class" id="back-button">
+                <span class="material-symbols-sharp">arrow_back</span>
+            </button>
+            <h2>Trilha de Estudo</h2>
+        </div>
+        <button class="theme-switch" aria-label="Alternar tema claro/escuro">
+            <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="display: none;">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main id="conteudo">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div id="activity-container">
+            <div class="loading">Carregando...</div>
+        </div>
+        
+        <div class="navigation-buttons">
+            <button id="prev-button" class="nav-button">Anterior</button>
+            <button id="next-button" class="nav-button">Próximo</button>
+        </div>
+    </main>
+
+    <script src="/app.js"></script>
+    <script type="module" src="/leitor.js"></script>
+</body>
+</html>
+

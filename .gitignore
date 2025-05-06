@@ -1,0 +1,5 @@
+** Adicionando Git Ignore
+./html_test.html
+
+./.firebaserc.json
+./firebase.json

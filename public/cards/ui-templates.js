@@ -48,8 +48,16 @@ export function createLoadingState(message = 'Carregando...') {
  */
 export function createWordListItem(list) {
     const wordCount = list.wordIds ? list.wordIds.length : 0;
+    const isOffline = localStorage.getItem('userPlan') === 'free' && !list.syncedAt;
+
+    
     return `
         <div class="word-list-item" data-list-id="${list.id}">
+            ${isOffline ? `
+            <div class="offline-indicator">
+                <span class="material-symbols-sharp">wifi_off</span>
+                <span class="offline-text">Offline - Upgrade para sincronizar na nuvem</span>
+            </div>` : ''}
             <div class="list-info">
                 <h3>${list.name}</h3>
                 <p>${wordCount} palavras</p>
@@ -83,7 +91,7 @@ export function createVocabWordItem(word, showCheckbox = false) {
                 <div class="greek-word">${word.LEXICAL_FORM}</div>
                 <div class="word-details">
                     <span class="transliteration">${word.TRANSLITERATED_LEXICAL_FORM || ''}</span>
-                    <span class="meaning">${word.USAGE || word.DEFINITION || ''}</span>
+                    <span class="meaning">${word.DEFINITION || word.USAGE || ''}</span>
                 </div>
                 <div class="word-meta">
                     <span class="category-badge">${word.PART_OF_SPEECH || 'não categorizado'}</span>
@@ -117,7 +125,7 @@ export function createVocabCard(word) {
                 </div>
             </div>
             <div class="card-back">
-                <div class="meaning">${word.USAGE || word.DEFINITION || ''}</div>
+                <div class="meaning">${word.DEFINITION || word.USAGE || ''}</div>
                 <div class="card-actions">
                     ${createStatusButtons(word)}
                 </div>

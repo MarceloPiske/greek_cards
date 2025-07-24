@@ -252,6 +252,11 @@ body {
     border: 1px solid var(--shadow);
     border-radius: 8px;
     overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px;
 }
 
 .view-toggle .btn {
@@ -373,5 +378,42 @@ body {
     padding: 0.5rem 0;
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+}
+
+/* Offline indicator for free users */
+.offline-indicator {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.offline-indicator .material-symbols-sharp {
+    font-size: 1rem;
+}
+
+.offline-text {
+    flex: 1;
+    font-size: 0.75rem;
+}
+
+.word-list-item .offline-indicator {
+    margin: -0.5rem -1rem 1rem -1rem;
+    border-radius: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.list-actions-left,
+.list-actions-right {
+    display: flex;
     gap: 0.5rem;
 }

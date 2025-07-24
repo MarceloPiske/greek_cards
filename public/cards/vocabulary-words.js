@@ -24,7 +24,7 @@ export async function addVocabularyWord(word) {
     try {
         const db = await initVocabularyDB();
         const tx = db.transaction(STORE_VOCABULARY, 'readwrite');
-        const store = tx.objectStore(STORE_VOCABULARY);
+        const store = STORE_VOCABULARY;
 
         // Generate a unique ID if not provided
         if (!word.id) {
@@ -34,7 +34,7 @@ export async function addVocabularyWord(word) {
         // Add created date
         word.createdAt = new Date().toISOString();
 
-        await putInStore(store, word);
+        await putInStore(db, store, word);
         
         // Initialize word progress
         await updateWordProgress(word.id, {
@@ -57,10 +57,10 @@ export async function updateWordProgress(wordId, progress) {
     try {
         const db = await initVocabularyDB();
         const tx = db.transaction(STORE_USER_PROGRESS, 'readwrite');
-        const store = tx.objectStore(STORE_USER_PROGRESS);
+        const store = STORE_USER_PROGRESS;
 
         // Get current progress if it exists
-        const currentProgress = await getFromStore(store, wordId) || {
+        const currentProgress = await getFromStore(db, store, wordId) || {
             wordId,
             status: WordStatus.UNREAD,
             reviewCount: 0,
@@ -82,7 +82,7 @@ export async function updateWordProgress(wordId, progress) {
         }
         
         // Save locally first, then sync with cloud if premium
-        await putInStore(store, updatedProgress);
+        await putInStore(db, store, updatedProgress);
         
         // Use sync system for cloud backup
         await saveDataWithSync('wordProgress', updatedProgress, wordId);
@@ -106,8 +106,8 @@ export async function getWordProgress(wordId) {
             // Fallback to direct IndexedDB access
             const db = await initVocabularyDB();
             const tx = db.transaction(STORE_USER_PROGRESS, 'readonly');
-            const store = tx.objectStore(STORE_USER_PROGRESS);
-            progress = await getFromStore(store, wordId);
+            const store = STORE_USER_PROGRESS;
+            progress = await getFromStore(db, store, wordId);
         }
         
         return progress || {
@@ -132,7 +132,7 @@ export async function addSystemVocabulary(moduleId, words) {
     try {
         const db = await initVocabularyDB();
         const tx = db.transaction(STORE_SYSTEM_VOCABULARY, 'readwrite');
-        const store = tx.objectStore(STORE_SYSTEM_VOCABULARY);
+        const store = STORE_SYSTEM_VOCABULARY;
 
         // Add each word to the system vocabulary
         for (const word of words) {
@@ -144,7 +144,7 @@ export async function addSystemVocabulary(moduleId, words) {
             };
             
             try {
-                await putInStore(store, systemWord);
+                await putInStore(db, store, systemWord);
             } catch (error) {
                 console.warn(`Word ${word.LEXICAL_FORM} could not be added:`, error);
             }
@@ -165,7 +165,7 @@ export async function getSystemVocabulary(filters = {}) {
     try {
         const db = await initVocabularyDB();
         const tx = db.transaction(STORE_SYSTEM_VOCABULARY, 'readonly');
-        const store = tx.objectStore(STORE_SYSTEM_VOCABULARY);
+        const store = STORE_SYSTEM_VOCABULARY;
 
         const {
             category,
@@ -185,7 +185,7 @@ export async function getSystemVocabulary(filters = {}) {
         const lowerCategory = category?.toLowerCase();
 
         return new Promise((resolve, reject) => {
-            const cursorRequest = store.openCursor();
+            const cursorRequest = tx.objectStore(store).openCursor();
 
             cursorRequest.onsuccess = async (event) => {
                 const cursor = event.target.result;
@@ -281,7 +281,7 @@ export async function importGreekLexicon(lexiconData) {
     try {
         const db = await initVocabularyDB();
         const tx = db.transaction(STORE_SYSTEM_VOCABULARY, 'readwrite');
-        const store = tx.objectStore(STORE_SYSTEM_VOCABULARY);
+        const store = STORE_SYSTEM_VOCABULARY;
 
         const importedIds = [];
 
@@ -301,7 +301,7 @@ export async function importGreekLexicon(lexiconData) {
             };
 
             // Add to database
-            await putInStore(store, word);
+            await putInStore(db, store, word);
             importedIds.push(word.ID);
         }
 

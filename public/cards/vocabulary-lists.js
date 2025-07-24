@@ -21,7 +21,7 @@ export async function createWordList(list) {
     try {
         const db = await initVocabularyDB();
         const tx = db.transaction(STORE_WORD_LISTS, 'readwrite');
-        const store = tx.objectStore(STORE_WORD_LISTS);
+        const store = STORE_WORD_LISTS;
 
         // Generate a unique ID if not provided
         if (!list.id) {
@@ -31,11 +31,27 @@ export async function createWordList(list) {
         // Set initial properties
         list.createdAt = new Date().toISOString();
         list.wordIds = list.wordIds || [];
-
-        await putInStore(store, list);
         
-        // Use sync system for cloud backup
-        await saveDataWithSync('wordLists', list, list.id);
+        // Check if user can sync to cloud
+        const { canSyncToCloud } = await import('./plan-manager.js');
+        const canSync = canSyncToCloud();
+        
+        // Mark as synced only if user can sync and sync succeeds
+        list.syncedAt = null; // Start as offline
+
+        await putInStore(db, store, list);
+        
+        // Try to sync to cloud only for premium users
+        if (canSync) {
+            try {
+                await saveDataWithSync('wordLists', list, list.id);
+                // Update syncedAt timestamp on successful sync
+                list.syncedAt = new Date().toISOString();
+                await putInStore(db, store, list);
+            } catch (error) {
+                console.warn('Cloud sync failed, list saved offline only:', error);
+            }
+        }
         
         return list;
     } catch (error) {
@@ -51,10 +67,10 @@ export async function addWordsToList(listId, wordIds) {
     try {
         const db = await initVocabularyDB();
         const tx = db.transaction(STORE_WORD_LISTS, 'readwrite');
-        const store = tx.objectStore(STORE_WORD_LISTS);
+        const store = STORE_WORD_LISTS;
 
         // Get the current list
-        const list = await getFromStore(store, listId);
+        const list = await getFromStore(db, store, listId);
         
         if (!list) {
             throw new Error('List not found');
@@ -65,10 +81,24 @@ export async function addWordsToList(listId, wordIds) {
         list.wordIds = uniqueWords;
         list.updatedAt = new Date().toISOString();
 
-        await putInStore(store, list);
+        await putInStore(db, store, list);
         
-        // Use sync system for cloud backup
-        await saveDataWithSync('wordLists', list, list.id);
+        // Try to sync to cloud only for premium users
+        const { canSyncToCloud } = await import('./plan-manager.js');
+        if (canSyncToCloud()) {
+            try {
+                await saveDataWithSync('wordLists', list, list.id);
+                list.syncedAt = new Date().toISOString();
+                await putInStore(db, store, list);
+            } catch (error) {
+                console.warn('Cloud sync failed for word addition:', error);
+                list.syncedAt = null; // Mark as offline
+                await putInStore(db, store, list);
+            }
+        } else {
+            list.syncedAt = null; // Ensure offline status for free users
+            await putInStore(db, store, list);
+        }
         
         return list;
     } catch (error) {
@@ -84,10 +114,10 @@ export async function removeWordsFromList(listId, wordIds) {
     try {
         const db = await initVocabularyDB();
         const tx = db.transaction(STORE_WORD_LISTS, 'readwrite');
-        const store = tx.objectStore(STORE_WORD_LISTS);
+        const store = STORE_WORD_LISTS;
 
         // Get the current list
-        const list = await getFromStore(store, listId);
+        const list = await getFromStore(db, store, listId);
         
         if (!list) {
             throw new Error('List not found');
@@ -97,10 +127,24 @@ export async function removeWordsFromList(listId, wordIds) {
         list.wordIds = list.wordIds.filter(id => !wordIds.includes(id));
         list.updatedAt = new Date().toISOString();
 
-        await putInStore(store, list);
+        await putInStore(db, store, list);
         
-        // Use sync system for cloud backup
-        await saveDataWithSync('wordLists', list, list.id);
+        // Try to sync to cloud only for premium users
+        const { canSyncToCloud } = await import('./plan-manager.js');
+        if (canSyncToCloud()) {
+            try {
+                await saveDataWithSync('wordLists', list, list.id);
+                list.syncedAt = new Date().toISOString();
+                await putInStore(db, store, list);
+            } catch (error) {
+                console.warn('Cloud sync failed for word removal:', error);
+                list.syncedAt = null; // Mark as offline
+                await putInStore(db, store, list);
+            }
+        } else {
+            list.syncedAt = null; // Ensure offline status for free users
+            await putInStore(db, store, list);
+        }
         
         return list;
     } catch (error) {
@@ -118,9 +162,9 @@ export async function getAllWordLists() {
         // First try to sync individual lists if we have IDs, otherwise fall back to local
         const db = await initVocabularyDB();
         const tx = db.transaction(STORE_WORD_LISTS, 'readonly');
-        const store = tx.objectStore(STORE_WORD_LISTS);
+        const store = STORE_WORD_LISTS;
 
-        return await getAllFromStore(store);
+        return await getAllFromStore(db, store);
     } catch (error) {
         console.error('Error getting word lists:', error);
         return [];
@@ -137,8 +181,8 @@ export async function getWordListWithWords(listId) {
         // Get the list first
         const list = await new Promise((resolve, reject) => {
             const tx = db.transaction(STORE_WORD_LISTS, 'readonly');
-            const store = tx.objectStore(STORE_WORD_LISTS);
-            const request = store.get(listId);
+            const store = STORE_WORD_LISTS;
+            const request =  tx.objectStore(store).get(listId);
             
             request.onsuccess = () => resolve(request.result);
             request.onerror = () => reject(request.error);
@@ -159,7 +203,7 @@ export async function getWordListWithWords(listId) {
         // Get all words from the system vocabulary
         const words = await new Promise((resolve, reject) => {
             const tx = db.transaction(STORE_SYSTEM_VOCABULARY, 'readonly');
-            const store = tx.objectStore(STORE_SYSTEM_VOCABULARY);
+            const store = STORE_SYSTEM_VOCABULARY;
             const results = [];
             let completed = 0;
             const total = list.wordIds.length;
@@ -170,7 +214,7 @@ export async function getWordListWithWords(listId) {
             }
 
             for (const wordId of list.wordIds) {
-                const request = store.get(wordId);
+                const request =  tx.objectStore(store).get(wordId);
                 
                 request.onsuccess = async () => {
                     if (request.result) {

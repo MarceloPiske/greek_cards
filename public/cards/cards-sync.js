@@ -3,7 +3,7 @@
  * Handles offline/online data sync for vocabulary progress and lists
  */
 
-import { getCurrentUserPlan, canSyncToCloud } from './plan-manager.js';
+import { getCurrentUserPlan, canSyncToCloud } from '../plan-manager.js';
 import { initVocabularyDB } from './vocabulary-db.js';
 
 // Sync configuration
@@ -62,7 +62,7 @@ export async function saveDataWithSync(collection, data, docId = null) {
         // Always save locally first
         await saveDataLocal(collection, data, docId);
         
-        // If premium user and online, sync to cloud
+        // Only attempt cloud sync for premium users
         if (await canSyncToCloud() && isOnline) {
             try {
                 await saveDataToCloud(collection, data, docId);
@@ -72,8 +72,11 @@ export async function saveDataWithSync(collection, data, docId = null) {
                 addToSyncQueue('save', collection, data, docId);
             }
         } else if (await canSyncToCloud() && !isOnline) {
-            // Queue for later sync
+            // Queue for later sync (premium users only)
             addToSyncQueue('save', collection, data, docId);
+        } else {
+            // Free user - no cloud sync attempted
+            console.log(`Data saved locally only (free user): ${collection}`);
         }
         
         return data;
@@ -91,7 +94,7 @@ export async function loadDataWithSync(collection, docId) {
         // Always load from local first
         let localData = await loadDataLocal(collection, docId);
         
-        // If premium user and online, check cloud for newer version
+        // Only check cloud for premium users
         if (await canSyncToCloud() && isOnline) {
             try {
                 const cloudData = await loadDataFromCloud(collection, docId);
@@ -122,6 +125,8 @@ export async function loadDataWithSync(collection, docId) {
             } catch (error) {
                 console.warn(`Cloud sync check failed: ${error.message}`);
             }
+        } else if (!await canSyncToCloud()) {
+            console.log(`Using local storage only (free user): ${collection}/${docId}`);
         }
         
         return localData;
@@ -171,64 +176,62 @@ async function loadDataLocal(collection, docId) {
 /**
  * Save data to Firebase Cloud
  */
-async function saveDataToCloud(collection, data, docId = null) {
+async function saveDataToCloud(collectionName, data, docId = null) {
     if (!window.firebaseAuth?.isAuthenticated() || !window.firebaseAuth.db) {
         throw new Error('Firebase not available');
     }
-    
+
     const user = window.firebaseAuth.getCurrentUser();
     if (!user) throw new Error('User not authenticated');
-    
-    // Import Firebase functions
-    const { doc, setDoc, collection: firestoreCollection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
-    
-    const docRef = doc(
+
+    const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+
+    // Corrigido: users/{uid}/{collectionName}/{docId}
+    const collectionRef = collection(
         window.firebaseAuth.db,
         'users',
         user.uid,
-        'vocabulary',
-        collection,
-        docId || data.id || data.wordId || generateId()
+        collectionName
     );
-    
+
+    const finalDocId = docId || data.id || data.wordId || generateId();
+    const docRef = doc(collectionRef, finalDocId);
+
     const cloudData = {
         ...data,
+        id: finalDocId,
         userId: user.uid,
         updatedAt: new Date().toISOString(),
         syncedAt: new Date().toISOString()
     };
-    
+
     await setDoc(docRef, cloudData, { merge: true });
-    
-    // Update local data to mark as synced
-    await markAsSynced(collection, docId || data.id, cloudData.syncedAt);
-    
+
+    // Atualiza local como sincronizado
+    await markAsSynced(collectionName, finalDocId, cloudData.syncedAt);
+
     return cloudData;
 }
+
 
 /**
  * Load data from Firebase Cloud
  */
-async function loadDataFromCloud(collection, docId) {
+async function loadDataFromCloud(collectionName, docId) {
     if (!window.firebaseAuth?.isAuthenticated() || !window.firebaseAuth.db) {
         return null;
     }
-    
+
     const user = window.firebaseAuth.getCurrentUser();
     if (!user) return null;
-    
+
     try {
-        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
-        
-        const docRef = doc(
-            window.firebaseAuth.db,
-            'users',
-            user.uid,
-            'vocabulary',
-            collection,
-            docId
-        );
-        
+        const { doc, getDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+
+        // Caminho corrigido: users/{uid}/{collectionName}/{docId}
+        const collectionRef = collection(window.firebaseAuth.db, 'users', user.uid, collectionName);
+        const docRef = doc(collectionRef, docId);
+
         const docSnap = await getDoc(docRef);
         return docSnap.exists() ? docSnap.data() : null;
     } catch (error) {
@@ -236,6 +239,7 @@ async function loadDataFromCloud(collection, docId) {
         return null;
     }
 }
+
 
 /**
  * Mark local data as synced
@@ -386,39 +390,43 @@ export async function loadAllUserDataFromCloud() {
  */
 async function loadCollectionFromCloud(collectionName) {
     if (!window.firebaseAuth?.isAuthenticated()) return;
-    
+
     const user = window.firebaseAuth.getCurrentUser();
     if (!user) return;
-    
+
     try {
-        const { collection, getDocs, query, where } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
-        
+        const { collection, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+
+        // Caminho corrigido: users/{uid}/{collectionName}
         const collectionRef = collection(
             window.firebaseAuth.db,
             'users',
             user.uid,
-            'vocabulary',
             collectionName
         );
-        
+
         const querySnapshot = await getDocs(collectionRef);
-        
-        if (!querySnapshot.empty) {
-            const db = await initVocabularyDB();
-            const tx = db.transaction(collectionName, 'readwrite');
-            const store = tx.objectStore(collectionName);
-            
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                store.put(data);
-            });
-            
-            console.log(`Loaded ${querySnapshot.size} items for ${collectionName}`);
+
+        if (querySnapshot.empty) {
+            console.log(`Nenhum dado encontrado na coleção: ${collectionName}`);
+            return null;
         }
+
+        const db = await initVocabularyDB();
+        const tx = db.transaction(collectionName, 'readwrite');
+        const store = tx.objectStore(collectionName);
+
+        querySnapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            store.put(data); // salva no IndexedDB
+        });
+
+        console.log(`Loaded ${querySnapshot.size} items for ${collectionName}`);
     } catch (error) {
         console.error(`Error loading collection ${collectionName}:`, error);
     }
 }
+
 
 /**
  * Generate unique ID

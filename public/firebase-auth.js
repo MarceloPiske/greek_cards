@@ -52,7 +52,7 @@ export function initAuth() {
             if (user) {
                 try {
                     // Initialize user document with plan management
-                    const { initializeUserDocument } = await import('./cards/plan-manager.js');
+                    const { initializeUserDocument } = await import('./plan-manager.js');
                     await initializeUserDocument(user);
                     
                     // Load user data from Firebase when user logs in
@@ -64,7 +64,7 @@ export function initAuth() {
             } else {
                 // Reset plan data when user logs out
                 try {
-                    const { resetUserData } = await import('./cards/plan-manager.js');
+                    const { resetUserData } = await import('./plan-manager.js');
                     resetUserData();
                 } catch (error) {
                     console.warn('Could not reset user data:', error);
@@ -191,7 +191,7 @@ function updateUIForUser(user) {
     } else {
         // User is signed out - show login button
         if (loginButton) {
-            loginButton.style.display = 'block';
+            loginButton.style.display = 'flex';
             loginButton.onclick = () => showLoginModal();
         }
         if (userProfile) userProfile.style.display = 'none';
@@ -274,7 +274,7 @@ function showUserMenu(user) {
  */
 async function loadPlanInfo() {
     try {
-        const { getCurrentUserPlan, getPlanCapabilities } = await import('./cards/plan-manager.js');
+        const { getCurrentUserPlan, getPlanCapabilities } = await import('./plan-manager.js');
         const currentPlan = getCurrentUserPlan();
         const capabilities = getPlanCapabilities(currentPlan);
         

@@ -4,7 +4,7 @@
  */
 
 import { initDB } from './indexedDB.js';
-import { canSyncToCloud } from './cards/plan-manager.js';
+import { canSyncToCloud } from './plan-manager.js';
 
 // Database configuration
 const PROGRESS_DB_NAME = 'grekoine-db';
@@ -119,7 +119,7 @@ async function shouldSyncToCloud() {
     
     try {
         // Import plan manager to check if user can sync to cloud
-        const { canSyncToCloud } = await import('./cards/plan-manager.js');
+        const { canSyncToCloud } = await import('./plan-manager.js');
         return canSyncToCloud(); // This now checks for 'cloud' or 'ai' plans
     } catch (error) {
         console.warn('Could not check plan permissions:', error);

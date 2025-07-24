@@ -43,7 +43,7 @@ async function shouldSyncToFirebase() {
     
     try {
         // Import plan manager to check if user can sync to cloud
-        const { canSyncToCloud } = await import('./plan-manager.js');
+        const { canSyncToCloud } = await import('../plan-manager.js');
         return canSyncToCloud();
     } catch (error) {
         console.warn('Could not check plan permissions:', error);
@@ -102,7 +102,10 @@ export async function loadUserDataFromFirebase() {
 /**
  * Generic database operation helpers
  */
-export function getFromStore(store, key) {
+export function getFromStore(db, storeName, key) {
+    const tx = db.transaction(storeName, 'readonly');
+    const store = tx.objectStore(storeName);
+    
     return new Promise((resolve, reject) => {
         const request = store.get(key);
         request.onsuccess = () => resolve(request.result);
@@ -110,15 +113,21 @@ export function getFromStore(store, key) {
     });
 }
 
-export function putInStore(store, data) {
+export async function putInStore(db, storeName, data) {
+    const tx = db.transaction(storeName, 'readwrite');
+    const store = tx.objectStore(storeName);
+
     return new Promise((resolve, reject) => {
         const request = store.put(data);
-        request.onsuccess = () => resolve(request.result);
+        request.onsuccess = () => resolve(data);
         request.onerror = () => reject(request.error);
     });
 }
 
-export function getAllFromStore(store) {
+export function getAllFromStore(db, storeName) {
+    const tx = db.transaction(storeName, 'readonly');
+    const store = tx.objectStore(storeName);
+
     return new Promise((resolve, reject) => {
         const request = store.getAll();
         request.onsuccess = () => resolve(request.result);

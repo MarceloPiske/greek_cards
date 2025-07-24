@@ -14,20 +14,21 @@ import {
     canGenerateReports,
     needsUpgradeFor,
     PLANS
-} from './plan-manager.js';
+} from '../plan-manager.js';
 
 import { getAllWordLists } from './vocabulary-lists.js';
 
 /**
- * Check if user can create a new word list
+ * Check if user can create a new word list - Updated to allow offline creation for free users
  */
 export async function canCreateWordList() {
     try {
         const lists = await getAllWordLists();
         const currentCount = lists.length;
-        const limit = getPlanLimit('wordListLimit');
         
-        return !(await hasReachedLimit('wordListLimit', currentCount));
+        // Free users can create unlimited lists offline
+        // Premium users get cloud sync
+        return true; // Always allow creation, sync capability depends on plan
     } catch (error) {
         console.error('Error checking word list limit:', error);
         return false;
@@ -58,16 +59,11 @@ export function canExportContent() {
 }
 
 /**
- * Guard function for word list creation
+ * Guard function for word list creation - Updated for offline support
  */
 export async function guardWordListCreation() {
-    const canCreate = await canCreateWordList();
-    
-    if (!canCreate) {
-        showUpgradeModal('wordListLimit');
-        return false;
-    }
-    
+    // Always allow creation for offline storage
+    // Premium users get additional cloud sync
     return true;
 }
 

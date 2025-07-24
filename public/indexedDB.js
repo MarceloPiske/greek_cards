@@ -1,9 +1,13 @@
 // Sistema de armazenamento usando IndexedDB
 const DB_NAME = 'koineAppDB';
-const DB_VERSION = 1;
+const DB_VERSION = 3; 
 const STORE_PROGRESS = 'userProgress';
 const STORE_FEEDBACK = 'userFeedback';
 const STORE_MODULE_COMPLETION = 'moduleCompletion';
+const STORE_VOCABULARY = 'vocabularyWords';
+const STORE_WORD_LISTS = 'wordLists';
+const STORE_SYSTEM_VOCABULARY = 'systemVocabulary';
+const STORE_USER_PROGRESS = 'wordProgress';
 
 // Inicializar o banco de dados
 export function initDB() {
@@ -36,6 +40,26 @@ export function initDB() {
             // Criar store para conclusão de módulos
             if (!db.objectStoreNames.contains(STORE_MODULE_COMPLETION)) {
                 db.createObjectStore(STORE_MODULE_COMPLETION, { keyPath: 'moduloId' });
+            }
+            
+            // Create store for vocabulary words
+            if (!db.objectStoreNames.contains(STORE_VOCABULARY)) {
+                db.createObjectStore(STORE_VOCABULARY, { keyPath: 'id' });
+            }
+            
+            // Create store for word lists
+            if (!db.objectStoreNames.contains(STORE_WORD_LISTS)) {
+                db.createObjectStore(STORE_WORD_LISTS, { keyPath: 'id' });
+            }
+            
+            // Create store for system vocabulary by module
+            if (!db.objectStoreNames.contains(STORE_SYSTEM_VOCABULARY)) {
+                db.createObjectStore(STORE_SYSTEM_VOCABULARY, { keyPath: 'ID' });
+            }
+            
+            // Create store for word learning progress
+            if (!db.objectStoreNames.contains(STORE_USER_PROGRESS)) {
+                db.createObjectStore(STORE_USER_PROGRESS, { keyPath: 'wordId' });
             }
         };
     });

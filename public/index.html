@@ -12,8 +12,8 @@
         content="grego bíblico, koiné, novo testamento, gramática grega, estudo bíblico, grego koiné, curso de grego">
     <meta name="author" content="Koiné - Gramática de Grego Bíblico">
     <meta name="robots" content="index, follow">
-    <!-- <link rel="canonical" href="https://yourdomain.com"> -->
-   
+    <link rel="canonical" href="https://grego-koine.web.app">
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="css/homepage.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
@@ -70,12 +70,12 @@
             Estude o idioma original do Novo Testamento com lições graduais, exercícios práticos e vocabulário
             essencial.
         </p>
-        <a href="./src/html/conteudo/trilha_conteudo.html" class="start-button">Iniciar Estudos</a>
+        <a href="./trilhas/trilha_conteudo.html" class="start-button">Iniciar Estudos</a>
     </header>
 
     <main class="main-content" role="main">
         <section class="topics-section" aria-labelledby="topics-title">
-            <h2 id="topics-title" class="visually-hidden">Tópicos Principais</h2>
+            <h2 id="topics-title">Consulte Diretamente</h2>
             <div class="topics-grid">
                 <div class="topic-card">
                     <a href="./src/html/conteudo/morfologia.html"></a>
@@ -88,6 +88,7 @@
                     <h3>Sintaxe</h3>
                     <p>Entenda como as frases são construídas nos textos bíblicos originais</p>
                 </div>
+
             </div>
         </section>
 
@@ -95,6 +96,13 @@
             <h2 class="exercises-title"><span style="font-size: xxx-large;" class="material-symbols-sharp">
                     stadia_controller
                 </span> Aprenda com GAMES</h2>
+
+            <div class="exercise-card">
+                <a class="link-click" href="./cards/index.html"></a>
+                <h4>Cartões de Vocabulário</h4>
+                <p>Crie suas próprias listas de palavras e acompanhe seu progresso de memorização.</p>
+            </div>
+            <h2>Versões antigas dos games</h2>
             <div class="exercise-card">
                 <a class="link-click" href="./src/html/cards.html"></a>
                 <h4>Cards</h4>
@@ -171,6 +179,7 @@
     </div>
 
     <script src="app.js"></script>
+    <script src="json_output/json_to_indexeddb.js"></script>
 </body>
 
 </html>

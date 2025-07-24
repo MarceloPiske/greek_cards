@@ -468,6 +468,14 @@ header {
 }
 /* Adaptações para mobile */
 @media (max-width: 768px) {
+    #conteudo {
+        padding: .5rem;
+        margin: 0;
+    }
+    .activity-card {
+        padding: .5rem;
+        margin: 0;
+    }
     .vocabulario-lista {
         grid-template-columns: 1fr;
     }

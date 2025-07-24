@@ -3,7 +3,7 @@
  * Refatorado para melhor manutenção
  */
 
-import { leitorState, carregarProgresso, salvarProgresso } from './leitor/state.js';
+import { leitorState, carregarProgresso, salvarProgresso } from './state.js';
 import { 
     renderizarAtividade, 
     atualizarProgressBar, 
@@ -11,12 +11,14 @@ import {
     mostrarBadgeConclusao,
     mostrarModalConclusao,
     mostrarModalFeedback
-} from './leitor/ui.js';
+} from './ui.js';
 
 // Carrega a trilha de estudo
 async function carregarTrilha(trilhaId = 'modulo_1') {
+    console.log('Carregando trilha:', trilhaId);
+    
     try {
-        const response = await fetch(`trilhas/${trilhaId}.json`);
+        const response = await fetch(`./trilhas/trilhas/${trilhaId}.json`); //FIXME - URL hardcoded
         if (!response.ok) {
             throw new Error('Não foi possível carregar a trilha');
         }
@@ -106,7 +108,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Botão de voltar
     document.getElementById('back-button').addEventListener('click', () => {
-        window.location.href = '/src/html/conteudo/trilha_conteudo.html';
+        window.location.href = './trilhas/trilha_conteudo.html';
     });
     
     // Adicionar botão de feedback
@@ -125,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 window.marcarComoCompletada = marcarComoCompletada;
 window.verificarQuiz = function(quizId, respostaCorreta) {
     // Importamos esta função dinamicamente para evitar problemas com o escopo global
-    import('./leitor/activities.js').then(module => {
+    import('./activities.js').then(module => {
         module.verificarQuiz(quizId, respostaCorreta);
     });
 };

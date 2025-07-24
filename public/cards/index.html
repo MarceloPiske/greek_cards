@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartões de Vocabulário - Koiné</title>
+    <link rel="icon" href="img/icon.svg" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="css/homepage.css"> -->
+    <link rel="stylesheet" href="cards/css/cards.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="action-but-content">
+            <button class="action-but-class" id="back-button">
+                <span class="material-symbols-sharp">arrow_back</span>
+            </button>
+            <h2>Cartões de Vocabulário</h2>
+        </div>
+        <button class="theme-switch" aria-label="Alternar tema claro/escuro">
+            <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="display: none;">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main class="vocabulary-container">
+        <div class="vocabulary-tabs">
+            <div class="tab active" data-tab="my-lists">Minhas Listas</div>
+            <div class="tab" data-tab="vocabulary">Vocabulário do Sistema</div>
+            <div class="tab" data-tab="system-vocab">Vocabulário por Módulos</div>
+        </div>
+
+        <div class="tab-content active" id="my-lists">
+            <div class="main-layout">
+                <div class="sidebar">
+                    <div class="word-lists-header">
+                        <h3>Listas de Palavras</h3>
+                        <button id="new-list-btn" class="btn icon">
+                            <span class="material-symbols-sharp">add</span>
+                        </button>
+                    </div>
+                    <div id="word-lists">
+                        <div class="loading-state">
+                            <span class="material-symbols-sharp loading-icon">sync</span>
+                            <p>Carregando listas...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-area" id="list-content-area">
+                    <div class="empty-state">
+                        <span class="material-symbols-sharp">inventory_2</span>
+                        <h3>Nenhuma lista selecionada</h3>
+                        <p>Selecione uma lista existente ou crie uma nova lista para começar</p>
+                        <button id="empty-create-list" class="btn primary">Criar lista</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="vocabulary">
+            <div class="action-bar">
+                <div class="search-filter">
+                    <input type="text" id="vocab-search" placeholder="Buscar palavras..." class="search-input">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="substantivo">substantivo</button>
+                        <button class="filter-btn" data-filter="verbo">verbo</button>
+                        <button class="filter-btn" data-filter="adjetivo">adjetivo</button>
+                        <button class="filter-btn" data-filter="advérbio">advérbio</button>
+                        <button class="filter-btn" data-filter="pronome">pronome</button>
+                        <button class="filter-btn" data-filter="preposição">preposição</button>
+                        <button class="filter-btn" data-filter="conjunção">conjunção</button>
+                        <button class="filter-btn" data-filter="artigo">artigo</button>
+                        <button class="filter-btn" data-filter="partícula">partícula</button>
+                        <button class="filter-btn" data-filter="outro">outro</button>
+                    </div>
+                    <!-- <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="substantivo">Substantivos</button>
+                        <button class="filter-btn" data-filter="verbo">Verbos</button>
+                        <button class="filter-btn" data-filter="adjetivo">Adjetivos</button>
+                        <button class="filter-btn" data-filter="outro">Outros</button>
+                    </div> -->
+                </div>
+                <!-- <div class="action-buttons">
+                    <button id="import-lexicon-btn" class="btn">
+                        <span class="material-symbols-sharp">upload</span> Importar Léxico
+                    </button>
+                    <button id="add-word-btn" class="btn primary">
+                        <span class="material-symbols-sharp">add</span> Nova Palavra
+                    </button>
+                    <button id="view-toggle-btn" class="btn icon">
+                        <span class="material-symbols-sharp">view_module</span>
+                    </button>
+                </div> -->
+            </div>
+
+            <div id="all-vocabulary-words" class="words-list">
+                <div class="loading-state">
+                    <span class="material-symbols-sharp loading-icon">sync</span>
+                    <p>Carregando vocabulário...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="system-vocab">
+            <div class="action-bar">
+                <div class="search-filter">
+                    <select id="module-select" class="search-input">
+                        <option value="">Selecione um módulo</option>
+                        <option value="modulo_1">Módulo 1: Introdução ao Grego Koiné</option>
+                        <option value="modulo_2">Módulo 2: Alfabeto e Pronúncia</option>
+                        <option value="modulo_3">Módulo 3: Substantivos e Artigos</option>
+                        <option value="modulo_4">Módulo 4: Verbos no Presente</option>
+                        <option value="modulo_5">Módulo 5: Leitura de Textos Simples</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="system-vocabulary-container">
+                <div class="empty-state">
+                    <span class="material-symbols-sharp">school</span>
+                    <h3>Selecione um módulo</h3>
+                    <p>Escolha um módulo para ver o vocabulário do sistema</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- <script src="app.js"></script>
+    <script type="module" src="./indexedDB.js"></script> -->
+    <script type="module" src="./cards/vocabulary.js"></script>
+    <script type="module" src="./cards/app.js"></script>
+</body>
+
+</html>

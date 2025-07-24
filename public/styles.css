@@ -78,6 +78,32 @@ body {
     overflow-x: hidden;
 }
 
+.theme-switch {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--accent) !important;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 45px;
+    height: 45px;
+    z-index: 1;
+}
+
+.theme-switch:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    background: var(--text-primary);
+}
+
 .background-image-left {
     position: fixed;
     height: 95vh;
@@ -127,7 +153,7 @@ body {
     top: 1.5rem;
     left: 1.5rem;
     z-index: 1;
-    padding: .5rem;
+    /* padding: .5rem; */
     border-radius: 1.2rem;
     display: flex;
     align-items: center;

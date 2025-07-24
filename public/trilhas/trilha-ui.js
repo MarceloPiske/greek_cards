@@ -1,125 +1,12 @@
 /**
- * Módulo para carregamento e gerenciamento de trilhas de estudo
+ * Módulo para UI de trilhas de estudo 
  */
 
 import { loadProgress } from '../../../indexedDB.js';
-
-// Função para obter informações sobre todas as trilhas disponíveis
-export async function carregarTrilhasDisponiveis() {
-    const timeline = document.getElementById('trilha-timeline');
-    
-    try {
-        // Obter a lista de trilhas
-        const trilhasDisponiveis = await obterListaTrilhas();
-        
-        // Limpar o conteúdo de carregamento
-        timeline.innerHTML = '';
-        
-        // Gerar HTML para cada trilha
-        trilhasDisponiveis.forEach((trilha, index) => {
-            gerarHTMLModulo(trilha, index, timeline);
-        });
-        
-        // Carregar e atualizar progresso das trilhas
-        carregarProgressoTrilhas(trilhasDisponiveis.map(t => t.id));
-        
-        // Adicionar event listeners aos módulos
-        adicionarEventListeners();
-    } catch (error) {
-        console.error('Erro ao carregar trilhas:', error);
-        timeline.innerHTML = `
-            <div class="error-message">
-                <span class="material-symbols-sharp">error</span>
-                <p>Não foi possível carregar as trilhas de estudo.</p>
-                <button onclick="window.trilhaLoader.carregarTrilhasDisponiveis()">Tentar novamente</button>
-            </div>
-        `;
-    }
-}
-
-// Função que obtém a lista de trilhas disponíveis
-export async function obterListaTrilhas() {
-    try {
-        // Fazer um fetch para verificar quais trilhas existem
-        const response = await fetch('/trilhas/index.json');
-        
-        if (response.ok) {
-            // Se tiver um arquivo index.json com as trilhas
-            return await response.json();
-        } else {
-            // Se não tiver, usar lista predefinida com informações mais detalhadas
-            return getDefaultTrilhas();
-        }
-    } catch (error) {
-        console.error('Erro ao buscar lista de trilhas:', error);
-        // Em caso de erro, fornecer pelo menos o módulo 1 que sabemos que existe
-        return [
-            {
-                id: 'modulo_1',
-                titulo: 'Introdução ao Grego Koiné',
-                descricao: 'Primeiros passos no estudo do grego bíblico.',
-                icone: 'school',
-                tempoEstimado: '15 min',
-                numeroAtividades: 5,
-                nivel: 'iniciante'
-            }
-        ];
-    }
-}
-
-// Lista padrão de trilhas se não conseguir carregar o index.json
-function getDefaultTrilhas() {
-    return [
-        {
-            id: 'modulo_1',
-            titulo: 'Introdução ao Grego Koiné',
-            descricao: 'Primeiros passos no estudo do grego bíblico, incluindo vocabulário básico e leitura interlinear.',
-            icone: 'school',
-            tempoEstimado: '15 min',
-            numeroAtividades: 5,
-            nivel: 'iniciante'
-        },
-        {
-            id: 'modulo_2',
-            titulo: 'Alfabeto e Pronúncia',
-            descricao: 'Aprenda a reconhecer e pronunciar as letras do alfabeto grego, a base para ler textos originais.',
-            icone: 'abc',
-            tempoEstimado: '20 min',
-            numeroAtividades: 7,
-            nivel: 'iniciante'
-        },
-        {
-            id: 'modulo_3',
-            titulo: 'Substantivos e Artigos',
-            descricao: 'Estude os casos nominais e o sistema de declinações no grego koiné, fundamentais para compreensão textual.',
-            icone: 'text_format',
-            tempoEstimado: '25 min',
-            numeroAtividades: 8,
-            nivel: 'básico'
-        },
-        {
-            id: 'modulo_4',
-            titulo: 'Verbos no Presente',
-            descricao: 'Compreenda a estrutura verbal do grego e aprenda a conjugação no tempo presente.',
-            icone: 'history_edu',
-            tempoEstimado: '30 min',
-            numeroAtividades: 10,
-            nivel: 'intermediário'
-        },
-        {
-            id: 'modulo_5',
-            titulo: 'Leitura de Textos Simples',
-            descricao: 'Pratique a leitura de textos curtos do Novo Testamento aplicando os conhecimentos adquiridos.',
-            icone: 'menu_book',
-            tempoEstimado: '35 min',
-            numeroAtividades: 12,
-            nivel: 'avançado'
-        }
-    ];
-}
+import { showToast } from '/src/js/utils/toast.js';
 
 // Gera o HTML de um módulo da trilha
-function gerarHTMLModulo(trilha, index, container) {
+export function gerarHTMLModulo(trilha, index, container) {
     // Determinar se é o último item (sem conector inferior)
     const isLastItem = index === 4; // Ajuste conforme necessário
     
@@ -129,7 +16,7 @@ function gerarHTMLModulo(trilha, index, container) {
                 <span class="material-symbols-sharp">${trilha.icone || 'school'}</span>
             </div>
             ${!isLastItem ? '<div class="module-connector"></div>' : ''}
-            <div class="module-card ${index > 0 ? 'locked' : ''}">
+            <div data-modulo-id="${trilha.id}" class="module-card ${index > 0 ? 'locked' : ''}">
                 <a href="/leitor.html?trilha=${trilha.id}" class="module-link"></a>
                 <div class="module-info">
                     <h3>${trilha.titulo}</h3>
@@ -163,7 +50,7 @@ function gerarHTMLModulo(trilha, index, container) {
 }
 
 // Adiciona event listeners aos elementos dinâmicos
-function adicionarEventListeners() {
+export function adicionarEventListeners() {
     // Event listeners para botões de informação
     document.querySelectorAll('.module-info-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -224,9 +111,12 @@ function adicionarEventListeners() {
 }
 
 // Abre o modal com informações do módulo
-async function abrirModalInfo(moduloId) {
+export async function abrirModalInfo(moduloId) {
     try {
-        // Obter informações do módulo (poderia ser feito com fetch)
+        // Importar dinamicamente para evitar dependência circular
+        const { obterListaTrilhas } = await import('/src/js/trilhas/trilha-loader.js');
+        
+        // Obter informações do módulo
         const trilhas = await obterListaTrilhas();
         const modulo = trilhas.find(t => t.id === moduloId);
         
@@ -250,61 +140,49 @@ async function abrirModalInfo(moduloId) {
     }
 }
 
-// Carrega o progresso das trilhas
-async function carregarProgressoTrilhas(modulosIds) {
-    //console.log("Carregando progresso das trilhas:", modulosIds);
+// Carrega e atualiza o progresso das trilhas
+export async function carregarProgressoTrilhas(modulosIds) {
+    console.log("Carregando progresso dos módulos:", modulosIds);
     
     for (let index = 0; index < modulosIds.length; index++) {
         const modulo = modulosIds[index];
         try {
             // Tentar carregar do IndexedDB primeiro
-            let progresso = await loadProgress(modulo);
-            //console.log('Tentando carregar do localStorage:', progresso);
-            if (!progresso) {
-                progresso = JSON.parse(localStorage.getItem(`trilha_${modulo}_progresso`));
-            }
+            const progresso = await loadProgress(modulo);
             atualizarUIModulo(modulo, progresso, index);
         } catch (error) {
             console.error('Erro ao carregar do IndexedDB:', error);
             
             // Fallback para localStorage
             const progressoSalvo = localStorage.getItem(`trilha_${modulo}_progresso`);
-            
-            
             if (progressoSalvo) {
                 const progresso = JSON.parse(progressoSalvo);
-                //console.log('Progresso carregado do localStorage:', progresso);
-                
                 atualizarUIModulo(modulo, progresso, index);
             }
         }
     }
 }
 
-// Atualiza a UI do módulo com base no progresso carregado
-function atualizarUIModulo(modulo, progresso, index) {
+// Atualiza a UI do módulo com base no progresso
+export function atualizarUIModulo(modulo, progresso, index) {
+    console.log("Progresso", progresso);
+    
     const indiceAtual = progresso.indiceAtual || 0;
     const trilhaCompletada = progresso.trilhaCompletada || [];
-    console.log("Progresso", progresso);
     
     // Buscar elementos do módulo
     const moduleCard = document.querySelector(`.trilha-module[data-modulo-id="${modulo}"] .module-card`);
     console.log("Module Card", moduleCard);
+    
     if (moduleCard) {
-        console.log('Atualizando UI do módulo:', modulo);
-        
         const progressBar = moduleCard.querySelector('.progress-bar');
         const moduleStatus = moduleCard.querySelector('.module-status');
         
         // Verificar se é um módulo completo carregando JSON
         verificarModuloCompleto(modulo).then(numAtividades => {
-            console.log('Número de atividades no módulo:', numAtividades);
-            
             if (progressBar && moduleStatus) {
                 // Calcular progresso baseado no número de atividades
                 const percentComplete = (trilhaCompletada.length / numAtividades) * 100;
-                console.log('Percentual completo:', percentComplete);
-                
                 progressBar.style.width = `${percentComplete}%`;
                 
                 if (percentComplete >= 100) {
@@ -330,9 +208,9 @@ function atualizarUIModulo(modulo, progresso, index) {
 }
 
 // Verifica quantas atividades existem no módulo
-async function verificarModuloCompleto(moduloId) {
+export async function verificarModuloCompleto(moduloId) {
     try {
-        const response = await fetch(`/trilhas/${moduloId}.json`);
+        const response = await fetch(`trilhas/${moduloId}.json`);
         if (response.ok) {
             const data = await response.json();
             return data.trilha ? data.trilha.length : 5;
@@ -342,29 +220,4 @@ async function verificarModuloCompleto(moduloId) {
         console.error('Erro ao verificar módulo:', error);
         return 5; // valor padrão em caso de erro
     }
-}
-
-// Toast de notificação simples
-function showToast(message) {
-    // Remover toast existente
-    const existingToast = document.querySelector('.toast-notification');
-    if (existingToast) existingToast.remove();
-    
-    // Criar novo toast
-    const toast = document.createElement('div');
-    toast.className = 'toast-notification';
-    toast.textContent = message;
-    
-    document.body.appendChild(toast);
-    
-    // Animar entrada
-    setTimeout(() => {
-        toast.classList.add('show');
-    }, 10);
-    
-    // Remover após tempo
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
 }

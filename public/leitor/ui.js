@@ -9,8 +9,8 @@ import { saveFeedback } from '../indexedDB.js';
 // Retorna o título adequado para cada tipo de atividade
 export function getTituloAtividade(tipo) {
     switch(tipo) {
-        case 'vocabulário':
-            return 'Vocabulário';
+        case 'vocabulario':
+            return 'Vocabulario';
         case 'interlinear':
             return 'Leitura Interlinear';
         case 'quiz':
@@ -62,7 +62,7 @@ export function renderizarAtividade(indice) {
     
     // Renderizar com base no tipo de atividade
     switch(atividade.tipo) {
-        case 'vocabulário':
+        case 'vocabulario':
             renderVocabulario(atividade, container);
             break;
         case 'interlinear':

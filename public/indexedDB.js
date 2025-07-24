@@ -1,6 +1,6 @@
 // Sistema de armazenamento usando IndexedDB
 const DB_NAME = 'koineAppDB';
-const DB_VERSION = 3; 
+const DB_VERSION = 4; // Increased version for progress system
 const STORE_PROGRESS = 'userProgress';
 const STORE_FEEDBACK = 'userFeedback';
 const STORE_MODULE_COMPLETION = 'moduleCompletion';
@@ -8,6 +8,54 @@ const STORE_VOCABULARY = 'vocabularyWords';
 const STORE_WORD_LISTS = 'wordLists';
 const STORE_SYSTEM_VOCABULARY = 'systemVocabulary';
 const STORE_USER_PROGRESS = 'wordProgress';
+const STORE_TRILHA_PROGRESS = 'progresso'; // New store for trilha progress
+
+// Firebase integration flag
+let firebaseEnabled = false;
+let firebaseDb = null;
+
+/**
+ * Enable Firebase integration
+ */
+export function enableFirebaseIntegration(db) {
+    firebaseEnabled = true;
+    firebaseDb = db;
+}
+
+/**
+ * Check if user is authenticated and Firebase is enabled
+ */
+function shouldSyncToFirebase() {
+    return firebaseEnabled && firebaseDb && typeof window !== 'undefined' && 
+           window.firebaseAuth && window.firebaseAuth.isAuthenticated();
+}
+
+/**
+ * Sync data to Firebase if user is authenticated
+ */
+async function syncToFirebase(collectionName, data, docId = null) {
+    if (!shouldSyncToFirebase()) return;
+    
+    try {
+        const user = window.firebaseAuth.getCurrentUser();
+        if (!user) return;
+        
+        // Import Firebase functions
+        const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        
+        const userCollectionRef = collection(firebaseDb, 'users', user.uid, collectionName);
+        const docRef = doc(userCollectionRef, docId || data.id || data.moduloId || data.wordId);
+        
+        await setDoc(docRef, {
+            ...data,
+            syncedAt: new Date().toISOString()
+        });
+        
+        console.log(`Synced ${collectionName} to Firebase`);
+    } catch (error) {
+        console.warn(`Failed to sync ${collectionName} to Firebase:`, error);
+    }
+}
 
 // Inicializar o banco de dados
 export function initDB() {
@@ -61,14 +109,33 @@ export function initDB() {
             if (!db.objectStoreNames.contains(STORE_USER_PROGRESS)) {
                 db.createObjectStore(STORE_USER_PROGRESS, { keyPath: 'wordId' });
             }
+            
+            // Create store for trilha progress (new)
+            if (!db.objectStoreNames.contains(STORE_TRILHA_PROGRESS)) {
+                db.createObjectStore(STORE_TRILHA_PROGRESS, { keyPath: 'modulo_id' });
+            }
         };
     });
 }
+
+// Legacy functions - maintained for backward compatibility but will delegate to progress-manager
 
 // Salvar progresso
 export function saveProgress(trilhaId, progresso) {
     return new Promise(async (resolve, reject) => {
         try {
+            // Try to use new progress manager if available
+            if (window.progressManager) {
+                const progressData = {
+                    blocosConcluidos: progresso.trilhaCompletada || [],
+                    tempoTotal: 0
+                };
+                await window.progressManager.saveProgress(trilhaId, progressData);
+                resolve();
+                return;
+            }
+            
+            // Fallback to old system
             const db = await initDB();
             const tx = db.transaction(STORE_PROGRESS, 'readwrite');
             const store = tx.objectStore(STORE_PROGRESS);
@@ -82,7 +149,11 @@ export function saveProgress(trilhaId, progresso) {
             
             const request = store.put(item);
             
-            request.onsuccess = () => resolve();
+            request.onsuccess = async () => {
+                // Sync to Firebase
+                await syncToFirebase('userProgress', item, item.id);
+                resolve();
+            };
             request.onerror = (event) => reject(event.target.error);
             
             tx.oncomplete = () => db.close();
@@ -96,6 +167,19 @@ export function saveProgress(trilhaId, progresso) {
 export function loadProgress(trilhaId) {
     return new Promise(async (resolve, reject) => {
         try {
+            // Try to use new progress manager if available
+            if (window.progressManager) {
+                const progress = await window.progressManager.loadProgress(trilhaId);
+                // Convert to legacy format
+                const legacyProgress = {
+                    indiceAtual: progress.blocosConcluidos.length,
+                    trilhaCompletada: progress.blocosConcluidos
+                };
+                resolve(legacyProgress);
+                return;
+            }
+            
+            // Fallback to old system
             const db = await initDB();
             const tx = db.transaction(STORE_PROGRESS, 'readonly');
             const store = tx.objectStore(STORE_PROGRESS);
@@ -137,7 +221,13 @@ export function saveFeedback(trilhaId, dados) {
             
             const request = store.add(feedback);
             
-            request.onsuccess = () => resolve();
+            request.onsuccess = async () => {
+                // Get the generated ID
+                feedback.id = request.result;
+                // Sync to Firebase
+                await syncToFirebase('feedback', feedback, feedback.id.toString());
+                resolve();
+            };
             request.onerror = (event) => reject(event.target.error);
             
             tx.oncomplete = () => db.close();
@@ -163,7 +253,11 @@ export function saveModuleCompletion(moduloId) {
             
             const request = store.put(item);
             
-            request.onsuccess = () => resolve();
+            request.onsuccess = async () => {
+                // Sync to Firebase
+                await syncToFirebase('moduleCompletion', item, item.moduloId);
+                resolve();
+            };
             request.onerror = (event) => reject(event.target.error);
             
             tx.oncomplete = () => db.close();
@@ -194,6 +288,18 @@ export function checkModuleCompletion(moduloId) {
         } catch (error) {
             reject(error);
         }
+    });
+}
+
+// Initialize Firebase integration when available
+if (typeof window !== 'undefined') {
+    window.addEventListener('DOMContentLoaded', async () => {
+        // Wait for Firebase to be initialized
+        setTimeout(async () => {
+            if (window.firebaseAuth && window.firebaseAuth.db) {
+                enableFirebaseIntegration(window.firebaseAuth.db);
+            }
+        }, 1000);
     });
 }
 

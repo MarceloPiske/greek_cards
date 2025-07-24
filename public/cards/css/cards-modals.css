@@ -1,0 +1,402 @@
+/* Vocabulary Cards System - Modals and Practice Mode */
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    border-radius: var(--card-border-radius);
+    padding: 2rem;
+    width: 95%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    animation: modalAppear 0.3s forwards;
+}
+
+.modal-content.large {
+    max-width: 800px;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--accent);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--shadow);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: inherit;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.modal h2 {
+    margin-bottom: 1.5rem;
+}
+
+.note {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+/* Words Selection Modal */
+.words-selection {
+    max-height: 400px;
+    overflow-y: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--shadow);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.search-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Word detail modal */
+.word-detail-section {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.detail-row {
+    display: flex;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--shadow);
+}
+
+.detail-label {
+    flex: 0 0 140px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.detail-value {
+    flex: 1;
+    line-height: 1.5;
+}
+
+.word-detail-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--shadow);
+    display: flex;
+    justify-content: space-between;
+}
+
+.status-label span {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.status-label span.unread {
+    background-color: var(--status-unread);
+}
+
+.status-label span.reading {
+    background-color: var(--status-reading);
+}
+
+.status-label span.familiar {
+    background-color: var(--status-familiar);
+}
+
+.status-label span.memorized {
+    background-color: var(--status-memorized);
+}
+
+/* Practice Mode */
+.modal.fullscreen {
+    padding: 0;
+}
+
+.practice-container {
+    background: var(--bg-secondary);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.practice-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--shadow);
+}
+
+.practice-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.close-practice {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.practice-status {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-bar-container {
+    flex: 1;
+    height: 8px;
+    background-color: var(--bg-primary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-text {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.card-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.practice-card {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+}
+
+.practice-card.flipped .card-front {
+    transform: rotateY(180deg);
+}
+
+.practice-card.flipped .card-back {
+    transform: rotateY(0);
+}
+
+.practice-card.memorized ::before{
+    background-color: var(--status-memorized);
+}
+
+.practice-card.familiar ::before{
+    background-color: var(--status-familiar);
+}
+
+.practice-card.reading ::before{
+    background-color: var(--status-reading);
+}
+
+.practice-card.unread ::before{
+    background-color: var(--status-unread);
+}
+
+.practice-controls {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--shadow);
+}
+
+.status-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.status-controls .status-btn {
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+}
+
+.status-controls .status-btn span {
+    display: inline-block;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.pagination-controls .pagination-btn {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    border: 1px solid var(--shadow);
+    cursor: pointer;
+    transition: var(--card-transition);
+}
+
+.pagination-controls .pagination-btn:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+.pagination-controls .active {
+    background-color: var(--accent);
+    color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+    .vocab-word-item {
+        width: 100%;
+    }
+    .main-layout {
+        flex-direction: column;
+    }
+    .vocabulary-container {
+        padding: .5rem;
+        margin: 0;
+    }
+    .sidebar {
+        width: 100%;
+        max-height: none;
+        position: relative;
+    }
+
+    .action-bar,
+    .list-actions-bar {
+        align-items: flex-start;
+    }
+
+    .search-filter {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .words-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .status-controls {
+        flex-wrap: wrap;
+    }
+    .words-list {
+        gap: 1rem;
+    }
+    .vocab-word-item {
+        width: 100% !important;
+    }
+    .practice-card {
+        height: 250px;
+    }
+    .practice-header{
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .status-btn span:last-child {
+        display: none;
+    }
+    .vocabulary-tabs {
+        margin: 0;
+    }
+
+    .tab {
+        padding: .5rem .5rem;
+    }
+
+    .practice-controls {
+        gap: 1rem;
+    }
+
+    .status-controls {
+        order: -1;
+    }
+}

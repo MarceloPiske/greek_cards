@@ -1,0 +1,453 @@
+/* Vocabulary Cards System - Components and Interactive Elements */
+
+/* Buttons */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--shadow);
+    cursor: pointer;
+    transition: var(--card-transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.btn.primary {
+    background-color: var(--accent);
+    color: white;
+    border-color: transparent;
+}
+
+.btn.danger {
+    background-color: #f44336;
+    color: white;
+    border-color: transparent;
+}
+
+.btn.icon {
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    border: 1px solid var(--shadow);
+    cursor: pointer;
+    transition: var(--card-transition);
+    font-size: 0.85rem;
+}
+
+.filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.filter-btn.active {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Words List */
+.words-list {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.vocab-word-item {
+    width: calc(50% - 1%);
+    display: flex;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--bg-secondary);
+    box-shadow: 0 2px 10px var(--shadow);
+    transition: var(--card-transition);
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.vocab-word-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--status-unread);
+}
+
+.vocab-word-item.unread ::before {
+    background-color: var(--status-unread);
+}
+
+.vocab-word-item.reading ::before {
+    background-color: var(--status-reading);
+}
+
+.vocab-word-item.familiar ::before {
+    background-color: var(--status-familiar);
+}
+
+.vocab-word-item.memorized ::before {
+    background-color: var(--status-memorized);
+}
+
+.vocab-word-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.word-checkbox {
+    margin-right: 1rem;
+}
+
+.word-info {
+    flex: 1;
+}
+
+.greek-word {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.word-details {
+    margin-bottom: 0.5rem;
+}
+
+.transliteration {
+    font-style: italic;
+    color: var(--accent);
+    margin-right: 1rem;
+}
+
+.meaning {
+    color: var(--text-secondary);
+}
+
+.word-meta {
+    display: flex;
+    gap: 0.2rem;
+    font-size: 0.8rem;
+}
+
+.category-badge {
+    background-color: var(--bg-primary);
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    color: var(--text-secondary);
+}
+
+.status-badge {
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    color: white;
+}
+
+.status-badge.unread {
+    background-color: var(--status-unread);
+}
+
+.status-badge.reading {
+    background-color: var(--status-reading);
+}
+
+.status-badge.familiar {
+    background-color: var(--status-familiar);
+}
+
+.status-badge.memorized {
+    background-color: var(--status-memorized);
+}
+
+.word-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Words Grid (Cards) */
+.words-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.vocab-card {
+    height: 220px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+}
+
+.vocab-card.flipped .card-front {
+    transform: rotateY(180deg);
+}
+
+.vocab-card.flipped .card-back {
+    transform: rotateY(0);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
+    padding: var(--card-padding);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-front {
+    background-color: var(--bg-secondary);
+    transform: rotateY(0);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-back {
+    background-color: var(--bg-secondary);
+    transform: rotateY(180deg);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.vocab-card .greek-word {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.vocab-card .transliteration {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.vocab-card .meaning {
+    overflow: auto;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+.card-footer {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flip-hint {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.card-front::before,
+.card-back::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 5px;
+    width: 100%;
+    background-color: var(--status-unread);
+    z-index: 1;
+    border-top-left-radius: var(--card-border-radius);
+    border-top-right-radius: var(--card-border-radius);
+}
+
+.vocab-card.unread ::before {
+    background-color: var(--status-unread);
+}
+
+.vocab-card.reading ::before {
+    background-color: var(--status-reading);
+}
+
+.vocab-card.familiar ::before {
+    background-color: var(--status-familiar);
+}
+
+.vocab-card.memorized ::before {
+    background-color: var(--status-memorized);
+}
+
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+/* Status Buttons */
+.status-btn {
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--card-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    border: none;
+}
+
+.status-btn:hover {
+    transform: translateY(-2px);
+}
+
+.status-btn span:not(.material-symbols-sharp) {
+    display: none;
+}
+
+.card-actions .status-btn span {
+    display: inline-block;
+}
+
+.status-btn.unread.active {
+    background-color: var(--status-unread);
+    color: white;
+}
+
+.status-btn.reading.active {
+    background-color: var(--status-reading);
+    color: white;
+}
+
+.status-btn.familiar.active {
+    background-color: var(--status-familiar);
+    color: white;
+}
+
+.status-btn.memorized.active {
+    background-color: var(--status-memorized);
+    color: white;
+}
+
+/* Info button */
+.info-btn {
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+.info-btn:hover {
+    background: var(--accent);
+    color: white;
+    transform: scale(1.1);
+}
+
+.card-info-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+}
+
+/* Practice info button */
+.practice-info-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 5;
+    width: 40px;
+    height: 40px;
+}
+
+/* Custom checkbox */
+.word-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.word-checkbox label {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--shadow);
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.word-checkbox input[type="checkbox"]:checked+label::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--accent);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.word-checkbox input[type="checkbox"]:checked+label {
+    background-color: rgba(74, 144, 226, 0.1);
+    border-color: var(--accent);
+}
+
+.word-checkbox input[type="checkbox"]:disabled+label {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.words-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1%;
+}

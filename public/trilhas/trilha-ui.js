@@ -2,8 +2,45 @@
  * Módulo para UI de trilhas de estudo 
  */
 
-import { loadProgress } from '../../../indexedDB.js';
-import { showToast } from '/src/js/utils/toast.js';
+// Toast de notificação simples - implementação local
+function showToast(message) {
+    // Remover toast existente
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) existingToast.remove();
+    
+    // Criar novo toast
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10000;
+            font-weight: 500;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        ">${message}</div>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Animar entrada
+    setTimeout(() => {
+        toast.firstElementChild.style.transform = 'translateX(0)';
+    }, 10);
+    
+    // Remover após tempo
+    setTimeout(() => {
+        toast.firstElementChild.style.transform = 'translateX(100%)';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
 
 // Gera o HTML de um módulo da trilha
 export function gerarHTMLModulo(trilha, index, container) {
@@ -17,7 +54,6 @@ export function gerarHTMLModulo(trilha, index, container) {
             </div>
             ${!isLastItem ? '<div class="module-connector"></div>' : ''}
             <div data-modulo-id="${trilha.id}" class="module-card ${index > 0 ? 'locked' : ''}">
-                <a href="/leitor.html?trilha=${trilha.id}" class="module-link"></a>
                 <div class="module-info">
                     <h3>${trilha.titulo}</h3>
                     <p>${trilha.descricao}</p>
@@ -68,7 +104,8 @@ export function adicionarEventListeners() {
             const isLocked = modulo.querySelector('.module-badge').classList.contains('locked');
             
             if (!isLocked) {
-                window.location.href = `/leitor.html?trilha=${moduloId}`;
+                // Redirect to trilha content viewer
+                window.location.href = `trilhas/trilha_viewer.html?trilha=${moduloId}`;
             } else {
                 showToast('Este módulo ainda está bloqueado! Complete os módulos anteriores para desbloqueá-lo.');
             }
@@ -96,7 +133,7 @@ export function adicionarEventListeners() {
         const isLocked = modulo.querySelector('.module-badge').classList.contains('locked');
         
         if (!isLocked) {
-            window.location.href = `/leitor.html?trilha=${moduloId}`;
+            window.location.href = `trilhas/trilha_viewer.html?trilha=${moduloId}`;
         } else {
             showToast('Este módulo ainda está bloqueado! Complete os módulos anteriores para desbloqueá-lo.');
             modal.style.display = 'none';
@@ -110,65 +147,13 @@ export function adicionarEventListeners() {
     });
 }
 
-// Abre o modal com informações do módulo
-export async function abrirModalInfo(moduloId) {
-    try {
-        // Importar dinamicamente para evitar dependência circular
-        const { obterListaTrilhas } = await import('/src/js/trilhas/trilha-loader.js');
-        
-        // Obter informações do módulo
-        const trilhas = await obterListaTrilhas();
-        const modulo = trilhas.find(t => t.id === moduloId);
-        
-        if (!modulo) throw new Error('Módulo não encontrado');
-        
-        // Preencher o modal com as informações
-        document.getElementById('modulo-info-titulo').textContent = modulo.titulo;
-        document.getElementById('modulo-info-descricao').textContent = modulo.descricao;
-        document.getElementById('modulo-info-atividades').textContent = `${modulo.numeroAtividades || 5} atividades`;
-        document.getElementById('modulo-info-tempo').textContent = modulo.tempoEstimado || '15 min';
-        
-        // Configurar botão de iniciar
-        const iniciarBtn = document.getElementById('modulo-iniciar');
-        iniciarBtn.setAttribute('data-modulo-id', moduloId);
-        
-        // Mostrar modal
-        document.getElementById('moduloInfoModal').style.display = 'flex';
-    } catch (error) {
-        console.error('Erro ao abrir informações do módulo:', error);
-        showToast('Não foi possível carregar as informações do módulo');
-    }
-}
-
-// Carrega e atualiza o progresso das trilhas
-export async function carregarProgressoTrilhas(modulosIds) {
-    console.log("Carregando progresso dos módulos:", modulosIds);
-    
-    for (let index = 0; index < modulosIds.length; index++) {
-        const modulo = modulosIds[index];
-        try {
-            // Tentar carregar do IndexedDB primeiro
-            const progresso = await loadProgress(modulo);
-            atualizarUIModulo(modulo, progresso, index);
-        } catch (error) {
-            console.error('Erro ao carregar do IndexedDB:', error);
-            
-            // Fallback para localStorage
-            const progressoSalvo = localStorage.getItem(`trilha_${modulo}_progresso`);
-            if (progressoSalvo) {
-                const progresso = JSON.parse(progressoSalvo);
-                atualizarUIModulo(modulo, progresso, index);
-            }
-        }
-    }
-}
-
 // Atualiza a UI do módulo com base no progresso
 export function atualizarUIModulo(modulo, progresso, index) {
     console.log("Progresso", progresso);
     
-    const indiceAtual = progresso.indiceAtual || 0;
-    const trilhaCompletada = progresso.trilhaCompletada || [];
+    const indiceAtual = progresso?.indiceAtual || 0;
+    const trilhaCompletada = progresso?.trilhaCompletada || [];
+    const blocosConcluidos = progresso?.blocosConcluidos || trilhaCompletada; // Support new format
     
     // Buscar elementos do módulo
     const moduleCard = document.querySelector(`.trilha-module[data-modulo-id="${modulo}"] .module-card`);
@@ -182,14 +167,29 @@ export function atualizarUIModulo(modulo, progresso, index) {
         verificarModuloCompleto(modulo).then(numAtividades => {
             if (progressBar && moduleStatus) {
                 // Calcular progresso baseado no número de atividades
-                const percentComplete = (trilhaCompletada.length / numAtividades) * 100;
+                const percentComplete = (blocosConcluidos.length / numAtividades) * 100;
                 progressBar.style.width = `${percentComplete}%`;
+                
+                // Add progress percentage as data attribute for CSS
+                progressBar.setAttribute('data-percent', `${Math.round(percentComplete)}%`);
                 
                 if (percentComplete >= 100) {
                     moduleStatus.innerHTML = '<span class="material-symbols-sharp">check_circle</span> <span class="status-text">Concluído</span>';
                     moduleStatus.classList.add('completed');
                 } else if (percentComplete > 0) {
                     moduleStatus.innerHTML = '<span class="material-symbols-sharp">play_arrow</span> <span class="status-text">Continuar</span>';
+                }
+                
+                // Show premium sync indicator for logged users
+                if (window.firebaseAuth?.isAuthenticated()) {
+                    const syncIndicator = moduleCard.querySelector('.sync-indicator');
+                    if (!syncIndicator) {
+                        const indicator = document.createElement('div');
+                        indicator.className = 'sync-indicator';
+                        indicator.innerHTML = '<span class="material-symbols-sharp">cloud_sync</span>';
+                        indicator.title = 'Progresso sincronizado na nuvem';
+                        moduleCard.appendChild(indicator);
+                    }
                 }
                 
                 // Desbloquear próximo módulo se concluído
@@ -210,7 +210,7 @@ export function atualizarUIModulo(modulo, progresso, index) {
 // Verifica quantas atividades existem no módulo
 export async function verificarModuloCompleto(moduloId) {
     try {
-        const response = await fetch(`trilhas/${moduloId}.json`);
+        const response = await fetch(`trilhas/trilhas/${moduloId}.json`);
         if (response.ok) {
             const data = await response.json();
             return data.trilha ? data.trilha.length : 5;
@@ -221,3 +221,66 @@ export async function verificarModuloCompleto(moduloId) {
         return 5; // valor padrão em caso de erro
     }
 }
+
+// Abre o modal com informações do módulo
+export async function abrirModalInfo(moduloId) {
+    try {        
+        // Obter informações do módulo
+        const response = await fetch(`trilhas/trilhas/${moduloId}.json`);
+        if (!response.ok) throw new Error('Módulo não encontrado');
+        
+        const data = await response.json();
+        const modulo = data.modulo;
+        
+        if (!modulo) throw new Error('Estrutura de módulo inválida');
+        
+        // Preencher o modal com as informações
+        document.getElementById('modulo-info-titulo').textContent = modulo.titulo;
+        document.getElementById('modulo-info-descricao').textContent = modulo.descricao;
+        document.getElementById('modulo-info-atividades').textContent = `${data.trilha?.length || 5} atividades`;
+        document.getElementById('modulo-info-tempo').textContent = modulo.tempo || '15 min';
+        
+        // Configurar botão de iniciar
+        const iniciarBtn = document.getElementById('modulo-iniciar');
+        iniciarBtn.setAttribute('data-modulo-id', moduloId);
+        
+        // Mostrar modal
+        document.getElementById('moduloInfoModal').style.display = 'flex';
+    } catch (error) {
+        console.error('Erro ao abrir informações do módulo:', error);
+        showToast('Não foi possível carregar as informações do módulo');
+    }
+}
+
+// Carrega e atualiza o progresso das trilhas
+export async function carregarProgressoTrilhas(modulosIds) {
+    console.log("Carregando progresso dos módulos:", modulosIds);
+    
+    for (let index = 0; index < modulosIds.length; index++) {
+        const modulo = modulosIds[index];
+        try {
+            // Try to use new progress manager first
+            if (window.progressManager) {
+                const progresso = await window.progressManager.loadProgress(modulo);
+                atualizarUIModulo(modulo, progresso, index);
+            } else {
+                // Fallback to IndexedDB
+                const { loadProgress } = await import('../indexedDB.js');
+                const progresso = await loadProgress(modulo);
+                atualizarUIModulo(modulo, progresso, index);
+            }
+        } catch (error) {
+            console.error('Erro ao carregar progresso:', error);
+            
+            // Ultimate fallback to localStorage
+            const progressoSalvo = localStorage.getItem(`trilha_${modulo}_progresso`);
+            if (progressoSalvo) {
+                const progresso = JSON.parse(progressoSalvo);
+                atualizarUIModulo(modulo, progresso, index);
+            }
+        }
+    }
+}
+
+// Exportar showToast para uso em outros módulos
+export { showToast };

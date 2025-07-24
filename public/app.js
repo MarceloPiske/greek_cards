@@ -1,7 +1,16 @@
 // Theme switcher functionality
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     initThemeSwitcher();
     initLoginModal();
+    
+    // Initialize Firebase Authentication
+    if (typeof window.firebaseAuth !== 'undefined') {
+        try {
+            await window.firebaseAuth.initAuth();
+        } catch (error) {
+            console.error('Failed to initialize Firebase Auth:', error);
+        }
+    }
 });
 
 function initThemeSwitcher() {
@@ -40,10 +49,17 @@ function initLoginModal() {
     }
 }
 
-// Login function
-window.loginWith = function(provider) {
-    console.log(`Logging in with ${provider}`);
-    // Implement actual authentication logic here
-    const modal = document.getElementById('loginModal');
-    if (modal) modal.style.display = 'none';
+// Login function - updated to use Firebase
+window.loginWith = async function(provider) {
+    if (typeof window.firebaseAuth !== 'undefined') {
+        try {
+            await window.firebaseAuth.loginWith(provider);
+        } catch (error) {
+            console.error(`Error logging in with ${provider}:`, error);
+        }
+    } else {
+        console.log(`Logging in with ${provider} - Firebase not available`);
+        const modal = document.getElementById('loginModal');
+        if (modal) modal.style.display = 'none';
+    }
 };

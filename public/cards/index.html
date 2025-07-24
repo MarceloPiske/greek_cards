@@ -2,45 +2,100 @@
 <html lang="pt-BR">
 
 <head>
-    <base href="/">
+    <!-- <base href="/"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartões de Vocabulário - Koiné</title>
     <link rel="icon" href="img/icon.svg" type="image/png">
-    <link rel="stylesheet" href="styles.css">
-    <!-- <link rel="stylesheet" href="css/homepage.css"> -->
-    <link rel="stylesheet" href="cards/css/cards.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../cards/css/cards-base.css">
+    <link rel="stylesheet" href="../cards/css/cards-components.css">
+    <link rel="stylesheet" href="../cards/css/cards-modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
 </head>
 
 <body>
-    <header class="header">
-        <div class="action-but-content">
-            <button class="action-but-class" id="back-button">
-                <span class="material-symbols-sharp">arrow_back</span>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <button class="back-button" id="back-button" aria-label="Voltar">
+                    <span class="material-symbols-sharp">arrow_back</span>
+                </button>
+                <a href="/" class="logo-link">
+                    <span class="logo-text">Κοινή</span>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
             </button>
-            <h2>Cartões de Vocabulário</h2>
+            
+            <div class="nav-menu" id="nav-menu">
+                <div class="nav-breadcrumb">
+                    <span class="breadcrumb-item">
+                        <a href="/" class="breadcrumb-link">Início</a>
+                        <span class="material-symbols-sharp breadcrumb-separator">chevron_right</span>
+                    </span>
+                    <span class="breadcrumb-item current">Cartões de Vocabulário</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="../trilhas/trilha_conteudo.html" class="nav-link">
+                            <span class="material-symbols-sharp">school</span>
+                            <span>Trilhas de Estudo</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="./index.html" class="nav-link">
+                            <span class="material-symbols-sharp">style</span>
+                            <span>Vocabulário</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../" class="nav-link">
+                            <span class="material-symbols-sharp">home</span>
+                            <span>Página Inicial</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="theme-switch" aria-label="Alternar tema claro/escuro">
+                        <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" style="display: none;">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
-        <button class="theme-switch" aria-label="Alternar tema claro/escuro">
-            <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" style="display: none;">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </button>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-content">
+            <h1>
+                <span class="material-symbols-sharp page-icon">style</span>
+                Cartões de Vocabulário
+            </h1>
+            <p class="page-description">Crie suas próprias listas de palavras e acompanhe seu progresso de memorização.</p>
+        </div>
     </header>
 
     <main class="vocabulary-container">
@@ -95,25 +150,7 @@
                         <button class="filter-btn" data-filter="partícula">partícula</button>
                         <button class="filter-btn" data-filter="outro">outro</button>
                     </div>
-                    <!-- <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">Todos</button>
-                        <button class="filter-btn" data-filter="substantivo">Substantivos</button>
-                        <button class="filter-btn" data-filter="verbo">Verbos</button>
-                        <button class="filter-btn" data-filter="adjetivo">Adjetivos</button>
-                        <button class="filter-btn" data-filter="outro">Outros</button>
-                    </div> -->
                 </div>
-                <!-- <div class="action-buttons">
-                    <button id="import-lexicon-btn" class="btn">
-                        <span class="material-symbols-sharp">upload</span> Importar Léxico
-                    </button>
-                    <button id="add-word-btn" class="btn primary">
-                        <span class="material-symbols-sharp">add</span> Nova Palavra
-                    </button>
-                    <button id="view-toggle-btn" class="btn icon">
-                        <span class="material-symbols-sharp">view_module</span>
-                    </button>
-                </div> -->
             </div>
 
             <div id="all-vocabulary-words" class="words-list">
@@ -148,10 +185,50 @@
         </div>
     </main>
 
-    <!-- <script src="app.js"></script>
-    <script type="module" src="./indexedDB.js"></script> -->
-    <script type="module" src="./cards/vocabulary.js"></script>
-    <script type="module" src="./cards/app.js"></script>
+    <script type="module" src="../firebase-auth.js"></script>
+    <script type="module" src="./vocabulary.js"></script>
+    <script type="module" src="./app.js"></script>
+    <script>
+        // Mobile navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const backButton = document.getElementById('back-button');
+            
+            // Toggle mobile menu
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', !isExpanded);
+                document.body.classList.toggle('nav-open');
+            });
+            
+            // Back button functionality
+            if (backButton) {
+                backButton.addEventListener('click', () => {
+                    window.location.href = '/';
+                });
+            }
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.navbar')) {
+                    navMenu.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('nav-open');
+                }
+            });
+            
+            // Close menu when pressing Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    navMenu.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('nav-open');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

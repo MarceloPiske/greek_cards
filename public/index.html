@@ -1,7 +1,6 @@
-<html>
+<html lang="pt-BR">
 
 <head>
-    <base href="/"><!-- github -->
     <title>Koiné - Gramática de Grego Bíblico</title>
     <link rel="icon" href="./img/icon.svg" type="image/png">
     <meta charset="UTF-8">
@@ -14,8 +13,8 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://grego-koine.web.app">
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./css/homepage.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet" />
 
     <script type="application/ld+json">
@@ -40,30 +39,95 @@
 </head>
 
 <body>
-    <header class="header" role="banner">
-        <nav class="user-section" role="navigation" aria-label="User navigation">
-            <button class="login-button" aria-label="Abrir modal de login">Login</button>
-        </nav>
-        <button class="theme-switch" aria-label="Alternar tema claro/escuro">
-            <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" style="display: none;">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </button>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="/" class="logo-link">
+                    <span class="logo-text">Κοινή</span>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="./trilhas/trilha_conteudo.html" class="nav-link">
+                            <span class="material-symbols-sharp">school</span>
+                            <span>Trilhas de Estudo</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./cards/index.html" class="nav-link">
+                            <span class="material-symbols-sharp">style</span>
+                            <span>Vocabulário</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            <span class="material-symbols-sharp">menu_book</span>
+                            <span>Recursos</span>
+                            <span class="material-symbols-sharp dropdown-arrow">expand_more</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./src/html/conteudo/morfologia.html" class="dropdown-link">Morfologia</a></li>
+                            <li><a href="./src/html/conteudo/sintaxe.html" class="dropdown-link">Sintaxe</a></li>
+                            <li><a href="#" class="dropdown-link">Gramática</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#sobre" class="nav-link">
+                            <span class="material-symbols-sharp">info</span>
+                            <span>Sobre</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <div class="user-section">
+                        <div class="user-profile" id="user-profile" style="display: none;">
+                            <img class="user-avatar" id="user-avatar" src="" alt="User Avatar">
+                            <span class="user-name" id="user-name"></span>
+                            <button class="user-menu-btn" id="user-menu-btn" aria-label="Abrir menu do usuário">
+                                <span class="material-symbols-sharp">expand_more</span>
+                            </button>
+                        </div>
+                        <button class="login-button" id="login-button" aria-label="Abrir modal de login">
+                            <span class="material-symbols-sharp">person</span>
+                            <span>Login</span>
+                        </button>
+                    </div>
+                    
+                    <button class="theme-switch" aria-label="Alternar tema claro/escuro">
+                        <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" style="display: none;">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-header" role="banner">
         <h1 class="logo">Κοινή</h1>
         <p class="welcome-text" role="doc-introduction">
             Descubra o grego bíblico através de uma gramática introdutória completa e intuitiva.
@@ -159,7 +223,7 @@
                 <button class="login-option-btn" onclick="loginWith('apple')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <path fill="currentColor"
-                            d="M17.05 20.28c-.98.95-2.05.88-3.08.38-1.09-.52-2.08-.53-3.2 0-1.39.68-2.12.53-3.01-.38C3.33 15.85 4.23 8.17 9.82 7.85c1.34.07 2.29.74 3.08.79 1.17-.24 2.29-.94 3.46-.84 1.47.13 2.57.77 3.28 1.86-3.04 1.87-2.44 5.65.82 6.99-.82 1.76-1.85 3.48-3.41 3.63z" />
+                            d="M12.77 4.58c.06 1.92-1.55 3.56-3.39 3.45C9.11 6.04 10.89 4.33 12.77 4.58z" />
                         <path fill="currentColor"
                             d="M12.77 4.58c.06 1.92-1.55 3.56-3.39 3.45C9.11 6.04 10.89 4.33 12.77 4.58z" />
                     </svg>
@@ -178,8 +242,60 @@
         </div>
     </div>
 
+    <script type="module" src="firebase-auth.js"></script>
     <script src="app.js"></script>
     <script src="json_output/json_to_indexeddb.js"></script>
+    <script>
+        // Mobile navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            
+            // Toggle mobile menu
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', !isExpanded);
+                document.body.classList.toggle('nav-open');
+            });
+            
+            // Handle dropdown menus
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const dropdown = this.parentNode;
+                    dropdown.classList.toggle('active');
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !isExpanded);
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.navbar')) {
+                    navMenu.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('nav-open');
+                    
+                    // Close dropdowns
+                    document.querySelectorAll('.dropdown.active').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                        dropdown.querySelector('.dropdown-toggle').setAttribute('aria-expanded', 'false');
+                    });
+                }
+            });
+            
+            // Close menu when pressing Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    navMenu.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('nav-open');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

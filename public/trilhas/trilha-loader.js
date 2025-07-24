@@ -3,6 +3,11 @@
  */
 
 import { loadProgress } from '../indexedDB.js';
+import { 
+    gerarHTMLModulo, 
+    adicionarEventListeners, 
+    carregarProgressoTrilhas 
+} from './trilha-ui.js';
 
 // Função para obter informações sobre todas as trilhas disponíveis
 export async function carregarTrilhasDisponiveis() {
@@ -21,7 +26,7 @@ export async function carregarTrilhasDisponiveis() {
         });
         
         // Carregar e atualizar progresso das trilhas
-        carregarProgressoTrilhas(trilhasDisponiveis.map(t => t.id));
+        await carregarProgressoTrilhas(trilhasDisponiveis.map(t => t.id));
         
         // Adicionar event listeners aos módulos
         adicionarEventListeners();
@@ -41,7 +46,7 @@ export async function carregarTrilhasDisponiveis() {
 export async function obterListaTrilhas() {
     try {
         // Fazer um fetch para verificar quais trilhas existem
-        const response = await fetch('./trilhas/trilhas/index.json'); //FIXME - URL hardcoded
+        const response = await fetch('trilhas/trilhas/index.json');
         
         if (response.ok) {
             // Se tiver um arquivo index.json com as trilhas
@@ -59,8 +64,8 @@ export async function obterListaTrilhas() {
                 titulo: 'Introdução ao Grego Koiné',
                 descricao: 'Primeiros passos no estudo do grego bíblico.',
                 icone: 'school',
-                tempoEstimado: '15 min',
-                numeroAtividades: 5,
+                tempoEstimado: '35 min',
+                numeroAtividades: 4,
                 nivel: 'iniciante'
             }
         ];
@@ -72,11 +77,11 @@ function getDefaultTrilhas() {
     return [
         {
             id: 'modulo_1',
-            titulo: 'Introdução ao Grego Koiné',
+            titulo: 'Contexto Histórico do Grego Koiné',
             descricao: 'Primeiros passos no estudo do grego bíblico, incluindo vocabulário básico e leitura interlinear.',
             icone: 'school',
-            tempoEstimado: '15 min',
-            numeroAtividades: 5,
+            tempoEstimado: '35 min',
+            numeroAtividades: 4,
             nivel: 'iniciante'
         },
         {
@@ -84,143 +89,11 @@ function getDefaultTrilhas() {
             titulo: 'Alfabeto e Pronúncia',
             descricao: 'Aprenda a reconhecer e pronunciar as letras do alfabeto grego, a base para ler textos originais.',
             icone: 'abc',
-            tempoEstimado: '20 min',
-            numeroAtividades: 7,
-            nivel: 'iniciante'
-        },
-        {
-            id: 'modulo_3',
-            titulo: 'Substantivos e Artigos',
-            descricao: 'Estude os casos nominais e o sistema de declinações no grego koiné, fundamentais para compreensão textual.',
-            icone: 'text_format',
-            tempoEstimado: '25 min',
-            numeroAtividades: 8,
-            nivel: 'básico'
-        },
-        {
-            id: 'modulo_4',
-            titulo: 'Verbos no Presente',
-            descricao: 'Compreenda a estrutura verbal do grego e aprenda a conjugação no tempo presente.',
-            icone: 'history_edu',
-            tempoEstimado: '30 min',
-            numeroAtividades: 10,
-            nivel: 'intermediário'
-        },
-        {
-            id: 'modulo_5',
-            titulo: 'Leitura de Textos Simples',
-            descricao: 'Pratique a leitura de textos curtos do Novo Testamento aplicando os conhecimentos adquiridos.',
-            icone: 'menu_book',
             tempoEstimado: '35 min',
-            numeroAtividades: 12,
-            nivel: 'avançado'
+            numeroAtividades: 2,
+            nivel: 'iniciante'
         }
     ];
-}
-
-// Gera o HTML de um módulo da trilha
-function gerarHTMLModulo(trilha, index, container) {
-    // Determinar se é o último item (sem conector inferior)
-    const isLastItem = index === 4; // Ajuste conforme necessário
-    
-    const html = `
-        <div class="trilha-module" data-modulo-id="${trilha.id}">
-            <div class="module-badge ${index > 0 ? 'locked' : ''}" title="${trilha.nivel || 'Nível básico'}">
-                <span class="material-symbols-sharp">${trilha.icone || 'school'}</span>
-            </div>
-            ${!isLastItem ? '<div class="module-connector"></div>' : ''}
-            <div class="module-card ${index > 0 ? 'locked' : ''}">
-                <a href="/leitor/leitor.html?trilha=${trilha.id}" class="module-link"></a>
-                <div class="module-info">
-                    <h3>${trilha.titulo}</h3>
-                    <p>${trilha.descricao}</p>
-                </div>
-                <div class="module-details">
-                    <span class="module-atividades">
-                        <span class="material-symbols-sharp">assignment</span>
-                        ${trilha.numeroAtividades || '5'} atividades
-                    </span>
-                    <span class="module-tempo">
-                        <span class="material-symbols-sharp">schedule</span>
-                        ${trilha.tempoEstimado || '15 min'}
-                    </span>
-                </div>
-                <div class="module-progress">
-                    <div class="progress-bar" style="width: 0%"></div>
-                </div>
-                <div class="module-status">
-                    <span class="material-symbols-sharp">${index > 0 ? 'lock' : 'play_arrow'}</span>
-                    <span class="status-text">${index > 0 ? 'Bloqueado' : 'Iniciar'}</span>
-                </div>
-                <button class="module-info-btn" data-modulo-id="${trilha.id}">
-                    <span class="material-symbols-sharp">info</span>
-                </button>
-            </div>
-        </div>
-    `;
-    
-    container.insertAdjacentHTML('beforeend', html);
-}
-
-// Adiciona event listeners aos elementos dinâmicos
-function adicionarEventListeners() {
-    // Event listeners para botões de informação
-    document.querySelectorAll('.module-info-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const moduloId = btn.getAttribute('data-modulo-id');
-            abrirModalInfo(moduloId);
-        });
-    });
-    
-    // Event listeners para módulos (clique na área geral)
-    document.querySelectorAll('.trilha-module').forEach(modulo => {
-        modulo.addEventListener('click', () => {
-            const moduloId = modulo.getAttribute('data-modulo-id');
-            const isLocked = modulo.querySelector('.module-badge').classList.contains('locked');
-            
-            if (!isLocked) {
-                window.location.href = `/leitor.html?trilha=${moduloId}`;
-            } else {
-                showToast('Este módulo ainda está bloqueado! Complete os módulos anteriores para desbloqueá-lo.');
-            }
-        });
-    });
-    
-    // Configurar modal de informações
-    const modal = document.getElementById('moduloInfoModal');
-    const closeBtn = modal.querySelector('.close-modal');
-    const iniciarBtn = document.getElementById('modulo-iniciar');
-    
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-    
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-    
-    iniciarBtn.addEventListener('click', () => {
-        const moduloId = iniciarBtn.getAttribute('data-modulo-id');
-        const modulo = document.querySelector(`.trilha-module[data-modulo-id="${moduloId}"]`);
-        const isLocked = modulo.querySelector('.module-badge').classList.contains('locked');
-        
-        if (!isLocked) {
-            window.location.href = `/leitor.html?trilha=${moduloId}`;
-        } else {
-            showToast('Este módulo ainda está bloqueado! Complete os módulos anteriores para desbloqueá-lo.');
-            modal.style.display = 'none';
-        }
-    });
-    
-    document.getElementById('modulo-info').addEventListener('click', () => {
-        const moduloId = iniciarBtn.getAttribute('data-modulo-id');
-        // Aqui poderia abrir documentação detalhada ou um guia do módulo
-        showToast('Funcionalidade de informações detalhadas em desenvolvimento!');
-    });
 }
 
 // Abre o modal com informações do módulo
@@ -250,36 +123,6 @@ async function abrirModalInfo(moduloId) {
     }
 }
 
-// Carrega o progresso das trilhas
-async function carregarProgressoTrilhas(modulosIds) {
-    //console.log("Carregando progresso das trilhas:", modulosIds);
-    
-    for (let index = 0; index < modulosIds.length; index++) {
-        const modulo = modulosIds[index];
-        try {
-            // Tentar carregar do IndexedDB primeiro
-            let progresso = await loadProgress(modulo);
-            //console.log('Tentando carregar do localStorage:', progresso);
-            if (!progresso) {
-                progresso = JSON.parse(localStorage.getItem(`trilha_${modulo}_progresso`));
-            }
-            atualizarUIModulo(modulo, progresso, index);
-        } catch (error) {
-            console.error('Erro ao carregar do IndexedDB:', error);
-            
-            // Fallback para localStorage
-            const progressoSalvo = localStorage.getItem(`trilha_${modulo}_progresso`);
-            
-            
-            if (progressoSalvo) {
-                const progresso = JSON.parse(progressoSalvo);
-                //console.log('Progresso carregado do localStorage:', progresso);
-                
-                atualizarUIModulo(modulo, progresso, index);
-            }
-        }
-    }
-}
 
 // Atualiza a UI do módulo com base no progresso carregado
 function atualizarUIModulo(modulo, progresso, index) {
@@ -330,9 +173,9 @@ function atualizarUIModulo(modulo, progresso, index) {
 }
 
 // Verifica quantas atividades existem no módulo
-async function verificarModuloCompleto(moduloId) {
+export async function verificarModuloCompleto(moduloId) {
     try {
-        const response = await fetch(`/trilhas/trilhas/${moduloId}.json`);
+        const response = await fetch(`trilhas/trilhas/${moduloId}.json`);
         if (response.ok) {
             const data = await response.json();
             return data.trilha ? data.trilha.length : 5;
@@ -353,18 +196,33 @@ function showToast(message) {
     // Criar novo toast
     const toast = document.createElement('div');
     toast.className = 'toast-notification';
-    toast.textContent = message;
+    toast.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10000;
+            font-weight: 500;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        ">${message}</div>
+    `;
     
     document.body.appendChild(toast);
     
     // Animar entrada
     setTimeout(() => {
-        toast.classList.add('show');
+        toast.firstElementChild.style.transform = 'translateX(0)';
     }, 10);
     
     // Remover após tempo
     setTimeout(() => {
-        toast.classList.remove('show');
+        toast.firstElementChild.style.transform = 'translateX(100%)';
         setTimeout(() => toast.remove(), 300);
     }, 3000);
 }

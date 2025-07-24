@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trilhas de Estudo - Koiné</title>
+    <title>Visualizador de Trilha - Koiné</title>
     <base href="/">
     <link rel="icon" href="img/icon.svg" type="image/png">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/homepage.css">
-    <link rel="stylesheet" href="css/trilha.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/trilha.css">
+    <link rel="stylesheet" href="./trilhas/css/trilha-viewer.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-brand">
+                <button class="back-button" id="back-button" aria-label="Voltar às trilhas">
+                    <span class="material-symbols-sharp">arrow_back</span>
+                </button>
                 <a href="/" class="logo-link">
                     <span class="logo-text">Κοινή</span>
                 </a>
@@ -27,8 +31,20 @@
             </button>
             
             <div class="nav-menu" id="nav-menu">
+                <div class="nav-breadcrumb">
+                    <span class="breadcrumb-item">
+                        <a href="/" class="breadcrumb-link">Início</a>
+                        <span class="material-symbols-sharp breadcrumb-separator">chevron_right</span>
+                    </span>
+                    <span class="breadcrumb-item">
+                        <a href="trilhas/trilha_conteudo.html" class="breadcrumb-link">Trilhas</a>
+                        <span class="material-symbols-sharp breadcrumb-separator">chevron_right</span>
+                    </span>
+                    <span class="breadcrumb-item current" id="current-module">Módulo</span>
+                </div>
+                
                 <ul class="nav-links">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a href="trilhas/trilha_conteudo.html" class="nav-link">
                             <span class="material-symbols-sharp">school</span>
                             <span>Trilhas de Estudo</span>
@@ -38,12 +54,6 @@
                         <a href="cards/index.html" class="nav-link">
                             <span class="material-symbols-sharp">style</span>
                             <span>Vocabulário</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">
-                            <span class="material-symbols-sharp">home</span>
-                            <span>Página Inicial</span>
                         </a>
                     </li>
                 </ul>
@@ -74,61 +84,38 @@
         </div>
     </nav>
 
-    <header class="page-header">
-        <div class="header-content">
-            <h1>
-                <span class="material-symbols-sharp page-icon">school</span>
-                Trilhas de Estudo
-            </h1>
-            <p class="page-description">Escolha uma das trilhas de estudo abaixo para começar sua jornada no aprendizado do grego Koiné.</p>
+    <main class="trilha-viewer">
+        <div id="trilha-content" class="trilha-content">
+            <div class="loading-state">
+                <span class="material-symbols-sharp loading-icon">sync</span>
+                <p>Carregando conteúdo da trilha...</p>
+            </div>
         </div>
-    </header>
-
-    <main class="main-content" role="main">
-        <section class="trilhas-section">
-            <div class="trilha-container" id="trilhas-container">
-                <div class="trilha-timeline" id="trilha-timeline">
-                    <div class="loading-trilhas">
-                        <span class="material-symbols-sharp loading-icon">sync</span>
-                        <p>Carregando trilhas de estudo...</p>
-                    </div>
+        
+        <div class="trilha-navigation">
+            <div class="progress-info">
+                <span id="activity-counter">1 / 4</span>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="progress-fill" style="width: 25%"></div>
                 </div>
             </div>
-        </section>
+            <div class="nav-buttons">
+                <button id="prev-btn" class="btn" disabled>
+                    <span class="material-symbols-sharp">chevron_left</span>
+                    Anterior
+                </button>
+                <button id="next-btn" class="btn primary">
+                    Próximo
+                    <span class="material-symbols-sharp">chevron_right</span>
+                </button>
+            </div>
+        </div>
     </main>
-
-    <div class="modal" id="moduloInfoModal">
-        <div class="modal-content modulo-info-content">
-            <button class="close-modal">&times;</button>
-            <h2 id="modulo-info-titulo">Título do Módulo</h2>
-            <div class="modulo-descricao" id="modulo-info-descricao">
-                Descrição do módulo aparecerá aqui.
-            </div>
-            <div class="modulo-stats">
-                <div class="stat-item">
-                    <span class="material-symbols-sharp">assignment</span>
-                    <span id="modulo-info-atividades">0 atividades</span>
-                </div>
-                <div class="stat-item">
-                    <span class="material-symbols-sharp">schedule</span>
-                    <span id="modulo-info-tempo">15 min</span>
-                </div>
-            </div>
-            <div class="modulo-acoes">
-                <button id="modulo-iniciar" class="modulo-acao-btn primary">
-                    <span class="material-symbols-sharp">play_arrow</span> Iniciar módulo
-                </button>
-                <button id="modulo-info" class="modulo-acao-btn secondary">
-                    <span class="material-symbols-sharp">info</span> Mais informações
-                </button>
-            </div>
-        </div>
-    </div>
 
     <script src="app.js"></script>
     <script type="module" src="indexedDB.js"></script>
     <script type="module" src="progress-manager.js"></script>
-    <script type="module" src="trilhas/app.js"></script>
+    <script type="module" src="trilhas/js/trilha-viewer-init.js"></script>
     <script>
         // Mobile navigation toggle
         document.addEventListener('DOMContentLoaded', function() {

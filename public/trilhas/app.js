@@ -3,23 +3,33 @@
  */
 
 import { carregarTrilhasDisponiveis } from './trilha-loader.js';
-import * as trilhaUI from './trilha-ui.js';
 
-// Exportar funções para o escopo global
+// Initialize progress manager
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Initialize progress manager
+        if (window.progressManager) {
+            await window.progressManager.initProgressDB();
+        }
+        
+        // Setup back button
+        const backButton = document.getElementById('back-button');
+        if (backButton) {
+            backButton.addEventListener('click', () => {
+                window.location.href = '/';
+            });
+        }
+        
+        // Load available trilhas
+        await carregarTrilhasDisponiveis();
+        
+        console.log('Trilhas loaded successfully with progress tracking');
+    } catch (error) {
+        console.error('Error initializing trilhas app:', error);
+    }
+});
+
+// Export functions for global scope
 window.trilhaLoader = { 
     carregarTrilhasDisponiveis 
 };
-
-// Inicializar a aplicação quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', () => {
-    // Configurar botão de voltar
-    document.getElementById('back-button').addEventListener('click', () => {
-        window.location.href = '/';
-    });
-    
-    // Carregar lista de trilhas disponíveis
-    carregarTrilhasDisponiveis();
-});
-
-// Exportar módulos UI para o escopo global
-window.trilhaUI = trilhaUI;

@@ -62,7 +62,7 @@ export const PLAN_FEATURES = {
 };
 
 let currentUser = null;
-let userPlan = localStorage.getItem('userPlan') || PLANS.FREE;
+let userPlan = null;
 
 /**
  * Initialize user document in Firestore with new plan structure
@@ -78,7 +78,6 @@ export async function initializeUserDocument(user) {
         
         // Check if user document already exists
         const userDoc = await getDoc(userRef);
-        //console.log(`Initializing user document for ${userDoc}`);
         
         if (!userDoc.exists()) {
             // Create new user document with free plan
@@ -86,7 +85,7 @@ export async function initializeUserDocument(user) {
                 uid: user.uid,
                 nome: user.displayName || user.email.split('@')[0],
                 email: user.email,
-                plan: PLANS.FREE, // Start with free plan
+                plano: PLANS.FREE, // Start with free plan
                 criadoEm: serverTimestamp(),
                 ultimoAcesso: serverTimestamp(),
                 settings: {
@@ -118,7 +117,6 @@ export async function initializeUserDocument(user) {
             userPlan = data.plan || PLANS.FREE;
             
             console.log(`User loaded with plan: ${userPlan}`);
-            localStorage.setItem('userPlan', userPlan);
         }
         
         return currentUser;
@@ -237,7 +235,7 @@ export async function updateUserPlan(userId, newPlan, expiresAt = null) {
         const userRef = doc(db, 'users', userId);
         
         const updateData = {
-            plan: newPlan,
+            plano: newPlan,
             expiresAt: expiresAt,
             updatedAt: serverTimestamp()
         };
@@ -252,8 +250,6 @@ export async function updateUserPlan(userId, newPlan, expiresAt = null) {
         }
         
         console.log(`User plan updated to: ${newPlan}`);
-        // Update local storage
-        localStorage.setItem('userPlan', newPlan);
         return true;
     } catch (error) {
         console.error('Error updating user plan:', error);

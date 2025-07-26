@@ -3,7 +3,7 @@
  */
 
 import { createFormGroup, createActionButtons } from './modal-utils.js';
-import { WordCategories } from './vocabulary.js';
+import { WordCategories } from './vocabulary-db.js';
 import { getStatusLabel } from './modal-utils.js'
 
 /**

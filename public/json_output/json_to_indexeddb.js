@@ -1,6 +1,6 @@
 function openKoineDB() {
     return new Promise((resolve, reject) => {
-      const request = indexedDB.open("koineAppDB", 2);
+      const request = indexedDB.open("koineAppDB", 4); // Updated to version 3 to match main app
   
       request.onupgradeneeded = (event) => {
         const db = event.target.result;
@@ -8,10 +8,32 @@ function openKoineDB() {
         if (!db.objectStoreNames.contains("systemVocabulary")) {
           db.createObjectStore("systemVocabulary", { keyPath: "ID" });
         }
+        // Add other stores that might be needed for version 3
+        if (!db.objectStoreNames.contains("userProgress")) {
+          db.createObjectStore("userProgress", { keyPath: "wordId" });
+        }
+        if (!db.objectStoreNames.contains("vocabularyWords")) {
+          db.createObjectStore("vocabularyWords", { keyPath: "id" });
+        }
+        if (!db.objectStoreNames.contains("wordLists")) {
+          db.createObjectStore("wordLists", { keyPath: "id" });
+        }
+        if (!db.objectStoreNames.contains("userProgress")) {
+          db.createObjectStore("userProgress", { keyPath: "id" });
+        }
+        if (!db.objectStoreNames.contains("userFeedback")) {
+          db.createObjectStore("userFeedback", { keyPath: "id", autoIncrement: true });
+        }
+        if (!db.objectStoreNames.contains("moduleCompletion")) {
+          db.createObjectStore("moduleCompletion", { keyPath: "moduloId" });
+        }
       };
   
       request.onsuccess = (event) => resolve(event.target.result);
-      request.onerror = () => reject("Erro ao abrir o IndexedDB");
+      request.onerror = (event) => {
+        console.error("Erro detalhado ao abrir IndexedDB:", event.target.error);
+        reject("Erro ao abrir o IndexedDB: " + event.target.error);
+      };
     });
   }
   
@@ -44,14 +66,17 @@ function openKoineDB() {
   
   async function carregarEImportar() {
     try {
-      const response = await fetch("./json_output/STRONGS_WORD_COMBINADO.json"); // Altere o nome conforme necessário
+      const response = await fetch("./json_output/STRONGS_WORD_COMBINADO.json");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       
       await importarVocabulario(data);
     } catch (err) {
       console.error("Erro ao carregar JSON:", err);
+      // Don't show alert in console, just log the error
     }
   }
   
   carregarEImportar();
-  

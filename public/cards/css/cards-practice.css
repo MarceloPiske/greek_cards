@@ -1,0 +1,173 @@
+/* Vocabulary Cards System - Practice Mode Styles */
+
+/* Practice Mode */
+.modal.fullscreen {
+    padding: 0;
+}
+
+.practice-container {
+    background: var(--bg-secondary);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.practice-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--shadow);
+}
+
+.practice-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.close-practice {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.practice-status {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-bar-container {
+    flex: 1;
+    height: 8px;
+    background-color: var(--bg-primary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-text {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.card-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.practice-card {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+}
+
+.practice-card.flipped .card-front {
+    transform: rotateY(180deg);
+}
+
+.practice-card.flipped .card-back {
+    transform: rotateY(0);
+}
+
+.practice-card.memorized::before{
+    background-color: var(--status-memorized);
+}
+
+.practice-card.familiar::before{
+    background-color: var(--status-familiar);
+}
+
+.practice-card.reading::before{
+    background-color: var(--status-reading);
+}
+
+.practice-card.unread::before{
+    background-color: var(--status-unread);
+}
+
+.practice-controls {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--shadow);
+}
+
+.status-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.status-controls .status-btn {
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+}
+
+.status-controls .status-btn span {
+    display: inline-block;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.pagination-controls .pagination-btn {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    border: 1px solid var(--shadow);
+    cursor: pointer;
+    transition: var(--card-transition);
+}
+
+.pagination-controls .pagination-btn:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+.pagination-controls .active {
+    background-color: var(--accent);
+    color: white;
+}
+
+/* Practice Mode Responsive Styles */
+@media (max-width: 900px) {
+    .practice-card {
+        height: 250px;
+    }
+    .practice-header{
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .status-btn span:last-child {
+        display: none;
+    }
+
+    .practice-controls {
+        gap: 1rem;
+    }
+
+    .status-controls {
+        order: -1;
+    }
+}

@@ -90,20 +90,24 @@ body {
 
 .topics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
     margin: 1rem 0;
 }
 
 .topic-card {
     background: var(--bg-secondary);
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 16px;
     text-align: center;
     transition: all 0.4s ease;
     box-shadow: 0 8px 30px var(--shadow);
     position: relative;
     overflow: hidden;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .topic-card::after {
@@ -133,8 +137,9 @@ body {
 
 .topic-icon {
     font-size: 3rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: var(--accent);
+    display: block;
 }
 
 .topic-card h3 {
@@ -228,21 +233,43 @@ body {
 }
 
 .footer {
-    padding: 3rem;
+    padding: 3rem 2rem 1rem;
     background: var(--bg-secondary);
-    text-align: center;
     margin-top: auto;
     box-shadow: 0 -4px 20px var(--shadow);
 }
 
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.footer-section p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
 .footer-links {
-    padding: .5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .footer-links a {
     color: var(--text-secondary);
     text-decoration: none;
-    margin: 0 1.5rem;
     transition: color 0.3s ease;
     font-family: 'Source Sans Pro', sans-serif;
 }
@@ -251,7 +278,20 @@ body {
     color: var(--accent);
 }
 
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--shadow);
+    color: var(--text-secondary);
+}
+
+.footer-bottom p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
 .donation-section {
+    margin-top: 1rem;
     padding-top: 2rem;
     border-top: 1px solid var(--shadow);
 }
@@ -260,17 +300,16 @@ body {
     background: var(--accent);
     color: white;
     border: none;
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     border-radius: 25px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    margin: 0 auto;
+    gap: 0.5rem;
     font-family: 'Source Sans Pro', sans-serif;
-    text-align: center;
+    width: fit-content;
 }
 
 .donation-button:hover {
@@ -304,7 +343,8 @@ body {
     }
 
     .topics-grid {
-        margin: 0;
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .exercises-section {
@@ -312,7 +352,18 @@ body {
     }
 
     .footer {
-        padding: 1rem;
+        padding: 2rem 1rem 1rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
     .donation-section {

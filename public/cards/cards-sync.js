@@ -8,8 +8,6 @@ import { initVocabularyDB } from './vocabulary-db.js';
 
 // Sync configuration
 const SYNC_COLLECTIONS = {
-    WORD_PROGRESS: 'wordProgress',
-    WORD_LISTS: 'wordLists',
     VOCABULARY_WORDS: 'vocabularyWords'
 };
 
@@ -319,12 +317,6 @@ async function syncAllDataToCloud() {
         
         const db = await initVocabularyDB();
         
-        // Sync word progress
-        await syncCollectionToCloud(db, SYNC_COLLECTIONS.WORD_PROGRESS);
-        
-        // Sync word lists
-        await syncCollectionToCloud(db, SYNC_COLLECTIONS.WORD_LISTS);
-        
         // Sync custom vocabulary words
         await syncCollectionToCloud(db, SYNC_COLLECTIONS.VOCABULARY_WORDS);
         
@@ -374,9 +366,7 @@ export async function loadAllUserDataFromCloud() {
     try {
         console.log('Loading all user data from cloud...');
         
-        // Load each collection
-        await loadCollectionFromCloud(SYNC_COLLECTIONS.WORD_PROGRESS);
-        await loadCollectionFromCloud(SYNC_COLLECTIONS.WORD_LISTS);
+        // Load vocabulary words collection
         await loadCollectionFromCloud(SYNC_COLLECTIONS.VOCABULARY_WORDS);
         
         console.log('All user data loaded from cloud');

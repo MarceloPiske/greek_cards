@@ -1,10 +1,11 @@
-/* Vocabulary Cards System - Base Styles and Layout */
+/* Vocabulary Cards System - Base Variables and Core Styles */
+
 :root {
     --card-bg: var(--bg-secondary);
-    --card-shadow: 0 10px 30px var(--shadow);
+    --card-shadow: 0 4px 20px var(--shadow);
     --card-border-radius: 16px;
     --card-padding: 1.5rem;
-    --card-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --card-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --status-unread: #9e9e9e;
     --status-reading: #4a90e2;
@@ -12,43 +13,245 @@
     --status-memorized: #66bb6a;
 }
 
-body {
-    max-width: 100vw !important;
-    overflow-x: hidden !important;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
 }
 
-.header {
-    padding: 3rem 1rem;
-    height: fit-content;
-    text-align: center;
-    background: var(--bg-secondary);
-    box-shadow: 0 4px 20px var(--shadow);
-    position: relative;
-    overflow: hidden;
-    min-height: fit-content;
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+    border-radius: 3px;
 }
 
-.header::before,
-.header::after {
-    content: '';
+::-webkit-scrollbar-thumb {
+    background: var(--shadow);
+    border-radius: 3px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* Selection styling */
+::selection {
+    background: rgba(74, 144, 226, 0.2);
+    color: var(--text-primary);
+}
+
+/* Focus styles */
+*:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Text selection improvements */
+.greek-word,
+.transliteration {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+/* Prevent text selection on interactive elements */
+.btn,
+.vocab-card,
+.word-list-item {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Typography improvements */
+.greek-word {
+    font-feature-settings: "liga" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+}
+
+/* Enhanced focus states for accessibility */
+.btn:focus-visible,
+.word-list-item:focus-visible,
+.vocab-card:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .vocab-card .card-front,
+    .vocab-card .card-back {
+        transition: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --card-shadow: 0 0 0 2px var(--text-primary);
+        --shadow: var(--text-primary);
+    }
+    
+    .btn {
+        border-width: 3px;
+    }
+    
+    .vocab-word-item,
+    .vocab-card .card-front,
+    .vocab-card .card-back {
+        border-width: 3px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .btn,
+    .sidebar,
+    .list-actions-bar {
+        display: none !important;
+    }
+    
+    .vocab-word-item,
+    .vocab-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .words-list,
+    .words-grid {
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+/* Loading animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Apply animations to elements */
+.vocab-word-item,
+.vocab-card {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.word-list-item {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Staggered animation delays */
+.vocab-word-item:nth-child(1) { animation-delay: 0.1s; }
+.vocab-word-item:nth-child(2) { animation-delay: 0.2s; }
+.vocab-word-item:nth-child(3) { animation-delay: 0.3s; }
+.vocab-word-item:nth-child(4) { animation-delay: 0.4s; }
+
+.word-list-item:nth-child(1) { animation-delay: 0.1s; }
+.word-list-item:nth-child(2) { animation-delay: 0.2s; }
+.word-list-item:nth-child(3) { animation-delay: 0.3s; }
+.word-list-item:nth-child(4) { animation-delay: 0.4s; }
+.word-list-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* Loading state improvements */
+.loading-state {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.loading-icon {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] {
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .vocab-card .card-front,
+[data-theme="dark"] .vocab-card .card-back {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .vocab-word-item:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Accessibility improvements */
+.sr-only {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    background: var(--gradient);
-    opacity: 0.1;
-    z-index: 0;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
-.header::before {
-    top: -100px;
-    left: -100px;
-    animation: floatHeader1 15s ease-in-out infinite;
-}
-
-.header::after {
-    bottom: -100px;
-    right: -100px;
+/* Touch improvements for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .info-btn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .vocab-card {
+        cursor: default;
+    }
+    
+    .vocab-word-item {
+        cursor: default;
+    }
 }
 
 /* Main Container */
@@ -216,61 +419,6 @@ body {
     opacity: 1;
 }
 
-/* Content Area */
-.list-header {
-    padding: .5rem;
-    margin-bottom: 1.5rem;
-}
-
-.list-header h2 {
-    margin-bottom: 0.5rem;
-}
-
-.list-header p {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-}
-
-.list-stats {
-    display: flex;
-    gap: 1rem;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-}
-
-.list-actions-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.view-toggle {
-    display: flex;
-    border: 1px solid var(--shadow);
-    border-radius: 8px;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 5px;
-}
-
-.view-toggle .btn {
-    margin: 0;
-    border: none;
-    border-radius: 0;
-    padding: 0.5rem;
-}
-
-.view-toggle .btn.active {
-    background-color: var(--accent);
-    color: white;
-}
-
 /* Empty state */
 .empty-state {
     text-align: center;
@@ -417,3 +565,5 @@ body {
     display: flex;
     gap: 0.5rem;
 }
+
+@import url('./cards-practice.css');

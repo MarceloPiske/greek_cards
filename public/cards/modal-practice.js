@@ -2,11 +2,11 @@
  * Practice session modal functionality
  */
 
-import {
-    WordStatus,
-    getWordListWithWords,
-    updateWordProgress
-} from './vocabulary.js';
+// Import unified word progress function from sync system
+import { saveWordProgress } from './word_progress/word-progress-sync.js';
+
+// Import unified list functions from sync system
+import { getWordList } from './lists/lists-sync.js';
 
 import { 
     createAndShowModal,
@@ -17,7 +17,75 @@ import {
     createWordDetailContent
 } from './modal-components.js';
 
-import { showWordDetailModal } from './ui_modal.js';
+// Word status constants
+const WordStatus = {
+    UNREAD: 'unread',
+    READING: 'reading',
+    FAMILIAR: 'familiar',
+    MEMORIZED: 'memorized'
+};
+
+/**
+ * Get word list with words for practice
+ */
+async function getWordListWithWords(listId) {
+    try {
+        const list = await getWordList(listId);
+        if (!list) {
+            throw new Error('Lista não encontrada');
+        }
+
+        // If no word IDs, return list with empty words array
+        if (!list.wordIds || list.wordIds.length === 0) {
+            return {
+                ...list,
+                words: []
+            };
+        }
+
+        // Get system vocabulary
+        const { initVocabularyDB } = await import('./vocabulary-db.js');
+        const db = await initVocabularyDB();
+        const tx = db.transaction('systemVocabulary', 'readonly');
+        const store = tx.objectStore('systemVocabulary');
+        
+        const allWords = await new Promise((resolve, reject) => {
+            const request = store.getAll();
+            request.onsuccess = () => resolve(request.result || []);
+            request.onerror = () => reject(request.error);
+        });
+
+        const words = [];
+        for (const wordId of list.wordIds) {
+            const word = allWords.find(w => w.ID === wordId);
+            if (word) {
+                // Add progress to the word
+                try {
+                    const { getWordProgress } = await import('./word_progress/word-progress-sync.js');
+                    const progress = await getWordProgress(word.ID);
+                    words.push({
+                        ...word,
+                        progress: progress || { status: 'unread', reviewCount: 0 }
+                    });
+                } catch (error) {
+                    console.warn(`Error getting progress for word ${word.ID}:`, error);
+                    words.push({
+                        ...word,
+                        progress: { status: 'unread', reviewCount: 0 }
+                    });
+                }
+            }
+        }
+
+        return {
+            ...list,
+            words
+        };
+    } catch (error) {
+        console.error('Error getting word list with words:', error);
+        throw error;
+    }
+}
 
 /**
  * Start a practice session with a list
@@ -173,7 +241,7 @@ function createPracticeCard(word) {
         <div class="practice-card ${word.progress.status}" data-word-id="${word.ID}">
             <div class="card-front">
                 <div class="greek-word">${word.LEXICAL_FORM}</div>
-                <div class="transliteration">${word.TRANSLITERATED_LEXICAL_FORM}</div>
+                <div class="transliteration">${word.TRANSLITERATED_LEXICAL_FORM || ''}</div>
                 ${word.PHONETIC_SPELLING || word.ORIGIN || word.definicaoCompleta ? `
                 <button class="info-btn card-info-btn practice-info-btn" data-word-id="${word.ID}">
                     <span class="material-symbols-sharp">info</span>
@@ -184,7 +252,7 @@ function createPracticeCard(word) {
                 </div>
             </div>
             <div class="card-back">
-                <div class="meaning">${word.USAGE || word.DEFINITION}</div>
+                <div class="meaning">${word.USAGE || word.DEFINITION || ''}</div>
                 ${word.PART_OF_SPEECH ? `<div class="category">${word.PART_OF_SPEECH}</div>` : ''}
             </div>
         </div>
@@ -200,7 +268,7 @@ function setupPracticeStatusButtons(modal, words, getCurrentIndex, renderCard) {
             const wordId = modal.querySelector('.practice-card').getAttribute('data-word-id');
 
             try {
-                await updateWordProgress(wordId, { status });
+                await saveWordProgress(wordId, { status });
                 
                 const card = modal.querySelector('.practice-card');
                 Object.values(WordStatus).forEach(s => card.classList.remove(s));
@@ -211,9 +279,11 @@ function setupPracticeStatusButtons(modal, words, getCurrentIndex, renderCard) {
 
                 words[currentIndex].progress.status = status;
 
+                // Auto-advance to next card after status update
                 if (currentIndex < words.length - 1) {
                     setTimeout(() => {
-                        renderCard(currentIndex + 1);
+                        const newIndex = currentIndex + 1;
+                        renderCard(newIndex);
                     }, 500);
                 }
             } catch (error) {
@@ -246,6 +316,7 @@ function setupKeyboardNavigation(modal, cardContainer, prevBtn, nextBtn, getCurr
                     break;
             }
 
+            // Number keys 1-4 for status buttons
             if (e.key >= '1' && e.key <= '4') {
                 const statusBtns = modal.querySelectorAll('.status-btn');
                 const index = parseInt(e.key) - 1;
@@ -257,6 +328,47 @@ function setupKeyboardNavigation(modal, cardContainer, prevBtn, nextBtn, getCurr
     }
 
     document.addEventListener('keydown', cardNavHandler);
+}
+
+async function showWordDetailModal(wordId) {
+    try {
+        const { initVocabularyDB } = await import('./vocabulary-db.js');
+        const db = await initVocabularyDB();
+        const tx = db.transaction('systemVocabulary', 'readonly');
+        const store = tx.objectStore('systemVocabulary');
+        
+        const word = await new Promise((resolve, reject) => {
+            const request = store.get(wordId);
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
+
+        if (!word) throw new Error('Palavra não encontrada');
+
+        const modalHtml = `
+            <div class="modal" id="word-detail-modal">
+                <div class="modal-content">
+                    <button class="close-modal">&times;</button>
+                    <h2>${word.LEXICAL_FORM}</h2>
+                    ${createWordDetailContent(word)}
+                </div>
+            </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        const modal = document.getElementById('word-detail-modal');
+        const closeBtn = modal.querySelector('.close-modal');
+        
+        closeBtn.addEventListener('click', () => modal.remove());
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.remove();
+        });
+        
+        modal.style.display = 'flex';
+    } catch (error) {
+        console.error('Error showing word details:', error);
+        alert('Erro ao exibir detalhes da palavra');
+    }
 }
 
 /**

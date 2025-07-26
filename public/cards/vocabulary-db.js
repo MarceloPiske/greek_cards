@@ -1,14 +1,12 @@
 /**
- * Database initialization and core database operations for vocabulary system
+ * Database initialization and core database operations for cards system
  */
 
 import { initDB } from '../indexedDB.js';
-import { saveDataWithSync, loadDataWithSync } from './cards-sync.js';
 
 // Database stores
 export const STORE_VOCABULARY = 'vocabularyWords';
 export const STORE_WORD_LISTS = 'wordLists';
-export const STORE_SYSTEM_VOCABULARY = 'systemVocabulary';
 export const STORE_USER_PROGRESS = 'wordProgress';
 
 // Vocabulary word status options
@@ -135,11 +133,13 @@ export function getAllFromStore(db, storeName) {
     });
 }
 
-// Legacy sync function for backward compatibility
+// Legacy sync function for backward compatibility - now delegates to word progress sync
 export async function syncToFirebase(collectionName, data, docId = null) {
     if (collectionName === 'wordProgress') {
-        await syncWordProgressToFirebase(docId || data.wordId, data);
+        const { saveWordProgress } = await import('./word_progress/word-progress-sync.js');
+        await saveWordProgress(docId || data.wordId, data);
     } else if (collectionName === 'wordLists') {
-        await syncWordListToFirebase(data);
+        const { updateWordList } = await import('./lists/lists-sync.js');
+        await updateWordList(data.id, data);
     }
 }

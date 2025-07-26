@@ -16,7 +16,8 @@ import {
     PLANS
 } from '../plan-manager.js';
 
-import { getAllWordLists } from './vocabulary-lists.js';
+// Import unified list functions from sync system
+import { getAllWordLists } from './lists/lists-sync.js';
 
 /**
  * Check if user can create a new word list - Updated to allow offline creation for free users

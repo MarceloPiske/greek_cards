@@ -54,38 +54,6 @@
             </button>
             
             <div class="nav-menu" id="nav-menu">
-                <ul class="nav-links">
-                    <li class="nav-item">
-                        <a href="./trilhas/trilha_conteudo.html" class="nav-link">
-                            <span class="material-symbols-sharp">school</span>
-                            <span>Trilhas de Estudo</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./cards/index.html" class="nav-link">
-                            <span class="material-symbols-sharp">style</span>
-                            <span>Vocabulário</span>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                            <span class="material-symbols-sharp">menu_book</span>
-                            <span>Recursos</span>
-                            <span class="material-symbols-sharp dropdown-arrow">expand_more</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="./src/html/conteudo/morfologia.html" class="dropdown-link">Morfologia</a></li>
-                            <li><a href="./src/html/conteudo/sintaxe.html" class="dropdown-link">Sintaxe</a></li>
-                            <li><a href="#" class="dropdown-link">Gramática</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#sobre" class="nav-link">
-                            <span class="material-symbols-sharp">info</span>
-                            <span>Sobre</span>
-                        </a>
-                    </li>
-                </ul>
                 
                 <div class="nav-actions">
                     <div class="user-section">
@@ -139,44 +107,62 @@
 
     <main class="main-content" role="main">
         <section class="topics-section" aria-labelledby="topics-title">
-            <h2 id="topics-title">Consulte Diretamente</h2>
+            <h2 id="topics-title">Explore os Recursos</h2>
             <div class="topics-grid">
                 <div class="topic-card">
+                    <a href="./trilhas/trilha_conteudo.html"></a>
+                    <span class="topic-icon material-symbols-sharp">school</span>
+                    <h3>Trilhas de Estudo</h3>
+                    <p>Siga um caminho estruturado de aprendizado com lições progressivas e exercícios práticos</p>
+                </div>
+
+                <div class="topic-card">
+                    <a href="./vocabulary/index.html"></a>
+                    <span class="topic-icon material-symbols-sharp">menu_book</span>
+                    <h3>Vocabulário</h3>
+                    <p>Explore o vocabulário completo do grego bíblico organizado por categorias e módulos</p>
+                </div>
+
+                <div class="topic-card">
+                    <a href="./cards/index.html"></a>
+                    <span class="topic-icon material-symbols-sharp">style</span>
+                    <h3>Cartões de Estudo</h3>
+                    <p>Pratique com cartões interativos e acompanhe seu progresso de memorização</p>
+                </div>
+
+                <div class="topic-card">
+                    <a href="./lists/index.html"></a>
+                    <span class="topic-icon material-symbols-sharp">list</span>
+                    <h3>Gerenciar Listas</h3>
+                    <p>Crie e organize suas próprias listas de vocabulário personalizadas</p>
+                </div>
+
+                <div class="topic-card">
                     <a href="./src/html/conteudo/morfologia.html"></a>
+                    <span class="topic-icon material-symbols-sharp">psychology</span>
                     <h3>Morfologia</h3>
                     <p>Aprenda a estrutura das palavras no grego bíblico e suas declinações</p>
                 </div>
 
                 <div class="topic-card">
                     <a href="./src/html/conteudo/sintaxe.html"></a>
+                    <span class="topic-icon material-symbols-sharp">hub</span>
                     <h3>Sintaxe</h3>
                     <p>Entenda como as frases são construídas nos textos bíblicos originais</p>
                 </div>
-
             </div>
         </section>
 
         <section class="exercises-section">
-            <h2 class="exercises-title"><span style="font-size: xxx-large;" class="material-symbols-sharp">
-                    stadia_controller
-                </span> Aprenda com GAMES</h2>
+            <h2 class="exercises-title">
+                <span style="font-size: xxx-large;" class="material-symbols-sharp">stadia_controller</span> 
+                Aprenda com GAMES
+            </h2>
 
             <div class="exercise-card">
                 <a class="link-click" href="./cards/index.html"><h4>Cartões de Vocabulário</h4></a>
-                
                 <p>Crie suas próprias listas de palavras e acompanhe seu progresso de memorização.</p>
             </div>
-            <!-- <h2>Versões antigas dos games</h2>
-            <div class="exercise-card">
-                <a class="link-click" href="./src/html/cards.html"><h4>Cards</h4></a>
-                
-                <p>Decore novas palavras em grego com o auxílio de cards gregos.</p>
-            </div>
-            <div class="exercise-card">
-                <a class="link-click" href="./src/html/mini_game.html"><h4>Relacione Significados</h4></a>
-                
-                <p>Mostre que você já decovou os vocábulos do grego.</p>
-            </div> -->
         </section>
 
         <div class="decorative-animation">
@@ -187,18 +173,48 @@
     </main>
 
     <footer class="footer" role="contentinfo">
-        <nav class="footer-links" aria-label="Footer navigation">
-            <a href="/sobre">Sobre</a>
-            <a href="/contato">Contato</a>
-            <a href="/recursos">Recursos</a>
-        </nav>
-        <div class="donation-section">
-            <button class="donation-button">
-                <span class="material-symbols-sharp">
-                    favorite
-                </span>
-                Apoie este projeto
-            </button>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Koiné - Grego Bíblico</h4>
+                <p>Plataforma completa para o aprendizado do grego bíblico (Koiné) com recursos interativos, trilhas de estudo e vocabulário essencial do Novo Testamento.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Recursos</h4>
+                <nav class="footer-links" aria-label="Footer navigation">
+                    <a href="./trilhas/trilha_conteudo.html">Trilhas de Estudo</a>
+                    <a href="./vocabulary/index.html">Vocabulário</a>
+                    <a href="./cards/index.html">Cartões</a>
+                    <a href="./src/html/conteudo/morfologia.html">Morfologia</a>
+                    <a href="./src/html/conteudo/sintaxe.html">Sintaxe</a>
+                </nav>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Sobre o Projeto</h4>
+                <nav class="footer-links">
+                    <a href="#sobre">Sobre</a>
+                    <a href="#contato">Contato</a>
+                    <a href="#recursos">Recursos</a>
+                    <a href="#privacidade">Privacidade</a>
+                </nav>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Apoie o Projeto</h4>
+                <p>Este projeto é gratuito e de código aberto. Sua contribuição nos ajuda a manter e melhorar a plataforma.</p>
+                <div class="donation-section">
+                    <button class="donation-button">
+                        <span class="material-symbols-sharp">favorite</span>
+                        Apoie este projeto
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Koiné - Grego Bíblico. Todos os direitos reservados.</p>
+            <p>Desenvolvido com 💙 para estudantes do grego bíblico</p>
         </div>
     </footer>
 
@@ -220,15 +236,6 @@
                     </svg>
                     Continue com Google
                 </button>
-                <!-- <button class="login-option-btn" onclick="loginWith('apple')">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M12.77 4.58c.06 1.92-1.55 3.56-3.39 3.45C9.11 6.04 10.89 4.33 12.77 4.58z" />
-                        <path fill="currentColor"
-                            d="M12.77 4.58c.06 1.92-1.55 3.56-3.39 3.45C9.11 6.04 10.89 4.33 12.77 4.58z" />
-                    </svg>
-                    Continue com Apple
-                </button> -->
                 <button class="login-option-btn" onclick="loginWith('microsoft')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <path fill="#F25022" d="M1 1h10v10H1z" />

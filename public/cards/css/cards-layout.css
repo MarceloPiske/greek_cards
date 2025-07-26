@@ -1,0 +1,296 @@
+/* Vocabulary Cards System - Layout and Structure */
+
+body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+}
+
+/* Main Container */
+.vocabulary-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    min-height: calc(100vh - 140px);
+}
+
+/* Layout */
+.main-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+    align-items: flex-start;
+    min-height: 70vh;
+}
+
+.sidebar {
+    background: var(--bg-secondary);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
+    padding: 1.5rem;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    position: sticky;
+    top: 100px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.content-area {
+    background: var(--bg-secondary);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
+    min-height: 60vh;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    overflow: hidden;
+}
+
+/* Content Header */
+.list-header {
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 2px solid var(--shadow);
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05), rgba(59, 130, 246, 0.03));
+}
+
+.list-header h2 {
+    margin-bottom: 0.75rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.list-header .material-symbols-sharp {
+    color: var(--accent);
+    font-size: 2rem;
+}
+
+.list-description {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.list-stats {
+    display: flex;
+    gap: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.list-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.list-stats .material-symbols-sharp {
+    font-size: 1.1rem;
+    color: var(--accent);
+}
+
+/* Action Bar */
+.list-actions-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--shadow);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.list-actions-left,
+.list-actions-right {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.view-toggle {
+    display: flex;
+    background: var(--bg-secondary);
+    border: 2px solid var(--shadow);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 4px;
+}
+
+.view-toggle .btn {
+    margin: 0;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    background: transparent;
+    transition: all 0.3s ease;
+    color: var(--text-secondary);
+}
+
+.view-toggle .btn.active {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+.view-toggle .btn:hover:not(.active) {
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--accent);
+}
+
+/* Empty and Loading States */
+.empty-state, .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+    min-height: 300px;
+}
+
+.empty-state .material-symbols-sharp,
+.loading-state .material-symbols-sharp {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    opacity: 0.7;
+}
+
+.loading-icon {
+    animation: spin 2s linear infinite;
+}
+
+.empty-state h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.empty-state p {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.empty-state .btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+    .main-layout {
+        grid-template-columns: 280px 1fr;
+        gap: 1.5rem;
+    }
+    
+    .vocabulary-container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .vocabulary-container {
+        padding: 0.75rem;
+    }
+
+    .main-layout {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .sidebar {
+        position: static;
+        max-height: none;
+        order: 2;
+        margin-top: 1rem;
+    }
+    
+    .content-area {
+        order: 1;
+    }
+
+    .list-header {
+        padding: 1.5rem 1rem 1rem;
+    }
+    
+    .list-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .list-actions-bar {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .list-actions-left,
+    .list-actions-right {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .view-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .word-list-item {
+        padding: 1rem;
+    }
+    
+    .word-lists-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    .word-lists-header .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .vocabulary-container {
+        padding: 0.5rem;
+    }
+    
+    .list-header {
+        padding: 1rem 0.75rem;
+    }
+    
+    .list-header h2 {
+        font-size: 1.3rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .list-stats {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+    }
+    
+    .list-actions-bar {
+        padding: 0.75rem;
+    }
+    
+    .list-actions-left .btn,
+    .list-actions-right .btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+
+```
+</cards/css/cards-layout.css>

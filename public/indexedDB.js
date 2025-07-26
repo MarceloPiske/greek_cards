@@ -114,6 +114,11 @@ export function initDB() {
             if (!db.objectStoreNames.contains(STORE_TRILHA_PROGRESS)) {
                 db.createObjectStore(STORE_TRILHA_PROGRESS, { keyPath: 'modulo_id' });
             }
+            
+            // Create store for vocabulary progress (separate from cards)
+            if (!db.objectStoreNames.contains('vocabularyProgress')) {
+                db.createObjectStore('vocabularyProgress', { keyPath: 'wordId' });
+            }
         };
     });
 }

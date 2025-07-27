@@ -2,10 +2,23 @@
  * Reusable modal components
  */
 
-import { createFormGroup, createActionButtons } from './modal-utils.js';
-import { WordCategories } from './vocabulary-db.js';
-import { getStatusLabel } from './modal-utils.js'
+import { WordCategories } from '../vocabulary/vocabulary-app.js';
+import { getStatusLabel } from './app.js';
 
+export function createFormGroup(labelText, inputType, inputId, placeholder = '', value = '') {
+    const inputElement = inputType === 'textarea' 
+        ? `<textarea id="${inputId}" placeholder="${placeholder}">${value}</textarea>`
+        : inputType === 'select'
+            ? `<select id="${inputId}">${placeholder}</select>`
+            : `<input type="${inputType}" id="${inputId}" placeholder="${placeholder}" value="${value}">`;
+    
+    return `
+        <div class="form-group">
+            <label for="${inputId}">${labelText}</label>
+            ${inputElement}
+        </div>
+    `;
+}
 /**
  * Create word list form
  */

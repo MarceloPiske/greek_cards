@@ -14,7 +14,6 @@ import {
     wordListExistsFirestore,
     createWordListFirestore,
     updateWordListFirestore,
-    performFullListSync
 } from './lists-firestore.js';
 
 import { canSyncToCloud } from '../plan-manager.js';
@@ -23,9 +22,6 @@ import { canSyncToCloud } from '../plan-manager.js';
 let syncInProgress = false;
 let lastSyncError = null;
 let onlineStatus = navigator.onLine;
-let listsCache = null;
-let lastCacheTime = 0;
-const CACHE_DURATION = 30000; // 30 seconds cache
 
 // Event listeners for online/offline status
 window.addEventListener('online', handleOnline);

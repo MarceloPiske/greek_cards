@@ -1,8 +1,3 @@
-/**
- * Database operations for vocabulary system
- */
-
-import { initDB } from '../indexedDB.js';
 
 // Database stores
 export const STORE_SYSTEM_VOCABULARY = 'systemVocabulary';

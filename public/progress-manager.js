@@ -3,7 +3,6 @@
  * Handles local (IndexedDB) and cloud (Firestore) progress tracking
  */
 
-import { initDB } from './indexedDB.js';
 import { canSyncToCloud } from './plan-manager.js';
 
 // Database configuration

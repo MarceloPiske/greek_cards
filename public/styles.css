@@ -33,7 +33,7 @@
     --text-secondary: #64748b;
     --accent: #4a90e2;
     --shadow: rgba(0, 0, 0, 0.06);
-    --gradient: linear-gradient(135deg, #4a90e2, #3b82f6);
+    --gradient: linear-gradient(135deg, #4a90e2, #67b26f);
 }
 
 [data-theme="dark"] {

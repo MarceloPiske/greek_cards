@@ -4,7 +4,6 @@
  */
 
 import { initVocabularyDB } from '../vocabulary/vocabulary-db.js';
-//import { saveDataWithSync } from '../cards/cards-sync.js';
 
 // Database store for word lists
 const STORE_WORD_LISTS = 'wordLists';

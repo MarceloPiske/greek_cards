@@ -8,10 +8,7 @@ import { saveWordProgress } from './word_progress/word-progress-sync.js';
 // Import unified list functions from sync system
 import { getWordList } from './lists/lists-sync.js';
 
-import { 
-    createAndShowModal,
-    getStatusLabel
-} from './modal-utils.js';
+
 
 import {
     createWordDetailContent
@@ -25,6 +22,11 @@ const WordStatus = {
     MEMORIZED: 'memorized'
 };
 
+export function createAndShowModal(htmlContent) {
+    document.body.insertAdjacentHTML('beforeend', htmlContent);
+    const modal = document.body.lastElementChild;
+    return showModal(modal);
+}
 /**
  * Get word list with words for practice
  */
@@ -44,7 +46,7 @@ async function getWordListWithWords(listId) {
         }
 
         // Get system vocabulary
-        const { initVocabularyDB } = await import('./vocabulary-db.js');
+        const { initVocabularyDB } = await import('../vocabulary/vocabulary-db.js');
         const db = await initVocabularyDB();
         const tx = db.transaction('systemVocabulary', 'readonly');
         const store = tx.objectStore('systemVocabulary');
@@ -332,7 +334,7 @@ function setupKeyboardNavigation(modal, cardContainer, prevBtn, nextBtn, getCurr
 
 async function showWordDetailModal(wordId) {
     try {
-        const { initVocabularyDB } = await import('./vocabulary-db.js');
+        const { initVocabularyDB } = await import('../vocabulary/vocabulary-db.js');
         const db = await initVocabularyDB();
         const tx = db.transaction('systemVocabulary', 'readonly');
         const store = tx.objectStore('systemVocabulary');
@@ -369,11 +371,4 @@ async function showWordDetailModal(wordId) {
         console.error('Error showing word details:', error);
         alert('Erro ao exibir detalhes da palavra');
     }
-}
-
-/**
- * Toggle between list and card view
- */
-export function toggleViewMode() {
-    // This function would be implemented if needed
 }

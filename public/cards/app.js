@@ -4,13 +4,13 @@
 
 import { 
     initVocabularyDB
-} from './vocabulary-db.js';
+} from '../vocabulary/vocabulary-db.js';
 
 // Import unified list functions from sync system
 import { 
     getAllWordLists,
     getWordList
-} from './lists/lists-sync.js';
+} from '../lists/lists-sync.js';
 
 // Import word progress function
 import { getWordProgress } from './word_progress/word-progress-sync.js';
@@ -332,7 +332,7 @@ function createVocabCard(word) {
 /**
  * Get human-readable status label
  */
-function getStatusLabel(status) {
+export function getStatusLabel(status) {
     const labels = {
         'unread': 'Não lido',
         'reading': 'Lendo',

@@ -14,19 +14,16 @@ import {
     getWordListCountDB,
     wordListExistsDB,
     markListAsSyncedDB,
-    getListsNeedingSyncDB
+    
 } from './lists-db.js';
 
 import {
     createWordListFirestore,
     getWordListFirestore,
-    getAllWordListsFirestore,
     updateWordListFirestore,
     deleteWordListFirestore,
     addWordsToListFirestore,
     removeWordsFromListFirestore,
-    getWordListCountFirestore,
-    wordListExistsFirestore,
     performFullListSync
 } from './lists-firestore.js';
 

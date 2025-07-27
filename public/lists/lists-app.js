@@ -8,10 +8,9 @@ import {
     updateWordList, 
     deleteWordList,
     forceFullSync,
-    getSyncStatus
 } from './lists-sync.js';
 
-import { canSyncToCloud, getCurrentUserPlan } from '../../plan-manager.js';
+import { canSyncToCloud } from '../../plan-manager.js';
 import { ListsUI } from './lists-ui.js';
 import { ListsEventHandlers } from './lists-events.js';
 import { showAddWordsModal, showRemoveWordsModal } from './lists-words.js';

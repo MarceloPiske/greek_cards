@@ -5,20 +5,6 @@
 
 import { getSystemVocabulary } from '../../vocabulary/vocabulary-db.js';
 
-// Word status and categories constants
-const WordCategories = {
-    NOUN: 'substantivo',
-    VERB: 'verbo',
-    ADJECTIVE: 'adjetivo',
-    ADVERB: 'advérbio',
-    PRONOUN: 'pronome',
-    PREPOSITION: 'preposição',
-    CONJUNCTION: 'conjunção',
-    ARTICLE: 'artigo',
-    PARTICLE: 'partícula',
-    OTHER: 'outro'
-};
-
 /**
  * Render the add words modal with current data
  */
@@ -214,20 +200,6 @@ export async function reloadModalData(modal, listId, newPage, filter, searchQuer
     }
 }
 
-// Utility functions for modal creation
-function createModal(id, title, content, actions = '') {
-    return `
-        <div class="modal" id="${id}">
-            <div class="modal-content">
-                <button class="close-modal">&times;</button>
-                <h2>${title}</h2>
-                ${content}
-                ${actions ? `<div class="modal-actions">${actions}</div>` : ''}
-            </div>
-        </div>
-    `;
-}
-
 function createLargeModalWithHeaderActions(id, title, content) {
     return `
         <div class="modal" id="${id}">
@@ -263,10 +235,4 @@ function createAndShowModal(htmlContent) {
 
     modal.style.display = 'flex';
     return modal;
-}
-
-function createActionButtons(buttons) {
-    return buttons.map(({ id, text, className = 'btn' }) => 
-        `<button id="${id}" class="${className}">${text}</button>`
-    ).join('');
 }

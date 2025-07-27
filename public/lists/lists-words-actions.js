@@ -6,15 +6,12 @@
 import {
     addWordsToList,
     removeWordsFromList,
-    getWordList
 } from './lists-sync.js';
 
 import { getSystemVocabulary } from '../../vocabulary/vocabulary-db.js';
 import { 
     renderAddWordsModal, 
     reloadModalData,
-    createWordSelectionItem,
-    createPaginationControls
 } from './lists-words-modal.js';
 
 /**

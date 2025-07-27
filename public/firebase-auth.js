@@ -165,8 +165,6 @@ function updateUIForUser(user) {
         if (loginButton) loginButton.style.display = 'none';
         if (userProfile) userProfile.style.display = 'flex';
         
-        // Initialize cards sync system for premium users
-        initializeCardsSyncForUser();
         
         // Set user avatar
         if (userAvatar) {
@@ -195,18 +193,6 @@ function updateUIForUser(user) {
             loginButton.onclick = () => showLoginModal();
         }
         if (userProfile) userProfile.style.display = 'none';
-    }
-}
-
-/**
- * Initialize cards synchronization for authenticated user
- */
-async function initializeCardsSyncForUser() {
-    try {
-        const { initCardsSyncSystem } = await import('./cards/cards-sync.js');
-        await initCardsSyncSystem();
-    } catch (error) {
-        console.warn('Could not initialize cards sync system:', error);
     }
 }
 

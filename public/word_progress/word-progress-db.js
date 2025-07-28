@@ -3,7 +3,7 @@
  * Handles all CRUD operations for word progress with IndexedDB
  */
 
-import { initVocabularyDB } from '../../vocabulary/vocabulary-db.js';
+import { initVocabularyDB } from '../vocabulary/vocabulary-db.js';
 
 // Database store for word progress
 const STORE_USER_PROGRESS = 'wordProgress';

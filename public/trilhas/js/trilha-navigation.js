@@ -6,39 +6,48 @@ import { navigatePrevious, navigateNext } from './trilha-viewer.js';
 
 /**
  * Setup navigation buttons
+ * @param {Function} onPrev - Function to call on previous button click.
+ * @param {Function} onNext - Function to call on next button click.
  */
-export function setupNavigation() {
+export function setupNavigation(onPrev, onNext) {
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     
     if (prevBtn) {
-        prevBtn.addEventListener('click', navigatePrevious);
+        prevBtn.addEventListener('click', onPrev);
     }
     
     if (nextBtn) {
-        nextBtn.addEventListener('click', navigateNext);
+        nextBtn.addEventListener('click', onNext);
     }
 
-    // Setup keyboard navigation
-    setupKeyboardNavigation();
+    // Setup keyboard navigation, passing the same handlers
+    setupKeyboardNavigation(onPrev, onNext);
 }
 
 /**
  * Setup keyboard navigation
+ * @param {Function} onPrev - Function to call on ArrowLeft.
+ * @param {Function} onNext - Function to call on ArrowRight.
  */
-function setupKeyboardNavigation() {
+function setupKeyboardNavigation(onPrev, onNext) {
     document.addEventListener('keydown', (e) => {
+        // Avoid triggering navigation when typing in form elements
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) {
+            return;
+        }
+
         switch (e.key) {
             case 'ArrowLeft':
                 e.preventDefault();
-                navigatePrevious();
+                onPrev();
                 break;
             case 'ArrowRight':
                 e.preventDefault();
-                navigateNext();
+                onNext();
                 break;
             case 'Escape':
-                window.location.href = 'trilha_conteudo.html';
+                window.location.href = 'trilhas/trilha_conteudo.html';
                 break;
         }
     });

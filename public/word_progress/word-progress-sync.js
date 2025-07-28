@@ -29,7 +29,7 @@ import {
     performFullWordProgressSync
 } from './word-progress-firestore.js';
 
-import { canSyncToCloud } from '../../plan-manager.js';
+import { canSyncToCloud } from '../plan-manager.js';
 
 // Sync status tracking
 let syncInProgress = false;

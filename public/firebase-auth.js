@@ -56,8 +56,8 @@ export function initAuth() {
                     await initializeUserDocument(user);
                     
                     // Load user data from Firebase when user logs in
-                    const { loadUserDataFromFirebase } = await import('./cards/vocabulary-db.js');
-                    await loadUserDataFromFirebase();
+                   /*  const { loadUserDataFromFirebase } = await import('./cards/vocabulary-db.js');
+                    await loadUserDataFromFirebase(); */
                 } catch (error) {
                     console.warn('Failed to initialize user or load data from Firebase:', error);
                 }

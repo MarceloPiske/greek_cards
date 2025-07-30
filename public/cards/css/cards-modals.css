@@ -243,6 +243,8 @@
     transition: all 0.3s ease;
     cursor: pointer;
     overflow: hidden;
+    min-height: fit-content;
+    height: 110px;
 }
 
 .word-selection-card:hover {

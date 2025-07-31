@@ -3,7 +3,7 @@
  * Handles all cloud operations for word progress with Firestore
  */
 
-import { canSyncToCloud } from '../../plan-manager.js';
+import { canSyncToCloud } from '../plan-manager.js';
 
 /**
  * Get Firestore database reference

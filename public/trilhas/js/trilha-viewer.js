@@ -1,412 +1,176 @@
 /**
- * Trilha Viewer Main Logic
+ * Trilha Viewer Core Logic
  */
 
-import { 
-    saveProgress, 
-    loadProgress, 
-    markBlockCompleted, 
-    addStudyTime,
-    getCompletionPercentage
-} from '../../progress-manager.js';
+import { saveProgress, loadProgress, markBlockCompleted, addStudyTime } from '../../progress-manager.js';
+import * as UIManager from './trilha-viewer-ui.js';
+import * as InteractionManager from './trilha-viewer-interactions.js';
 
-let currentTrilha = null;
+// Import new sync system
+import { 
+    loadTrilhaProgress, 
+    markBlockCompleted as markBlockCompletedSync, 
+    addStudyTime as addStudyTimeSync 
+} from './trilha-progress-sync.js';
+
+// --- STATE MANAGEMENT ---
 let currentActivityIndex = 0;
 let trilhaData = null;
-let startTime = null;
 let progressData = null;
+let sessionStats = {
+    startTime: null,
+    totalTimeSpent: 0
+};
 
-// Get trilha ID from URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 const trilhaId = urlParams.get('trilha');
 
 /**
- * Initialize the viewer
+ * Initializes the viewer by loading data and setting up the initial view.
  */
 export async function initViewer() {
     if (!trilhaId) {
-        showError('Nenhuma trilha especificada');
+        UIManager.showError('Nenhuma trilha especificada.');
         return;
     }
-    
-    await loadTrilha(trilhaId);
-    setupBackButton();
-    startTime = Date.now();
+    sessionStats.startTime = Date.now();
+    await loadTrilhaData(trilhaId);
 }
 
 /**
- * Load trilha data
+ * Loads trilha content and user progress from storage.
  */
-async function loadTrilha(moduloId) {
+async function loadTrilhaData(moduleId) {
     try {
-        // Try to load the trilha JSON file
-        const response = await fetch(`trilhas/trilhas/${moduloId}.json`);
+        UIManager.showLoadingState('Carregando conteúdo do módulo...');
         
-        if (!response.ok) {
-            throw new Error(`Trilha não encontrada: ${moduloId}`);
-        }
+        const response = await fetch(`trilhas/trilhas/${moduleId}.json`);
+        if (!response.ok) throw new Error(`Trilha não encontrada: ${moduleId}`);
         
         const data = await response.json();
-        
-        // Extract trilha data from new structure
         trilhaData = {
             id: data.modulo.id,
             titulo: data.modulo.titulo,
+            descricao: data.modulo.descricao,
+            nivel: data.modulo.nivel,
             trilha: data.trilha
         };
+
+        // Use new sync system
+        progressData = await loadTrilhaProgress(moduleId);
+        currentActivityIndex = findFirstIncompleteActivity();
         
-        // Update breadcrumb
-        const currentModuleElement = document.getElementById('current-module');
-        if (currentModuleElement) {
-            currentModuleElement.textContent = trilhaData.titulo;
-        }
-        
-        // Load saved progress using new progress manager
-        progressData = await loadProgress(moduloId);
-        
-        // Find current position based on completed blocks
-        currentActivityIndex = progressData.blocosConcluidos.length;
-        
-        // Don't go beyond available activities
-        if (currentActivityIndex >= trilhaData.trilha.length) {
-            currentActivityIndex = trilhaData.trilha.length - 1;
-        }
-        
-        // Display current activity
-        displayActivity(currentActivityIndex);
-        updateNavigation();
+        UIManager.updatePageMetadata(trilhaData);
+        await renderCurrentActivity();
         
     } catch (error) {
         console.error('Erro ao carregar trilha:', error);
-        showError('Erro ao carregar o conteúdo da trilha');
+        UIManager.showError('Não foi possível carregar o conteúdo da trilha. Tente novamente.');
+    } finally {
+        UIManager.hideLoadingState();
     }
 }
 
 /**
- * Display an activity
+ * Finds the first activity that the user has not completed.
+ * @returns {number} The index of the first incomplete activity.
  */
-export function displayActivity(index) {
-    if (!trilhaData || !trilhaData.trilha || index >= trilhaData.trilha.length) {
-        showError('Atividade não encontrada');
-        return;
+function findFirstIncompleteActivity() {
+    if (!progressData || !progressData.blocosConcluidos || progressData.blocosConcluidos.length === 0) {
+        return 0;
     }
-    
-    const activity = trilhaData.trilha[index];
-    const contentContainer = document.getElementById('trilha-content');
-    
-    if (contentContainer) {
-        const activityType = activity.tipo || 'leitura';
-        const activityTitle = activity.titulo || activity.instrucoes || 'Atividade';
-        const activityContent = activity.conteudo?.html || activity.conteudo?.texto || 'Conteúdo não disponível';
-        
-        // Check if block is completed or favorited
-        const isCompleted = progressData.blocosConcluidos.includes(activity.id);
-        const isFavorited = progressData.favoritos && progressData.favoritos.includes(activity.id);
-        
-        contentContainer.innerHTML = `
-            <div class="activity-header">
-                <div class="activity-meta">
-                    <div class="activity-type-badge ${activityType}">
-                        <span class="material-symbols-sharp">${getActivityIcon(activityType)}</span>
-                        <span>${getActivityTypeName(activityType)}</span>
-                    </div>
-                    <div class="activity-actions">
-                        <button id="favorite-btn" class="btn icon ${isFavorited ? 'favorited' : ''}" 
-                                title="${isFavorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
-                            <span class="material-symbols-sharp">${isFavorited ? 'favorite' : 'favorite_border'}</span>
-                        </button>
-                        ${isCompleted ? `
-                        <span class="completion-badge">
-                            <span class="material-symbols-sharp">check_circle</span>
-                            Concluído
-                        </span>` : ''}
-                    </div>
-                </div>
-                <h2>${activityTitle}</h2>
-            </div>
-            <div class="activity-content">
-                ${activityContent}
-            </div>
-        `;
-        
-        // Setup favorite button
-        const favoriteBtn = document.getElementById('favorite-btn');
-        if (favoriteBtn) {
-            favoriteBtn.addEventListener('click', () => toggleFavorite(activity.id));
-        }
-        
-        // Scroll to top
-        contentContainer.scrollTop = 0;
-    }
-}
-
-/**
- * Get activity icon based on type
- */
-function getActivityIcon(type) {
-    const icons = {
-        'leitura': 'menu_book',
-        'exercicio': 'fitness_center',
-        'video': 'play_circle',
-        'quiz': 'quiz',
-        'explicacao': 'lightbulb'
-    };
-    return icons[type] || 'school';
-}
-
-/**
- * Get activity type name
- */
-function getActivityTypeName(type) {
-    const names = {
-        'leitura': 'Leitura',
-        'exercicio': 'Exercício',
-        'video': 'Vídeo',
-        'quiz': 'Quiz',
-        'explicacao': 'Explicação'
-    };
-    return names[type] || 'Atividade';
-}
-
-/**
- * Update navigation buttons and progress
- */
-export function updateNavigation() {
-    if (!trilhaData || !progressData) return;
-    
-    const totalActivities = trilhaData.trilha.length;
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const counter = document.getElementById('activity-counter');
-    const progressFill = document.getElementById('progress-fill');
-    
-    // Update counter
-    if (counter) {
-        counter.textContent = `${currentActivityIndex + 1} / ${totalActivities}`;
-    }
-    
-    // Update progress bar based on completed blocks
-    const progressPercent = getCompletionPercentage(progressData, totalActivities);
-    if (progressFill) {
-        progressFill.style.width = `${progressPercent}%`;
-    }
-    
-    // Update buttons
-    if (prevBtn) {
-        prevBtn.disabled = currentActivityIndex === 0;
-    }
-    
-    if (nextBtn) {
-        nextBtn.disabled = false;
-        
-        if (currentActivityIndex === totalActivities - 1) {
-            nextBtn.innerHTML = '<span class="material-symbols-sharp">check</span> Concluir Módulo';
-            nextBtn.classList.add('complete-btn');
-        } else {
-            nextBtn.innerHTML = 'Próximo <span class="material-symbols-sharp">chevron_right</span>';
-            nextBtn.classList.remove('complete-btn');
+    for (let i = 0; i < trilhaData.trilha.length; i++) {
+        if (!progressData.blocosConcluidos.includes(trilhaData.trilha[i].id)) {
+            return i;
         }
     }
+    return trilhaData.trilha.length - 1; // All completed, show last one
 }
 
 /**
- * Navigate to previous activity
+ * Renders the current activity, updates navigation and interactions.
+ */
+async function renderCurrentActivity() {
+    if (!trilhaData) return;
+    const activity = trilhaData.trilha[currentActivityIndex];
+    UIManager.displayActivity(activity, progressData);
+    UIManager.updateNavigation(currentActivityIndex, trilhaData.trilha.length, progressData);
+    InteractionManager.setupActivityInteractions(activity, trilhaData, handleFavoriteToggle);
+}
+
+/**
+ * Handles the favorite toggle callback to update progress data locally.
+ */
+function handleFavoriteToggle(activityId, isFavorited) {
+    if (!progressData.favoritos) progressData.favoritos = [];
+    
+    const index = progressData.favoritos.indexOf(activityId);
+    if (isFavorited && index === -1) {
+        progressData.favoritos.push(activityId);
+    } else if (!isFavorited && index > -1) {
+        progressData.favoritos.splice(index, 1);
+    }
+}
+
+// --- NAVIGATION LOGIC ---
+
+/**
+ * Navigates to the previous activity.
  */
 export function navigatePrevious() {
     if (currentActivityIndex > 0) {
-        saveCurrentActivityProgress();
         currentActivityIndex--;
-        displayActivity(currentActivityIndex);
-        updateNavigation();
+        renderCurrentActivity();
     }
 }
 
 /**
- * Navigate to next activity or complete trilha
+ * Navigates to the next activity or completes the module.
  */
-export function navigateNext() {
+export async function navigateNext() {
     if (!trilhaData) return;
     
-    // Mark current activity as completed and save progress
-    saveCurrentActivityProgress();
+    await markCurrentActivityAsCompleted();
     
     if (currentActivityIndex < trilhaData.trilha.length - 1) {
         currentActivityIndex++;
-        displayActivity(currentActivityIndex);
-        updateNavigation();
+        await renderCurrentActivity();
     } else {
-        // Complete the trilha
-        completeTrilha();
+        await completeTrilha();
     }
 }
 
+// --- PROGRESS MANAGEMENT ---
+
 /**
- * Save progress for current activity
+ * Marks the current activity as completed and saves progress.
  */
-async function saveCurrentActivityProgress() {
-    if (!trilhaData || currentActivityIndex >= trilhaData.trilha.length) return;
-    
-    try {
-        const currentActivity = trilhaData.trilha[currentActivityIndex];
-        await markBlockCompleted(trilhaId, currentActivity.id);
-        
-        // Update local progress data
-        progressData = await loadProgress(trilhaId);
-        
-        // Add study time (estimate based on time spent on current activity)
-        if (startTime) {
-            const timeSpent = Math.round((Date.now() - startTime) / 60000); // minutes
-            if (timeSpent > 0) {
-                await addStudyTime(trilhaId, timeSpent);
-            }
-            startTime = Date.now(); // Reset for next activity
-        }
-        
-    } catch (error) {
-        console.error('Erro ao salvar progresso:', error);
+async function markCurrentActivityAsCompleted() {
+    if (!trilhaData) return;
+    const activityId = trilhaData.trilha[currentActivityIndex].id;
+    if (!progressData.blocosConcluidos.includes(activityId)) {
+        // Use new sync system
+        progressData = await markBlockCompletedSync(trilhaId, activityId);
     }
 }
 
 /**
- * Complete trilha
+ * Finalizes the trilha, saves final progress, and shows completion modal.
  */
 async function completeTrilha() {
     try {
-        // Save final progress
-        await saveCurrentActivityProgress();
+        sessionStats.totalTimeSpent = Math.round((Date.now() - sessionStats.startTime) / 60000);
+        // Use new sync system
+        await addStudyTimeSync(trilhaId, sessionStats.totalTimeSpent);
+        progressData = await loadTrilhaProgress(trilhaId); // reload to get final time
+
+        UIManager.showEnhancedCompletionModal(trilhaData, progressData, sessionStats);
         
-        // Show completion message
-        showCompletionModal();
-        
+        // Setup interactions for the new modal
+        InteractionManager.setupActivityInteractions(null, trilhaData, null);
+
     } catch (error) {
-        console.error('Erro ao completar trilha:', error);
-        alert('Erro ao salvar conclusão da trilha');
+        console.error('Erro ao completar a trilha:', error);
+        UIManager.showError('Ocorreu um erro ao finalizar o módulo.');
     }
 }
-
-/**
- * Toggle favorite status for current activity
- */
-async function toggleFavorite(blockId) {
-    try {
-        const { toggleFavoriteBlock } = await import('../../progress-manager.js');
-        await toggleFavoriteBlock(trilhaId, blockId);
-        
-        // Refresh progress data and update display
-        progressData = await loadProgress(trilhaId);
-        displayActivity(currentActivityIndex);
-        
-    } catch (error) {
-        console.error('Erro ao favoritar bloco:', error);
-    }
-}
-
-/**
- * Show completion modal
- */
-function showCompletionModal() {
-    const completedBlocks = progressData.blocosConcluidos.length;
-    const totalTime = progressData.tempoTotal || 0;
-    const completionPercent = getCompletionPercentage(progressData, trilhaData.trilha.length);
-    
-    const modalHtml = `
-        <div class="modal completion-modal" style="display: flex;">
-            <div class="modal-content completion-content">
-                <div class="completion-icon">
-                    <span class="material-symbols-sharp">check_circle</span>
-                </div>
-                <h2>Parabéns!</h2>
-                <p>Você concluiu com sucesso a trilha "<strong>${trilhaData.titulo}</strong>"!</p>
-                <div class="completion-stats">
-                    <div class="stat">
-                        <span class="material-symbols-sharp">assignment_turned_in</span>
-                        <span>${completedBlocks} atividades completadas (${completionPercent}%)</span>
-                    </div>
-                    ${totalTime > 0 ? `
-                    <div class="stat">
-                        <span class="material-symbols-sharp">schedule</span>
-                        <span>${totalTime} minutos de estudo</span>
-                    </div>` : ''}
-                </div>
-                <div class="modal-actions">
-                    <button id="back-to-trilhas" class="btn primary">
-                        <span class="material-symbols-sharp">arrow_back</span>
-                        Voltar às trilhas
-                    </button>
-                    <button id="review-favorites" class="btn secondary" ${progressData.favoritos && progressData.favoritos.length > 0 ? '' : 'style="display:none"'}">
-                        <span class="material-symbols-sharp">favorite</span>
-                        Revisar favoritos (${progressData.favoritos ? progressData.favoritos.length : 0})
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
-    
-    const backBtn = document.getElementById('back-to-trilhas');
-    const reviewBtn = document.getElementById('review-favorites');
-    
-    if (backBtn) {
-        backBtn.addEventListener('click', () => {
-            window.location.href = 'trilhas/trilha_conteudo.html';
-        });
-    }
-    
-    if (reviewBtn) {
-        reviewBtn.addEventListener('click', () => {
-            // Could implement favorites review functionality
-            alert('Funcionalidade de revisão em desenvolvimento!');
-        });
-    }
-}
-
-/**
- * Show error message
- */
-function showError(message) {
-    const contentContainer = document.getElementById('trilha-content');
-    if (contentContainer) {
-        contentContainer.innerHTML = `
-            <div class="error-message">
-                <span class="material-symbols-sharp">error</span>
-                <h3>Erro</h3>
-                <p>${message}</p>
-                <button onclick="window.location.href='trilhas/trilha_conteudo.html'" class="btn primary">
-                    Voltar às trilhas
-                </button>
-            </div>
-        `;
-    }
-}
-
-/**
- * Setup back button
- */
-function setupBackButton() {
-    const backButton = document.getElementById('back-button');
-    if (backButton) {
-        backButton.addEventListener('click', () => {
-            window.location.href = 'trilhas/trilha_conteudo.html';
-        });
-    }
-}
-
-// Export current state getters
-export function getCurrentTrilhaData() {
-    return trilhaData;
-}
-
-export function getCurrentActivityIndex() {
-    return currentActivityIndex;
-}
-
-import { setupNavigation, setupMobileNavigation, initThemeSwitcher } from './trilha-navigation.js';
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', async () => {
-    await initViewer();
-    setupNavigation();
-    setupMobileNavigation();
-    initThemeSwitcher();
-});

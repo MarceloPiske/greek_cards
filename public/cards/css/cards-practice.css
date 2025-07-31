@@ -109,6 +109,9 @@
 .status-controls {
     display: flex;
     gap: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 60%;
 }
 
 .status-controls .status-btn {

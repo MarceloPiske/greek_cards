@@ -258,14 +258,16 @@ html {
 .vocabulary-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    /* padding: 2rem 1rem; */
 }
 
 /* Tabbed Navigation */
 .vocabulary-tabs {
     display: flex;
     border-bottom: 1px solid var(--shadow);
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     align-items: center;
     flex-direction: row;
     justify-content: center;
@@ -315,8 +317,9 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    padding-bottom: 1rem;
     flex-wrap: wrap;
+    border-bottom: 1px solid var(--shadow);
     gap: 1rem;
 }
 
@@ -326,6 +329,7 @@ html {
     flex: 1;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .search-input {

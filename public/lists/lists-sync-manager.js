@@ -18,6 +18,9 @@ import {
 
 import { canSyncToCloud } from '../plan-manager.js';
 
+let listsCache = null;
+let lastCacheTime = 0;
+const CACHE_DURATION = 30000; // 30 seconds cache
 // Sync status tracking
 let syncInProgress = false;
 let lastSyncError = null;

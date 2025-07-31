@@ -133,11 +133,11 @@
 
 /* Words Display */
 .words-list {
-    padding: 1.5rem;
+    padding: 1rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 1rem;
-    max-height: calc(100vh - 400px);
+    max-height: calc(100vh);
     overflow-y: auto;
 }
 

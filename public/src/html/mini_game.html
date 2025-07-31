@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../img/icon.jpg" type="image/png">
+    <title>Mini Game</title>
+    <link rel="stylesheet" href="../styles/mini_game.css">
+    <link rel="stylesheet" href="../styles/root.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+    <a class="voltar-index" href="../../index.html">
+        <span class="material-symbols-sharp">
+            arrow_back
+        </span>
+    </a>
+    <nav></nav>
+    <main>
+        <div class="menu">
+            <div class="select-content">
+                <span class="material-symbols-sharp">
+                    filter_alt
+                </span>
+                <select onchange="filter_json(this.value)" name="" id="">
+                    <option selected>Todos</option>
+                    <option>Decorados</option>
+                    <option>Não Decorados</option>
+                </select>
+            </div>
+            <div onclick="reset_game()">
+                <span class="material-symbols-sharp">
+                    restart_alt
+                </span>
+            </div>
+        </div>
+        <div class="game_content" >
+            <h2>Associe as palavras a suas traduções</h2>
+            
+            <div class="content-colunms">
+                <!-- <div id="col-esquerda">
+                    <div onclick="active_option(this)" id="1E">
+                        <span>A</span>
+                    </div>
+                    <div onclick="active_option(this)" id="2E">
+                        <span>B</span>
+                    </div>
+                    <div onclick="active_option(this)" id="3E">
+                        <span>C</span>
+                    </div>
+                    <div onclick="active_option(this)" id="4E">
+                        <span>D</span>
+                    </div>
+                    <div onclick="active_option(this)" id="5E">
+                        <span>E</span>
+                    </div>
+                </div>
+                <div id="col-direita">
+                    <div onclick="active_option(this)" id="1D">
+                        <span>A</span>
+                    </div>
+                    <div onclick="active_option(this)" id="2D">
+                        <span>B</span>
+                    </div>
+                    <div onclick="active_option(this)" id="3D">
+                        <span>C</span>
+                    </div>
+                    <div onclick="active_option(this)" id="4D">
+                        <span>D</span>
+                    </div>
+                    <div onclick="active_option(this)" id="5D">
+                        <span>E</span>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+<script src="../scripts/upgrade_indexeddb.js"></script>
+<script src="../scripts/mini_game.js"></script>
+
+</html>

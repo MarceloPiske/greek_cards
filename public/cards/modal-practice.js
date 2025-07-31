@@ -3,10 +3,10 @@
  */
 
 // Import unified word progress function from sync system
-import { saveWordProgress } from './word_progress/word-progress-sync.js';
+import { saveWordProgress } from '../word_progress/word-progress-sync.js';
 
 // Import unified list functions from sync system
-import { getWordList } from './lists/lists-sync.js';
+import { getWordList } from '../lists/lists-sync.js';
 
 
 
@@ -22,6 +22,26 @@ const WordStatus = {
     MEMORIZED: 'memorized'
 };
 
+/**
+ * Show modal and set up basic event listeners
+ */
+export function showModal(modalElement) {
+    const closeBtn = modalElement.querySelector('.close-modal');
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => modalElement.remove());
+    }
+
+    // Close on outside click
+    modalElement.addEventListener('click', (e) => {
+        if (e.target === modalElement) {
+            modalElement.remove();
+        }
+    });
+
+    modalElement.style.display = 'flex';
+    return modalElement;
+}
 export function createAndShowModal(htmlContent) {
     document.body.insertAdjacentHTML('beforeend', htmlContent);
     const modal = document.body.lastElementChild;
@@ -63,7 +83,7 @@ async function getWordListWithWords(listId) {
             if (word) {
                 // Add progress to the word
                 try {
-                    const { getWordProgress } = await import('./word_progress/word-progress-sync.js');
+                    const { getWordProgress } = await import('../word_progress/word-progress-sync.js');
                     const progress = await getWordProgress(word.ID);
                     words.push({
                         ...word,

@@ -206,6 +206,7 @@ body {
     }
     
     .sidebar {
+        width: 100%;
         position: static;
         max-height: none;
         order: 2;
@@ -238,7 +239,7 @@ body {
     }
     
     .view-toggle {
-        width: 100%;
+        /* width: 100%; */
         justify-content: center;
     }
     
@@ -290,7 +291,3 @@ body {
         font-size: 0.9rem;
     }
 }
-
-
-```
-</cards/css/cards-layout.css>

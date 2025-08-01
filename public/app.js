@@ -34,19 +34,48 @@ function initLoginModal() {
 
     if (loginBtn && modal && closeBtn) {
         loginBtn.addEventListener('click', () => {
-            modal.style.display = 'flex';
+            showModal(modal);
         });
 
         closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
+            hideModal(modal);
         });
 
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
-                modal.style.display = 'none';
+                hideModal(modal);
             }
         });
     }
+}
+
+// Enhanced modal functions
+function showModal(modal) {
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
+    
+    // Focus management
+    const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (firstFocusable) {
+        firstFocusable.focus();
+    }
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+}
+
+function hideModal(modal) {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 400);
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
 }
 
 // Login function - updated to use Firebase
@@ -60,6 +89,10 @@ window.loginWith = async function(provider) {
     } else {
         console.log(`Logging in with ${provider} - Firebase not available`);
         const modal = document.getElementById('loginModal');
-        if (modal) modal.style.display = 'none';
+        if (modal) hideModal(modal);
     }
 };
+
+// Export modal functions for global use
+window.showModal = showModal;
+window.hideModal = hideModal;

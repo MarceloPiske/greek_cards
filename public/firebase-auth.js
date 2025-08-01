@@ -201,9 +201,9 @@ function updateUIForUser(user) {
  */
 function showUserMenu(user) {
     const menuHtml = `
-        <div class="modal" id="userMenuModal">
+        <div class="modal" id="userMenuModal" aria-hidden="true">
             <div class="modal-content">
-                <button class="close-modal">&times;</button>
+                <button class="close-modal" aria-label="Fechar menu">&times;</button>
                 <h2>Conta do Usuário</h2>
                 <div class="user-info">
                     <img src="${user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email)}&background=4a90e2&color=fff&size=128`}" 
@@ -233,11 +233,16 @@ function showUserMenu(user) {
     // Load and display plan information
     loadPlanInfo();
     
-    closeBtn.addEventListener('click', () => modal.remove());
+    closeBtn.addEventListener('click', () => {
+        window.hideModal(modal);
+        setTimeout(() => modal.remove(), 400);
+    });
+    
     signOutBtn.addEventListener('click', async () => {
         try {
             await signOutUser();
-            modal.remove();
+            window.hideModal(modal);
+            setTimeout(() => modal.remove(), 400);
         } catch (error) {
             alert(error.message);
         }
@@ -249,10 +254,21 @@ function showUserMenu(user) {
     });
     
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
+        if (e.target === modal) {
+            window.hideModal(modal);
+            setTimeout(() => modal.remove(), 400);
+        }
     });
     
-    modal.style.display = 'flex';
+    // Keyboard support
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            window.hideModal(modal);
+            setTimeout(() => modal.remove(), 400);
+        }
+    });
+    
+    window.showModal(modal);
 }
 
 /**
@@ -294,7 +310,11 @@ async function loadPlanInfo() {
             const upgradeBtn = document.getElementById('upgrade-plan-btn');
             if (upgradeBtn) {
                 upgradeBtn.addEventListener('click', () => {
-                    window.open('https://grego-koine.web.app/premium', '_blank');
+                    if (window.mercadoPago) {
+                        window.mercadoPago.showPlanSelectionModal();
+                    } else {
+                        alert('Sistema de pagamento indisponível. Tente novamente mais tarde.');
+                    }
                 });
             }
         }
@@ -309,7 +329,7 @@ async function loadPlanInfo() {
 function showLoginModal() {
     const modal = document.getElementById('loginModal');
     if (modal) {
-        modal.style.display = 'flex';
+        window.showModal(modal);
     }
 }
 
@@ -336,7 +356,7 @@ export async function loginWith(provider) {
         
         // Close login modal
         const modal = document.getElementById('loginModal');
-        if (modal) modal.style.display = 'none';
+        if (modal) window.hideModal(modal);
         
         // Show success message
         alert(`Bem-vindo, ${user.displayName || user.email}!`);

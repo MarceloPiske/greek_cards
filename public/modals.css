@@ -1,0 +1,842 @@
+/* Modern Modal Styles */
+:root {
+    --modal-backdrop: rgba(15, 23, 42, 0.8);
+    --modal-bg: rgba(248, 250, 252, 0.95);
+    --modal-bg-dark: rgba(30, 41, 59, 0.95);
+    --modal-border: rgba(148, 163, 184, 0.2);
+    --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --modal-radius: 24px;
+    --modal-padding: 2rem;
+    --modal-max-width: 500px;
+    --modal-animation-duration: 0.4s;
+    --modal-animation-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+    --modal-backdrop: rgba(0, 0, 0, 0.8);
+    --modal-bg: rgba(30, 41, 59, 0.95);
+    --modal-border: rgba(148, 163, 184, 0.2);
+}
+
+/* Base Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--modal-backdrop);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    opacity: 0;
+    transition: opacity var(--modal-animation-duration) var(--modal-animation-ease);
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--modal-bg);
+    border: 1px solid var(--modal-border);
+    border-radius: var(--modal-radius);
+    padding: var(--modal-padding);
+    width: 95%;
+    max-width: var(--modal-max-width);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--modal-shadow);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transform: translateY(20px) scale(0.95);
+    transition: all var(--modal-animation-duration) var(--modal-animation-ease);
+}
+
+.modal.show .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+[data-theme="dark"] .modal-content {
+    background: var(--modal-bg-dark);
+}
+
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(148, 163, 184, 0.1);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.3s var(--modal-animation-ease);
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.close-modal:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    transform: scale(1.1);
+}
+
+/* Modal Headers */
+.modal h2 {
+    margin: 0 0 1.5rem 0;
+    color: var(--text-primary);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    padding-right: 3rem;
+}
+
+.modal h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Modal Text */
+.modal p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Login Modal Specific */
+.login-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.login-option-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--modal-border);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s var(--modal-animation-ease);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .login-option-btn {
+    background: rgba(30, 41, 59, 0.8);
+}
+
+.login-option-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.login-option-btn:hover::before {
+    left: 100%;
+}
+
+.login-option-btn:hover {
+    background: rgba(74, 144, 226, 0.05);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.15);
+}
+
+.login-option-btn:active {
+    transform: translateY(0);
+}
+
+.login-option-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.login-option-btn svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* Plan Selection Modal - Redesigned */
+.plan-modal {
+    max-width: 900px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--modal-border);
+}
+
+.modal-header h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.modal-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.plans-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.plan-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--modal-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s var(--modal-animation-ease);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+}
+
+[data-theme="dark"] .plan-card {
+    background: rgba(30, 41, 59, 0.9);
+}
+
+.plan-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient);
+    transform: scaleX(0);
+    transition: transform 0.3s var(--modal-animation-ease);
+}
+
+.plan-card:hover::before {
+    transform: scaleX(1);
+}
+
+.plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(74, 144, 226, 0.15);
+    border-color: var(--accent);
+}
+
+.plan-card.apoio {
+    border-color: #ff6b6b;
+    position: relative;
+}
+
+.plan-card.apoio::before {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+}
+
+.plan-card.apoio::after {
+    content: '❤️ APOIADOR';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 0 15px 0 12px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.plan-header {
+    margin-bottom: 1.5rem;
+}
+
+.plan-header h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.plan-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.plan-price {
+    margin-bottom: 1rem;
+}
+
+.price-display {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.2rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(74, 144, 226, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.currency {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.amount {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.period {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.plan-features {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.8rem;
+    padding: 0.5rem;
+    background: rgba(34, 197, 94, 0.05);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.feature:hover {
+    background: rgba(34, 197, 94, 0.1);
+    transform: translateX(2px);
+}
+
+.feature .material-symbols-sharp {
+    color: #22c55e;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.supporter-feature .material-symbols-sharp {
+    color: #ff6b6b;
+}
+
+.supporter-feature {
+    background: rgba(255, 107, 107, 0.05);
+}
+
+.supporter-feature:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.feature span:last-child {
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.select-plan-btn {
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s var(--modal-animation-ease);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.supporter-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.select-plan-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.select-plan-btn:hover::before {
+    left: 100%;
+}
+
+.select-plan-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+.supporter-btn:hover {
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+}
+
+.select-plan-btn:active {
+    transform: translateY(0);
+}
+
+.supporter-note {
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.3;
+}
+
+.modal-footer {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--modal-border);
+}
+
+.modal-footer .btn.secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--modal-border);
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.modal-footer .btn.secondary:hover {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+
+/* Success/Loading Modals */
+.success-content,
+.waiting-content {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.success-icon {
+    font-size: 4rem !important;
+    color: #22c55e;
+    margin-bottom: 1.5rem;
+    display: block;
+    animation: successPulse 2s ease-in-out infinite;
+}
+
+@keyframes successPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(74, 144, 226, 0.2);
+    border-top: 4px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 2rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.plan-activated {
+    background: rgba(34, 197, 94, 0.1);
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-top: 1.5rem;
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* User Menu Modal */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(74, 144, 226, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(74, 144, 226, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.user-details h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.user-details p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.plan-status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(74, 144, 226, 0.05);
+    border-radius: 16px;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(74, 144, 226, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.plan-status:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.15);
+}
+
+.plan-status .material-symbols-sharp {
+    font-size: 2rem;
+    color: var(--accent);
+    background: rgba(74, 144, 226, 0.1);
+    padding: 0.8rem;
+    border-radius: 12px;
+}
+
+.plan-details {
+    flex: 1;
+}
+
+.plan-details strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.plan-details small {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Modal Actions */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--modal-border);
+}
+
+.modal .btn {
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    border: 2px solid var(--modal-border);
+    cursor: pointer;
+    transition: all 0.3s var(--modal-animation-ease);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--text-primary);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .modal .btn {
+    background: rgba(30, 41, 59, 0.8);
+}
+
+.modal .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.modal .btn:hover::before {
+    left: 100%;
+}
+
+.modal .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal .btn.primary {
+    background: var(--gradient);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.modal .btn.primary:hover {
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+.modal .btn.danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border-color: #ef4444;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.modal .btn.danger:hover {
+    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+}
+
+/* Upgrade Modal Specific */
+.upgrade-content {
+    margin: 2rem 0;
+}
+
+.current-plan-info {
+    background: rgba(148, 163, 184, 0.1);
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.current-plan-info h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.current-plan-info p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.feature-list {
+    background: rgba(34, 197, 94, 0.05);
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.feature-list h3 {
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.feature-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-list li {
+    padding: 0.5rem 0;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    :root {
+        --modal-padding: 1.5rem;
+        --modal-radius: 20px;
+    }
+    
+    .modal-content {
+        width: 98%;
+        margin: 1%;
+        max-height: 95vh;
+    }
+    
+    .plan-modal {
+        width: 98%;
+        margin: 1%;
+        max-height: 95vh;
+    }
+    
+    .modal-header {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .plans-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .plan-card {
+        padding: 1.25rem;
+    }
+    
+    .plan-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .amount {
+        font-size: 1.8rem;
+    }
+    
+    .feature {
+        font-size: 0.85rem;
+        padding: 0.4rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .select-plan-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    
+    .plan-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .supporter-note {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --modal-padding: 1rem;
+    }
+    
+    .plan-card {
+        padding: 1rem;
+    }
+    
+    .plan-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .amount {
+        font-size: 1.6rem;
+    }
+    
+    .feature {
+        font-size: 0.8rem;
+        gap: 0.5rem;
+    }
+    
+    .price-display {
+        padding: 0.6rem 1rem;
+    }
+    
+    .select-plan-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation for modal entrance */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal.show .modal-content {
+    animation: modalFadeIn var(--modal-animation-duration) var(--modal-animation-ease);
+}
+
+/* Enhanced accessibility */
+.modal[aria-hidden="true"] {
+    display: none;
+}
+
+.modal[aria-hidden="false"] {
+    display: flex;
+}
+
+/* Focus management */
+.modal-content:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .modal-content,
+    .plan-card,
+    .login-option-btn,
+    .modal .btn {
+        transition: none;
+    }
+    
+    .loading-spinner {
+        animation: none;
+    }
+    
+    .success-icon {
+        animation: none;
+    }
+}

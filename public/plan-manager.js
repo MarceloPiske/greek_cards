@@ -283,6 +283,13 @@ export function getPlanInfo(planId = null) {
  * Show upgrade modal for premium features - Updated for new plans
  */
 export function showUpgradeModal(feature, requiredPlan = PLANS.CLOUD) {
+    // Use new plan selection modal instead of old upgrade modal
+    if (typeof window !== 'undefined' && window.mercadoPago) {
+        window.mercadoPago.showPlanSelectionModal();
+        return;
+    }
+    
+    // Fallback to old modal if mercado pago not available
     const currentPlan = getCurrentUserPlan();
     const targetPlan = PLAN_FEATURES[requiredPlan];
     const currentPlanInfo = PLAN_FEATURES[currentPlan];
@@ -332,7 +339,7 @@ export function showUpgradeModal(feature, requiredPlan = PLANS.CLOUD) {
                 </div>
                 <div class="modal-actions">
                     <button id="cancel-upgrade" class="btn">Talvez mais tarde</button>
-                    <button id="confirm-upgrade" class="btn primary">Fazer Upgrade</button>
+                    <button id="confirm-upgrade" class="btn primary">Ver Planos</button>
                 </div>
             </div>
         </div>
@@ -348,9 +355,13 @@ export function showUpgradeModal(feature, requiredPlan = PLANS.CLOUD) {
     closeBtn.addEventListener('click', () => modal.remove());
     cancelBtn.addEventListener('click', () => modal.remove());
     upgradeBtn.addEventListener('click', () => {
-        // Here you would integrate with your payment system
-        window.open('https://grego-koine.web.app/premium', '_blank');
         modal.remove();
+        if (window.mercadoPago) {
+            window.mercadoPago.showPlanSelectionModal();
+        } else {
+            // Fallback: show plan selection modal directly or alert
+            alert('Sistema de pagamento indisponível. Tente novamente mais tarde.');
+        }
     });
     
     modal.addEventListener('click', (e) => {

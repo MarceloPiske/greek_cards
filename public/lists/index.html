@@ -176,11 +176,17 @@
     </div>
 
     <script type="module" src="../firebase-auth.js"></script>
+    <script type="module" src="../vocabulary/vocabulary-loader.js"></script>
     <script type="module">
         import { ListsApp } from './lists-app.js';
+        import { initializeVocabularySystem } from '../vocabulary/vocabulary-loader.js';
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', async () => {
+            // Initialize vocabulary system first
+            await initializeVocabularySystem();
+            
+            // Then initialize lists app
             const app = new ListsApp();
             await app.initialize();
         });

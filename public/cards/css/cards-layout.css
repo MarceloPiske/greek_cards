@@ -43,15 +43,46 @@ body {
     overflow: hidden;
 }
 
+/* Enhanced sidebar */
+.word-lists-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--shadow);
+}
+
+.word-lists-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.word-lists-header h3 .material-symbols-sharp {
+    color: var(--accent);
+    font-size: 1.4rem;
+}
+
+.word-lists-header .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 8px;
+}
+
 /* Content Header */
 .list-header {
-    padding: 2rem 2rem 1.5rem;
+    padding: 2rem;
     border-bottom: 2px solid var(--shadow);
-    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05), rgba(59, 130, 246, 0.03));
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.03), rgba(59, 130, 246, 0.01));
 }
 
 .list-header h2 {
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -67,7 +98,7 @@ body {
 
 .list-description {
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-size: 1rem;
     line-height: 1.6;
 }
@@ -75,6 +106,8 @@ body {
 .list-stats {
     display: flex;
     gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
     color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 500;
@@ -140,7 +173,7 @@ body {
     color: var(--accent);
 }
 
-/* Empty and Loading States */
+/* Enhanced empty state */
 .empty-state, .loading-state {
     display: flex;
     flex-direction: column;
@@ -181,6 +214,31 @@ body {
 .empty-state .btn {
     padding: 1rem 2rem;
     font-size: 1rem;
+}
+
+.empty-state .feature-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 300px;
+    margin: 2rem auto 0;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(74, 144, 226, 0.05);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.feature-item .material-symbols-sharp {
+    color: var(--accent);
+    font-size: 1.2rem;
 }
 
 /* Mobile Responsive */
@@ -239,7 +297,6 @@ body {
     }
     
     .view-toggle {
-        /* width: 100%; */
         justify-content: center;
     }
     
@@ -256,6 +313,15 @@ body {
     .word-lists-header .btn {
         width: 100%;
         text-align: center;
+    }
+    
+    .feature-highlights {
+        margin-top: 1.5rem;
+    }
+    
+    .feature-item {
+        padding: 0.6rem;
+        font-size: 0.85rem;
     }
 }
 

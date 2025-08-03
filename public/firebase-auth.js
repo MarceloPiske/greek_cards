@@ -328,9 +328,56 @@ async function loadPlanInfo() {
  */
 function showLoginModal() {
     const modal = document.getElementById('loginModal');
-    if (modal) {
+    if (modal && window.showModal) {
         window.showModal(modal);
+    } else if (modal) {
+        // Fallback if showModal function is not available
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+        
+        // Focus management
+        const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (firstFocusable) {
+            firstFocusable.focus();
+        }
+        
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
     }
+}
+
+/**
+ * Enhanced modal functions for better compatibility
+ */
+function showModal(modal) {
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
+    
+    // Focus management
+    const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (firstFocusable) {
+        firstFocusable.focus();
+    }
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+}
+
+function hideModal(modal) {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 400);
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
 }
 
 /**
@@ -382,4 +429,8 @@ if (typeof window !== 'undefined') {
         loginWith,
         db
     };
+    
+    // Export modal functions for global use
+    window.showModal = showModal;
+    window.hideModal = hideModal;
 }

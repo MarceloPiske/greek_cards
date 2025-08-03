@@ -96,3 +96,19 @@ window.loginWith = async function(provider) {
 // Export modal functions for global use
 window.showModal = showModal;
 window.hideModal = hideModal;
+
+// Handle practice button clicks on homepage
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle practice buttons
+    const practiceButtons = document.querySelectorAll('.link-click');
+    practiceButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && !href.startsWith('#')) {
+                // Let the link work normally
+                return;
+            }
+            // For other cases, handle custom logic if needed
+        });
+    });
+});

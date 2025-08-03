@@ -116,21 +116,48 @@
 }
 
 .list-actions {
-    display: flex;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
     margin-top: auto;
-    flex-wrap: wrap;
 }
 
 .list-actions .btn {
-    padding: 0.6rem 1rem;
+    padding: 0.7rem 1rem;
     font-size: 0.85rem;
-    flex: 1;
-    min-width: 0;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.list-actions .btn.secondary {
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    border: 2px solid var(--shadow);
+}
+
+.list-actions .btn.secondary:hover {
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.list-actions .btn.practice {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    border: 2px solid #22c55e;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.list-actions .btn.practice:hover {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+    transform: translateY(-2px);
 }
 
 .list-menu-btn {
@@ -481,4 +508,236 @@
 
 .sync-status.local+.list-card-header+.list-stats+.sync-info .sync-text {
     color: var(--text-secondary);
+}
+
+/* View Words Modal Styles */
+.view-words-modal .modal-content {
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.view-words-header {
+    padding: 2rem 2rem 1rem;
+    border-bottom: 2px solid var(--shadow);
+    flex-shrink: 0;
+}
+
+.view-words-header h2 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.view-words-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.view-words-stats {
+    display: flex;
+    gap: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.view-words-stats .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.view-words-stats .material-symbols-sharp {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.view-words-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 2rem;
+    min-height: 300px;
+}
+
+.view-words-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.view-word-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.view-word-item:hover {
+    border-color: var(--accent);
+    background: rgba(74, 144, 226, 0.05);
+}
+
+.word-checkbox-container {
+    flex-shrink: 0;
+}
+
+.word-checkbox-container input[type="checkbox"] {
+    display: none;
+}
+
+.word-checkbox-container label {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--shadow);
+    border-radius: 4px;
+    display: block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.word-checkbox-container input[type="checkbox"]:checked + label {
+    background: #ef4444;
+    border-color: #ef4444;
+}
+
+.word-checkbox-container input[type="checkbox"]:checked + label::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.view-word-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.view-word-greek {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.view-word-transliteration {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 0.25rem;
+}
+
+.view-word-meaning {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.view-word-category {
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--accent);
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.view-words-actions {
+    padding: 1rem 2rem;
+    border-top: 2px solid var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.selection-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.modal-actions-right {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.view-words-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.view-words-empty .material-symbols-sharp {
+    font-size: 3rem;
+    color: var(--accent);
+    opacity: 0.7;
+    margin-bottom: 1rem;
+}
+
+.view-words-empty h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Mobile styles for view words modal */
+@media (max-width: 768px) {
+    .view-words-modal .modal-content {
+        margin: 0.5rem;
+        max-width: calc(100vw - 1rem);
+        max-height: calc(100vh - 1rem);
+    }
+    
+    .view-words-header {
+        padding: 1.5rem 1rem 1rem;
+    }
+    
+    .view-words-stats {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .view-words-content {
+        padding: 1rem;
+    }
+    
+    .view-word-item {
+        padding: 0.75rem;
+        gap: 0.75rem;
+    }
+    
+    .view-words-actions {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .selection-actions,
+    .modal-actions-right {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .selection-actions .btn,
+    .modal-actions-right .btn {
+        flex: 1;
+    }
 }

@@ -82,15 +82,89 @@ export class ListsUI {
                 </div>
 
                 <div class="list-actions">
-                    <button class="btn open-list-btn" data-list-id="${list.id}">
-                        <span class="material-symbols-sharp">open_in_new</span>
+                    <button class="btn secondary view-list-btn" data-list-id="${list.id}">
+                        <span class="material-symbols-sharp">visibility</span>
                         Visualizar
                     </button>
-                    <button class="btn add-words-btn" data-list-id="${list.id}">
-                        <span class="material-symbols-sharp">add</span>
-                        Adicionar Palavras
+                    <button class="btn practice practice-list-btn" data-list-id="${list.id}">
+                        <span class="material-symbols-sharp">school</span>
+                        Praticar
                     </button>
                 </div>
+            </div>
+        `;
+    }
+
+    showViewWordsModal(list) {
+        const modalHtml = `
+            <div class="modal view-words-modal" id="view-words-modal">
+                <div class="modal-content">
+                    <button class="close-modal">&times;</button>
+                    <div class="view-words-header">
+                        <h2>${this.escapeHtml(list.name)}</h2>
+                        ${list.description ? `<p class="view-words-description">${this.escapeHtml(list.description)}</p>` : ''}
+                        <div class="view-words-stats">
+                            <div class="stat">
+                                <span class="material-symbols-sharp">style</span>
+                                <span>${list.words ? list.words.length : 0} palavras</span>
+                            </div>
+                            <div class="stat">
+                                <span class="material-symbols-sharp">schedule</span>
+                                <span>Criada em ${this.formatDate(list.createdAt)}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-words-content" id="view-words-content">
+                        ${this.createWordsListContent(list.words || [])}
+                    </div>
+                    <div class="view-words-actions">
+                        <div class="selection-actions">
+                            <button id="select-all-words" class="btn secondary">Selecionar Todas</button>
+                            <button id="deselect-all-words" class="btn secondary">Desmarcar Todas</button>
+                        </div>
+                        <div class="modal-actions-right">
+                            <button id="remove-selected-words" class="btn danger" disabled>Remover Selecionadas</button>
+                            <button id="add-more-words" class="btn primary">Adicionar Palavras</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        const modal = document.getElementById('view-words-modal');
+        modal.style.display = 'flex';
+
+        return modal;
+    }
+
+    createWordsListContent(words) {
+        if (!words || words.length === 0) {
+            return `
+                <div class="view-words-empty">
+                    <span class="material-symbols-sharp">style</span>
+                    <h3>Lista Vazia</h3>
+                    <p>Esta lista não contém palavras ainda. Clique em "Adicionar Palavras" para começar.</p>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="view-words-list">
+                ${words.map(word => `
+                    <div class="view-word-item" data-word-id="${word.ID}">
+                        <div class="word-checkbox-container">
+                            <input type="checkbox" id="word-${word.ID}" class="word-remove-checkbox">
+                            <label for="word-${word.ID}"></label>
+                        </div>
+                        <div class="view-word-info">
+                            <div class="view-word-greek">${word.LEXICAL_FORM}</div>
+                            <div class="view-word-transliteration">${word.TRANSLITERATED_LEXICAL_FORM || ''}</div>
+                            <div class="view-word-meaning">${word.USAGE || word.DEFINITION || ''}</div>
+                        </div>
+                        <div class="view-word-category">${word.PART_OF_SPEECH || 'não categorizado'}</div>
+                    </div>
+                `).join('')}
             </div>
         `;
     }

@@ -77,21 +77,36 @@ async function loadWordLists() {
                     <span class="material-symbols-sharp">inventory_2</span>
                     <h3>Nenhuma lista encontrada</h3>
                     <p>Acesse o gerenciador de listas para criar suas primeiras listas</p>
+                    <a href="../lists/index.html" class="btn primary">
+                        <span class="material-symbols-sharp">add</span>
+                        Criar Lista
+                    </a>
                 </div>
             `;
             return;
         }
 
-        // Render simple list items for selection
-        const listsHtml = lists.map(list => `
-            <div class="word-list-item" data-list-id="${list.id}">
-                <div class="list-info">
-                    <h3>${list.name}</h3>
-                    <p>${list.wordIds ? list.wordIds.length : 0} palavras</p>
-                    ${list.description ? `<p class="list-description">${list.description}</p>` : ''}
+        // Render enhanced list items for selection
+        const listsHtml = lists.map(list => {
+            const wordCount = list.wordIds ? list.wordIds.length : 0;
+            return `
+                <div class="word-list-item" data-list-id="${list.id}">
+                    <div class="list-info">
+                        <h3>${list.name}</h3>
+                        <div class="list-meta">
+                            <span class="word-count">
+                                <span class="material-symbols-sharp">style</span>
+                                ${wordCount} palavra${wordCount !== 1 ? 's' : ''}
+                            </span>
+                            ${list.description ? `<p class="list-description">${list.description}</p>` : ''}
+                        </div>
+                    </div>
+                    <div class="list-status">
+                        <span class="material-symbols-sharp">chevron_right</span>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
         
         container.innerHTML = listsHtml;
         
@@ -114,6 +129,10 @@ async function loadWordLists() {
                     <span class="material-symbols-sharp">error</span>
                     <h3>Erro ao carregar listas</h3>
                     <p>Não foi possível carregar suas listas de palavras</p>
+                    <button onclick="window.location.reload()" class="btn">
+                        <span class="material-symbols-sharp">refresh</span>
+                        Tentar Novamente
+                    </button>
                 </div>
             `;
         }
@@ -206,6 +225,10 @@ async function loadWordListContentWithView(listId, viewMode = 'list') {
                 <span class="material-symbols-sharp">error</span>
                 <h3>Erro ao carregar lista</h3>
                 <p>${error.message}</p>
+                <button onclick="window.location.reload()" class="btn">
+                    <span class="material-symbols-sharp">refresh</span>
+                    Recarregar
+                </button>
             </div>
         `;
     }
@@ -224,18 +247,42 @@ function setupCardFlipEvents() {
 }
 
 /**
- * Render word list content
+ * Render word list content with enhanced UI
  */
 function renderWordListContent(list, containerId, viewMode = 'list') {
     const container = document.getElementById(containerId);
     if (!container) return;
     
+    // Calculate progress statistics
+    const stats = {
+        total: list.words.length,
+        unread: list.words.filter(w => w.progress.status === 'unread').length,
+        reading: list.words.filter(w => w.progress.status === 'reading').length,
+        familiar: list.words.filter(w => w.progress.status === 'familiar').length,
+        memorized: list.words.filter(w => w.progress.status === 'memorized').length
+    };
+    
+    const progressPercentage = stats.total > 0 ? Math.round(((stats.familiar + stats.memorized) / stats.total) * 100) : 0;
+    
     const headerHtml = `
         <div class="list-header">
-            <h2>${list.name}</h2>
+            <h2>
+                <span class="material-symbols-sharp">style</span>
+                ${list.name}
+            </h2>
             ${list.description ? `<p class="list-description">${list.description}</p>` : ''}
             <div class="list-stats">
-                <span>${list.words.length} palavras</span>
+                <div class="stat-item">
+                    <span class="material-symbols-sharp">auto_stories</span>
+                    <span>${stats.total} palavras</span>
+                </div>
+                <div class="stat-item">
+                    <span class="material-symbols-sharp">trending_up</span>
+                    <span>${progressPercentage}% dominado</span>
+                </div>
+                <div class="progress-indicator">
+                    <div class="progress-bar" style="width: ${progressPercentage}%"></div>
+                </div>
             </div>
         </div>
     `;
@@ -243,14 +290,6 @@ function renderWordListContent(list, containerId, viewMode = 'list') {
     const actionsHtml = `
         <div class="list-actions-bar">
             <div class="list-actions-left">
-                <button id="add-to-list-btn" class="btn" title="Adicionar palavras à lista">
-                    <span class="material-symbols-sharp">add</span> Adicionar palavras
-                </button>
-            </div>
-            <div class="list-actions-right">
-                <button id="practice-list-btn" class="btn primary" title="Iniciar prática com esta lista">
-                    <span class="material-symbols-sharp">school</span> Praticar
-                </button>
                 <div class="view-toggle">
                     <button class="btn icon ${viewMode === 'list' ? 'active' : ''}" data-view="list" title="Visualização em lista">
                         <span class="material-symbols-sharp">view_list</span>
@@ -260,6 +299,12 @@ function renderWordListContent(list, containerId, viewMode = 'list') {
                     </button>
                 </div>
             </div>
+            <div class="list-actions-right">
+                <button id="practice-list-btn" class="btn primary" title="Iniciar sessão de prática">
+                    <span class="material-symbols-sharp">school</span> 
+                    Praticar Lista
+                </button>
+            </div>
         </div>
     `;
     
@@ -268,8 +313,12 @@ function renderWordListContent(list, containerId, viewMode = 'list') {
         wordsHtml = `
             <div class="empty-state">
                 <span class="material-symbols-sharp">style</span>
-                <h3>Lista vazia</h3>
-                <p>Esta lista não contém palavras ainda. Use o botão "Adicionar palavras" para começar.</p>
+                <h3>Lista Vazia</h3>
+                <p>Esta lista não contém palavras ainda.</p>
+                <a href="../lists/index.html?list=${list.id}" class="btn primary">
+                    <span class="material-symbols-sharp">add</span>
+                    Gerenciar Lista
+                </a>
             </div>
         `;
     } else {
@@ -284,7 +333,7 @@ function renderWordListContent(list, containerId, viewMode = 'list') {
 }
 
 /**
- * Create vocabulary word item
+ * Create enhanced vocabulary word item
  */
 function createVocabWordItem(word) {
     const progress = word.progress || { status: 'unread', reviewCount: 0 };
@@ -300,6 +349,7 @@ function createVocabWordItem(word) {
                 <div class="word-meta">
                     <span class="category-badge">${word.PART_OF_SPEECH || 'não categorizado'}</span>
                     <span class="status-badge ${progress.status}">${getStatusLabel(progress.status)}</span>
+                    ${progress.reviewCount > 0 ? `<span class="review-count">${progress.reviewCount} revisões</span>` : ''}
                 </div>
             </div>
         </div>
@@ -307,7 +357,7 @@ function createVocabWordItem(word) {
 }
 
 /**
- * Create vocabulary card
+ * Create enhanced vocabulary card
  */
 function createVocabCard(word) {
     const progress = word.progress || { status: 'unread', reviewCount: 0 };
@@ -319,11 +369,18 @@ function createVocabCard(word) {
                 <div class="transliteration">${word.TRANSLITERATED_LEXICAL_FORM || ''}</div>
                 <div class="card-footer">
                     <span class="category-badge">${word.PART_OF_SPEECH || 'não categorizado'}</span>
-                    <span class="flip-hint">Clique para virar</span>
+                    <div class="flip-hint">
+                        <span class="material-symbols-sharp">touch_app</span>
+                        <span>Clique para virar</span>
+                    </div>
                 </div>
             </div>
             <div class="card-back">
                 <div class="meaning">${word.DEFINITION || word.USAGE || ''}</div>
+                <div class="card-footer">
+                    <span class="status-badge ${progress.status}">${getStatusLabel(progress.status)}</span>
+                    ${progress.reviewCount > 0 ? `<span class="review-count">${progress.reviewCount}x</span>` : ''}
+                </div>
             </div>
         </div>
     `;
@@ -334,10 +391,10 @@ function createVocabCard(word) {
  */
 export function getStatusLabel(status) {
     const labels = {
-        'unread': 'Não lido',
-        'reading': 'Lendo',
+        'unread': 'Não Conheço',
+        'reading': 'Estudando',
         'familiar': 'Familiar',
-        'memorized': 'Decorado'
+        'memorized': 'Memorizado'
     };
     return labels[status] || 'Desconhecido';
 }
@@ -357,23 +414,11 @@ function markListAsSelected(listId) {
 }
 
 /**
- * Setup list content actions
+ * Setup enhanced list content actions
  */
 function setupListContentActions() {
-    const addWordsBtn = document.getElementById('add-to-list-btn');
     const practiceBtn = document.getElementById('practice-list-btn');
     const viewToggleBtns = document.querySelectorAll('.view-toggle .btn');
-    
-    if (addWordsBtn) {
-        addWordsBtn.addEventListener('click', async () => {
-            const selectedList = document.querySelector('.word-list-item.selected');
-            if (selectedList) {
-                const listId = selectedList.getAttribute('data-list-id');
-                const { showAddWordsModal } = await import('./lists/lists-words-actions.js');
-                await showAddWordsModal(listId);
-            }
-        });
-    }
     
     if (practiceBtn) {
         practiceBtn.addEventListener('click', async () => {
@@ -381,7 +426,7 @@ function setupListContentActions() {
             if (selectedList) {
                 const listId = selectedList.getAttribute('data-list-id');
                 try {
-                    // Import the practice session function
+                    // Import the enhanced practice session function
                     const { startPracticeSession } = await import('./modal-practice.js');
                     await startPracticeSession(listId);
                 } catch (error) {
@@ -473,6 +518,8 @@ window.loginWith = async function(provider) {
     if (typeof window.firebaseAuth !== 'undefined') {
         try {
             await window.firebaseAuth.loginWith(provider);
+            const modal = document.getElementById('loginModal');
+            if (modal) modal.style.display = 'none';
         } catch (error) {
             console.error(`Error logging in with ${provider}:`, error);
         }

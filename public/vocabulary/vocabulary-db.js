@@ -1,6 +1,7 @@
-
 // Database stores
 export const STORE_SYSTEM_VOCABULARY = 'systemVocabulary';
+const STORE_WORD_PROGRESS = 'wordProgress';
+const STORE_WORD_LISTS = 'wordLists';
 
 /**
  * Initialize the vocabulary database stores
@@ -14,12 +15,45 @@ export async function initVocabularyDB() {
             
             // Ensure system vocabulary store exists
             if (!db.objectStoreNames.contains(STORE_SYSTEM_VOCABULARY)) {
-                db.createObjectStore(STORE_SYSTEM_VOCABULARY, { keyPath: "ID" });
+                const vocabStore = db.createObjectStore(STORE_SYSTEM_VOCABULARY, { keyPath: "ID" });
+                console.log('Created systemVocabulary store');
+            }
+            
+            // Ensure word progress store exists
+            if (!db.objectStoreNames.contains(STORE_WORD_PROGRESS)) {
+                const progressStore = db.createObjectStore(STORE_WORD_PROGRESS, { keyPath: "wordId" });
+                console.log('Created wordProgress store');
+            }
+            
+            // Ensure word lists store exists
+            if (!db.objectStoreNames.contains(STORE_WORD_LISTS)) {
+                const listsStore = db.createObjectStore(STORE_WORD_LISTS, { keyPath: "id" });
+                console.log('Created wordLists store');
             }
         };
         
         request.onsuccess = (event) => {
             const db = event.target.result;
+            
+            // Verify all required stores exist
+            const requiredStores = [STORE_SYSTEM_VOCABULARY, STORE_WORD_PROGRESS, STORE_WORD_LISTS];
+            const missingStores = requiredStores.filter(store => !db.objectStoreNames.contains(store));
+            
+            if (missingStores.length > 0) {
+                console.warn('Missing object stores:', missingStores);
+                // Close and delete the database, then recreate it
+                db.close();
+                const deleteRequest = indexedDB.deleteDatabase("koineAppDB");
+                deleteRequest.onsuccess = () => {
+                    console.log('Database deleted, reinitializing...');
+                    // Recursive call to reinitialize
+                    initVocabularyDB().then(resolve).catch(reject);
+                };
+                deleteRequest.onerror = () => reject(new Error('Failed to delete and recreate database'));
+                return;
+            }
+            
+            console.log('Database initialized successfully with all required stores');
             resolve(db);
         };
         
@@ -39,9 +73,11 @@ export async function importGreekLexicon(lexiconData) {
         const tx = db.transaction(STORE_SYSTEM_VOCABULARY, 'readwrite');
         const store = tx.objectStore(STORE_SYSTEM_VOCABULARY);
 
+
         return new Promise((resolve, reject) => {
             let processed = 0;
             const total = lexiconData.length;
+
 
             for (const entry of lexiconData) {
                 const request = store.put({
@@ -53,7 +89,8 @@ export async function importGreekLexicon(lexiconData) {
                     DEFINITION: entry.DEFINITION,
                     ORIGIN: entry.ORIGIN,
                     USAGE: entry.USAGE
-                });
+                })
+
 
                 request.onsuccess = () => {
                     processed++;
@@ -61,7 +98,8 @@ export async function importGreekLexicon(lexiconData) {
                         console.log(`Successfully imported ${total} vocabulary entries`);
                         resolve();
                     }
-                };
+                }
+
 
                 request.onerror = () => {
                     console.error(`Error importing entry ${entry.ID}:`, request.error);
@@ -69,7 +107,7 @@ export async function importGreekLexicon(lexiconData) {
                     if (processed === total) {
                         resolve(); // Continue even if some entries failed
                     }
-                };
+                }
             }
         });
     } catch (error) {
@@ -87,10 +125,12 @@ export async function getSystemVocabulary(options = {}) {
         const tx = db.transaction(STORE_SYSTEM_VOCABULARY, 'readonly');
         const store = tx.objectStore(STORE_SYSTEM_VOCABULARY);
 
+
         return new Promise((resolve, reject) => {
             const request = store.getAll();
             request.onsuccess = async () => {
-                let words = request.result || [];
+                let words = request.result || []
+
 
                 // Apply search filter first
                 if (options.search && options.search.trim()) {
@@ -100,16 +140,18 @@ export async function getSystemVocabulary(options = {}) {
                         word.TRANSLITERATED_LEXICAL_FORM?.toLowerCase().includes(searchLower) ||
                         word.DEFINITION?.toLowerCase().includes(searchLower) ||
                         word.USAGE?.toLowerCase().includes(searchLower)
-                    );
+                    )
                 }
+
 
                 // Apply category filter
               console.log(options.category)
                 if (options.category && options.category.trim()) {
                     words = words.filter(word => 
           word.PART_OF_SPEECH.toLowerCase().includes(options.category) 
-                    );
+                    )
                 }
+
 
                 // Apply pagination
                 if (options.offset !== undefined || options.limit !== undefined) {
@@ -118,8 +160,9 @@ export async function getSystemVocabulary(options = {}) {
                     words = words.slice(start, end);
                 }
 
+
                 resolve(words);
-            };
+            }
             request.onerror = () => reject(request.error);
         });
     } catch (error) {
@@ -211,6 +254,7 @@ export async function getWordById(wordId) {
         const db = await initVocabularyDB();
         const tx = db.transaction(STORE_SYSTEM_VOCABULARY, 'readonly');
         const store = tx.objectStore(STORE_SYSTEM_VOCABULARY);
+
 
         return new Promise((resolve, reject) => {
             const request = store.get(wordId);

@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trilhas de Estudo - Koiné</title>
-    <base href="/">
+    <!-- <base href="/"> -->
     <link rel="icon" href="img/icon.svg" type="image/png">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../css/homepage.css">
-    <link rel="stylesheet" href="trilhas/css/trilha-base.css">
-    <link rel="stylesheet" href="trilhas/css/trilha-header.css">
-    <link rel="stylesheet" href="trilhas/css/trilha-controls.css">
-    <link rel="stylesheet" href="trilhas/css/trilha-timeline.css">
-    <link rel="stylesheet" href="trilhas/css/trilha-modals.css">
+    <link rel="stylesheet" href="./css/trilha-base.css">
+    <link rel="stylesheet" href="./css/trilha-header.css">
+    <link rel="stylesheet" href="./css/trilha-controls.css">
+    <link rel="stylesheet" href="./css/trilha-timeline.css">
+    <link rel="stylesheet" href="./css/trilha-modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
 </head>
 <body>
@@ -165,9 +165,9 @@
     </main>
 
     <!-- Enhanced Module Info Modal -->
-    <div class="modal enhanced-modal" id="moduloInfoModal">
+    <div class="modal enhanced-modal" id="moduloInfoModal" style="display: none;" aria-hidden="true">
         <div class="modal-content modulo-info-content">
-            <button class="close-modal">&times;</button>
+            <button class="close-modal" aria-label="Fechar modal">&times;</button>
             <div class="modal-header">
                 <div class="module-icon-container">
                     <span class="material-symbols-sharp" id="modal-module-icon">school</span>
@@ -233,10 +233,10 @@
         </div>
     </div>
 
-    <script src="/app.js"></script>
+    <script src="../app.js"></script>
     <!-- <script type="module" src="indexedDB.js"></script> -->
-    <script type="module" src="/progress-manager.js"></script>
-    <script type="module" src="/trilhas/app.js"></script>
+    <script type="module" src="../progress-manager.js"></script>
+    <script type="module" src="../trilhas/app.js"></script>
     <script>
         // Mobile navigation toggle
         document.addEventListener('DOMContentLoaded', function() {

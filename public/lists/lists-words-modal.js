@@ -9,8 +9,9 @@ import { getSystemVocabulary } from '../../vocabulary/vocabulary-db.js';
  * Render the add words modal with current data
  */
 export async function renderAddWordsModal(listId, words, currentPage, activeFilter, searchQuery) {
-    const PAGE_SIZE = 100;
-    const totalPages = Math.ceil(5523 / PAGE_SIZE);
+    const PAGE_SIZE = 50; // Reduced page size for better performance
+    const totalWords = 5523; // Approximate total
+    const totalPages = Math.ceil(totalWords / PAGE_SIZE);
 
     const content = buildAddWordsModalContent(words, currentPage, totalPages, activeFilter, searchQuery);
     
@@ -53,7 +54,7 @@ export function buildAddWordsModalContent(wordsPage, currentPage, totalPages, ac
     const wordsContainer = `
         <div class="words-selection-section">
             <div class="selection-header">
-                <h4>Selecione as palavras (${wordsPage.length} encontradas)</h4>
+                <h4>Selecione as palavras (página ${currentPage} de ${totalPages})</h4>
                 <div class="selection-controls">
                     <button id="select-all-btn" class="btn secondary">Selecionar Todas</button>
                     <button id="clear-selection-btn" class="btn secondary">Limpar Seleção</button>
@@ -157,11 +158,11 @@ export async function reloadModalData(modal, listId, newPage, filter, searchQuer
     `;
     
     try {
-        const offset = (newPage - 1) * 100;
+        const offset = (newPage - 1) * 50; // Updated page size
         const words = await getSystemVocabulary({
             sortByStatus: true,
             offset,
-            limit: 100,
+            limit: 50,
             category: filter !== 'all' ? filter : undefined,
             search: searchQuery || undefined,
         });
@@ -173,7 +174,7 @@ export async function reloadModalData(modal, listId, newPage, filter, searchQuer
         wordsContainer.innerHTML = words.map(createWordSelectionItem).join('');
         
         // Update pagination
-        const totalPages = Math.ceil(5523 / 100);
+        const totalPages = Math.ceil(5523 / 50);
         modal.setAttribute('data-total-pages', totalPages.toString());
         const paginationContainer = modal.querySelector('.modal-pagination');
         if (paginationContainer) {
@@ -183,7 +184,7 @@ export async function reloadModalData(modal, listId, newPage, filter, searchQuer
         // Update selection header
         const selectionHeader = modal.querySelector('.selection-header h4');
         if (selectionHeader) {
-            selectionHeader.textContent = `Selecione as palavras (${words.length} encontradas)`;
+            selectionHeader.textContent = `Selecione as palavras (página ${newPage} de ${totalPages})`;
         }
         
         return words;
@@ -194,6 +195,7 @@ export async function reloadModalData(modal, listId, newPage, filter, searchQuer
             <div class="error-state">
                 <span class="material-symbols-sharp">error</span>
                 <p>Erro ao carregar palavras</p>
+                <button onclick="window.location.reload()" class="btn primary">Tentar Novamente</button>
             </div>
         `;
         throw error;

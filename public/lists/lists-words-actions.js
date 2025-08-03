@@ -22,16 +22,16 @@ export async function showAddWordsModal(listId) {
         const loadingModal = createModal('loading-modal', 'Carregando palavras...', `
             <div class="loading-state">
                 <span class="material-symbols-sharp loading-icon">sync</span>
-                <p>Por favor, aguarde</p>
+                <p>Por favor, aguarde enquanto carregamos o vocabulário...</p>
             </div>
         `);
         const loadingModalElement = createAndShowModal(loadingModal);
         
-        // Load initial data
+        // Load initial data with better performance
         const initialWords = await getSystemVocabulary({
             sortByStatus: true,
             offset: 0,
-            limit: 100
+            limit: 50 // Reduced for better performance
         });
         
         loadingModalElement.remove();
@@ -39,7 +39,7 @@ export async function showAddWordsModal(listId) {
         setupAddWordsEventListeners(modal, listId, 1, 'all', '');
     } catch (error) {
         console.error('Erro ao exibir modal:', error);
-        alert('Erro ao abrir modal de adição');
+        alert('Erro ao abrir modal de adição de palavras. Verifique se o vocabulário foi carregado corretamente.');
     }
 }
 
@@ -111,7 +111,7 @@ function setupFilterEventListeners(modal, listId, currentPage, selectedWordIds) 
 }
 
 /**
- * Setup search event listener
+ * Setup search event listener with improved debouncing
  */
 function setupSearchEventListener(modal, listId, activeFilter, selectedWordIds) {
     const searchInput = modal.querySelector('#modal-search');
@@ -120,9 +120,29 @@ function setupSearchEventListener(modal, listId, activeFilter, selectedWordIds) 
     searchInput.addEventListener('input', () => {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(async () => {
-            const searchQuery = searchInput.value;
-            await reloadModalDataAndSetupHandlers(modal, listId, 1, activeFilter, searchQuery, selectedWordIds);
-        }, 300);
+            const searchQuery = searchInput.value.trim();
+            
+            // Show loading state immediately
+            const wordsContainer = modal.querySelector('#modal-words-container');
+            wordsContainer.innerHTML = `
+                <div class="loading-words">
+                    <span class="material-symbols-sharp loading-icon">sync</span>
+                    <p>Buscando palavras...</p>
+                </div>
+            `;
+            
+            try {
+                await reloadModalDataAndSetupHandlers(modal, listId, 1, activeFilter, searchQuery, selectedWordIds);
+            } catch (error) {
+                console.error('Search error:', error);
+                wordsContainer.innerHTML = `
+                    <div class="error-state">
+                        <span class="material-symbols-sharp">error</span>
+                        <p>Erro na busca. Tente novamente.</p>
+                    </div>
+                `;
+            }
+        }, 500); // Increased debounce time for better performance
     });
 }
 
@@ -237,10 +257,12 @@ function setupAddSelectedEventListener(modal, selectedWordIds, addBtn, listId) {
 function updateAddBtn(button, count) {
     if (count > 0) {
         button.removeAttribute('disabled');
-        button.textContent = `Adicionar (${count})`;
+        button.innerHTML = `<span class="material-symbols-sharp">add</span> Adicionar (${count})`;
+        button.classList.add('primary');
     } else {
         button.setAttribute('disabled', 'disabled');
-        button.textContent = 'Adicionar';
+        button.innerHTML = `<span class="material-symbols-sharp">add</span> Adicionar`;
+        button.classList.remove('primary');
     }
 }
 

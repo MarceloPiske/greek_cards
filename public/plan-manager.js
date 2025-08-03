@@ -323,9 +323,9 @@ export function showUpgradeModal(feature, requiredPlan = PLANS.CLOUD) {
     }
     
     const modalHtml = `
-        <div class="modal" id="upgrade-modal">
+        <div class="modal" id="upgrade-modal" aria-hidden="true">
             <div class="modal-content">
-                <button class="close-modal">&times;</button>
+                <button class="close-modal" aria-label="Fechar modal">&times;</button>
                 <h2>🚀 Upgrade Necessário</h2>
                 <div class="upgrade-content">
                     <p>${featureDescription}</p>
@@ -352,23 +352,45 @@ export function showUpgradeModal(feature, requiredPlan = PLANS.CLOUD) {
     const cancelBtn = modal.querySelector('#cancel-upgrade');
     const upgradeBtn = modal.querySelector('#confirm-upgrade');
     
-    closeBtn.addEventListener('click', () => modal.remove());
-    cancelBtn.addEventListener('click', () => modal.remove());
+    closeBtn.addEventListener('click', () => {
+        window.hideModal(modal);
+        setTimeout(() => modal.remove(), 400);
+    });
+    
+    cancelBtn.addEventListener('click', () => {
+        window.hideModal(modal);
+        setTimeout(() => modal.remove(), 400);
+    });
+    
     upgradeBtn.addEventListener('click', () => {
-        modal.remove();
-        if (window.mercadoPago) {
-            window.mercadoPago.showPlanSelectionModal();
-        } else {
-            // Fallback: show plan selection modal directly or alert
-            alert('Sistema de pagamento indisponível. Tente novamente mais tarde.');
-        }
+        window.hideModal(modal);
+        setTimeout(() => {
+            modal.remove();
+            if (window.mercadoPago) {
+                window.mercadoPago.showPlanSelectionModal();
+            } else {
+                // Fallback: show plan selection modal directly or alert
+                alert('Sistema de pagamento indisponível. Tente novamente mais tarde.');
+            }
+        }, 400);
     });
     
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
+        if (e.target === modal) {
+            window.hideModal(modal);
+            setTimeout(() => modal.remove(), 400);
+        }
     });
     
-    modal.style.display = 'flex';
+    // Keyboard support
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            window.hideModal(modal);
+            setTimeout(() => modal.remove(), 400);
+        }
+    });
+    
+    window.showModal(modal);
 }
 
 /**

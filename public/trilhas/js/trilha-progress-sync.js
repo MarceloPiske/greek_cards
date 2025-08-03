@@ -1,6 +1,6 @@
 /**
  * Trilha Progress Synchronization Module
- * Main coordinator for local and cloud trilha progress sync
+ * Main coordinator for local and cloud trilha progress sync with enhanced user separation
  */
 
 import { 
@@ -9,7 +9,11 @@ import {
     getAllTrilhaProgressLocal,
     deleteTrilhaProgressLocal,
     markTrilhaProgressForSync,
-    getTrilhaProgressNeedingSync
+    getTrilhaProgressNeedingSync,
+    saveUserDataLocal,
+    loadUserDataLocal,
+    exportUserData,
+    importUserData
 } from './trilha-progress-indexeddb.js';
 
 import { 
@@ -19,12 +23,90 @@ import {
     deleteTrilhaProgressCloud,
     batchSyncTrilhaProgressCloud,
     isCloudDataNewer,
-    mergeTrilhaProgressData
+    mergeTrilhaProgressData,
+    backupUserDataCloud,
+    downloadUserDataFromCloud
 } from './trilha-progress-firestore.js';
 
 // Sync status tracking
 let syncInProgress = false;
 let lastSyncTime = null;
+let currentUserId = null;
+
+/**
+ * Initialize user session
+ */
+export async function initializeUserSession(user) {
+    try {
+        currentUserId = user ? user.uid : 'anonymous';
+        
+        if (user) {
+            // Save user data locally for offline access
+            await saveUserDataLocal({
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+                plan: window.planManager?.getCurrentUserPlan() || 'free'
+            });
+            
+            // For premium users, download and sync data from cloud
+            if (canSyncToCloud()) {
+                setTimeout(async () => {
+                    await downloadAndSyncUserData();
+                }, 2000);
+            }
+        }
+        
+        console.log(`User session initialized for: ${currentUserId}`);
+    } catch (error) {
+        console.error('Error initializing user session:', error);
+    }
+}
+
+/**
+ * Download and sync user data from cloud for premium users
+ */
+export async function downloadAndSyncUserData() {
+    if (!canSyncToCloud() || syncInProgress) {
+        return { success: false, reason: 'Not available or sync in progress' };
+    }
+    
+    try {
+        syncInProgress = true;
+        console.log('Starting user data download and sync...');
+        
+        // Download data from cloud
+        const cloudData = await downloadUserDataFromCloud();
+        
+        if (cloudData && cloudData.progressData.length > 0) {
+            // Import cloud data to local IndexedDB
+            await importUserData(cloudData);
+            
+            console.log(`Successfully synced ${cloudData.progressData.length} progress records from cloud`);
+            
+            // Backup updated data
+            const exportedData = await exportUserData(currentUserId);
+            await backupUserDataCloud(exportedData);
+            
+            lastSyncTime = Date.now();
+            
+            return { 
+                success: true, 
+                recordsSynced: cloudData.progressData.length,
+                lastSync: new Date().toISOString()
+            };
+        }
+        
+        return { success: true, recordsSynced: 0 };
+        
+    } catch (error) {
+        console.error('Error downloading and syncing user data:', error);
+        return { success: false, error: error.message };
+    } finally {
+        syncInProgress = false;
+    }
+}
 
 /**
  * Check if user can sync to cloud
@@ -43,17 +125,17 @@ function canSyncToCloud() {
 export async function saveTrilhaProgress(moduleId, progressData) {
     try {
         // Always save locally first for immediate feedback
-        const localProgress = await saveTrilhaProgressLocal(moduleId, progressData);
+        const localProgress = await saveTrilhaProgressLocal(moduleId, progressData, currentUserId);
         
-        // If user can sync to cloud, try to sync
+        // If user can sync to cloud, sync asynchronously
         if (canSyncToCloud()) {
-            try {
-                await saveTrilhaProgressCloud(moduleId, progressData);
-                console.log(`Trilha progress synced to cloud: ${moduleId}`);
-            } catch (error) {
-                console.warn(`Cloud sync failed for ${moduleId}, marked for later sync:`, error);
-                await markTrilhaProgressForSync(moduleId);
-            }
+            // Non-blocking cloud sync
+            saveTrilhaProgressCloud(moduleId, progressData).catch(error => {
+                console.warn(`Cloud sync failed for ${moduleId}, will retry later:`, error);
+                markTrilhaProgressForSync(moduleId, currentUserId);
+            });
+            
+            console.log(`Trilha progress saved locally and queued for cloud sync: ${moduleId}`);
         } else {
             console.log(`Using local storage only for ${moduleId} (free plan user)`);
         }
@@ -70,10 +152,10 @@ export async function saveTrilhaProgress(moduleId, progressData) {
  */
 export async function loadTrilhaProgress(moduleId) {
     try {
-        let localProgress = await loadTrilhaProgressLocal(moduleId);
+        let localProgress = await loadTrilhaProgressLocal(moduleId, currentUserId);
         
         // If user can sync to cloud, check for cloud data
-        if (canSyncToCloud()) {
+        if (canSyncToCloud() && navigator.onLine) {
             try {
                 const cloudProgress = await loadTrilhaProgressCloud(moduleId);
                 
@@ -82,11 +164,11 @@ export async function loadTrilhaProgress(moduleId) {
                     const mergedProgress = mergeTrilhaProgressData(localProgress, cloudProgress);
                     
                     // Save merged data locally
-                    await saveTrilhaProgressLocal(moduleId, mergedProgress);
+                    await saveTrilhaProgressLocal(moduleId, mergedProgress, currentUserId);
                     
-                    // If cloud was newer or merged, update cloud too
+                    // If cloud was newer or merged, update cloud asynchronously
                     if (mergedProgress.merged || isCloudDataNewer(localProgress, cloudProgress)) {
-                        await saveTrilhaProgressCloud(moduleId, mergedProgress);
+                        saveTrilhaProgressCloud(moduleId, mergedProgress);
                     }
                     
                     console.log(`Trilha progress synced for ${moduleId}`);
@@ -229,7 +311,7 @@ export async function resetTrilhaProgress(moduleId) {
  * Sync offline changes when user comes back online
  */
 export async function syncOfflineChanges() {
-    if (syncInProgress || !canSyncToCloud()) {
+    if (syncInProgress || !canSyncToCloud() || !navigator.onLine) {
         return { success: 0, failed: 0 };
     }
     
@@ -238,7 +320,7 @@ export async function syncOfflineChanges() {
     try {
         console.log('Starting offline changes sync...');
         
-        const progressNeedingSync = await getTrilhaProgressNeedingSync();
+        const progressNeedingSync = await getTrilhaProgressNeedingSync(currentUserId);
         
         if (progressNeedingSync.length === 0) {
             console.log('No offline changes to sync');
@@ -253,8 +335,8 @@ export async function syncOfflineChanges() {
                 continue; // Skip failed syncs
             }
             
-            progress.needsSync = false;
-            await saveTrilhaProgressLocal(progress.modulo_id, progress);
+            progress.syncStatus = 'synced';
+            await saveTrilhaProgressLocal(progress.modulo_id, progress, currentUserId);
         }
         
         lastSyncTime = Date.now();
@@ -283,7 +365,7 @@ export async function fullTrilhaSync() {
         console.log('Starting full trilha sync...');
         
         const [localProgress, cloudProgress] = await Promise.all([
-            getAllTrilhaProgressLocal(),
+            getAllTrilhaProgressLocal(currentUserId),
             getAllTrilhaProgressCloud()
         ]);
         
@@ -303,21 +385,19 @@ export async function fullTrilhaSync() {
             try {
                 if (!local && cloud) {
                     // Cloud only - download to local
-                    await saveTrilhaProgressLocal(moduleId, cloud);
+                    await saveTrilhaProgressLocal(moduleId, cloud, currentUserId);
                     syncCount++;
                 } else if (local && !cloud) {
-                    // Local only - upload to cloud
-                    await saveTrilhaProgressCloud(moduleId, local);
+                    // Local only - upload to cloud (async)
+                    saveTrilhaProgressCloud(moduleId, local);
                     syncCount++;
                 } else if (local && cloud) {
                     // Both exist - merge intelligently
                     const merged = mergeTrilhaProgressData(local, cloud);
                     
                     if (merged.merged) {
-                        await Promise.all([
-                            saveTrilhaProgressLocal(moduleId, merged),
-                            saveTrilhaProgressCloud(moduleId, merged)
-                        ]);
+                        await saveTrilhaProgressLocal(moduleId, merged, currentUserId);
+                        saveTrilhaProgressCloud(moduleId, merged); // Async
                         syncCount++;
                     }
                 }
@@ -342,22 +422,33 @@ export async function fullTrilhaSync() {
  * Initialize sync system
  */
 export async function initTrilhaProgressSync() {
+    // Initialize with current user
+    const user = window.firebaseAuth?.getCurrentUser();
+    await initializeUserSession(user);
+    
     // Set up online/offline event listeners
     if (typeof window !== 'undefined') {
         window.addEventListener('online', async () => {
             console.log('Connection restored, syncing offline changes...');
-            await syncOfflineChanges();
+            setTimeout(async () => {
+                await syncOfflineChanges();
+            }, 1000);
         });
         
         window.addEventListener('offline', () => {
             console.log('Connection lost, changes will be saved locally');
         });
         
-        // Initial sync if online and user can sync
-        if (navigator.onLine && canSyncToCloud()) {
-            setTimeout(async () => {
-                await syncOfflineChanges();
-            }, 2000); // Wait a bit for app to initialize
+        // Listen for user changes
+        if (window.firebaseAuth) {
+            // Re-initialize when user changes
+            const originalUpdateUI = window.firebaseAuth.updateUIForUser;
+            if (originalUpdateUI) {
+                window.firebaseAuth.updateUIForUser = function(user) {
+                    originalUpdateUI.call(this, user);
+                    initializeUserSession(user);
+                };
+            }
         }
     }
 }
@@ -370,7 +461,8 @@ export function getSyncStatus() {
         canSync: canSyncToCloud(),
         syncInProgress,
         lastSyncTime,
-        isOnline: typeof navigator !== 'undefined' ? navigator.onLine : true
+        isOnline: typeof navigator !== 'undefined' ? navigator.onLine : true,
+        currentUserId
     };
 }
 
@@ -390,6 +482,8 @@ if (typeof window !== 'undefined') {
         resetTrilhaProgress,
         syncOfflineChanges,
         fullTrilhaSync,
-        getSyncStatus
+        downloadAndSyncUserData,
+        getSyncStatus,
+        initializeUserSession
     };
 }

@@ -7,10 +7,11 @@ import {
     gerarHTMLModulo 
 } from './trilha-ui-components.js';
 
-import { setupModuleInteractions,
-         adicionarEventListeners,
-       carregarProgressoTrilhas
-       } from './trilha-ui-interactions.js';
+import { 
+    setupModuleInteractions,
+    adicionarEventListeners,
+    carregarProgressoTrilhas
+} from './trilha-ui-interactions.js';
 
 // Função para obter informações sobre todas as trilhas disponíveis
 export async function carregarTrilhasDisponiveis() {
@@ -35,15 +36,28 @@ export async function carregarTrilhasDisponiveis() {
         
         // Adicionar event listeners aos módulos
         adicionarEventListeners();
+        
+        // Hide any remaining loading modals
+        hideAllLoadingModals();
+        
     } catch (error) {
         console.error('Erro ao carregar trilhas:', error);
         timeline.innerHTML = `
-            <div class="error-message">
-                <span class="material-symbols-sharp">error</span>
-                <p>Não foi possível carregar as trilhas de estudo.</p>
-                <button onclick="window.trilhaLoader.carregarTrilhasDisponiveis()">Tentar novamente</button>
+            <div class="error-message enhanced-error">
+                <div class="error-icon">
+                    <span class="material-symbols-sharp">error</span>
+                </div>
+                <h3>Não foi possível carregar as trilhas</h3>
+                <p>Verifique sua conexão e tente novamente.</p>
+                <div class="error-actions">
+                    <button class="btn primary" onclick="window.location.reload()">
+                        <span class="material-symbols-sharp">refresh</span>
+                        Tentar novamente
+                    </button>
+                </div>
             </div>
         `;
+        hideAllLoadingModals();
     }
 }
 
@@ -127,7 +141,6 @@ async function abrirModalInfo(moduloId) {
         showToast('Não foi possível carregar as informações do módulo');
     }
 }
-
 
 // Atualiza a UI do módulo com base no progresso carregado
 function atualizarUIModulo(modulo, progresso, index) {
@@ -230,4 +243,15 @@ function showToast(message) {
         toast.firstElementChild.style.transform = 'translateX(100%)';
         setTimeout(() => toast.remove(), 300);
     }, 3000);
+}
+
+// Hide all loading modals
+function hideAllLoadingModals() {
+    const loadingModals = document.querySelectorAll('.loading-modal, .modal[style*="flex"]');
+    loadingModals.forEach(modal => {
+        if (modal.querySelector('.loading-spinner') || modal.classList.contains('loading-modal')) {
+            modal.style.display = 'none';
+            modal.remove();
+        }
+    });
 }

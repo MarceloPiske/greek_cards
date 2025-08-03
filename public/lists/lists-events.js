@@ -69,10 +69,16 @@ export class ListsEventHandlers {
 
         // Dynamic list action buttons (using event delegation)
         document.addEventListener('click', (e) => {
-            if (e.target.matches('.open-list-btn') || e.target.closest('.open-list-btn')) {
-                const btn = e.target.matches('.open-list-btn') ? e.target : e.target.closest('.open-list-btn');
+            if (e.target.matches('.view-list-btn') || e.target.closest('.view-list-btn')) {
+                const btn = e.target.matches('.view-list-btn') ? e.target : e.target.closest('.view-list-btn');
                 const listId = btn.getAttribute('data-list-id');
-                this.app.openList(listId);
+                this.app.viewListWords(listId);
+            }
+
+            if (e.target.matches('.practice-list-btn') || e.target.closest('.practice-list-btn')) {
+                const btn = e.target.matches('.practice-list-btn') ? e.target : e.target.closest('.practice-list-btn');
+                const listId = btn.getAttribute('data-list-id');
+                this.app.practiceList(listId);
             }
 
             if (e.target.matches('.add-words-btn') || e.target.closest('.add-words-btn')) {

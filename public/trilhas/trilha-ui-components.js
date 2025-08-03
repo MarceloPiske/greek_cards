@@ -5,8 +5,8 @@
 
 // Enhanced toast notification system
 export function showToast(message, type = 'info', duration = 3000) {
-    // Remove existing toasts
-    document.querySelectorAll('.toast-notification').forEach(toast => toast.remove());
+    // Remove existing toasts of the same type to prevent spam
+    document.querySelectorAll(`.toast-notification.${type}`).forEach(toast => toast.remove());
     
     const toast = document.createElement('div');
     toast.className = `toast-notification ${type}`;
@@ -286,10 +286,13 @@ export function getActivityTypeName(type) {
     return names[type] || 'Atividade';
 }
 
-// Loading modal functions
+// Loading modal functions - ensure proper cleanup
 export function showLoadingModal() {
+    // Remove any existing loading modal first
+    hideLoadingModal();
+    
     const loadingHtml = `
-        <div class="modal loading-modal" style="display: flex;">
+        <div class="modal loading-modal" style="display: flex; z-index: 10005;" aria-hidden="false">
             <div class="modal-content loading-content">
                 <div class="loading-spinner">
                     <div class="spinner-circle"></div>
@@ -302,27 +305,49 @@ export function showLoadingModal() {
     `;
     
     document.body.insertAdjacentHTML('beforeend', loadingHtml);
+    document.body.style.overflow = 'hidden';
+    
+    const modal = document.querySelector('.loading-modal');
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 50);
 }
 
 export function hideLoadingModal() {
-    const loadingModal = document.querySelector('.loading-modal');
-    if (loadingModal) loadingModal.remove();
+    const loadingModals = document.querySelectorAll('.loading-modal');
+    loadingModals.forEach(modal => {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            modal.remove();
+        }, 300);
+    });
+    document.body.style.overflow = '';
 }
 
-// Close modal with animation
+// Close modal with animation - ensure proper cleanup
 export function closeModalWithAnimation(modal) {
-    modal.classList.add('closing');
+    if (!modal) return;
+    
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    
     setTimeout(() => {
         modal.style.display = 'none';
-        modal.classList.remove('closing');
+        if (modal.parentNode) {
+            modal.remove();
+        }
+        // Restore body scroll
+        document.body.style.overflow = '';
     }, 300);
 }
 
 // Show reset confirmation dialog
 export function showResetConfirmationDialog(moduloId) {
     const confirmHtml = `
-        <div class="modal confirmation-modal" style="display: flex;">
+        <div class="modal confirmation-modal" style="display: flex; z-index: 10001;" aria-hidden="false">
             <div class="modal-content">
+                <button class="close-modal" aria-label="Fechar modal">&times;</button>
                 <h3>Reiniciar progresso</h3>
                 <p>Tem certeza de que deseja reiniciar todo o progresso deste módulo? Esta ação não pode ser desfeita.</p>
                 <div class="modal-actions">
@@ -338,21 +363,49 @@ export function showResetConfirmationDialog(moduloId) {
     `;
     
     document.body.insertAdjacentHTML('beforeend', confirmHtml);
+    
+    const modal = document.querySelector('.confirmation-modal');
+    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 50);
 }
 
-// Show module preview on hover
+// Show module preview on hover - improved version
 export function showModulePreview(moduleId) {
-    // Implementation for module preview tooltip
+    // Remove any existing preview first
+    hideModulePreview();
+    
     const preview = document.createElement('div');
     preview.className = 'module-preview-tooltip';
     preview.innerHTML = `
         <div class="preview-content">
             <h4>Prévia rápida</h4>
-            <p>Passe o mouse para ver mais detalhes sobre este módulo.</p>
+            <p>Clique para ver mais detalhes sobre este módulo.</p>
             <div class="preview-actions">
-                <span class="preview-hint">Clique para iniciar</span>
+                <span class="preview-hint">
+                    <span class="material-symbols-sharp">touch_app</span>
+                    Clique para iniciar
+                </span>
             </div>
         </div>
+    `;
+    
+    // Add proper styling
+    preview.style.cssText = `
+        position: fixed;
+        background: var(--bg-secondary);
+        border: 1px solid var(--shadow);
+        border-radius: 8px;
+        box-shadow: 0 8px 25px var(--shadow);
+        padding: 1rem;
+        z-index: 1000;
+        max-width: 250px;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 0.2s ease;
+        pointer-events: none;
     `;
     
     document.body.appendChild(preview);
@@ -361,19 +414,37 @@ export function showModulePreview(moduleId) {
     const moduleElement = document.querySelector(`[data-modulo-id="${moduleId}"]`);
     if (moduleElement) {
         const rect = moduleElement.getBoundingClientRect();
-        preview.style.left = `${rect.right + 10}px`;
-        preview.style.top = `${rect.top}px`;
+        const previewRect = preview.getBoundingClientRect();
+        
+        let left = rect.right + 10;
+        let top = rect.top;
+        
+        // Adjust if going off screen
+        if (left + previewRect.width > window.innerWidth) {
+            left = rect.left - previewRect.width - 10;
+        }
+        
+        if (top + previewRect.height > window.innerHeight) {
+            top = window.innerHeight - previewRect.height - 10;
+        }
+        
+        preview.style.left = `${Math.max(10, left)}px`;
+        preview.style.top = `${Math.max(10, top)}px`;
     }
     
-    setTimeout(() => preview.classList.add('show'), 50);
+    setTimeout(() => {
+        preview.style.opacity = '1';
+        preview.style.transform = 'scale(1)';
+    }, 50);
 }
 
 export function hideModulePreview() {
-    const preview = document.querySelector('.module-preview-tooltip');
-    if (preview) {
-        preview.classList.remove('show');
+    const previews = document.querySelectorAll('.module-preview-tooltip');
+    previews.forEach(preview => {
+        preview.style.opacity = '0';
+        preview.style.transform = 'scale(0.9)';
         setTimeout(() => preview.remove(), 200);
-    }
+    });
 }
 
 // Verificar módulo completo (helper function)

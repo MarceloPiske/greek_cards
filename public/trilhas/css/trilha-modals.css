@@ -2,8 +2,8 @@
 
 /* Enhanced Modal Styling */
 .enhanced-modal .modal-content {
-    background: linear-gradient(135deg, var(--bg-secondary), rgba(74, 144, 226, 0.02));
-    border: 1px solid rgba(74, 144, 226, 0.1);
+    background: linear-gradient(135deg, var(--bg-secondary), rgba(74, 144, 226, 0.02)) !important;
+    border: 1px solid rgba(74, 144, 226, 0.1) !important;
     position: relative;
     overflow: hidden;
 }
@@ -241,31 +241,517 @@
     font-size: 0.9rem;
 }
 
+/* Fix modal display and z-index issues */
+.modal {
+    display: none !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(15, 23, 42, 0.8) !important;
+    z-index: 10000 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    opacity: 0 !important;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.modal.show,
+.modal[style*="flex"] {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+[data-theme="dark"] .modal {
+    background: rgba(0, 0, 0, 0.85) !important;
+}
+
+.modal-content {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--shadow) !important;
+    border-radius: 24px !important;
+    padding: 2rem !important;
+    width: 95% !important;
+    max-width: 600px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    position: relative !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    transform: translateY(20px) scale(0.95) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 10001 !important;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0) scale(1) !important;
+}
+
+[data-theme="dark"] .modal-content {
+    background: rgba(30, 41, 59, 0.95) !important;
+    border: 1px solid rgba(148, 163, 184, 0.2) !important;
+}
+
+/* Enhanced modal visibility for trilhas */
+.enhanced-modal {
+    z-index: 10002 !important;
+}
+
+/* Fix close button positioning and visibility */
+.close-modal {
+    position: absolute !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    background: rgba(148, 163, 184, 0.1) !important;
+    border: none !important;
+    font-size: 1.5rem !important;
+    cursor: pointer !important;
+    color: var(--text-secondary) !important;
+    transition: all 0.3s ease !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    backdrop-filter: blur(10px) !important;
+    z-index: 10003 !important;
+}
+
+.close-modal:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: #ef4444 !important;
+    transform: scale(1.1) !important;
+}
+
+/* Ensure modal headers are visible */
+.modal h2, .modal h3 {
+    margin: 0 0 1.5rem 0 !important;
+    color: var(--text-primary) !important;
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    padding-right: 3rem !important;
+    z-index: 10004 !important;
+    position: relative !important;
+}
+
+/* Content Preview Styles */
+.content-preview {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    border: 1px solid var(--shadow);
+}
+
+.content-preview h4 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.activity-preview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.activity-preview-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.activity-preview-item:hover {
+    background: rgba(74, 144, 226, 0.05);
+    border-color: var(--accent);
+    transform: translateX(2px);
+}
+
+.activity-preview-item.completed {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.activity-preview-item .activity-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.activity-preview-item.completed .activity-icon {
+    background: #4caf50;
+}
+
+.activity-preview-item .activity-icon .material-symbols-sharp {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.activity-preview-item .activity-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.activity-preview-item .activity-title {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.activity-preview-item .activity-type {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: capitalize;
+}
+
+.activity-preview-item .activity-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.activity-preview-item .favorite {
+    color: #ff6b6b;
+    font-size: 1rem;
+}
+
+.activity-preview-item .completed-badge {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Module Features List */
+.module-features-list {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    border: 1px solid var(--shadow);
+}
+
+.module-features-list h4 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.features-grid .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--shadow);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.features-grid .feature-item:hover {
+    background: rgba(74, 144, 226, 0.05);
+    border-color: var(--accent);
+}
+
+.features-grid .feature-item.available {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.features-grid .feature-item.premium-only {
+    opacity: 0.6;
+    background: rgba(148, 163, 184, 0.05);
+}
+
+.features-grid .feature-item .material-symbols-sharp {
+    color: var(--accent);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.features-grid .feature-item.available .material-symbols-sharp {
+    color: #4caf50;
+}
+
+.features-grid .feature-item.premium-only .material-symbols-sharp {
+    color: var(--text-secondary);
+}
+
+.features-grid .feature-item span:last-child {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.features-grid .feature-item.premium-only span:last-child {
+    color: var(--text-secondary);
+}
+
+.premium-badge {
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* Module Level Badges */
+.module-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 16px;
+    text-transform: capitalize;
+}
+
+.level-badge.iniciante {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+}
+
+.level-badge.intermediario {
+    background: rgba(255, 152, 0, 0.1);
+    color: #ff9800;
+}
+
+.level-badge.avancado {
+    background: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+}
+
+.time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 16px;
+}
+
+.time-badge .material-symbols-sharp {
+    font-size: 1rem;
+}
+
+/* Enhanced Modal Footer */
+.modal-footer {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--shadow);
+}
+
+.modulo-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.modulo-acao-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    min-width: 160px;
+    justify-content: center;
+}
+
+.modulo-acao-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.modulo-acao-btn:hover::before {
+    left: 100%;
+}
+
+.modulo-acao-btn.primary {
+    background: var(--gradient);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.modulo-acao-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+}
+
+.modulo-acao-btn.secondary {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--shadow);
+}
+
+.modulo-acao-btn.secondary:hover {
+    background: rgba(74, 144, 226, 0.05);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.modulo-acao-btn .material-symbols-sharp {
+    font-size: 1.2rem;
+}
+
+.modulo-acao-btn .btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Progress Stats in Modal */
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--shadow);
+}
+
+/* Enhanced Description */
+.enhanced-description {
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    border-left: 4px solid var(--accent);
+}
+
+/* Responsive Design for Modal Elements */
 @media (max-width: 768px) {
-    .enhanced-stats {
+    .features-grid {
         grid-template-columns: 1fr;
     }
-    .stat-grid {
-        grid-template-columns: repeat(2, 1fr);
+    
+    .activity-preview-list {
+        max-height: 150px;
     }
-    .achievement-badges {
-        justify-content: center;
+    
+    .activity-preview-item {
+        padding: 0.8rem;
+        gap: 0.8rem;
     }
-    .enhanced-actions {
+    
+    .activity-preview-item .activity-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .activity-preview-item .activity-icon .material-symbols-sharp {
+        font-size: 1rem;
+    }
+    
+    .modulo-acoes {
         flex-direction: column;
     }
-    .enhanced-actions .btn {
+    
+    .modulo-acao-btn {
         width: 100%;
+        min-width: auto;
+    }
+    
+    .module-badges {
+        justify-content: center;
+    }
+    
+    .progress-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
-    .stat-grid {
-        grid-template-columns: 1fr;
+    .content-preview,
+    .module-features-list {
+        padding: 1rem;
     }
-    .shortcut-item {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
+    
+    .enhanced-description {
+        padding: 1rem;
+    }
+    
+    .features-grid .feature-item {
+        padding: 0.8rem;
+        gap: 0.6rem;
+    }
+    
+    .activity-preview-item .activity-title {
+        font-size: 0.9rem;
+    }
+    
+    .activity-preview-item .activity-type {
+        font-size: 0.75rem;
     }
 }

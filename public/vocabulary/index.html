@@ -11,6 +11,124 @@
     <link rel="stylesheet" href="../cards/css/cards-components.css">
     <link rel="stylesheet" href="../cards/css/cards-modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
+  <style>
+    /* Coloque este código em um arquivo .css e o remova do JavaScript */
+
+.word-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.share-btn, .info-btn { /* Combinado para evitar repetição */
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 2px solid var(--shadow);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.share-btn:hover, .info-btn:hover { /* Combinado */
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.share-notification {
+    position: fixed;
+    top: 100px;
+    right: 20px; /* Inicia em uma posição visível */
+    transform: translateX(calc(100% + 40px)); /* Começa fora da tela */
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px var(--shadow);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    z-index: 2000;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.share-notification.show {
+    transform: translateX(0); /* Move para a posição final */
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-primary);
+}
+
+.notification-content .material-symbols-sharp {
+    color: #22c55e;
+    font-size: 1.2rem;
+}
+
+.share-url-container {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    border: 1px solid var(--shadow);
+}
+
+.share-url-container input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--shadow);
+    border-radius: 6px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+.share-url-container input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
+
+.btn.success {
+    background: #22c55e !important;
+    border-color: #22c55e !important;
+    color: white !important;
+}
+
+/* Estilo para a transição de fade-in do modal */
+.modal {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.modal.show {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .share-notification {
+        left: 20px;
+        right: 20px;
+        width: auto;
+    }
+    .share-url-container {
+        flex-direction: column;
+    }
+}
+  </style>
 </head>
 
 <body>
@@ -173,20 +291,23 @@
     </div>
 
     <script type="module" src="../firebase-auth.js"></script>
+    <script type="module" src="./vocabulary-loader.js"></script>
     <script type="module">
         import { VocabularyApp } from './vocabulary-app.js';
         import { VocabularyEventHandlers } from './vocabulary-events.js';
+        import { initializeVocabularySystem } from './vocabulary-loader.js';
 
         // Initialize the vocabulary system
         document.addEventListener('DOMContentLoaded', async () => {
             console.log('DOM loaded, initializing vocabulary system...');
             
-            // Wait a bit for the json_to_indexeddb.js to finish loading vocabulary
-            setTimeout(async () => {
-                const app = new VocabularyApp();
-                new VocabularyEventHandlers();
-                await app.initialize();
-            }, 1000);
+            // Initialize vocabulary database and load data first
+            await initializeVocabularySystem();
+            
+            // Then initialize the app
+            const app = new VocabularyApp();
+            new VocabularyEventHandlers();
+            await app.initialize();
         });
     </script>
 </body>

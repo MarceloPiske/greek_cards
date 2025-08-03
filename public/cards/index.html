@@ -8,10 +8,11 @@
     <title>Cartões de Vocabulário - Koiné</title>
     <link rel="icon" href="../img/icon.svg" type="image/png">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../modals.css">
     <link rel="stylesheet" href="./css/cards-base.css">
     <link rel="stylesheet" href="./css/cards-layout.css">
     <link rel="stylesheet" href="./css/cards-components.css">
-    <!-- <link rel="stylesheet" href="./css/cards-modals.css"> -->
+    <link rel="stylesheet" href="./css/cards-modals.css">
     <link rel="stylesheet" href="./css/cards-practice.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
 </head>
@@ -91,10 +92,13 @@
             <div class="main-layout">
                 <div class="sidebar">
                     <div class="word-lists-header">
-                        <h3>Minhas Listas</h3>
+                        <h3>
+                            <span class="material-symbols-sharp">inventory_2</span>
+                            Minhas Listas
+                        </h3>
                         <a href="../lists/index.html" class="btn primary">
                             <span class="material-symbols-sharp">settings</span>
-                            Gerenciar Listas
+                            Gerenciar
                         </a>
                     </div>
                     <div id="word-lists-container">
@@ -107,9 +111,23 @@
                 <div class="content-area">
                     <div id="list-content">
                         <div class="empty-state">
-                            <span class="material-symbols-sharp">list</span>
-                            <h3>Selecione uma lista</h3>
-                            <p>Escolha uma lista para visualizar e praticar com as palavras</p>
+                            <span class="material-symbols-sharp">style</span>
+                            <h3>Selecione uma Lista</h3>
+                            <p>Escolha uma lista na barra lateral para visualizar e praticar com as palavras</p>
+                            <div class="feature-highlights">
+                                <div class="feature-item">
+                                    <span class="material-symbols-sharp">school</span>
+                                    <span>Prática com cartões interativos</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="material-symbols-sharp">trending_up</span>
+                                    <span>Acompanhe seu progresso</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="material-symbols-sharp">psychology</span>
+                                    <span>Técnicas de memorização</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

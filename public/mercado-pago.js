@@ -5,7 +5,7 @@
 // Product configuration
 export const PRODUCTS = {
     cloud: {
-        title: "Plano Nuvem",
+        title: "Assinatura Cloud",
         price: 4.99,
         features: [
             "Sincronização na nuvem",
@@ -16,18 +16,17 @@ export const PRODUCTS = {
         planId: 'cloud'
     },
     apoio: {
-        title: "Hall dos Heróis",
-        subtitle: "Apoie o desenvolvimento",
+        title: "Apoio Hall dos Heróis",
         price: 9.90,
         features: [
-            "Tudo do plano Nuvem",
-            "Apoie o desenvolvimento do projeto",
-            "Seu nome no Hall dos Heróis (opcional)",
-            "Ajude a manter o projeto gratuito",
+            "Tudo do plano Cloud",
+            "IA tutora personalizada",
+            "Explicações detalhadas",
+            "Sugestões personalizadas",
+            "Exportação em PDF",
             "Suporte prioritário"
         ],
-        planId: 'ai',
-        isSupporter: true
+        planId: 'ai'
     }
 };
 
@@ -160,41 +159,34 @@ export function showPlanSelectionModal() {
         <div class="modal" id="plan-selection-modal" aria-hidden="true">
             <div class="modal-content plan-modal">
                 <button class="close-modal" aria-label="Fechar modal">&times;</button>
-                <div class="modal-header">
-                    <h2>Escolha seu Plano</h2>
-                    <p>Selecione o plano que melhor atende às suas necessidades</p>
-                </div>
+                <h2>🚀 Escolha seu Plano</h2>
                 <div class="plans-container">
                     ${Object.entries(PRODUCTS).map(([key, product]) => `
                         <div class="plan-card ${key}" data-plan="${key}">
                             <div class="plan-header">
                                 <h3>${product.title}</h3>
-                                ${product.subtitle ? `<p class="plan-subtitle">${product.subtitle}</p>` : ''}
                                 <div class="plan-price">
-                                    <span class="price-display">
-                                        <span class="currency">R$</span>
-                                        <span class="amount">${product.price.toFixed(2).replace('.', ',')}</span>
-                                        <span class="period">/mês</span>
-                                    </span>
+                                    <span class="currency">R$</span>
+                                    <span class="amount">${product.price.toFixed(2).replace('.', ',')}</span>
+                                    <span class="period">/mês</span>
                                 </div>
                             </div>
                             <div class="plan-features">
-                                ${product.features.map((feature, index) => `
-                                    <div class="feature ${product.isSupporter && index > 0 ? 'supporter-feature' : ''}">
-                                        <span class="material-symbols-sharp">${product.isSupporter && index > 0 ? 'favorite' : 'check'}</span>
+                                ${product.features.map(feature => `
+                                    <div class="feature">
+                                        <span class="material-symbols-sharp">check</span>
                                         <span>${feature}</span>
                                     </div>
                                 `).join('')}
                             </div>
-                            <button class="select-plan-btn ${product.isSupporter ? 'supporter-btn' : ''}" data-plan="${key}">
-                                ${product.isSupporter ? 'Apoiar Projeto' : 'Escolher Plano'}
+                            <button class="select-plan-btn" data-plan="${key}">
+                                Escolher ${key === 'apoio' ? 'e Apoiar' : 'Plano'}
                             </button>
-                            ${product.isSupporter ? '<p class="supporter-note">Ajude a manter o projeto gratuito para todos</p>' : ''}
                         </div>
                     `).join('')}
                 </div>
-                <div class="modal-footer">
-                    <button id="cancel-plan-btn" class="btn secondary">Continuar Gratuito</button>
+                <div class="modal-actions">
+                    <button id="cancel-plan-btn" class="btn">Talvez mais tarde</button>
                 </div>
             </div>
         </div>

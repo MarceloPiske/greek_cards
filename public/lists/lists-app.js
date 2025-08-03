@@ -8,12 +8,14 @@ import {
     updateWordList, 
     deleteWordList,
     forceFullSync,
+    removeWordsFromList,
+    getWordList
 } from './lists-sync.js';
 
 import { canSyncToCloud } from '../../plan-manager.js';
 import { ListsUI } from './lists-ui.js';
 import { ListsEventHandlers } from './lists-events.js';
-import { showAddWordsModal, showRemoveWordsModal } from './lists-words.js';
+import { showAddWordsModal } from './lists-words.js';
 
 export class ListsApp {
     constructor() {
@@ -213,12 +215,156 @@ export class ListsApp {
         window.location.href = `../index.html?list=${listId}`;
     }
 
-    async addWordsToList(listId) {
-        await showAddWordsModal(listId);
+    async viewListWords(listId) {
+        try {
+            this.ui.showLoading('Carregando palavras da lista...');
+            
+            // Get list with words
+            const list = await this.getListWithWords(listId);
+            
+            this.ui.hideLoading();
+            
+            const modal = this.ui.showViewWordsModal(list);
+            this.setupViewWordsModalEvents(modal, list);
+            
+        } catch (error) {
+            console.error('Error viewing list words:', error);
+            this.ui.hideLoading();
+            this.ui.showError('Erro ao carregar palavras da lista: ' + error.message);
+        }
     }
 
-    async removeWordsFromList(listId, selectedWords) {
-        await showRemoveWordsModal(listId, selectedWords);
+    async getListWithWords(listId) {
+        const { getWordList } = await import('./lists-sync.js');
+        const { initVocabularyDB } = await import('../../vocabulary/vocabulary-db.js');
+        
+        const list = await getWordList(listId);
+        if (!list) {
+            throw new Error('Lista não encontrada');
+        }
+
+        if (!list.wordIds || list.wordIds.length === 0) {
+            return { ...list, words: [] };
+        }
+
+        // Get words from vocabulary database
+        const db = await initVocabularyDB();
+        const tx = db.transaction('systemVocabulary', 'readonly');
+        const store = tx.objectStore('systemVocabulary');
+        
+        const allWords = await new Promise((resolve, reject) => {
+            const request = store.getAll();
+            request.onsuccess = () => resolve(request.result || []);
+            request.onerror = () => reject(request.error);
+        });
+
+        const words = [];
+        for (const wordId of list.wordIds) {
+            const word = allWords.find(w => w.ID === wordId);
+            if (word) {
+                words.push(word);
+            }
+        }
+
+        return { ...list, words };
+    }
+
+    setupViewWordsModalEvents(modal, list) {
+        const closeBtn = modal.querySelector('.close-modal');
+        const selectAllBtn = modal.querySelector('#select-all-words');
+        const deselectAllBtn = modal.querySelector('#deselect-all-words');
+        const removeSelectedBtn = modal.querySelector('#remove-selected-words');
+        const addMoreWordsBtn = modal.querySelector('#add-more-words');
+        const checkboxes = modal.querySelectorAll('.word-remove-checkbox');
+
+        // Close modal
+        closeBtn.addEventListener('click', () => modal.remove());
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.remove();
+        });
+
+        // Selection actions
+        selectAllBtn.addEventListener('click', () => {
+            checkboxes.forEach(checkbox => checkbox.checked = true);
+            this.updateRemoveButton(removeSelectedBtn, checkboxes);
+        });
+
+        deselectAllBtn.addEventListener('click', () => {
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+            this.updateRemoveButton(removeSelectedBtn, checkboxes);
+        });
+
+        // Update remove button state when checkboxes change
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                this.updateRemoveButton(removeSelectedBtn, checkboxes);
+            });
+        });
+
+        // Remove selected words
+        removeSelectedBtn.addEventListener('click', async () => {
+            const selectedWordIds = Array.from(checkboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.closest('.view-word-item').dataset.wordId);
+
+            if (selectedWordIds.length === 0) return;
+
+            if (confirm(`Remover ${selectedWordIds.length} palavra(s) desta lista?`)) {
+                try {
+                    this.ui.showLoading('Removendo palavras...');
+                    
+                    await removeWordsFromList(list.id, selectedWordIds);
+                    
+                    this.ui.hideLoading();
+                    this.ui.showSuccess(`${selectedWordIds.length} palavra(s) removida(s) com sucesso!`);
+                    
+                    modal.remove();
+                    await this.loadLists();
+                    
+                } catch (error) {
+                    console.error('Error removing words:', error);
+                    this.ui.hideLoading();
+                    this.ui.showError('Erro ao remover palavras: ' + error.message);
+                }
+            }
+        });
+
+        // Add more words
+        addMoreWordsBtn.addEventListener('click', () => {
+            modal.remove();
+            this.addWordsToList(list.id);
+        });
+    }
+
+    updateRemoveButton(removeBtn, checkboxes) {
+        const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+        
+        if (selectedCount > 0) {
+            removeBtn.disabled = false;
+            removeBtn.textContent = `Remover (${selectedCount})`;
+        } else {
+            removeBtn.disabled = true;
+            removeBtn.textContent = 'Remover Selecionadas';
+        }
+    }
+
+    async practiceList(listId) {
+        try {
+            // Redirect to cards page with list parameter
+            window.location.href = `../cards/index.html?list=${listId}`;
+        } catch (error) {
+            console.error('Error redirecting to practice:', error);
+            this.ui.showError('Erro ao abrir sessão de prática');
+        }
+    }
+
+    async addWordsToList(listId) {
+        await showAddWordsModal(listId);
+        
+        // Set up refresh callback
+        window.refreshLists = () => {
+            this.loadLists();
+        };
     }
 
     async syncSingleList(listId) {

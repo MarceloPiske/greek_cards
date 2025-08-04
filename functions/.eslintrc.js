@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 module.exports = {
   env: {
     es6: true,
@@ -12,6 +13,7 @@ module.exports = {
     "google",
   ],
   rules: {
+    "linebreak-style": ["error", "windows"],
     "no-restricted-globals": ["error", "name", "length"],
     "prefer-arrow-callback": "error",
     "quotes": ["error", "double", {"allowTemplateLiterals": true}],

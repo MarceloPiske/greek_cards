@@ -173,6 +173,8 @@ export async function updateWordList(listId, updateData) {
  */
 export async function deleteWordList(listId) {
     try {
+        console.log(`Starting deletion of word list: ${listId}`);
+        
         // Delete from cloud first if possible (to avoid orphaned cloud data)
         if (await canSyncToCloud() && navigator.onLine) {
             try {
@@ -185,8 +187,10 @@ export async function deleteWordList(listId) {
         }
         
         // Delete locally
-        await deleteWordListDB(listId);
-        console.log(`Word list deleted locally: ${listId}`);
+        const localDeleted = await deleteWordListDB(listId);
+        if (localDeleted) {
+            console.log(`Word list deleted locally: ${listId}`);
+        }
         
         return true;
     } catch (error) {

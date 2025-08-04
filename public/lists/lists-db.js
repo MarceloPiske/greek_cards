@@ -174,11 +174,23 @@ export async function deleteWordListDB(listId) {
         const store = tx.objectStore(STORE_WORD_LISTS);
 
         const userId = getCurrentUserId();
-        const userKey = createUserKey(listId, userId);
+        
+        // Check if listId is already a composite key (contains userId prefix)
+        let userKey;
+        if (listId.startsWith(userId + '_')) {
+            // Already a composite key, use directly
+            userKey = listId;
+        } else {
+            // Original ID, create composite key
+            userKey = createUserKey(listId, userId);
+        }
 
         return new Promise((resolve, reject) => {
             const request = store.delete(userKey);
-            request.onsuccess = () => resolve(true);
+            request.onsuccess = () => {
+                console.log(`Word list deleted from IndexedDB: ${userKey}`);
+                resolve(true);
+            };
             request.onerror = () => reject(request.error);
         });
     } catch (error) {
@@ -395,4 +407,15 @@ export async function bulkUpdateWordListsDB(updates) {
         console.error('Error bulk updating word lists:', error);
         throw error;
     }
+}
+
+/**
+ * Extract original ID from composite key
+ */
+export function extractOriginalIdFromCompositeKey(compositeKey) {
+    const userId = getCurrentUserId();
+    if (compositeKey.startsWith(userId + '_')) {
+        return compositeKey.substring((userId + '_').length);
+    }
+    return compositeKey;
 }

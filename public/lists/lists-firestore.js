@@ -179,10 +179,14 @@ export async function deleteWordListFirestore(listId) {
         
         const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
 
-        const listRef = doc(db, 'users', user.uid, 'wordLists', listId);
+        // Extract original ID if this is a composite key
+        const { extractOriginalIdFromCompositeKey } = await import('./lists-db.js');
+        const originalId = extractOriginalIdFromCompositeKey(listId);
+
+        const listRef = doc(db, 'users', user.uid, 'wordLists', originalId);
         await deleteDoc(listRef);
 
-        console.log(`Word list deleted from Firestore: ${listId}`);
+        console.log(`Word list deleted from Firestore: ${originalId}`);
         return true;
     } catch (error) {
         console.error('Error deleting word list from Firestore:', error);

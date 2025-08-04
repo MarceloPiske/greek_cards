@@ -1,121 +1,146 @@
-/* eslint-disable max-len */
-// 1. IMPORTAÇÃO DAS BIBLIOTECAS
-import express from "express";
-import {MercadoPagoConfig, PreApproval} from "mercadopago";
+// 1. Configuração Inicial
+/* eslint-disable linebreak-style */
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const express = require("express");
+const cors = require("cors");
 
-// --- CONFIGURAÇÃO INICIAL ---
+// Mercado Pago v2 SDK
+const { MercadoPagoConfig, PreApproval } = require("mercadopago");
 
-// 2. INICIALIZAÇÃO DO SERVIDOR EXPRESS
-const app = express();
-// Configura o Express para interpretar o corpo das requisições como JSON
-app.use(express.json());
+admin.initializeApp();
+const db = admin.firestore();
 
-// 3. CONFIGURAÇÃO DO MERCADO PAGO
-// **IMPORTANTE**: Substitua 'SEU_ACCESS_TOKEN_AQUI' pelo seu Access Token.
-// Em um projeto real, use variáveis de ambiente: const accessToken = process.env.MP_ACCESS_TOKEN;
-const accessToken = "TEST-6736740569035182-072501-13523b04148279b3dacf30e7cf98815a-308747519";
+// Instância do Mercado Pago com token seguro
+const mp = new MercadoPagoConfig({
+  accessToken: "APP_USR-6736740569035182-072501-a6a4e8e366d892beca95dc594278c49e-308747519",
+});
+const preapproval = new PreApproval(mp);
 
-const client = new MercadoPagoConfig({accessToken: accessToken, options: {timeout: 5000}});
-const preapproval = new PreApproval(client);
-
-// 4. ESTRUTURA DE PRODUTOS
+// Produtos disponíveis para assinatura
 const PRODUCTS = {
   cloud: {
-    title: "Assinatura Cloud",
-    price: 4.99,
+    title: "Κοινή – Armazenamento Online",
+    transaction_amount: 4.90,
+    frequency: 1,
+    frequency_type: "months",
   },
   apoio: {
-    title: "Apoio Hall dos Heróis",
-    price: 9.90,
+    title: "Κοινή – Apoio dos Heróis",
+    transaction_amount: 9.90,
+    frequency: 1,
+    frequency_type: "months",
   },
 };
 
-// --- ROTAS DA APLICAÇÃO ---
+const app = express();
+app.use(cors({ origin: true }));
+app.use(express.json());
 
-/**
- * Rota para verificar se o servidor está funcionando.
- * Acesse http://localhost:3000 no navegador.
- */
-app.get("/", (req, res) => {
-  res.send("Servidor de assinaturas está no ar!");
-});
-
-/**
- * Rota para criar um link de assinatura.
- * Exemplo de corpo da requisição (body):
- * {
- * "productId": "apoio", // ou "cloud"
- * "payerEmail": "email.do.cliente@exemplo.com"
- * }
- */
+// 2. Criar Assinatura
 app.post("/criar-assinatura", async (req, res) => {
-  const {productId, payerEmail} = req.body;
-
-  // Valida se o produto solicitado existe na nossa lista
-  const product = PRODUCTS[productId];
-  if (!product) {
-    return res.status(404).json({error: "Produto não encontrado."});
-  }
-
-  // Dados da assinatura a serem enviados para a API do Mercado Pago
-  const subscriptionData = {
-    reason: product.title,
-    auto_recurring: {
-      frequency: 1, // Frequência da cobrança (1 = a cada X 'frequency_type')
-      frequency_type: "months", // Tipo de frequência: 'days' ou 'months'
-      transaction_amount: product.price,
-      currency_id: "BRL", // Moeda: Real Brasileiro
-    },
-    payer_email: payerEmail,
-    back_url: "https://grego-koine.web.app/", // URL para redirecionar o cliente após o pagamento
-    // URL para a qual o Mercado Pago enviará notificações sobre esta assinatura
-    notification_url: "https://grego-koine.web.app//webhook",
-  };
-
   try {
-    // Cria a assinatura no Mercado Pago
-    const result = await preapproval.create({body: subscriptionData});
+    const { productId, payerEmail, userId } = req.body;
 
-    console.log("Link de assinatura gerado:", result);
+    if (!productId || !payerEmail || !userId) {
+      return res.status(400).json({ error: "Parâmetros incompletos." });
+    }
 
-    // Retorna o ID da assinatura e o link de checkout para o frontend
-    return res.status(201).json({
-      subscriptionId: result.id,
-      init_point: result.init_point, // URL que o cliente deve acessar para pagar
-    });
+    const product = PRODUCTS[productId];
+    if (!product) {
+      return res.status(404).json({ error: "Produto não encontrado." });
+    }
+
+    const startDate = new Date();
+    const formattedStartDate = startDate.toISOString().slice(0, -5) + "-03:00";
+
+    const subscriptionData = {
+      reason: product.title,
+      external_reference: userId,
+      payer_email: payerEmail,
+      back_url: "https://grego-koine.web.app/",
+      notification_url: "https://api-jnggpsogma-uc.a.run.app/webhook",
+      auto_recurring: {
+        frequency: product.frequency,
+        frequency_type: product.frequency_type,
+        transaction_amount: product.transaction_amount,
+        currency_id: "BRL",
+        start_date: formattedStartDate,
+      },
+    };
+
+    const response = await preapproval.create({ body: subscriptionData });
+
+    if (!response || !response.body || !response.body.init_point) {
+      throw new Error("Resposta inválida do Mercado Pago.");
+    }
+
+    return res.status(200).json({ init_point: response.body.init_point });
   } catch (error) {
     console.error("Erro ao criar assinatura:", error);
-    return res.status(500).json({error: "Falha ao se comunicar com a API do Mercado Pago."});
+    return res.status(500).json({
+      error: "Erro ao criar assinatura.",
+      details: error.message,
+    });
   }
 });
 
-/**
- * Rota de Webhook para receber notificações do Mercado Pago.
- */
-app.post("/webhook", (req, res) => {
-  // As notificações podem vir no 'query' ou no 'body', dependendo da versão da API
-  console.log("--- Notificação de Webhook Recebida ---");
-  console.log("Query:", req.query);
-  console.log("Body:", req.body);
+// 3. Webhook
+app.post("/webhook", async (req, res) => {
+  try {
+    const { type, data } = req.body;
 
-  if (req.body.type === "preapproval") {
-    const subscriptionId = req.body.data.id;
-    console.log(`Recebida notificação para a assinatura: ${subscriptionId}`);
+    if (type !== "subscription_preapproval" || !data.id) {
+      console.warn("Webhook ignorado ou malformado.");
+      return res.sendStatus(200);
+    }
 
-    // LÓGICA DE NEGÓCIO:
-    // 1. Use o 'subscriptionId' para consultar o status mais recente da assinatura na API do Mercado Pago.
-    //    const subscriptionDetails = await preapproval.get({ id: subscriptionId });
-    // 2. Atualize o status da assinatura no seu banco de dados (ex: 'liberar acesso', 'bloquear acesso').
+    const subscription = await preapproval.get({ id: data.id });
+    const body = subscription.body;
+
+    const userId = body.external_reference;
+    if (!userId) {
+      return res.status(400).send("external_reference ausente.");
+    }
+
+    const updateData = {
+      lastUpdate: admin.firestore.Timestamp.now(),
+      subscriptionStatus: body.status,
+    };
+
+    switch (body.status) {
+      case "authorized":
+        updateData.subscribed = true;
+
+        if (body.reason === PRODUCTS.cloud.title) {
+          updateData.plan = "cloud";
+        } else if (body.reason === PRODUCTS.apoio.title) {
+          updateData.plan = "cloud"; // Mesma permissão
+          updateData.supporter = true;
+        }
+        break;
+
+      case "cancelled":
+      case "paused":
+      case "pending":
+      case "expired":
+        updateData.subscribed = false;
+        updateData.plan = "none";
+        updateData.supporter = admin.firestore.FieldValue.delete();
+        break;
+
+      default:
+        console.log(`Status '${body.status}' sem ação.`);
+        return res.sendStatus(200);
+    }
+
+    await db.collection("users").doc(userId).update(updateData);
+    return res.sendStatus(200);
+  } catch (error) {
+    console.error("Erro no webhook:", error);
+    return res.sendStatus(500);
   }
-
-  // Responde ao Mercado Pago com status 200 para confirmar que a notificação foi recebida.
-  res.status(200).send("OK");
 });
 
-
-// --- INICIALIZAÇÃO DO SERVIDOR ---
-/* const PORT = process.env.PORT || 3000; */
-/* app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando na porta ${PORT}`);
-  console.log(`🔗 Para testar, envie um POST para http://localhost:${PORT}/criar-assinatura`);
-}); */
+// Exporta como função do Firebase
+exports.api = functions.https.onRequest(app);

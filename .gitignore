@@ -4,4 +4,4 @@
 ./.firebaserc.json
 ./firebase.json
 
-.firebase
+.firebase/*

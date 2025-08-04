@@ -81,7 +81,10 @@ export function createAndShowModal(htmlContent) {
  */
 async function getWordListWithWords(listId) {
     try {
-        const list = await getWordList(listId);
+        // Ensure we're using the correct list ID format
+        const originalId = extractOriginalId(listId);
+        const list = await getWordList(originalId);
+        
         if (!list) {
             throw new Error('Lista não encontrada');
         }
@@ -132,6 +135,26 @@ async function getWordListWithWords(listId) {
         console.error('Error getting word list with words:', error);
         throw error;
     }
+}
+
+/**
+ * Extract original ID from composite key
+ */
+function extractOriginalId(compositeId) {
+    if (!compositeId) return compositeId;
+    
+    const getCurrentUserId = () => {
+        if (window.firebaseAuth?.isAuthenticated()) {
+            return window.firebaseAuth.getCurrentUser()?.uid || 'anonymous';
+        }
+        return 'anonymous';
+    };
+    
+    const currentUserId = getCurrentUserId();
+    if (compositeId.startsWith(currentUserId + '_')) {
+        return compositeId.substring((currentUserId + '_').length);
+    }
+    return compositeId;
 }
 
 /**

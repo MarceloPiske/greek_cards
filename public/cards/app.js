@@ -88,9 +88,11 @@ async function loadWordLists() {
 
         // Render enhanced list items for selection
         const listsHtml = lists.map(list => {
+            // Extract original ID from composite key if needed
+            const displayId = list.originalId || extractOriginalId(list.id);
             const wordCount = list.wordIds ? list.wordIds.length : 0;
             return `
-                <div class="word-list-item" data-list-id="${list.id}">
+                <div class="word-list-item" data-list-id="${displayId}" data-composite-id="${list.id}">
                     <div class="list-info">
                         <h3>${list.name}</h3>
                         <div class="list-meta">
@@ -137,6 +139,29 @@ async function loadWordLists() {
             `;
         }
     }
+}
+
+/**
+ * Extract original ID from composite key
+ */
+function extractOriginalId(compositeId) {
+    if (!compositeId) return compositeId;
+    
+    const currentUserId = getCurrentUserId();
+    if (compositeId.startsWith(currentUserId + '_')) {
+        return compositeId.substring((currentUserId + '_').length);
+    }
+    return compositeId;
+}
+
+/**
+ * Get current user ID or 'anonymous' if not logged in
+ */
+function getCurrentUserId() {
+    if (window.firebaseAuth?.isAuthenticated()) {
+        return window.firebaseAuth.getCurrentUser()?.uid || 'anonymous';
+    }
+    return 'anonymous';
 }
 
 /**
@@ -489,6 +514,7 @@ function initLoginModal() {
     const loginBtn = document.querySelector('.login-button');
     const modal = document.getElementById('loginModal');
     const closeBtn = document.querySelector('.close-modal');
+
 
     if (loginBtn && modal && closeBtn) {
         loginBtn.addEventListener('click', () => {

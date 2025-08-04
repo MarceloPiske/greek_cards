@@ -4,7 +4,7 @@
  */
 
 const DB_NAME = 'koineAppDB';
-const DB_VERSION = 6; // Increased version for schema changes
+const DB_VERSION = 6; // Increased version to force upgrade
 const STORE_TRILHA_PROGRESS = 'progresso';
 const STORE_USER_DATA = 'userData';
 
@@ -22,49 +22,135 @@ export async function initTrilhaProgressDB() {
         
         request.onsuccess = (event) => {
             const db = event.target.result;
+            
+            // Verify that required stores exist
+            if (!db.objectStoreNames.contains(STORE_TRILHA_PROGRESS) || 
+                !db.objectStoreNames.contains(STORE_USER_DATA)) {
+                console.warn('Required stores missing, closing and recreating database...');
+                db.close();
+                
+                // Delete the database and recreate it
+                const deleteRequest = indexedDB.deleteDatabase(DB_NAME);
+                deleteRequest.onsuccess = () => {
+                    console.log('Database deleted, recreating...');
+                    // Recursively call init again
+                    initTrilhaProgressDB().then(resolve).catch(reject);
+                };
+                deleteRequest.onerror = () => {
+                    reject(new Error('Failed to delete and recreate database'));
+                };
+                return;
+            }
+            
             resolve(db);
         };
         
         request.onupgradeneeded = (event) => {
             const db = event.target.result;
+            const transaction = event.target.transaction;
             
-            // Create or upgrade progress store with composite key
-            if (!db.objectStoreNames.contains(STORE_TRILHA_PROGRESS)) {
-                const store = db.createObjectStore(STORE_TRILHA_PROGRESS, { 
-                    keyPath: ['userId', 'modulo_id'] 
-                });
-                store.createIndex('userId', 'userId', { unique: false });
-                store.createIndex('modulo_id', 'modulo_id', { unique: false });
-            } else {
-                // Migrate existing data if needed
-                const transaction = event.target.transaction;
-                const store = transaction.objectStore(STORE_TRILHA_PROGRESS);
-                
-                // Check if we need to migrate old data structure
-                const getAllRequest = store.getAll();
-                getAllRequest.onsuccess = () => {
-                    const records = getAllRequest.result;
-                    records.forEach(record => {
-                        if (!record.userId) {
-                            // Migrate old records to anonymous user
-                            const newRecord = {
-                                ...record,
-                                userId: 'anonymous',
-                                migratedAt: new Date().toISOString()
-                            };
-                            store.delete(record.modulo_id);
-                            store.put(newRecord);
-                        }
+            console.log('Upgrading database from version', event.oldVersion, 'to', event.newVersion);
+            
+            try {
+                // Create or upgrade progress store with composite key
+                if (!db.objectStoreNames.contains(STORE_TRILHA_PROGRESS)) {
+                    console.log('Creating trilha progress store...');
+                    const store = db.createObjectStore(STORE_TRILHA_PROGRESS, { 
+                        keyPath: ['userId', 'modulo_id'] 
                     });
-                };
+                    store.createIndex('userId', 'userId', { unique: false });
+                    store.createIndex('modulo_id', 'modulo_id', { unique: false });
+                    store.createIndex('syncStatus', 'syncStatus', { unique: false });
+                } else {
+                    console.log('Migrating existing trilha progress store...');
+                    // Migrate existing data if needed
+                    const store = transaction.objectStore(STORE_TRILHA_PROGRESS);
+                    
+                    // Ensure indices exist
+                    if (!store.indexNames.contains('userId')) {
+                        store.createIndex('userId', 'userId', { unique: false });
+                    }
+                    if (!store.indexNames.contains('modulo_id')) {
+                        store.createIndex('modulo_id', 'modulo_id', { unique: false });
+                    }
+                    if (!store.indexNames.contains('syncStatus')) {
+                        store.createIndex('syncStatus', 'syncStatus', { unique: false });
+                    }
+                    
+                    // Check if we need to migrate old data structure
+                    const getAllRequest = store.getAll();
+                    getAllRequest.onsuccess = () => {
+                        const records = getAllRequest.result;
+                        console.log(`Found ${records.length} existing progress records`);
+                        
+                        records.forEach(record => {
+                            if (!record.userId) {
+                                console.log('Migrating record without userId:', record.modulo_id);
+                                // Migrate old records to anonymous user
+                                const newRecord = {
+                                    ...record,
+                                    userId: 'anonymous',
+                                    migratedAt: new Date().toISOString(),
+                                    syncStatus: 'none'
+                                };
+                                
+                                // Delete old record and add new one
+                                try {
+                                    store.delete(record.modulo_id);
+                                    store.put(newRecord);
+                                } catch (error) {
+                                    console.error('Error migrating record:', error);
+                                }
+                            } else if (!record.syncStatus) {
+                                // Add missing syncStatus field
+                                const updatedRecord = {
+                                    ...record,
+                                    syncStatus: 'none'
+                                };
+                                store.put(updatedRecord);
+                            }
+                        });
+                    };
+                    getAllRequest.onerror = (error) => {
+                        console.error('Error reading existing records for migration:', error);
+                    };
+                }
+                
+                // Create user data store for offline user management
+                if (!db.objectStoreNames.contains(STORE_USER_DATA)) {
+                    console.log('Creating user data store...');
+                    const userStore = db.createObjectStore(STORE_USER_DATA, { keyPath: 'userId' });
+                    userStore.createIndex('email', 'email', { unique: false });
+                    userStore.createIndex('lastLogin', 'lastLogin', { unique: false });
+                    userStore.createIndex('plan', 'plan', { unique: false });
+                } else {
+                    console.log('User data store already exists');
+                    const userStore = transaction.objectStore(STORE_USER_DATA);
+                    
+                    // Ensure indices exist
+                    if (!userStore.indexNames.contains('email')) {
+                        userStore.createIndex('email', 'email', { unique: false });
+                    }
+                    if (!userStore.indexNames.contains('lastLogin')) {
+                        userStore.createIndex('lastLogin', 'lastLogin', { unique: false });
+                    }
+                    if (!userStore.indexNames.contains('plan')) {
+                        userStore.createIndex('plan', 'plan', { unique: false });
+                    }
+                }
+                
+                console.log('Database upgrade completed successfully');
+                
+            } catch (error) {
+                console.error('Error during database upgrade:', error);
+                transaction.abort();
+                reject(error);
             }
-            
-            // Create user data store for offline user management
-            if (!db.objectStoreNames.contains(STORE_USER_DATA)) {
-                const userStore = db.createObjectStore(STORE_USER_DATA, { keyPath: 'userId' });
-                userStore.createIndex('email', 'email', { unique: false });
-                userStore.createIndex('lastLogin', 'lastLogin', { unique: false });
-            }
+        };
+        
+        request.onblocked = (event) => {
+            console.warn('Database upgrade blocked. Please close other tabs with this app.');
+            reject(new Error('Database upgrade blocked'));
         };
     });
 }
@@ -85,6 +171,12 @@ function getCurrentUserId() {
 export async function saveTrilhaProgressLocal(moduleId, progressData, userId = null) {
     try {
         const db = await initTrilhaProgressDB();
+        
+        // Verify store exists before creating transaction
+        if (!db.objectStoreNames.contains(STORE_TRILHA_PROGRESS)) {
+            throw new Error(`Store ${STORE_TRILHA_PROGRESS} not found in database`);
+        }
+        
         const tx = db.transaction(STORE_TRILHA_PROGRESS, 'readwrite');
         const store = tx.objectStore(STORE_TRILHA_PROGRESS);
         
@@ -123,6 +215,13 @@ export async function saveTrilhaProgressLocal(moduleId, progressData, userId = n
 export async function loadTrilhaProgressLocal(moduleId, userId = null) {
     try {
         const db = await initTrilhaProgressDB();
+        
+        // Verify store exists before creating transaction
+        if (!db.objectStoreNames.contains(STORE_TRILHA_PROGRESS)) {
+            console.warn(`Store ${STORE_TRILHA_PROGRESS} not found, returning default progress`);
+            return createDefaultProgress(moduleId, userId);
+        }
+        
         const tx = db.transaction(STORE_TRILHA_PROGRESS, 'readonly');
         const store = tx.objectStore(STORE_TRILHA_PROGRESS);
         
@@ -131,37 +230,37 @@ export async function loadTrilhaProgressLocal(moduleId, userId = null) {
         return new Promise((resolve, reject) => {
             const request = store.get([currentUserId, moduleId]);
             request.onsuccess = () => {
-                const result = request.result || {
-                    userId: currentUserId,
-                    modulo_id: moduleId,
-                    ultimaAtualizacao: null,
-                    blocosConcluidos: [],
-                    respostas: {},
-                    tempoTotal: 0,
-                    notasPessoais: '',
-                    favoritos: [],
-                    versaoLocal: 0,
-                    syncStatus: 'none'
-                };
+                const result = request.result || createDefaultProgress(moduleId, currentUserId);
                 resolve(result);
             };
-            request.onerror = () => reject(request.error);
+            request.onerror = () => {
+                console.error('Error loading progress from IndexedDB:', request.error);
+                resolve(createDefaultProgress(moduleId, currentUserId));
+            };
         });
     } catch (error) {
         console.error('Error loading trilha progress locally:', error);
-        return {
-            userId: getCurrentUserId(),
-            modulo_id: moduleId,
-            ultimaAtualizacao: null,
-            blocosConcluidos: [],
-            respostas: {},
-            tempoTotal: 0,
-            notasPessoais: '',
-            favoritos: [],
-            versaoLocal: 0,
-            syncStatus: 'none'
-        };
+        return createDefaultProgress(moduleId, userId);
     }
+}
+
+/**
+ * Create default progress object
+ */
+function createDefaultProgress(moduleId, userId = null) {
+    const currentUserId = userId || getCurrentUserId();
+    return {
+        userId: currentUserId,
+        modulo_id: moduleId,
+        ultimaAtualizacao: null,
+        blocosConcluidos: [],
+        respostas: {},
+        tempoTotal: 0,
+        notasPessoais: '',
+        favoritos: [],
+        versaoLocal: 0,
+        syncStatus: 'none'
+    };
 }
 
 /**
@@ -170,6 +269,13 @@ export async function loadTrilhaProgressLocal(moduleId, userId = null) {
 export async function getAllTrilhaProgressLocal(userId = null) {
     try {
         const db = await initTrilhaProgressDB();
+        
+        // Verify store exists before creating transaction
+        if (!db.objectStoreNames.contains(STORE_TRILHA_PROGRESS)) {
+            console.warn(`Store ${STORE_TRILHA_PROGRESS} not found, returning empty array`);
+            return [];
+        }
+        
         const tx = db.transaction(STORE_TRILHA_PROGRESS, 'readonly');
         const store = tx.objectStore(STORE_TRILHA_PROGRESS);
         
@@ -179,7 +285,10 @@ export async function getAllTrilhaProgressLocal(userId = null) {
             const index = store.index('userId');
             const request = index.getAll(currentUserId);
             request.onsuccess = () => resolve(request.result || []);
-            request.onerror = () => reject(request.error);
+            request.onerror = () => {
+                console.error('Error getting all progress from IndexedDB:', request.error);
+                resolve([]);
+            };
         });
     } catch (error) {
         console.error('Error getting all trilha progress locally:', error);
@@ -244,6 +353,13 @@ export async function getTrilhaProgressNeedingSync(userId = null) {
 export async function saveUserDataLocal(userData) {
     try {
         const db = await initTrilhaProgressDB();
+        
+        // Verify store exists before creating transaction
+        if (!db.objectStoreNames.contains(STORE_USER_DATA)) {
+            console.warn(`Store ${STORE_USER_DATA} not found, cannot save user data`);
+            return;
+        }
+        
         const tx = db.transaction(STORE_USER_DATA, 'readwrite');
         const store = tx.objectStore(STORE_USER_DATA);
         
@@ -275,13 +391,23 @@ export async function saveUserDataLocal(userData) {
 export async function loadUserDataLocal(userId) {
     try {
         const db = await initTrilhaProgressDB();
+        
+        // Verify store exists before creating transaction
+        if (!db.objectStoreNames.contains(STORE_USER_DATA)) {
+            console.warn(`Store ${STORE_USER_DATA} not found, returning null`);
+            return null;
+        }
+        
         const tx = db.transaction(STORE_USER_DATA, 'readonly');
         const store = tx.objectStore(STORE_USER_DATA);
         
         return new Promise((resolve, reject) => {
             const request = store.get(userId);
             request.onsuccess = () => resolve(request.result || null);
-            request.onerror = () => reject(request.error);
+            request.onerror = () => {
+                console.error('Error loading user data from IndexedDB:', request.error);
+                resolve(null);
+            };
         });
     } catch (error) {
         console.error('Error loading user data locally:', error);

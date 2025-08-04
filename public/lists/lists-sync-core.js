@@ -27,17 +27,26 @@ import {
     performFullListSync
 } from './lists-firestore.js';
 
-import { canSyncToCloud } from '../plan-manager.js';
+import { canSyncToCloud, getCurrentUserPlan, getMaxListsAllowed } from '../plan-manager.js';
 
 /**
  * Unified create word list (handles both local and cloud)
  */
 export async function createWordList(listData) {
     try {
-        // Check if user has reached the limit of 5 lists
+        // Validate minimum word count
+        const wordCount = listData.wordIds ? listData.wordIds.length : 0;
+        if (wordCount < 5) {
+            throw new Error('Uma lista deve ter pelo menos 5 palavras para ser criada.');
+        }
+
+        // Check if user has reached the limit based on their plan
         const currentCount = await getWordListCountDB();
-        if (currentCount >= 5) {
-            throw new Error('Você atingiu o limite máximo de 5 listas. Exclua uma lista existente para criar uma nova.');
+        const maxAllowed = getMaxListsAllowed();
+        
+        if (currentCount >= maxAllowed) {
+            const planName = getCurrentUserPlan() === 'free' ? 'gratuito' : 'atual';
+            throw new Error(`Você atingiu o limite máximo de ${maxAllowed} listas do plano ${planName}. Exclua uma lista existente para criar uma nova.`);
         }
 
         // Always create locally first

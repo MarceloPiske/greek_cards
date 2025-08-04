@@ -2,7 +2,7 @@
  * Lists Manager UI Components
  */
 
-import { getCurrentUserPlan } from '../../plan-manager.js';
+import { getCurrentUserPlan, getMaxListsAllowed } from '../../plan-manager.js';
 
 export class ListsUI {
     constructor() {
@@ -52,6 +52,13 @@ export class ListsUI {
             }
         }
 
+        // Show word count warning if below minimum
+        const wordCountWarning = wordCount < 5 ? 
+            `<div class="word-count-warning">
+                <span class="material-symbols-sharp">warning</span>
+                <span>Mínimo 5 palavras necessárias</span>
+            </div>` : '';
+
         return `
             <div class="list-card ${syncStatus}" data-list-id="${list.id}">
                 <div class="sync-status ${syncStatus}"></div>
@@ -65,6 +72,8 @@ export class ListsUI {
                         <span class="material-symbols-sharp">more_vert</span>
                     </button>
                 </div>
+
+                ${wordCountWarning}
 
                 <div class="list-stats">
                     <div class="list-stat">
@@ -86,7 +95,7 @@ export class ListsUI {
                         <span class="material-symbols-sharp">visibility</span>
                         Visualizar
                     </button>
-                    <button class="btn practice practice-list-btn" data-list-id="${list.id}">
+                    <button class="btn practice practice-list-btn" data-list-id="${list.id}" ${wordCount < 5 ? 'disabled title="Mínimo 5 palavras necessárias"' : ''}>
                         <span class="material-symbols-sharp">school</span>
                         Praticar
                     </button>
@@ -170,11 +179,22 @@ export class ListsUI {
     }
 
     showNewListModal() {
+        const maxLists = getMaxListsAllowed();
+        const planName = getCurrentUserPlan() === 'free' ? 'gratuito' : 'atual';
+        
         const modalHtml = `
             <div class="modal" id="new-list-modal">
                 <div class="modal-content">
                     <button class="close-modal">&times;</button>
                     <h2>Nova Lista de Palavras</h2>
+                    
+                    <div class="plan-info-box">
+                        <span class="material-symbols-sharp">info</span>
+                        <div>
+                            <strong>Plano ${planName}:</strong> Máximo ${maxLists} listas<br>
+                            <small>Mínimo 5 palavras por lista</small>
+                        </div>
+                    </div>
                     
                     <div class="form-group">
                         <label for="list-name">Nome da Lista</label>

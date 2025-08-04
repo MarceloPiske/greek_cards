@@ -374,16 +374,29 @@ style.textContent = `
     color: white;
 }
 
-.sync-error-content, .sync-success-content {
+.sync-warning-notification {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    max-width: 450px;
+    background: #f59e0b;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    animation: slideInRight 0.3s ease-out;
+}
+
+.sync-error-content, .sync-success-content, .sync-warning-content {
     display: flex;
     align-items: center;
     gap: 0.8rem;
     padding: 1rem;
 }
 
-.error-message, .success-message {
+.error-message, .success-message, .warning-message {
     flex: 1;
     font-size: 0.9rem;
+    line-height: 1.4;
 }
 
 .retry-sync-btn {
@@ -401,7 +414,7 @@ style.textContent = `
     background: rgba(255,255,255,0.3);
 }
 
-.close-error-btn {
+.close-error-btn, .close-warning-btn {
     background: none;
     border: none;
     color: white;
@@ -417,7 +430,7 @@ style.textContent = `
     transition: opacity 0.3s ease;
 }
 
-.close-error-btn:hover {
+.close-error-btn:hover, .close-warning-btn:hover {
     opacity: 1;
     background: rgba(255,255,255,0.1);
 }

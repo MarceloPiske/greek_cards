@@ -365,7 +365,7 @@ export async function bulkUpdateWordListsFirestore(updates) {
 
         await batch.commit();
         console.log(`Bulk updated ${updates.length} word lists in Firestore`);
-
+        
         return updates.map(({ listId }) => listId);
     } catch (error) {
         console.error('Error bulk updating word lists in Firestore:', error);
@@ -416,22 +416,41 @@ export async function syncPendingListsToFirestore() {
     try {
         // Import IndexedDB operations
         const { getListsNeedingSyncDB, markListAsSyncedDB } = await import('./lists-db.js');
+        const { getMaxListsAllowed } = await import('../plan-manager.js');
         
         const pendingLists = await getListsNeedingSyncDB();
+        const maxAllowed = getMaxListsAllowed();
         
         if (pendingLists.length === 0) {
             console.log('No lists need synchronization');
             return [];
         }
 
+        // Check current cloud count
+        const cloudLists = await getAllWordListsFirestore();
+        const availableSlots = Math.max(0, maxAllowed - cloudLists.length);
+        
+        if (availableSlots === 0 && pendingLists.length > 0) {
+            console.warn(`Cannot sync ${pendingLists.length} local lists - cloud limit (${maxAllowed}) reached`);
+            return [];
+        }
+
+        // Only sync up to available slots
+        const listsToSync = pendingLists.slice(0, availableSlots);
         const syncedLists = [];
 
-        for (const list of pendingLists) {
+        for (const list of listsToSync) {
             try {
-                // Check if list exists in Firestore
-                const existsInFirestore = await wordListExistsFirestore(list.id);
+                // Validate minimum word count before syncing
+                const wordCount = list.wordIds ? list.wordIds.length : 0;
+                if (wordCount < 5) {
+                    console.warn(`Skipping sync of list ${list.id} - insufficient words (${wordCount} < 5)`);
+                    continue;
+                }
+
+                const exists = await wordListExistsFirestore(list.id);
                 
-                if (existsInFirestore) {
+                if (exists) {
                     // Update existing list
                     await updateWordListFirestore(list.id, {
                         name: list.name,
@@ -451,6 +470,11 @@ export async function syncPendingListsToFirestore() {
             } catch (error) {
                 console.warn(`Failed to sync list ${list.id}:`, error);
             }
+        }
+
+        if (pendingLists.length > listsToSync.length) {
+            const skipped = pendingLists.length - listsToSync.length;
+            console.warn(`${skipped} lists were not synced due to plan limits`);
         }
 
         console.log(`Synced ${syncedLists.length} of ${pendingLists.length} pending lists to Firestore`);
@@ -473,17 +497,72 @@ export async function performFullListSync() {
     try {
         console.log('Starting full list synchronization...');
 
+        // Get current plan limits
+        const { getMaxListsAllowed } = await import('../plan-manager.js');
+        const maxAllowed = getMaxListsAllowed();
+
+        // Get cloud lists
+        const cloudLists = await getAllWordListsFirestore();
+        
+        // Check if user has exceeded cloud limit
+        if (cloudLists.length > maxAllowed) {
+            const excess = cloudLists.length - maxAllowed;
+            console.warn(`User has ${cloudLists.length} lists in cloud, but plan allows only ${maxAllowed}. ${excess} lists will not be synced.`);
+            
+            // Show warning to user
+            const warningDiv = document.createElement('div');
+            warningDiv.className = 'sync-warning-notification';
+            warningDiv.innerHTML = `
+                <div class="sync-warning-content">
+                    <span class="material-symbols-sharp">warning</span>
+                    <span class="warning-message">Você tem ${cloudLists.length} listas na nuvem, mas seu plano permite apenas ${maxAllowed}. ${excess} listas extras não serão sincronizadas até que você exclua algumas.</span>
+                    <button class="close-warning-btn" onclick="this.parentElement.parentElement.remove()">
+                        <span class="material-symbols-sharp">close</span>
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(warningDiv);
+            
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+                if (warningDiv && warningDiv.parentNode) {
+                    warningDiv.remove();
+                }
+            }, 10000);
+        }
+
+        // Only sync up to the allowed limit
+        const listsToSync = cloudLists.slice(0, maxAllowed);
+
         // First, sync pending local changes to Firestore
         const uploaded = await syncPendingListsToFirestore();
 
-        // Then, sync any newer changes from Firestore to local
-        const downloaded = await syncAllListsFromFirestore();
+        // Then, sync cloud changes to local (limited by plan)
+        let downloaded = 0;
+        if (listsToSync.length > 0) {
+            const { bulkUpdateWordListsDB } = await import('./lists-db.js');
+            
+            // Prepare updates for IndexedDB
+            const updates = listsToSync.map(list => ({
+                listId: list.id,
+                data: list
+            }));
 
-        console.log(`Full sync completed: ${uploaded.length} uploaded, ${downloaded.length} downloaded`);
+            try {
+                await bulkUpdateWordListsDB(updates);
+                downloaded = updates.length;
+                console.log(`Synced ${downloaded} lists from Firestore to local storage`);
+            } catch (error) {
+                console.error('Error syncing lists from Firestore to local:', error);
+                // Continue without throwing to allow partial sync
+            }
+        }
+
+        console.log(`Full sync completed: ${uploaded.length} uploaded, ${downloaded} downloaded`);
         
         return {
             uploaded: uploaded.length,
-            downloaded: downloaded.length
+            downloaded: downloaded
         };
     } catch (error) {
         console.error('Error performing full list sync:', error);

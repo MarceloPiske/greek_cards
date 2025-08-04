@@ -6,7 +6,7 @@ O Koiné App utiliza uma arquitetura híbrida de banco de dados que combina **In
 
 ### Estrutura Geral
 - **Nome do Banco IndexedDB**: `koineAppDB`
-- **Versão Atual**: 5
+- **Versão Atual**: 6
 - **Banco Cloud**: Firestore (Firebase)
 - **Estratégia**: Local-first com sincronização opcional
 

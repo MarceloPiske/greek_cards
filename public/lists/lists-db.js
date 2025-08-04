@@ -347,20 +347,37 @@ export async function bulkUpdateWordListsDB(updates) {
 
         const promises = updates.map(({ listId, data }) => {
             return new Promise((resolve, reject) => {
+                const userKey = createUserKey(listId);
+                
                 // First get the current list
-                const getRequest = store.get(createUserKey(listId));
+                const getRequest = store.get(userKey);
                 getRequest.onsuccess = () => {
                     const currentList = getRequest.result;
+                    
                     if (!currentList) {
-                        reject(new Error(`List ${listId} not found`));
+                        // List doesn't exist locally, create it from cloud data
+                        console.log(`Creating missing local list: ${listId}`);
+                        const newList = {
+                            ...data,
+                            id: userKey,
+                            originalId: listId,
+                            userId: getCurrentUserId(),
+                            createdAt: data.createdAt || new Date().toISOString(),
+                            updatedAt: data.updatedAt || new Date().toISOString(),
+                            wordIds: data.wordIds || []
+                        };
+
+                        const putRequest = store.put(newList);
+                        putRequest.onsuccess = () => resolve(newList);
+                        putRequest.onerror = () => reject(putRequest.error);
                         return;
                     }
 
-                    // Merge and update
+                    // List exists, merge and update
                     const updatedList = {
                         ...currentList,
                         ...data,
-                        id: createUserKey(listId),
+                        id: userKey,
                         originalId: listId,
                         updatedAt: new Date().toISOString()
                     };

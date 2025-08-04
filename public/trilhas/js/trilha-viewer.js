@@ -2,7 +2,6 @@
  * Trilha Viewer Core Logic
  */
 
-import { saveProgress, loadProgress, markBlockCompleted, addStudyTime } from '../../progress-manager.js';
 import * as UIManager from './trilha-viewer-ui.js';
 import * as InteractionManager from './trilha-viewer-interactions.js';
 

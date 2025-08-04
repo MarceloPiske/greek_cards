@@ -31,6 +31,7 @@ export const PLAN_FEATURES = {
         advancedAnalytics: false,
         storage: 'local', // IndexedDB only
         maxModules: 999, // No module limit for free users
+        maxLists: 5, // 5 lists for free users
         description: 'Acesso aos módulos básicos com armazenamento local'
     },
     [PLANS.CLOUD]: {
@@ -44,6 +45,7 @@ export const PLAN_FEATURES = {
         advancedAnalytics: true,
         storage: 'cloud', // Firestore sync
         maxModules: 999,
+        maxLists: 10, // 10 lists for cloud users
         description: 'Progresso sincronizado na nuvem, acesso em múltiplos dispositivos'
     },
     [PLANS.AI]: {
@@ -57,6 +59,7 @@ export const PLAN_FEATURES = {
         advancedAnalytics: true,
         storage: 'cloud', // Firestore + AI Backend
         maxModules: 999,
+        maxLists: 10, // 10 lists for ai users
         description: 'Tudo do plano Nuvem + IA tutora, explicações personalizadas'
     }
 };
@@ -468,6 +471,14 @@ export function resetUserData() {
     userPlan = null;
 }
 
+/**
+ * Get maximum number of lists allowed for current user plan
+ */
+export function getMaxListsAllowed() {
+    const plan = getCurrentUserPlan();
+    return PLAN_FEATURES[plan]?.maxLists || 5;
+}
+
 // Export for global access
 if (typeof window !== 'undefined') {
     window.planManager = {
@@ -487,6 +498,7 @@ if (typeof window !== 'undefined') {
         getPlanInfo,
         showUpgradeModal,
         updateUserActivity,
-        resetUserData
+        resetUserData,
+        getMaxListsAllowed
     };
 }

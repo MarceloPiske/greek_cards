@@ -40,7 +40,7 @@ export function setupActivityInteractions(activity, trilhaData, onFavoriteToggle
     const backToTrilhasBtn = document.getElementById('back-to-trilhas');
     if(backToTrilhasBtn) {
         backToTrilhasBtn.addEventListener('click', () => {
-            window.location.href = 'trilhas/trilha_conteudo.html';
+            window.location.href = '/trilhas/trilha_conteudo.html';
         });
     }
 }
@@ -186,7 +186,7 @@ function showShareToast(message, type = 'info') {
         padding: 1rem 1.5rem;
         border-radius: 8px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        z-index: 10000;
+        /* z-index: 10000; */
         font-weight: 500;
         display: flex;
         align-items: center;

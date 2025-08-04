@@ -1,0 +1,16 @@
+.close-warning-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.warning-content {
+    position: relative;
+    padding: 1rem;
+    max-width: 600px;
+    background: var(--color-warning);
+    border-radius: 10px;
+    margin: auto;
+}

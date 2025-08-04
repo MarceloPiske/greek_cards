@@ -7,6 +7,7 @@
     <title>Vocabulário - Koiné</title>
     <link rel="icon" href="../img/icon.svg" type="image/png">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./css/geral.css">
     <link rel="stylesheet" href="../cards/css/cards-base.css">
     <link rel="stylesheet" href="../cards/css/cards-components.css">
     <link rel="stylesheet" href="../cards/css/cards-modals.css">
@@ -200,6 +201,20 @@
         </div>
     </header>
 
+    <!-- Authentication Warning -->
+    <div id="auth-warning" class="auth-warning" style="display: none;">
+        <div class="warning-content">
+            <span class="material-symbols-sharp">warning</span>
+            <div class="warning-text">
+                <strong>Atenção:</strong> Você não está logado. Sem login, qualquer pessoa pode alterar seu progresso. 
+                Faça login para proteger seus dados e considere o plano Cloud para sincronização na nuvem.
+            </div>
+            <button class="close-warning-btn" onclick="this.parentElement.parentElement.remove()">
+                <span class="material-symbols-sharp">close</span>
+            </button>
+        </div>
+    </div>
+
     <main class="vocabulary-container">
         <div class="vocabulary-tabs">
             <div class="tab active" data-tab="vocabulary">Vocabulário do Sistema</div>
@@ -223,6 +238,16 @@
                         <button class="filter-btn" data-filter="partícula">partícula</button>
                         <button class="filter-btn" data-filter="outro">outro</button>
                     </div>
+                </div>
+                <div class="action-buttons">
+                    <button id="vocab-feedback-btn" class="btn secondary" title="Enviar feedback">
+                        <span class="material-symbols-sharp">feedback</span>
+                        Feedback
+                    </button>
+                    <button id="vocab-report-problem-btn" class="btn secondary" title="Relatar problema">
+                        <span class="material-symbols-sharp">report_problem</span>
+                        Relatar Problema
+                    </button>
                 </div>
             </div>
 
@@ -290,6 +315,64 @@
         </div>
     </div>
 
+    <!-- Feedback Modal -->
+    <div class="modal" id="vocabFeedbackModal" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Enviar Feedback - Vocabulário</h2>
+            <form id="vocab-feedback-form">
+                <div class="form-group">
+                    <label for="vocab-feedback-type">Tipo de Feedback</label>
+                    <select id="vocab-feedback-type" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="suggestion">Sugestão</option>
+                        <option value="translation">Problema de Tradução</option>
+                        <option value="pronunciation">Problema de Pronúncia</option>
+                        <option value="feature">Nova Funcionalidade</option>
+                        <option value="other">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="vocab-feedback-message">Sua Mensagem</label>
+                    <textarea id="vocab-feedback-message" rows="5" placeholder="Descreva seu feedback..." required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancel-vocab-feedback" class="btn">Cancelar</button>
+                    <button type="submit" class="btn primary">Enviar Feedback</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Problem Report Modal -->
+    <div class="modal" id="vocabProblemModal" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Relatar Problema - Vocabulário</h2>
+            <form id="vocab-problem-form">
+                <div class="form-group">
+                    <label for="vocab-problem-category">Categoria do Problema</label>
+                    <select id="vocab-problem-category" required>
+                        <option value="">Selecione a categoria</option>
+                        <option value="missing-word">Palavra Faltando</option>
+                        <option value="wrong-translation">Tradução Incorreta</option>
+                        <option value="search-issue">Problema de Busca</option>
+                        <option value="performance">Performance</option>
+                        <option value="other">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="vocab-problem-description">Descrição do Problema</label>
+                    <textarea id="vocab-problem-description" rows="5" placeholder="Descreva o problema detalhadamente..." required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancel-vocab-problem" class="btn">Cancelar</button>
+                    <button type="submit" class="btn danger">Relatar Problema</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script type="module" src="../firebase-auth.js"></script>
     <script type="module" src="./vocabulary-loader.js"></script>
     <script type="module">
@@ -301,6 +384,9 @@
         document.addEventListener('DOMContentLoaded', async () => {
             console.log('DOM loaded, initializing vocabulary system...');
             
+            // Check authentication status and show warning if needed
+            checkAuthenticationStatus();
+            
             // Initialize vocabulary database and load data first
             await initializeVocabularySystem();
             
@@ -309,6 +395,15 @@
             new VocabularyEventHandlers();
             await app.initialize();
         });
+
+        function checkAuthenticationStatus() {
+            // Wait a bit for Firebase to initialize
+            setTimeout(() => {
+                if (!window.firebaseAuth?.isAuthenticated()) {
+                    document.getElementById('auth-warning').style.display = 'block';
+                }
+            }, 1000);
+        }
     </script>
 </body>
 

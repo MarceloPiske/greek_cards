@@ -388,7 +388,7 @@ export async function abrirModalInfoEnhanced(moduloId) {
         
         // Enhanced modal content
         const modalHtml = `
-            <div class="modal enhanced-modal" id="moduloInfoModal" style="display: flex; z-index: 10000;" aria-hidden="false">
+            <div class="modal enhanced-modal" id="moduloInfoModal" style="display: flex;" opacity: 100; aria-hidden="false">
                 <div class="modal-content modulo-info-content">
                     <button class="close-modal" aria-label="Fechar modal">&times;</button>
                     

@@ -84,12 +84,34 @@
         </div>
     </header>
 
+    <!-- Authentication Warning -->
+    <div id="auth-warning" class="auth-warning" style="display: none;">
+        <div class="warning-content">
+            <span class="material-symbols-sharp">warning</span>
+            <div class="warning-text">
+                <strong>Atenção:</strong> Você não está logado. Sem login, qualquer pessoa pode alterar seu progresso. 
+                Faça login para proteger seus dados e considere o plano Cloud para sincronização na nuvem.
+            </div>
+            <button class="close-warning-btn" onclick="this.parentElement.parentElement.remove()">
+                <span class="material-symbols-sharp">close</span>
+            </button>
+        </div>
+    </div>
+
     <main class="lists-container">
         <div class="lists-header">
             <div class="lists-search">
                 <input type="text" id="search-lists" class="search-input" placeholder="Buscar listas...">
             </div>
             <div class="header-actions">
+                <button id="feedback-btn" class="btn secondary" title="Enviar feedback">
+                    <span class="material-symbols-sharp">feedback</span>
+                    Feedback
+                </button>
+                <button id="report-problem-btn" class="btn secondary" title="Relatar problema">
+                    <span class="material-symbols-sharp">report_problem</span>
+                    Relatar Problema
+                </button>
                 <button id="sync-all-btn" class="btn" title="Sincronizar todas as listas">
                     <span class="material-symbols-sharp">sync</span>
                     Sincronizar
@@ -175,6 +197,73 @@
         </div>
     </div>
 
+    <!-- Feedback Modal -->
+    <div class="modal" id="feedbackModal" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Enviar Feedback</h2>
+            <form id="feedback-form">
+                <div class="form-group">
+                    <label for="feedback-type">Tipo de Feedback</label>
+                    <select id="feedback-type" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="suggestion">Sugestão</option>
+                        <option value="compliment">Elogio</option>
+                        <option value="complaint">Reclamação</option>
+                        <option value="feature">Nova Funcionalidade</option>
+                        <option value="other">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-message">Sua Mensagem</label>
+                    <textarea id="feedback-message" rows="5" placeholder="Descreva seu feedback..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-email">Email (opcional)</label>
+                    <input type="email" id="feedback-email" placeholder="seu@email.com">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancel-feedback" class="btn">Cancelar</button>
+                    <button type="submit" class="btn primary">Enviar Feedback</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Problem Report Modal -->
+    <div class="modal" id="problemModal" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Relatar Problema</h2>
+            <form id="problem-form">
+                <div class="form-group">
+                    <label for="problem-category">Categoria do Problema</label>
+                    <select id="problem-category" required>
+                        <option value="">Selecione a categoria</option>
+                        <option value="bug">Bug/Erro</option>
+                        <option value="performance">Performance</option>
+                        <option value="sync">Problemas de Sincronização</option>
+                        <option value="ui">Interface do Usuário</option>
+                        <option value="data">Perda de Dados</option>
+                        <option value="other">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="problem-description">Descrição do Problema</label>
+                    <textarea id="problem-description" rows="5" placeholder="Descreva o problema detalhadamente..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="problem-steps">Passos para Reproduzir (opcional)</label>
+                    <textarea id="problem-steps" rows="3" placeholder="1. Clique em...&#10;2. Navegue para...&#10;3. Observe..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancel-problem" class="btn">Cancelar</button>
+                    <button type="submit" class="btn danger">Relatar Problema</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script type="module" src="../firebase-auth.js"></script>
     <script type="module" src="../vocabulary/vocabulary-loader.js"></script>
     <script type="module">
@@ -183,6 +272,9 @@
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', async () => {
+            // Check authentication status and show warning if needed
+            checkAuthenticationStatus();
+            
             // Initialize vocabulary system first
             await initializeVocabularySystem();
             
@@ -190,6 +282,15 @@
             const app = new ListsApp();
             await app.initialize();
         });
+
+        function checkAuthenticationStatus() {
+            // Wait a bit for Firebase to initialize
+            setTimeout(() => {
+                if (!window.firebaseAuth?.isAuthenticated()) {
+                    document.getElementById('auth-warning').style.display = 'block';
+                }
+            }, 1000);
+        }
     </script>
 </body>
 

@@ -51,6 +51,7 @@ export class VocabularyApp {
             tabsContainer: document.querySelector('.vocabulary-tabs'),
             filterBtns: document.querySelectorAll('.filter-btn'),
             tabContents: document.querySelectorAll('.tab-content'),
+            actionButtons: document.querySelector('.action-buttons'),
         };
     }
 
@@ -60,6 +61,9 @@ export class VocabularyApp {
     async initialize() {
         try {
             console.log('Initializing vocabulary app...');
+            
+            // Check authentication and show warning if needed
+            this.#checkAuthenticationStatus();
             
             // Inicializa a autenticação (se existir)
             if (window.firebaseAuth?.initAuth) {
@@ -84,6 +88,21 @@ export class VocabularyApp {
             console.error('Error initializing vocabulary:', error);
             alert('Erro ao inicializar o sistema de vocabulário');
         }
+    }
+
+    /**
+     * Check authentication status and show warning if needed
+     */
+    #checkAuthenticationStatus() {
+        // Wait a bit for Firebase to initialize
+        setTimeout(() => {
+            if (!window.firebaseAuth?.isAuthenticated()) {
+                const authWarning = document.getElementById('auth-warning');
+                if (authWarning) {
+                    authWarning.style.display = 'block';
+                }
+            }
+        }, 1000);
     }
     
     /**

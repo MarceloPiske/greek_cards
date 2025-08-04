@@ -450,7 +450,7 @@ export function hideModulePreview() {
 // Verificar módulo completo (helper function)
 export async function verificarModuloCompleto(moduloId) {
     try {
-        const response = await fetch(`trilhas/trilhas/${moduloId}.json`);
+        const response = await fetch(`./trilhas/${moduloId}.json`);
         if (response.ok) {
             const data = await response.json();
             return data.trilha ? data.trilha.length : 5;

@@ -16,6 +16,7 @@ export class ListsEventHandlers {
         this.setupModals();
         this.setupTheme();
         this.setupAuth();
+        this.setupFeedbackAndReporting();
     }
 
     setupNavigation() {
@@ -56,6 +57,8 @@ export class ListsEventHandlers {
         const newListBtn = document.getElementById('new-list-btn');
         const createFirstListBtn = document.getElementById('create-first-list');
         const syncAllBtn = document.getElementById('sync-all-btn');
+        const feedbackBtn = document.getElementById('feedback-btn');
+        const reportProblemBtn = document.getElementById('report-problem-btn');
 
         if (newListBtn) {
             newListBtn.addEventListener('click', () => this.handleNewList());
@@ -65,6 +68,12 @@ export class ListsEventHandlers {
         }
         if (syncAllBtn) {
             syncAllBtn.addEventListener('click', () => this.app.syncAllLists());
+        }
+        if (feedbackBtn) {
+            feedbackBtn.addEventListener('click', () => this.showFeedbackModal());
+        }
+        if (reportProblemBtn) {
+            reportProblemBtn.addEventListener('click', () => this.showProblemModal());
         }
 
         // Dynamic list action buttons (using event delegation)
@@ -188,6 +197,185 @@ export class ListsEventHandlers {
                 if (modal) modal.style.display = 'none';
             }
         };
+    }
+
+    setupFeedbackAndReporting() {
+        // Feedback modal
+        const feedbackModal = document.getElementById('feedbackModal');
+        const feedbackForm = document.getElementById('feedback-form');
+        const cancelFeedbackBtn = document.getElementById('cancel-feedback');
+
+        if (feedbackForm) {
+            feedbackForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                await this.handleFeedbackSubmit();
+            });
+        }
+
+        if (cancelFeedbackBtn) {
+            cancelFeedbackBtn.addEventListener('click', () => {
+                feedbackModal.style.display = 'none';
+                this.resetFeedbackForm();
+            });
+        }
+
+        // Problem report modal
+        const problemModal = document.getElementById('problemModal');
+        const problemForm = document.getElementById('problem-form');
+        const cancelProblemBtn = document.getElementById('cancel-problem');
+
+        if (problemForm) {
+            problemForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                await this.handleProblemSubmit();
+            });
+        }
+
+        if (cancelProblemBtn) {
+            cancelProblemBtn.addEventListener('click', () => {
+                problemModal.style.display = 'none';
+                this.resetProblemForm();
+            });
+        }
+    }
+
+    showFeedbackModal() {
+        if (!window.firebaseAuth?.isAuthenticated()) {
+            alert('Você precisa estar logado para enviar feedback.');
+            return;
+        }
+        document.getElementById('feedbackModal').style.display = 'flex';
+    }
+
+    showProblemModal() {
+        if (!window.firebaseAuth?.isAuthenticated()) {
+            alert('Você precisa estar logado para relatar problemas.');
+            return;
+        }
+        document.getElementById('problemModal').style.display = 'flex';
+    }
+
+    async handleFeedbackSubmit() {
+        try {
+            const type = document.getElementById('feedback-type').value;
+            const message = document.getElementById('feedback-message').value;
+            const email = document.getElementById('feedback-email').value;
+
+            if (!type || !message) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            const user = window.firebaseAuth.getCurrentUser();
+            const feedbackData = {
+                type,
+                message,
+                email: email || user.email,
+                userId: user.uid,
+                userName: user.displayName || user.email,
+                userAgent: navigator.userAgent,
+                url: window.location.href,
+                timestamp: new Date().toISOString()
+            };
+
+            // Save to Firestore
+            await this.saveFeedbackToFirestore(feedbackData);
+
+            // Save locally as backup
+            const { saveFeedbackDB } = await import('../vocabulary/vocabulary-db.js');
+            await saveFeedbackDB(feedbackData);
+
+            alert('Feedback enviado com sucesso! Obrigado pela sua contribuição.');
+            document.getElementById('feedbackModal').style.display = 'none';
+            this.resetFeedbackForm();
+
+        } catch (error) {
+            console.error('Error submitting feedback:', error);
+            alert('Erro ao enviar feedback. Tente novamente mais tarde.');
+        }
+    }
+
+    async handleProblemSubmit() {
+        try {
+            const category = document.getElementById('problem-category').value;
+            const description = document.getElementById('problem-description').value;
+            const steps = document.getElementById('problem-steps').value;
+
+            if (!category || !description) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            const user = window.firebaseAuth.getCurrentUser();
+            const problemData = {
+                category,
+                description,
+                steps,
+                userId: user.uid,
+                userName: user.displayName || user.email,
+                userEmail: user.email,
+                userAgent: navigator.userAgent,
+                url: window.location.href,
+                timestamp: new Date().toISOString()
+            };
+
+            // Save to Firestore
+            await this.saveProblemToFirestore(problemData);
+
+            // Save locally as backup
+            const { saveProblemReportDB } = await import('../vocabulary/vocabulary-db.js');
+            await saveProblemReportDB(problemData);
+
+            alert('Problema relatado com sucesso! Nossa equipe será notificada.');
+            document.getElementById('problemModal').style.display = 'none';
+            this.resetProblemForm();
+
+        } catch (error) {
+            console.error('Error submitting problem report:', error);
+            alert('Erro ao relatar problema. Tente novamente mais tarde.');
+        }
+    }
+
+    async saveFeedbackToFirestore(feedbackData) {
+        try {
+            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const db = window.firebaseAuth.db;
+            
+            const feedbackRef = doc(collection(db, 'feedback'), Date.now().toString());
+            await setDoc(feedbackRef, feedbackData);
+            
+            console.log('Feedback saved to Firestore');
+        } catch (error) {
+            console.error('Error saving feedback to Firestore:', error);
+            throw error;
+        }
+    }
+
+    async saveProblemToFirestore(problemData) {
+        try {
+            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const db = window.firebaseAuth.db;
+            
+            const problemRef = doc(collection(db, 'problems'), Date.now().toString());
+            await setDoc(problemRef, problemData);
+            
+            console.log('Problem report saved to Firestore');
+        } catch (error) {
+            console.error('Error saving problem report to Firestore:', error);
+            throw error;
+        }
+    }
+
+    resetFeedbackForm() {
+        document.getElementById('feedback-type').value = '';
+        document.getElementById('feedback-message').value = '';
+        document.getElementById('feedback-email').value = '';
+    }
+
+    resetProblemForm() {
+        document.getElementById('problem-category').value = '';
+        document.getElementById('problem-description').value = '';
+        document.getElementById('problem-steps').value = '';
     }
 
     handleNewList() {

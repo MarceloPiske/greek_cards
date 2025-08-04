@@ -65,7 +65,7 @@ export async function carregarTrilhasDisponiveis() {
 export async function obterListaTrilhas() {
     try {
         // Fazer um fetch para verificar quais trilhas existem
-        const response = await fetch('trilhas/trilhas/index.json');
+        const response = await fetch('./trilhas/index.json');
         
         if (response.ok) {
             // Se tiver um arquivo index.json com as trilhas
@@ -193,7 +193,7 @@ function atualizarUIModulo(modulo, progresso, index) {
 // Verifica quantas atividades existem no módulo
 export async function verificarModuloCompleto(moduloId) {
     try {
-        const response = await fetch(`trilhas/trilhas/${moduloId}.json`);
+        const response = await fetch(`./trilhas/${moduloId}.json`);
         if (response.ok) {
             const data = await response.json();
             return data.trilha ? data.trilha.length : 5;

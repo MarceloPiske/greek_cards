@@ -58,7 +58,7 @@ export function showModal(modalElement) {
 
     // Ensure modal appears above everything
     modalElement.style.display = 'flex';
-    modalElement.style.zIndex = '10000';
+    /* modalElement.style.zIndex = '10000'; */
     
     // Prevent body scroll during practice
     document.body.style.overflow = 'hidden';
@@ -71,7 +71,7 @@ export function createAndShowModal(htmlContent) {
     const modal = document.body.lastElementChild;
     
     // Ensure the modal has the highest z-index
-    modal.style.zIndex = '10000';
+    /* modal.style.zIndex = '10000'; */
     
     return showModal(modal);
 }
@@ -623,6 +623,7 @@ async function showWordDetailModal(word) {
         });
         
         modal.style.display = 'flex';
+        modal.style.opacity = '100';
     } catch (error) {
         console.error('Error showing word details:', error);
         alert('Erro ao exibir detalhes da palavra');

@@ -32,7 +32,7 @@
     justify-content: center;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    opacity: 0;
+    opacity: 100;
     transition: opacity var(--modal-animation-duration) var(--modal-animation-ease);
 }
 

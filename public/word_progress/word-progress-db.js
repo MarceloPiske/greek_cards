@@ -9,6 +9,24 @@ import { initVocabularyDB } from '../vocabulary/vocabulary-db.js';
 const STORE_USER_PROGRESS = 'wordProgress';
 
 /**
+ * Get current user ID or 'anonymous' if not logged in
+ */
+function getCurrentUserId() {
+    if (window.firebaseAuth?.isAuthenticated()) {
+        return window.firebaseAuth.getCurrentUser()?.uid || 'anonymous';
+    }
+    return 'anonymous';
+}
+
+/**
+ * Create composite key for user-specific data
+ */
+function createUserKey(wordId, userId = null) {
+    const uid = userId || getCurrentUserId();
+    return `${uid}_${wordId}`;
+}
+
+/**
  * Create or update word progress in IndexedDB
  */
 export async function saveWordProgressDB(wordId, progressData) {
@@ -17,16 +35,21 @@ export async function saveWordProgressDB(wordId, progressData) {
         const tx = db.transaction(STORE_USER_PROGRESS, 'readwrite');
         const store = tx.objectStore(STORE_USER_PROGRESS);
 
+        const userId = getCurrentUserId();
+        const userKey = createUserKey(wordId, userId);
+
         // Get current progress if it exists
         const currentProgress = await new Promise((resolve, reject) => {
-            const request = store.get(wordId);
+            const request = store.get(userKey);
             request.onsuccess = () => resolve(request.result);
             request.onerror = () => reject(request.error);
         });
 
         // Merge with existing data
         const newProgress = {
+            id: userKey,
             wordId,
+            userId,
             status: progressData.status || 'unread',
             reviewCount: progressData.reviewCount || (currentProgress?.reviewCount || 0),
             lastReviewed: progressData.lastReviewed || null,
@@ -62,11 +85,16 @@ export async function getWordProgressDB(wordId) {
         const tx = db.transaction(STORE_USER_PROGRESS, 'readonly');
         const store = tx.objectStore(STORE_USER_PROGRESS);
 
+        const userId = getCurrentUserId();
+        const userKey = createUserKey(wordId, userId);
+
         return new Promise((resolve, reject) => {
-            const request = store.get(wordId);
+            const request = store.get(userKey);
             request.onsuccess = () => {
                 const result = request.result || {
+                    id: userKey,
                     wordId,
+                    userId,
                     status: 'unread',
                     reviewCount: 0,
                     lastReviewed: null,
@@ -85,7 +113,7 @@ export async function getWordProgressDB(wordId) {
 }
 
 /**
- * Get all word progress records from IndexedDB
+ * Get all word progress records for current user from IndexedDB
  */
 export async function getAllWordProgressDB() {
     try {
@@ -93,13 +121,17 @@ export async function getAllWordProgressDB() {
         const tx = db.transaction(STORE_USER_PROGRESS, 'readonly');
         const store = tx.objectStore(STORE_USER_PROGRESS);
 
+        const userId = getCurrentUserId();
+
         return new Promise((resolve, reject) => {
             const request = store.getAll();
             request.onsuccess = () => {
-                const results = request.result || [];
+                const allResults = request.result || [];
+                // Filter by current user
+                const userResults = allResults.filter(item => item.userId === userId);
                 // Sort by most recently updated
-                results.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-                resolve(results);
+                userResults.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+                resolve(userResults);
             };
             request.onerror = () => reject(request.error);
         });
@@ -118,8 +150,11 @@ export async function deleteWordProgressDB(wordId) {
         const tx = db.transaction(STORE_USER_PROGRESS, 'readwrite');
         const store = tx.objectStore(STORE_USER_PROGRESS);
 
+        const userId = getCurrentUserId();
+        const userKey = createUserKey(wordId, userId);
+
         return new Promise((resolve, reject) => {
-            const request = store.delete(wordId);
+            const request = store.delete(userKey);
             request.onsuccess = () => resolve(true);
             request.onerror = () => reject(request.error);
         });

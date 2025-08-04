@@ -177,7 +177,6 @@ function addSkipToContentLink() {
         padding: 0.5rem 1rem;
         text-decoration: none;
         border-radius: 4px;
-        z-index: 10000;
         transition: top 0.3s;
     `;
     
@@ -492,7 +491,7 @@ function showSearchSuggestions() {
         border: 1px solid var(--shadow);
         border-radius: 8px;
         box-shadow: 0 8px 25px var(--shadow);
-        z-index: 1000;
+        /* z-index: 1000; */
         max-height: 200px;
         overflow-y: auto;
     `;

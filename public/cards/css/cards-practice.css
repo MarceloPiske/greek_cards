@@ -82,19 +82,23 @@
     transform: rotateY(0);
 }
 
-.practice-card.memorized::before{
+.practice-card.memorized .card-front::before,
+.practice-card.memorized .card-back::before{
     background-color: var(--status-memorized);
 }
 
-.practice-card.familiar::before{
+.practice-card.familiar .card-front::before,
+.practice-card.familiar .card-back::before{
     background-color: var(--status-familiar);
 }
 
-.practice-card.reading::before{
+.practice-card.reading .card-front::before,
+.practice-card.reading .card-back::before{
     background-color: var(--status-reading);
 }
 
-.practice-card.unread::before{
+.practice-card.unread .card-front::before,
+.practice-card.unread .card-back::before{
     background-color: var(--status-unread);
 }
 

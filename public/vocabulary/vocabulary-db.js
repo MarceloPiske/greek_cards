@@ -2,13 +2,15 @@
 export const STORE_SYSTEM_VOCABULARY = 'systemVocabulary';
 const STORE_WORD_PROGRESS = 'wordProgress';
 const STORE_WORD_LISTS = 'wordLists';
+const STORE_USER_FEEDBACK = 'userFeedback';
+const STORE_PROBLEM_REPORTS = 'problemReports';
 
 /**
  * Initialize the vocabulary database stores
  */
 export async function initVocabularyDB() {
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open("koineAppDB", 4);
+        const request = indexedDB.open("koineAppDB", 6);
         
         request.onupgradeneeded = (event) => {
             const db = event.target.result;
@@ -19,16 +21,28 @@ export async function initVocabularyDB() {
                 console.log('Created systemVocabulary store');
             }
             
-            // Ensure word progress store exists
+            // Ensure word progress store exists - now uses composite keys for user separation
             if (!db.objectStoreNames.contains(STORE_WORD_PROGRESS)) {
-                const progressStore = db.createObjectStore(STORE_WORD_PROGRESS, { keyPath: "wordId" });
+                const progressStore = db.createObjectStore(STORE_WORD_PROGRESS, { keyPath: "id" });
                 console.log('Created wordProgress store');
             }
             
-            // Ensure word lists store exists
+            // Ensure word lists store exists - now uses composite keys for user separation
             if (!db.objectStoreNames.contains(STORE_WORD_LISTS)) {
                 const listsStore = db.createObjectStore(STORE_WORD_LISTS, { keyPath: "id" });
                 console.log('Created wordLists store');
+            }
+
+            // Ensure user feedback store exists
+            if (!db.objectStoreNames.contains(STORE_USER_FEEDBACK)) {
+                const feedbackStore = db.createObjectStore(STORE_USER_FEEDBACK, { keyPath: "id", autoIncrement: true });
+                console.log('Created userFeedback store');
+            }
+
+            // Ensure problem reports store exists
+            if (!db.objectStoreNames.contains(STORE_PROBLEM_REPORTS)) {
+                const problemStore = db.createObjectStore(STORE_PROBLEM_REPORTS, { keyPath: "id", autoIncrement: true });
+                console.log('Created problemReports store');
             }
         };
         
@@ -36,7 +50,7 @@ export async function initVocabularyDB() {
             const db = event.target.result;
             
             // Verify all required stores exist
-            const requiredStores = [STORE_SYSTEM_VOCABULARY, STORE_WORD_PROGRESS, STORE_WORD_LISTS];
+            const requiredStores = [STORE_SYSTEM_VOCABULARY, STORE_WORD_PROGRESS, STORE_WORD_LISTS, STORE_USER_FEEDBACK, STORE_PROBLEM_REPORTS];
             const missingStores = requiredStores.filter(store => !db.objectStoreNames.contains(store));
             
             if (missingStores.length > 0) {
@@ -264,5 +278,57 @@ export async function getWordById(wordId) {
     } catch (error) {
         console.error('Error getting word by ID:', error);
         return null;
+    }
+}
+
+/**
+ * Save user feedback to IndexedDB
+ */
+export async function saveFeedbackDB(feedbackData) {
+    try {
+        const db = await initVocabularyDB();
+        const tx = db.transaction(STORE_USER_FEEDBACK, 'readwrite');
+        const store = tx.objectStore(STORE_USER_FEEDBACK);
+
+        const feedback = {
+            ...feedbackData,
+            createdAt: new Date().toISOString(),
+            synced: false
+        };
+
+        return new Promise((resolve, reject) => {
+            const request = store.add(feedback);
+            request.onsuccess = () => resolve(feedback);
+            request.onerror = () => reject(request.error);
+        });
+    } catch (error) {
+        console.error('Error saving feedback to DB:', error);
+        throw error;
+    }
+}
+
+/**
+ * Save problem report to IndexedDB
+ */
+export async function saveProblemReportDB(problemData) {
+    try {
+        const db = await initVocabularyDB();
+        const tx = db.transaction(STORE_PROBLEM_REPORTS, 'readwrite');
+        const store = tx.objectStore(STORE_PROBLEM_REPORTS);
+
+        const problem = {
+            ...problemData,
+            createdAt: new Date().toISOString(),
+            synced: false
+        };
+
+        return new Promise((resolve, reject) => {
+            const request = store.add(problem);
+            request.onsuccess = () => resolve(problem);
+            request.onerror = () => reject(request.error);
+        });
+    } catch (error) {
+        console.error('Error saving problem report to DB:', error);
+        throw error;
     }
 }

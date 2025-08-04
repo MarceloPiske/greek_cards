@@ -44,7 +44,7 @@ async function loadTrilhaData(moduleId) {
     try {
         UIManager.showLoadingState('Carregando conteúdo do módulo...');
         
-        const response = await fetch(`trilhas/trilhas/${moduleId}.json`);
+        const response = await fetch(`./trilhas/${moduleId}.json`);
         if (!response.ok) throw new Error(`Trilha não encontrada: ${moduleId}`);
         
         const data = await response.json();

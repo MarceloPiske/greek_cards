@@ -9,6 +9,24 @@ import { initVocabularyDB } from '../vocabulary/vocabulary-db.js';
 const STORE_WORD_LISTS = 'wordLists';
 
 /**
+ * Get current user ID or 'anonymous' if not logged in
+ */
+function getCurrentUserId() {
+    if (window.firebaseAuth?.isAuthenticated()) {
+        return window.firebaseAuth.getCurrentUser()?.uid || 'anonymous';
+    }
+    return 'anonymous';
+}
+
+/**
+ * Create composite key for user-specific data
+ */
+function createUserKey(listId, userId = null) {
+    const uid = userId || getCurrentUserId();
+    return `${uid}_${listId}`;
+}
+
+/**
  * Create a new word list in IndexedDB
  */
 export async function createWordListDB(listData) {
@@ -17,14 +35,21 @@ export async function createWordListDB(listData) {
         const tx = db.transaction(STORE_WORD_LISTS, 'readwrite');
         const store = tx.objectStore(STORE_WORD_LISTS);
 
+        const userId = getCurrentUserId();
+
         // Generate unique ID if not provided
         if (!listData.id) {
             listData.id = 'list_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
         }
 
+        const userKey = createUserKey(listData.id, userId);
+
         // Set timestamps and initial data
         const newList = {
             ...listData,
+            id: userKey,
+            originalId: listData.id,
+            userId,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             wordIds: listData.wordIds || [],
@@ -51,8 +76,11 @@ export async function getWordListDB(listId) {
         const tx = db.transaction(STORE_WORD_LISTS, 'readonly');
         const store = tx.objectStore(STORE_WORD_LISTS);
 
+        const userId = getCurrentUserId();
+        const userKey = createUserKey(listId, userId);
+
         return new Promise((resolve, reject) => {
-            const request = store.get(listId);
+            const request = store.get(userKey);
             request.onsuccess = () => resolve(request.result);
             request.onerror = () => reject(request.error);
         });
@@ -63,7 +91,7 @@ export async function getWordListDB(listId) {
 }
 
 /**
- * Get all word lists from IndexedDB
+ * Get all word lists for current user from IndexedDB
  */
 export async function getAllWordListsDB() {
     try {
@@ -71,13 +99,17 @@ export async function getAllWordListsDB() {
         const tx = db.transaction(STORE_WORD_LISTS, 'readonly');
         const store = tx.objectStore(STORE_WORD_LISTS);
 
+        const userId = getCurrentUserId();
+
         return new Promise((resolve, reject) => {
             const request = store.getAll();
             request.onsuccess = () => {
-                const lists = request.result || [];
+                const allLists = request.result || [];
+                // Filter by current user
+                const userLists = allLists.filter(list => list.userId === userId);
                 // Sort by creation date, newest first
-                lists.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                resolve(lists);
+                userLists.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                resolve(userLists);
             };
             request.onerror = () => reject(request.error);
         });
@@ -96,9 +128,12 @@ export async function updateWordListDB(listId, updateData) {
         const tx = db.transaction(STORE_WORD_LISTS, 'readwrite');
         const store = tx.objectStore(STORE_WORD_LISTS);
 
+        const userId = getCurrentUserId();
+        const userKey = createUserKey(listId, userId);
+
         // Get current list
         const currentList = await new Promise((resolve, reject) => {
-            const request = store.get(listId);
+            const request = store.get(userKey);
             request.onsuccess = () => resolve(request.result);
             request.onerror = () => reject(request.error);
         });
@@ -111,7 +146,9 @@ export async function updateWordListDB(listId, updateData) {
         const updatedList = {
             ...currentList,
             ...updateData,
-            id: listId, // Ensure ID doesn't change
+            id: userKey, // Ensure ID doesn't change
+            originalId: listId,
+            userId,
             updatedAt: new Date().toISOString(),
             syncedAt: null // Mark as needing sync
         };
@@ -136,8 +173,11 @@ export async function deleteWordListDB(listId) {
         const tx = db.transaction(STORE_WORD_LISTS, 'readwrite');
         const store = tx.objectStore(STORE_WORD_LISTS);
 
+        const userId = getCurrentUserId();
+        const userKey = createUserKey(listId, userId);
+
         return new Promise((resolve, reject) => {
-            const request = store.delete(listId);
+            const request = store.delete(userKey);
             request.onsuccess = () => resolve(true);
             request.onerror = () => reject(request.error);
         });
@@ -195,19 +235,12 @@ export async function removeWordsFromListDB(listId, wordIds) {
 }
 
 /**
- * Get word list count
+ * Get word list count for current user
  */
 export async function getWordListCountDB() {
     try {
-        const db = await initVocabularyDB();
-        const tx = db.transaction(STORE_WORD_LISTS, 'readonly');
-        const store = tx.objectStore(STORE_WORD_LISTS);
-
-        return new Promise((resolve, reject) => {
-            const request = store.count();
-            request.onsuccess = () => resolve(request.result);
-            request.onerror = () => reject(request.error);
-        });
+        const userLists = await getAllWordListsDB();
+        return userLists.length;
     } catch (error) {
         console.error('Error getting word list count from DB:', error);
         return 0;
@@ -315,7 +348,7 @@ export async function bulkUpdateWordListsDB(updates) {
         const promises = updates.map(({ listId, data }) => {
             return new Promise((resolve, reject) => {
                 // First get the current list
-                const getRequest = store.get(listId);
+                const getRequest = store.get(createUserKey(listId));
                 getRequest.onsuccess = () => {
                     const currentList = getRequest.result;
                     if (!currentList) {
@@ -327,7 +360,8 @@ export async function bulkUpdateWordListsDB(updates) {
                     const updatedList = {
                         ...currentList,
                         ...data,
-                        id: listId,
+                        id: createUserKey(listId),
+                        originalId: listId,
                         updatedAt: new Date().toISOString()
                     };
 

@@ -1,6 +1,6 @@
 function openKoineDB() {
     return new Promise((resolve, reject) => {
-      const request = indexedDB.open("koineAppDB", 4); // Updated to version 3 to match main app
+      const request = indexedDB.open("koineAppDB", 4);
   
       request.onupgradeneeded = (event) => {
         const db = event.target.result;

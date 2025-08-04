@@ -224,7 +224,7 @@
     padding: 1rem 1.5rem;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    z-index: 10000;
+    /* z-index: 10000; */
     font-weight: 500;
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);

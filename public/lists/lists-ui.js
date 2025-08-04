@@ -208,14 +208,14 @@ export class ListsUI {
                     </div>
                     
                     <div class="creation-options">
-                        <div class="option-card">
+                        <!--<div class="option-card">
                             <h4>Criar lista vazia</h4>
                             <p>Crie a lista agora e adicione palavras depois</p>
                             <button id="create-empty-list" class="btn primary">
                                 <span class="material-symbols-sharp">add</span>
                                 Criar Lista Vazia
                             </button>
-                        </div>
+                        </div>-->
                         <div class="option-card">
                             <h4>Criar e adicionar palavras</h4>
                             <p>Crie a lista e selecione palavras imediatamente</p>

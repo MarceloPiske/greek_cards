@@ -226,7 +226,7 @@ export class ListsApp {
             }
 
             // First check for local lists that don't exist in cloud and ask for confirmation
-            const { getListsNeedingSyncDB } = await import('./lists-sync.js');
+            const { getListsNeedingSyncDB } = await import('./lists-db.js');
             const { getAllWordListsFirestore } = await import('./lists-firestore.js');
             
             const localListsNeedingSync = await getListsNeedingSyncDB();

@@ -4,7 +4,7 @@
  */
 
 const DB_NAME = 'koineAppDB';
-const DB_VERSION = 5; // Increased version for schema changes
+const DB_VERSION = 6; // Increased version for schema changes
 const STORE_TRILHA_PROGRESS = 'progresso';
 const STORE_USER_DATA = 'userData';
 

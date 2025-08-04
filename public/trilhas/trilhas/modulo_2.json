@@ -35,7 +35,7 @@
         "nivel": "iniciante"
       },
       "conteudo": {
-        "html": "<h2>1.4 Exercício Virtual</h2> <div class=\"section\"> <iframe style=\" width: 100%; min-height: 37rem;\" src=\"src/html/exercicios/memorizacao/alfabeto/memorizar_alfabeto.html\" frameborder=\"0\"></iframe></div><h2>1.5 Exercícios Práticos</h2><div class=\"note\">Pratique em seu caderno!</div><div class=\"section\"><ol><li>Leia em voz alta cada letra e compare a pronúncia com a transliteração.</li><li>Escreva cada letra repetidamente para se familiarizar com o formato delas.</li><li>Transcreva palavras gregas simples, focando-se na identificação correta das letras e em seu som correspondente.</li></ol></div><p>No próximo capítulo, avançaremos para as letras maiúsculas e minúsculas, acentos e mais!</p>"
+        "html": "<h2>1.4 Exercício Virtual</h2> <div class=\"section\"> <iframe style=\" width: 100%; min-height: 37rem;\" src=\"../src/html/exercicios/memorizacao/alfabeto/memorizar_alfabeto.html\" frameborder=\"0\"></iframe></div><h2>1.5 Exercícios Práticos</h2><div class=\"note\">Pratique em seu caderno!</div><div class=\"section\"><ol><li>Leia em voz alta cada letra e compare a pronúncia com a transliteração.</li><li>Escreva cada letra repetidamente para se familiarizar com o formato delas.</li><li>Transcreva palavras gregas simples, focando-se na identificação correta das letras e em seu som correspondente.</li></ol></div><p>No próximo capítulo, avançaremos para as letras maiúsculas e minúsculas, acentos e mais!</p>"
       }
     }
   ]

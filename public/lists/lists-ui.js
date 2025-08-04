@@ -180,7 +180,8 @@ export class ListsUI {
 
     showNewListModal() {
         const maxLists = getMaxListsAllowed();
-        const planName = getCurrentUserPlan() === 'free' ? 'gratuito' : 'atual';
+        const currentPlan = getCurrentUserPlan();
+        const planDisplayName = currentPlan === 'free' ? 'gratuito' : currentPlan === 'cloud' ? 'nuvem' : 'inteligente';
         
         const modalHtml = `
             <div class="modal" id="new-list-modal">
@@ -191,8 +192,8 @@ export class ListsUI {
                     <div class="plan-info-box">
                         <span class="material-symbols-sharp">info</span>
                         <div>
-                            <strong>Plano ${planName}:</strong> Máximo ${maxLists} listas<br>
-                            <small>Mínimo 5 palavras por lista</small>
+                            <strong>Plano ${planDisplayName}:</strong> Máximo ${maxLists} listas<br>
+                            <small>Você pode criar uma lista vazia e adicionar palavras depois</small>
                         </div>
                     </div>
                     
@@ -206,9 +207,27 @@ export class ListsUI {
                         <textarea id="list-description" placeholder="Descreva o propósito desta lista"></textarea>
                     </div>
                     
+                    <div class="creation-options">
+                        <div class="option-card">
+                            <h4>Criar lista vazia</h4>
+                            <p>Crie a lista agora e adicione palavras depois</p>
+                            <button id="create-empty-list" class="btn primary">
+                                <span class="material-symbols-sharp">add</span>
+                                Criar Lista Vazia
+                            </button>
+                        </div>
+                        <div class="option-card">
+                            <h4>Criar e adicionar palavras</h4>
+                            <p>Crie a lista e selecione palavras imediatamente</p>
+                            <button id="create-and-add-words" class="btn secondary">
+                                <span class="material-symbols-sharp">playlist_add</span>
+                                Criar e Adicionar
+                            </button>
+                        </div>
+                    </div>
+                    
                     <div class="modal-actions">
                         <button id="cancel-new-list" class="btn">Cancelar</button>
-                        <button id="create-list" class="btn primary">Criar Lista</button>
                     </div>
                 </div>
             </div>

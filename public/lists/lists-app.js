@@ -75,8 +75,11 @@ export class ListsApp {
             }
 
             // Check list limit before creating
-            if (this.currentLists.length >= 5) {
-                this.ui.showError('Você atingiu o limite máximo de 5 listas. Exclua uma lista existente para criar uma nova.');
+            const maxAllowed = window.planManager.getMaxListsAllowed();
+            if (this.currentLists.length >= maxAllowed) {
+                const currentPlan = window.planManager.getCurrentUserPlan();
+                const planName = currentPlan === 'free' ? 'gratuito' : currentPlan === 'cloud' ? 'nuvem' : 'inteligente';
+                this.ui.showError(`Você atingiu o limite máximo de ${maxAllowed} listas do plano ${planName}. Exclua uma lista existente para criar uma nova.`);
                 return false;
             }
 
@@ -89,12 +92,52 @@ export class ListsApp {
             });
 
             this.ui.hideLoading();
-            this.ui.showSuccess('Lista criada com sucesso!');
+            this.ui.showSuccess('Lista criada com sucesso! Você pode adicionar palavras agora.');
             await this.loadLists();
             return true;
 
         } catch (error) {
             console.error('Error creating list:', error);
+            this.ui.hideLoading();
+            this.ui.showError('Erro ao criar lista: ' + error.message);
+            return false;
+        }
+    }
+
+    async createListAndAddWords(name, description) {
+        try {
+            if (!name.trim()) {
+                this.ui.showError('Por favor, insira um nome para a lista');
+                return false;
+            }
+
+            // Check list limit before creating
+            const maxAllowed = window.planManager.getMaxListsAllowed();
+            if (this.currentLists.length >= maxAllowed) {
+                const currentPlan = window.planManager.getCurrentUserPlan();
+                const planName = currentPlan === 'free' ? 'gratuito' : currentPlan === 'cloud' ? 'nuvem' : 'inteligente';
+                this.ui.showError(`Você atingiu o limite máximo de ${maxAllowed} listas do plano ${planName}. Exclua uma lista existente para criar uma nova.`);
+                return false;
+            }
+
+            this.ui.showLoading('Criando lista...');
+
+            const newList = await createWordList({ 
+                name: name.trim(), 
+                description: description.trim(), 
+                wordIds: [] 
+            });
+
+            this.ui.hideLoading();
+            await this.loadLists();
+            
+            // Immediately open add words modal
+            await this.addWordsToList(newList.originalId || newList.id);
+            
+            return newList.id;
+
+        } catch (error) {
+            console.error('Error creating list and adding words:', error);
             this.ui.hideLoading();
             this.ui.showError('Erro ao criar lista: ' + error.message);
             return false;
@@ -132,12 +175,17 @@ export class ListsApp {
         try {
             this.ui.showLoading('Excluindo lista...');
 
-            await deleteWordList(listId);
-
-            this.ui.hideLoading();
-            this.ui.showSuccess('Lista excluída com sucesso!');
-            await this.loadLists();
-            return true;
+            console.log(`Attempting to delete list: ${listId}`);
+            const result = await deleteWordList(listId);
+            
+            if (result) {
+                this.ui.hideLoading();
+                this.ui.showSuccess('Lista excluída com sucesso!');
+                await this.loadLists();
+                return true;
+            } else {
+                throw new Error('Falha ao excluir lista');
+            }
 
         } catch (error) {
             console.error('Error deleting list:', error);
@@ -175,6 +223,31 @@ export class ListsApp {
             if (!await canSyncToCloud()) {
                 this.ui.showError('Sincronização na nuvem não disponível. Faça upgrade para plano Premium.');
                 return false;
+            }
+
+            // First check for local lists that don't exist in cloud and ask for confirmation
+            const { getListsNeedingSyncDB } = await import('./lists-sync.js');
+            const { getAllWordListsFirestore } = await import('./lists-firestore.js');
+            
+            const localListsNeedingSync = await getListsNeedingSyncDB();
+            const cloudLists = await getAllWordListsFirestore();
+            const cloudListIds = new Set(cloudLists.map(list => list.id));
+            
+            const newLocalLists = localListsNeedingSync.filter(list => {
+                const originalId = list.originalId || list.id.split('_').slice(1).join('_');
+                return !cloudListIds.has(originalId);
+            });
+            
+            if (newLocalLists.length > 0) {
+                const confirmUpload = confirm(
+                    `Você tem ${newLocalLists.length} lista(s) local(is) que não existem na nuvem:\n\n` +
+                    newLocalLists.map(list => `- ${list.name}`).join('\n') +
+                    `\n\nDeseja enviá-las para a nuvem?`
+                );
+                
+                if (!confirmUpload) {
+                    return false;
+                }
             }
 
             this.ui.showLoading('Sincronizando todas as listas...');

@@ -382,17 +382,34 @@ export class ListsEventHandlers {
         const modal = this.app.ui.showNewListModal();
         
         const closeBtn = modal.querySelector('.close-modal');
-        const cancelBtn = document.getElementById('cancel-new-list');
-        const createBtn = document.getElementById('create-list');
+        const cancelBtn = modal.querySelector('#cancel-new-list');
+        const createEmptyBtn = modal.querySelector('#create-empty-list');
+        const createAndAddBtn = modal.querySelector('#create-and-add-words');
 
         closeBtn.addEventListener('click', () => modal.remove());
         cancelBtn.addEventListener('click', () => modal.remove());
-        createBtn.addEventListener('click', async () => {
+        
+        createEmptyBtn.addEventListener('click', async () => {
             const name = document.getElementById('list-name').value;
             const description = document.getElementById('list-description').value;
             
             const success = await this.app.createList(name, description);
             if (success) {
+                modal.remove();
+            }
+        });
+        
+        createAndAddBtn.addEventListener('click', async () => {
+            const name = document.getElementById('list-name').value;
+            const description = document.getElementById('list-description').value;
+            
+            if (!name.trim()) {
+                alert('Por favor, insira um nome para a lista');
+                return;
+            }
+            
+            const listId = await this.app.createListAndAddWords(name, description);
+            if (listId) {
                 modal.remove();
             }
         });

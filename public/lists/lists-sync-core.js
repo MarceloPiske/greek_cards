@@ -34,18 +34,13 @@ import { canSyncToCloud, getCurrentUserPlan, getMaxListsAllowed } from '../plan-
  */
 export async function createWordList(listData) {
     try {
-        // Validate minimum word count
-        const wordCount = listData.wordIds ? listData.wordIds.length : 0;
-        if (wordCount < 5) {
-            throw new Error('Uma lista deve ter pelo menos 5 palavras para ser criada.');
-        }
-
         // Check if user has reached the limit based on their plan
         const currentCount = await getWordListCountDB();
         const maxAllowed = getMaxListsAllowed();
         
         if (currentCount >= maxAllowed) {
-            const planName = getCurrentUserPlan() === 'free' ? 'gratuito' : 'atual';
+            const currentPlan = getCurrentUserPlan();
+            const planName = currentPlan === 'free' ? 'gratuito' : currentPlan === 'cloud' ? 'nuvem' : 'inteligente';
             throw new Error(`Você atingiu o limite máximo de ${maxAllowed} listas do plano ${planName}. Exclua uma lista existente para criar uma nova.`);
         }
 
@@ -206,6 +201,9 @@ export async function addWordsToList(listId, wordIds) {
     try {
         // Add locally first
         const updatedList = await addWordsToListDB(listId, wordIds);
+        
+        // Check if list now meets minimum requirements (5 words) for cloud sync
+        const totalWords = updatedList.wordIds ? updatedList.wordIds.length : 0;
         
         // Sync to cloud
         if (await canSyncToCloud() && navigator.onLine) {

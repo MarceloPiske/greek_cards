@@ -3,8 +3,8 @@
  */
 
 // Import unified word progress function from sync system
-import { saveWordProgress } from '../word_progress/word-progress-sync.js';
-import { getWordList } from '../lists/lists-sync.js';
+import { saveWordProgress } from '../word_progress/word-progress-sync.js?v=1.1';
+import { getWordList } from '../lists/lists-sync.js?v=1.1';
 
 // Word status constants
 const WordStatus = {
@@ -93,7 +93,7 @@ async function getWordListWithWords(listId) {
             return { ...list, words: [] };
         }
 
-        const { initVocabularyDB } = await import('../vocabulary/vocabulary-db.js');
+        const { initVocabularyDB } = await import('../vocabulary/vocabulary-db.js?v=1.1');
         const db = await initVocabularyDB();
         const tx = db.transaction('systemVocabulary', 'readonly');
         const store = tx.objectStore('systemVocabulary');
@@ -109,7 +109,7 @@ async function getWordListWithWords(listId) {
             const word = allWords.find(w => w.ID === wordId);
             if (word) {
                 try {
-                    const { getWordProgress } = await import('../word_progress/word-progress-sync.js');
+                    const { getWordProgress } = await import('../word_progress/word-progress-sync.js?v=1.1');
                     const progress = await getWordProgress(word.ID);
                     words.push({
                         ...word,

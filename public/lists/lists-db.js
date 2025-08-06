@@ -3,7 +3,7 @@
  * Handles all CRUD operations for word lists with IndexedDB
  */
 
-import { initVocabularyDB } from '../vocabulary/vocabulary-db.js';
+import { initVocabularyDB } from '../vocabulary/vocabulary-db.js?v=1.1';
 
 // Database store for word lists
 const STORE_WORD_LISTS = 'wordLists';

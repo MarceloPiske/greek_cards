@@ -86,7 +86,7 @@ export async function createSubscription(productKey, userEmail) {
 export async function handlePaymentSuccess(paymentData) {
     try {
         // Update user plan in Firebase
-        const { updateUserPlan } = await import('./plan-manager.js');
+        const { updateUserPlan } = await import('./plan-manager.js?v=1.1');
         const user = window.firebaseAuth?.getCurrentUser();
         
         if (user && paymentData.planId) {

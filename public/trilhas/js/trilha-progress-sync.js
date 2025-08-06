@@ -14,7 +14,7 @@ import {
     loadUserDataLocal,
     exportUserData,
     importUserData
-} from './trilha-progress-indexeddb.js';
+} from './trilha-progress-indexeddb.js?v=1.1';
 
 import { 
     saveTrilhaProgressCloud, 
@@ -26,7 +26,7 @@ import {
     mergeTrilhaProgressData,
     backupUserDataCloud,
     downloadUserDataFromCloud
-} from './trilha-progress-firestore.js';
+} from './trilha-progress-firestore.js?v=1.1';
 
 // Sync status tracking
 let syncInProgress = false;

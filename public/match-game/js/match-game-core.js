@@ -3,8 +3,8 @@
  * Handles game state, word processing, scoring, and progress tracking
  */
 
-import { getWordById } from '../../vocabulary/vocabulary-db.js';
-import { saveWordProgress, getWordProgress } from '../../word_progress/word-progress-sync.js';
+import { getWordById } from '../../vocabulary/vocabulary-db.js?v=1.1';
+import { saveWordProgress, getWordProgress } from '../../word_progress/word-progress-sync.js?v=1.1';
 
 export class MatchGameCore {
     constructor() {

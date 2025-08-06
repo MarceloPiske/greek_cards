@@ -3,8 +3,8 @@
  * Coordinates between core functionality and UI management
  */
 
-import { MatchGameMultiplayerCore } from './match-game-multiplayer-core.js';
-import { MatchGameMultiplayerUI } from './match-game-multiplayer-ui.js';
+import { MatchGameMultiplayerCore } from './match-game-multiplayer-core.js?v=1.1';
+import { MatchGameMultiplayerUI } from './match-game-multiplayer-ui.js?v=1.1';
 
 class MatchGameMultiplayer {
     constructor(gameInstance) {

@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocabulário - Koiné</title>
     <link rel="icon" href="../img/icon.svg" type="image/png">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="./css/geral.css">
-    <link rel="stylesheet" href="../cards/css/cards-base.css">
-    <link rel="stylesheet" href="../cards/css/cards-components.css">
-    <link rel="stylesheet" href="../cards/css/cards-modals.css">
+    
+    <link rel="stylesheet" href="../modals.css?v=1.1">
+    <link rel="stylesheet" href="../styles.css?v=1.1">
+    <link rel="stylesheet" href="./css/geral.css?v=1.1">
+    <link rel="stylesheet" href="../cards/css/cards-base.css?v=1.1">
+    <link rel="stylesheet" href="../cards/css/cards-components.css?v=1.1">
+    <link rel="stylesheet" href="../cards/css/cards-modals.css?v=1.1">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
   <style>
-    /* Coloque este código em um arquivo .css e o remova do JavaScript */
+    /* Coloque este código em um arquivo .css?v=1.1 e o remova do JavaScript */
 
 .word-actions {
     display: flex;
@@ -373,12 +375,12 @@
         </div>
     </div>
 
-    <script type="module" src="../firebase-auth.js"></script>
-    <script type="module" src="./vocabulary-loader.js"></script>
+    <script type="module" src="../firebase-auth.js?v=1.1"></script>
+    <script type="module" src="./vocabulary-loader.js?v=1.1"></script>
     <script type="module">
-        import { VocabularyApp } from './vocabulary-app.js';
-        import { VocabularyEventHandlers } from './vocabulary-events.js';
-        import { initializeVocabularySystem } from './vocabulary-loader.js';
+        import { VocabularyApp } from './vocabulary-app.js?v=1.1';
+        import { VocabularyEventHandlers } from './vocabulary-events.js?v=1.1';
+        import { initializeVocabularySystem } from './vocabulary-loader.js?v=1.1';
 
         // Initialize the vocabulary system
         document.addEventListener('DOMContentLoaded', async () => {

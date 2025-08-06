@@ -2,7 +2,7 @@
  * Game Data Manager - Handles game state and statistics
  */
 
-import { initDB } from '../indexedDB.js';
+import { initDB } from '../indexedDB.js?v=1.1';
 
 const GAME_PROGRESS_STORE = 'gameProgress';
 
@@ -124,7 +124,7 @@ async function syncGameDataToCloud(gameData) {
         const user = window.firebaseAuth.getCurrentUser();
         if (!user || !window.firebaseAuth.db) return;
         
-        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const docRef = doc(window.firebaseAuth.db, 'users', user.uid, 'gameData', gameData.id);
         await setDoc(docRef, {
@@ -147,7 +147,7 @@ async function shouldSyncToCloud() {
     }
     
     try {
-        const { canSyncToCloud } = await import('../plan-manager.js');
+        const { canSyncToCloud } = await import('../plan-manager.js?v=1.1');
         return canSyncToCloud();
     } catch (error) {
         console.warn('Could not check plan permissions:', error);

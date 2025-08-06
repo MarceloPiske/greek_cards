@@ -2,7 +2,7 @@
  * Lists Manager UI Components
  */
 
-import { getCurrentUserPlan, getMaxListsAllowed } from '../../plan-manager.js';
+import { getCurrentUserPlan, getMaxListsAllowed } from '../../plan-manager.js?v=1.1';
 
 export class ListsUI {
     constructor() {

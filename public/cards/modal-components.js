@@ -2,8 +2,8 @@
  * Reusable modal components
  */
 
-import { WordCategories } from '../vocabulary/vocabulary-app.js';
-import { getStatusLabel } from './app.js';
+import { WordCategories } from '../vocabulary/vocabulary-app.js?v=1.1';
+import { getStatusLabel } from './app.js?v=1.1';
 
 export function createFormGroup(labelText, inputType, inputId, placeholder = '', value = '') {
     const inputElement = inputType === 'textarea' 

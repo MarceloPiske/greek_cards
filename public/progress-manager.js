@@ -3,7 +3,7 @@
  * Handles local (IndexedDB) and cloud (Firestore) progress tracking
  */
 
-import { canSyncToCloud } from './plan-manager.js';
+import { canSyncToCloud } from './plan-manager.js?v=1.1';
 
 // Database configuration
 const PROGRESS_DB_NAME = 'grekoine-db';
@@ -118,7 +118,7 @@ async function shouldSyncToCloud() {
     
     try {
         // Import plan manager to check if user can sync to cloud
-        const { canSyncToCloud } = await import('./plan-manager.js');
+        const { canSyncToCloud } = await import('./plan-manager.js?v=1.1');
         return canSyncToCloud(); // This now checks for 'cloud' or 'ai' plans
     } catch (error) {
         console.warn('Could not check plan permissions:', error);
@@ -139,7 +139,7 @@ export async function saveProgressCloud(moduleId, progressData) {
         const user = window.firebaseAuth.getCurrentUser();
         if (!user || !window.firebaseAuth.db) return null;
         
-        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const progressRecord = {
             modulo_id: moduleId,
@@ -175,7 +175,7 @@ export async function loadProgressCloud(moduleId) {
         const user = window.firebaseAuth.getCurrentUser();
         if (!user || !window.firebaseAuth.db) return null;
         
-        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const docRef = doc(window.firebaseAuth.db, 'users', user.uid, 'progresso', moduleId);
         const docSnap = await getDoc(docRef);

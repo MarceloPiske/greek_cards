@@ -2,15 +2,15 @@
  * Trilha Viewer Core Logic
  */
 
-import * as UIManager from './trilha-viewer-ui.js';
-import * as InteractionManager from './trilha-viewer-interactions.js';
+import * as UIManager from './trilha-viewer-ui.js?v=1.1';
+import * as InteractionManager from './trilha-viewer-interactions.js?v=1.1';
 
 // Import new sync system
 import { 
     loadTrilhaProgress, 
     markBlockCompleted as markBlockCompletedSync, 
     addStudyTime as addStudyTimeSync 
-} from './trilha-progress-sync.js';
+} from './trilha-progress-sync.js?v=1.1';
 
 // --- STATE MANAGEMENT ---
 let currentActivityIndex = 0;

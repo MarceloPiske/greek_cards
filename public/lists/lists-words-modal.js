@@ -3,7 +3,7 @@
  * Handles the creation and rendering of modals for adding/removing words
  */
 
-import { getSystemVocabulary } from '../../vocabulary/vocabulary-db.js';
+import { getSystemVocabulary } from '../../vocabulary/vocabulary-db.js?v=1.1';
 
 /**
  * Render the add words modal with current data

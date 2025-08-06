@@ -2,9 +2,9 @@
  * Enhanced Trilhas Application
  */
 
-import { carregarTrilhasDisponiveis } from './trilha-loader.js';
+import { carregarTrilhasDisponiveis } from './trilha-loader.js?v=1.1';
 // Import new sync system
-import { initTrilhaProgressSync, getSyncStatus } from './js/trilha-progress-sync.js';
+import { initTrilhaProgressSync, getSyncStatus } from './js/trilha-progress-sync.js?v=1.1';
 
 // Initialize progress manager and enhanced features
 document.addEventListener('DOMContentLoaded', async () => {
@@ -732,7 +732,7 @@ function trackPerformanceMetrics() {
  */
 
 function performSearch(query) {
-    // Implementation delegated to trilha-ui.js
+    // Implementation delegated to trilha-ui.js?v=1.1
     if (window.performEnhancedSearch) {
         window.performEnhancedSearch(query);
     }
@@ -763,7 +763,7 @@ function setupModalCloseHandlers(modal) {
 }
 
 function showToast(message, type = 'info', duration = 3000) {
-    // Implementation delegated to trilha-ui.js
+    // Implementation delegated to trilha-ui.js?v=1.1
     if (window.trilhaUI && window.trilhaUI.showToast) {
         window.trilhaUI.showToast(message, type, duration);
     } else {

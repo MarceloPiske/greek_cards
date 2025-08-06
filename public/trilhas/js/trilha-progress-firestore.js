@@ -117,7 +117,7 @@ export async function saveTrilhaProgressCloud(moduleId, progressData) {
 async function saveTrilhaProgressCloudDirect(moduleId, progressData) {
     try {
         const user = window.firebaseAuth.getCurrentUser();
-        const { doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const progressRecord = {
             modulo_id: moduleId,
@@ -158,7 +158,7 @@ export async function loadTrilhaProgressCloud(moduleId) {
     
     try {
         const user = window.firebaseAuth.getCurrentUser();
-        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const docRef = doc(window.firebaseAuth.db, 'users', user.uid, 'trilhaProgress', moduleId);
         const docSnap = await getDoc(docRef);
@@ -186,7 +186,7 @@ export async function getAllTrilhaProgressCloud() {
     
     try {
         const user = window.firebaseAuth.getCurrentUser();
-        const { collection, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { collection, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const collectionRef = collection(window.firebaseAuth.db, 'users', user.uid, 'trilhaProgress');
         const querySnapshot = await getDocs(collectionRef);
@@ -223,7 +223,7 @@ export async function deleteTrilhaProgressCloud(moduleId) {
 async function deleteTrilhaProgressCloudDirect(moduleId) {
     try {
         const user = window.firebaseAuth.getCurrentUser();
-        const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const docRef = doc(window.firebaseAuth.db, 'users', user.uid, 'trilhaProgress', moduleId);
         await deleteDoc(docRef);
@@ -291,7 +291,7 @@ export async function backupUserDataCloud(userData) {
 async function backupUserDataCloudDirect(userData) {
     try {
         const user = window.firebaseAuth.getCurrentUser();
-        const { doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const backupRecord = {
             ...userData,
@@ -323,7 +323,7 @@ export async function downloadUserDataFromCloud() {
     
     try {
         const user = window.firebaseAuth.getCurrentUser();
-        const { doc, getDoc, collection, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, getDoc, collection, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         // Get backup data
         const backupRef = doc(window.firebaseAuth.db, 'users', user.uid, 'backups', 'userData');

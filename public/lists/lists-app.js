@@ -10,12 +10,12 @@ import {
     forceFullSync,
     removeWordsFromList,
     getWordList
-} from './lists-sync.js';
+} from './lists-sync.js?v=1.1';
 
-import { canSyncToCloud } from '../../plan-manager.js';
-import { ListsUI } from './lists-ui.js';
-import { ListsEventHandlers } from './lists-events.js';
-import { showAddWordsModal } from './lists-words.js';
+import { canSyncToCloud } from '../../plan-manager.js?v=1.1';
+import { ListsUI } from './lists-ui.js?v=1.1';
+import { ListsEventHandlers } from './lists-events.js?v=1.1';
+import { showAddWordsModal } from './lists-words.js?v=1.1';
 
 export class ListsApp {
     constructor() {
@@ -28,9 +28,14 @@ export class ListsApp {
 
     async initialize() {
         try {
-            // Initialize Firebase Authentication
+            // Initialize Firebase Authentication - don't block on this
             if (typeof window.firebaseAuth !== 'undefined') {
-                await window.firebaseAuth.initAuth();
+                // Start auth initialization in background
+                window.firebaseAuth.initAuth().then(() => {
+                    console.log('Firebase auth initialized in background');
+                }).catch(error => {
+                    console.warn('Firebase auth initialization failed:', error);
+                });
             }
             
             this.eventHandlers.setupEventListeners();
@@ -41,6 +46,7 @@ export class ListsApp {
                 this.loadLists();
             };
             
+            // Load lists immediately from local storage
             await this.loadLists();
             
         } catch (error) {
@@ -53,6 +59,7 @@ export class ListsApp {
         try {
             this.ui.showLoading('Carregando listas...');
             
+            // Get lists from local storage first - this should be fast
             const lists = await getAllWordLists();
             this.currentLists = lists;
             this.filteredLists = lists;
@@ -226,11 +233,18 @@ export class ListsApp {
             }
 
             // First check for local lists that don't exist in cloud and ask for confirmation
-            const { getListsNeedingSyncDB } = await import('./lists-db.js');
-            const { getAllWordListsFirestore } = await import('./lists-firestore.js');
+            const { getListsNeedingSyncDB } = await import('./lists-sync.js?v=1.1');
+            const { getAllWordListsFirestore } = await import('./lists-firestore.js?v=1.1');
             
-            const localListsNeedingSync = await getListsNeedingSyncDB();
-            const cloudLists = await getAllWordListsFirestore();
+            // Use timeout to prevent blocking
+            const [localListsNeedingSync, cloudLists] = await Promise.race([
+                Promise.all([
+                    getListsNeedingSyncDB(),
+                    getAllWordListsFirestore()
+                ]),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 10000))
+            ]);
+            
             const cloudListIds = new Set(cloudLists.map(list => list.id));
             
             const newLocalLists = localListsNeedingSync.filter(list => {
@@ -252,7 +266,11 @@ export class ListsApp {
 
             this.ui.showLoading('Sincronizando todas as listas...');
 
-            const result = await forceFullSync();
+            // Use timeout for sync operation
+            const result = await Promise.race([
+                forceFullSync(),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout na sincronização')), 30000))
+            ]);
             
             this.ui.hideLoading();
             this.ui.showSuccess(`Sincronização completa: ${result.uploaded} enviadas, ${result.downloaded} baixadas.`);
@@ -264,7 +282,12 @@ export class ListsApp {
         } catch (error) {
             console.error('Error syncing all lists:', error);
             this.ui.hideLoading();
-            this.ui.showError('Erro na sincronização: ' + error.message);
+            
+            if (error.message === 'Timeout na sincronização') {
+                this.ui.showError('Sincronização está demorando muito. Ela continuará em background.');
+            } else {
+                this.ui.showError('Erro na sincronização: ' + error.message);
+            }
             return false;
         }
     }
@@ -308,8 +331,8 @@ export class ListsApp {
     }
 
     async getListWithWords(listId) {
-        const { getWordList } = await import('./lists-sync.js');
-        const { initVocabularyDB } = await import('../../vocabulary/vocabulary-db.js');
+        const { getWordList } = await import('./lists-sync.js?v=1.1');
+        const { initVocabularyDB } = await import('../../vocabulary/vocabulary-db.js?v=1.1');
         
         const list = await getWordList(listId);
         if (!list) {

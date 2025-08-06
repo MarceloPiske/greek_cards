@@ -37,7 +37,8 @@
 }
 
 .modal.show {
-    opacity: 1;
+    opacity: 100;
+    display: flex;
 }
 
 .modal-content {

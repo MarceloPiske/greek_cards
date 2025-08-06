@@ -15,7 +15,7 @@ import {
     wordListExistsDB,
     markListAsSyncedDB,
     
-} from './lists-db.js';
+} from './lists-db.js?v=1.1';
 
 import {
     createWordListFirestore,
@@ -25,9 +25,9 @@ import {
     addWordsToListFirestore,
     removeWordsFromListFirestore,
     performFullListSync
-} from './lists-firestore.js';
+} from './lists-firestore.js?v=1.1';
 
-import { canSyncToCloud, getCurrentUserPlan, getMaxListsAllowed } from '../plan-manager.js';
+import { canSyncToCloud, getCurrentUserPlan, getMaxListsAllowed } from '../plan-manager.js?v=1.1';
 
 /**
  * Unified create word list (handles both local and cloud)
@@ -44,25 +44,20 @@ export async function createWordList(listData) {
             throw new Error(`Você atingiu o limite máximo de ${maxAllowed} listas do plano ${planName}. Exclua uma lista existente para criar uma nova.`);
         }
 
-        // Always create locally first
+        // Always create locally first - this should be fast
         const localList = await createWordListDB(listData);
         
-        // Try to sync to cloud if user has cloud access
+        // Try to sync to cloud in background (non-blocking)
         if (await canSyncToCloud() && navigator.onLine) {
-            try {
-                const cloudList = await createWordListFirestore(localList);
-                // Update local with sync timestamp
-                await markListAsSyncedDB(localList.id, cloudList.syncedAt);
-                
-                console.log(`Word list created and synced: ${localList.id}`);
-                return { ...localList, syncedAt: cloudList.syncedAt };
-            } catch (error) {
-                console.warn('Cloud sync failed during creation:', error);
-            }
+            // Don't await this - let it run in background
+            syncToCloudInBackground(localList).catch(error => {
+                console.warn('Background cloud sync failed during creation:', error);
+            });
         } else if (await canSyncToCloud() && !navigator.onLine) {
             console.log('List created offline - will sync when connection is restored');
         }
         
+        // Return immediately with local data
         return localList;
     } catch (error) {
         console.error('Error creating word list:', error);
@@ -71,53 +66,86 @@ export async function createWordList(listData) {
 }
 
 /**
+ * Background sync helper function
+ */
+async function syncToCloudInBackground(localList) {
+    try {
+        const cloudList = await Promise.race([
+            createWordListFirestore(localList),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000)) // 5 second timeout
+        ]);
+        
+        // Update local with sync timestamp
+        await markListAsSyncedDB(localList.id, cloudList.syncedAt);
+        console.log(`Word list synced to cloud in background: ${localList.id}`);
+    } catch (error) {
+        console.warn('Background sync failed:', error);
+    }
+}
+
+/**
  * Unified get word list (with sync check)
  */
 export async function getWordList(listId) {
     try {
-        // Get from local storage first
+        // Get from local storage first - this should be fast
         const localList = await getWordListDB(listId);
         
-        // If cloud access available and online, check for newer version
+        // If cloud access available and online, check for newer version in background
         if (await canSyncToCloud() && navigator.onLine && localList) {
-            try {
-                const cloudList = await getWordListFirestore(listId);
-                
-                if (cloudList) {
-                    const localDate = new Date(localList.updatedAt || localList.createdAt);
-                    const cloudDate = new Date(cloudList.updatedAt || cloudList.createdAt);
-                    
-                    // Use most recent version
-                    if (cloudDate > localDate) {
-                        // Cloud is newer, update local
-                        await updateWordListDB(listId, cloudList);
-                        console.log(`Updated local list from cloud: ${listId}`);
-                        return cloudList;
-                    } else if (localDate > cloudDate) {
-                        // Local is newer, update cloud
-                        try {
-                            await updateWordListFirestore(listId, {
-                                name: localList.name,
-                                description: localList.description,
-                                wordIds: localList.wordIds,
-                                updatedAt: localList.updatedAt
-                            });
-                            await markListAsSyncedDB(listId);
-                            console.log(`Updated cloud list from local: ${listId}`);
-                        } catch (error) {
-                            console.warn('Failed to update cloud with local changes:', error);
-                        }
-                    }
-                }
-            } catch (error) {
-                console.warn('Could not check cloud version:', error);
-            }
+            // Don't await this - let it run in background
+            checkCloudVersionInBackground(listId, localList).catch(error => {
+                console.warn('Background cloud check failed:', error);
+            });
         }
         
+        // Return local data immediately
         return localList;
     } catch (error) {
         console.error('Error getting word list:', error);
         throw error;
+    }
+}
+
+/**
+ * Background cloud version check
+ */
+async function checkCloudVersionInBackground(listId, localList) {
+    try {
+        const cloudList = await Promise.race([
+            getWordListFirestore(listId),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 3000)) // 3 second timeout
+        ]);
+        
+        if (cloudList) {
+            const localDate = new Date(localList.updatedAt || localList.createdAt);
+            const cloudDate = new Date(cloudList.updatedAt || cloudList.createdAt);
+            
+            // Use most recent version
+            if (cloudDate > localDate) {
+                // Cloud is newer, update local
+                await updateWordListDB(listId, cloudList);
+                console.log(`Updated local list from cloud in background: ${listId}`);
+            } else if (localDate > cloudDate) {
+                // Local is newer, update cloud
+                try {
+                    await updateWordListFirestore(listId, {
+                        name: localList.name,
+                        description: localList.description,
+                        wordIds: localList.wordIds,
+                        updatedAt: localList.updatedAt
+                    });
+                    await markListAsSyncedDB(listId);
+                    console.log(`Updated cloud list from local in background: ${listId}`);
+                } catch (error) {
+                    console.warn('Failed to update cloud with local changes:', error);
+                }
+            }
+        }
+    } catch (error) {
+        if (error.message !== 'Timeout') {
+            console.warn('Could not check cloud version:', error);
+        }
     }
 }
 
@@ -140,26 +168,39 @@ export async function getAllWordLists() {
  */
 export async function updateWordList(listId, updateData) {
     try {
-        // Update locally first
+        // Update locally first - this should be fast
         const updatedList = await updateWordListDB(listId, updateData);
         
-        // Try to sync to cloud
+        // Try to sync to cloud in background
         if (await canSyncToCloud() && navigator.onLine) {
-            try {
-                const cloudList = await updateWordListFirestore(listId, updateData);
-                await markListAsSyncedDB(listId, cloudList.syncedAt);
-                
-                console.log(`Word list updated and synced: ${listId}`);
-                return { ...updatedList, syncedAt: cloudList.syncedAt };
-            } catch (error) {
-                console.warn('Cloud sync failed during update:', error);
-            }
+            // Don't await this - let it run in background
+            updateCloudInBackground(listId, updateData, updatedList).catch(error => {
+                console.warn('Background cloud update failed:', error);
+            });
         }
         
+        // Return local data immediately
         return updatedList;
     } catch (error) {
         console.error('Error updating word list:', error);
         throw new Error('Erro ao atualizar lista: ' + error.message);
+    }
+}
+
+/**
+ * Background cloud update helper
+ */
+async function updateCloudInBackground(listId, updateData, updatedList) {
+    try {
+        const cloudList = await Promise.race([
+            updateWordListFirestore(listId, updateData),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000)) // 5 second timeout
+        ]);
+        
+        await markListAsSyncedDB(listId, cloudList.syncedAt);
+        console.log(`Word list updated in cloud in background: ${listId}`);
+    } catch (error) {
+        console.warn('Background update failed:', error);
     }
 }
 
@@ -170,23 +211,21 @@ export async function deleteWordList(listId) {
     try {
         console.log(`Starting deletion of word list: ${listId}`);
         
-        // Delete from cloud first if possible (to avoid orphaned cloud data)
-        if (await canSyncToCloud() && navigator.onLine) {
-            try {
-                await deleteWordListFirestore(listId);
-                console.log(`Word list deleted from cloud: ${listId}`);
-            } catch (error) {
-                console.warn('Cloud deletion failed:', error);
-                // Continue with local deletion anyway
-            }
-        }
-        
-        // Delete locally
+        // Delete locally first - this should be fast
         const localDeleted = await deleteWordListDB(listId);
         if (localDeleted) {
             console.log(`Word list deleted locally: ${listId}`);
         }
         
+        // Delete from cloud in background
+        if (await canSyncToCloud() && navigator.onLine) {
+            // Don't await this - let it run in background
+            deleteFromCloudInBackground(listId).catch(error => {
+                console.warn('Background cloud deletion failed:', error);
+            });
+        }
+        
+        // Return immediately
         return true;
     } catch (error) {
         console.error('Error deleting word list:', error);
@@ -195,29 +234,37 @@ export async function deleteWordList(listId) {
 }
 
 /**
+ * Background cloud deletion helper
+ */
+async function deleteFromCloudInBackground(listId) {
+    try {
+        await Promise.race([
+            deleteWordListFirestore(listId),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000)) // 5 second timeout
+        ]);
+        console.log(`Word list deleted from cloud in background: ${listId}`);
+    } catch (error) {
+        console.warn('Background deletion failed:', error);
+    }
+}
+
+/**
  * Unified add words to list
  */
 export async function addWordsToList(listId, wordIds) {
     try {
-        // Add locally first
+        // Add locally first - this should be fast
         const updatedList = await addWordsToListDB(listId, wordIds);
         
-        // Check if list now meets minimum requirements (5 words) for cloud sync
-        const totalWords = updatedList.wordIds ? updatedList.wordIds.length : 0;
-        
-        // Sync to cloud
+        // Sync to cloud in background
         if (await canSyncToCloud() && navigator.onLine) {
-            try {
-                const cloudList = await addWordsToListFirestore(listId, wordIds);
-                await markListAsSyncedDB(listId, cloudList.syncedAt);
-                
-                console.log(`Words added and synced to list: ${listId}`);
-                return { ...updatedList, syncedAt: cloudList.syncedAt };
-            } catch (error) {
-                console.warn('Cloud sync failed after adding words:', error);
-            }
+            // Don't await this - let it run in background
+            addWordsToCloudInBackground(listId, wordIds, updatedList).catch(error => {
+                console.warn('Background cloud sync failed after adding words:', error);
+            });
         }
         
+        // Return local data immediately
         return updatedList;
     } catch (error) {
         console.error('Error adding words to list:', error);
@@ -226,30 +273,60 @@ export async function addWordsToList(listId, wordIds) {
 }
 
 /**
+ * Background add words to cloud helper
+ */
+async function addWordsToCloudInBackground(listId, wordIds, updatedList) {
+    try {
+        const cloudList = await Promise.race([
+            addWordsToListFirestore(listId, wordIds),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000)) // 5 second timeout
+        ]);
+        
+        await markListAsSyncedDB(listId, cloudList.syncedAt);
+        console.log(`Words added and synced to cloud in background: ${listId}`);
+    } catch (error) {
+        console.warn('Background sync failed:', error);
+    }
+}
+
+/**
  * Unified remove words from list
  */
 export async function removeWordsFromList(listId, wordIds) {
     try {
-        // Remove locally first
+        // Remove locally first - this should be fast
         const updatedList = await removeWordsFromListDB(listId, wordIds);
         
-        // Sync to cloud
+        // Sync to cloud in background
         if (await canSyncToCloud() && navigator.onLine) {
-            try {
-                const cloudList = await removeWordsFromListFirestore(listId, wordIds);
-                await markListAsSyncedDB(listId, cloudList.syncedAt);
-                
-                console.log(`Words removed and synced from list: ${listId}`);
-                return { ...updatedList, syncedAt: cloudList.syncedAt };
-            } catch (error) {
-                console.warn('Cloud sync failed after removing words:', error);
-            }
+            // Don't await this - let it run in background
+            removeWordsFromCloudInBackground(listId, wordIds, updatedList).catch(error => {
+                console.warn('Background cloud sync failed after removing words:', error);
+            });
         }
         
+        // Return local data immediately
         return updatedList;
     } catch (error) {
         console.error('Error removing words from list:', error);
         throw new Error('Erro ao remover palavras: ' + error.message);
+    }
+}
+
+/**
+ * Background remove words from cloud helper
+ */
+async function removeWordsFromCloudInBackground(listId, wordIds, updatedList) {
+    try {
+        const cloudList = await Promise.race([
+            removeWordsFromListFirestore(listId, wordIds),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000)) // 5 second timeout
+        ]);
+        
+        await markListAsSyncedDB(listId, cloudList.syncedAt);
+        console.log(`Words removed and synced from cloud in background: ${listId}`);
+    } catch (error) {
+        console.warn('Background sync failed:', error);
     }
 }
 

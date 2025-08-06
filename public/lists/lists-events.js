@@ -282,7 +282,7 @@ export class ListsEventHandlers {
             await this.saveFeedbackToFirestore(feedbackData);
 
             // Save locally as backup
-            const { saveFeedbackDB } = await import('../vocabulary/vocabulary-db.js');
+            const { saveFeedbackDB } = await import('../vocabulary/vocabulary-db.js?v=1.1');
             await saveFeedbackDB(feedbackData);
 
             alert('Feedback enviado com sucesso! Obrigado pela sua contribuição.');
@@ -323,7 +323,7 @@ export class ListsEventHandlers {
             await this.saveProblemToFirestore(problemData);
 
             // Save locally as backup
-            const { saveProblemReportDB } = await import('../vocabulary/vocabulary-db.js');
+            const { saveProblemReportDB } = await import('../vocabulary/vocabulary-db.js?v=1.1');
             await saveProblemReportDB(problemData);
 
             alert('Problema relatado com sucesso! Nossa equipe será notificada.');
@@ -338,7 +338,7 @@ export class ListsEventHandlers {
 
     async saveFeedbackToFirestore(feedbackData) {
         try {
-            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const db = window.firebaseAuth.db;
             
             const feedbackRef = doc(collection(db, 'feedback'), Date.now().toString());
@@ -353,7 +353,7 @@ export class ListsEventHandlers {
 
     async saveProblemToFirestore(problemData) {
         try {
-            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const db = window.firebaseAuth.db;
             
             const problemRef = doc(collection(db, 'problems'), Date.now().toString());
@@ -383,13 +383,13 @@ export class ListsEventHandlers {
         
         const closeBtn = modal.querySelector('.close-modal');
         const cancelBtn = modal.querySelector('#cancel-new-list');
-        const createEmptyBtn = modal.querySelector('#create-empty-list');
+        //const createEmptyBtn = modal.querySelector('#create-empty-list');
         const createAndAddBtn = modal.querySelector('#create-and-add-words');
 
         closeBtn.addEventListener('click', () => modal.remove());
         cancelBtn.addEventListener('click', () => modal.remove());
         
-        createEmptyBtn.addEventListener('click', async () => {
+        /* createEmptyBtn.addEventListener('click', async () => {
             const name = document.getElementById('list-name').value;
             const description = document.getElementById('list-description').value;
             
@@ -397,7 +397,7 @@ export class ListsEventHandlers {
             if (success) {
                 modal.remove();
             }
-        });
+        }); */
         
         createAndAddBtn.addEventListener('click', async () => {
             const name = document.getElementById('list-name').value;

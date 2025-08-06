@@ -2,8 +2,8 @@
  * Match Game UI Module - Handles UI rendering and user interactions
  */
 
-import { gameData, startNewRound, showHint, resetRound, resetGame } from './match-game-logic.js';
-import { getStatusDisplayInfo, PROGRESS_STATUS } from './word-progress-manager.js';
+import { gameData, startNewRound, showHint, resetRound, resetGame } from './match-game-logic.js?v=1.1';
+import { getStatusDisplayInfo, PROGRESS_STATUS } from './word-progress-manager.js?v=1.1';
 
 /**
  * Render words in both columns with progress indicators
@@ -100,7 +100,7 @@ export function handleWordClick(element, word) {
     // If different language, try to make connection
     if (gameData.selectedWord.language !== language) {
         // Import and use the makeConnection function from logic module
-        import('./match-game-logic.js').then(({ makeConnection }) => {
+        import('./match-game-logic.js?v=1.1').then(({ makeConnection }) => {
             makeConnection(gameData.selectedWord, { element, word, language });
         });
     } else {

@@ -8,7 +8,7 @@ import {
     getSystemVocabulary, 
     loadSystemVocabulary,
     getWordById
-} from './vocabulary-db.js';
+} from './vocabulary-db.js?v=1.1';
 
 // Constantes para as categorias de palavras (mantido como está)
 export const WordCategories = {
@@ -65,19 +65,24 @@ export class VocabularyApp {
             // Check authentication and show warning if needed
             this.#checkAuthenticationStatus();
             
-            // Inicializa a autenticação (se existir)
+            // Inicializa a autenticação (se existir) - don't block on this
             if (window.firebaseAuth?.initAuth) {
-                await window.firebaseAuth.initAuth();
+                // Start in background
+                window.firebaseAuth.initAuth().then(() => {
+                    console.log('Firebase auth initialized in background');
+                }).catch(error => {
+                    console.warn('Firebase auth failed in background:', error);
+                });
             }
             
-            // Carrega o vocabulário do sistema
+            // Carrega o vocabulário do sistema - this should be local and fast
             console.log('Loading system vocabulary...');
             await loadSystemVocabulary();
             
             console.log('Setting up UI...');
             this.#setupEventListeners();
             
-            // Carrega as palavras para exibição
+            // Carrega as palavras para exibição - this should be local and fast
             console.log('Loading vocabulary words for display...');
             await this.loadVocabularyWords();
             
@@ -379,7 +384,8 @@ export class VocabularyApp {
                 modal.remove();
                 this.shareWord(wordId);
             });
-
+            modal.style.display = 'flex';
+            modal.style.opacity = '100';
         } catch (error) {
             console.error('Error showing word details:', error);
             alert('Erro ao exibir detalhes da palavra.');

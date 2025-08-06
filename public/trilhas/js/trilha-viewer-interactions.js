@@ -2,7 +2,7 @@
  * Trilha Viewer Interactions Module
  * Handles user interactions within an activity, such as favoriting, sharing, etc.
  */
-import { toggleFavoriteBlock } from './trilha-progress-sync.js';
+import { toggleFavoriteBlock } from './trilha-progress-sync.js?v=1.1';
 
 /**
  * Sets up all interaction handlers for the currently displayed activity.

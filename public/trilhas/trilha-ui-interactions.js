@@ -16,10 +16,10 @@ import {
     showModulePreview,
     hideModulePreview,
     verificarModuloCompleto
-} from './trilha-ui-components.js';
+} from './trilha-ui-components.js?v=1.1';
 
 // Import new sync system
-import { loadTrilhaProgress, getCompletionPercentage } from './js/trilha-progress-sync.js';
+import { loadTrilhaProgress, getCompletionPercentage } from './js/trilha-progress-sync.js?v=1.1';
 
 // Setup enhanced module interactions
 export function setupModuleInteractions(moduleId, index) {

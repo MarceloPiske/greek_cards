@@ -191,7 +191,7 @@ export class VocabularyEventHandlers {
             await this.saveFeedbackToFirestore(feedbackData);
 
             // Save locally as backup
-            const { saveFeedbackDB } = await import('./vocabulary-db.js');
+            const { saveFeedbackDB } = await import('./vocabulary-db.js?v=1.1');
             await saveFeedbackDB(feedbackData);
 
             alert('Feedback enviado com sucesso! Obrigado pela sua contribuição.');
@@ -231,7 +231,7 @@ export class VocabularyEventHandlers {
             await this.saveProblemToFirestore(problemData);
 
             // Save locally as backup
-            const { saveProblemReportDB } = await import('./vocabulary-db.js');
+            const { saveProblemReportDB } = await import('./vocabulary-db.js?v=1.1');
             await saveProblemReportDB(problemData);
 
             alert('Problema relatado com sucesso! Nossa equipe será notificada.');
@@ -246,7 +246,7 @@ export class VocabularyEventHandlers {
 
     async saveFeedbackToFirestore(feedbackData) {
         try {
-            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const db = window.firebaseAuth.db;
             
             const feedbackRef = doc(collection(db, 'feedback'), Date.now().toString());
@@ -261,7 +261,7 @@ export class VocabularyEventHandlers {
 
     async saveProblemToFirestore(problemData) {
         try {
-            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const db = window.firebaseAuth.db;
             
             const problemRef = doc(collection(db, 'problems'), Date.now().toString());

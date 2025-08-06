@@ -3,11 +3,11 @@
  * Main coordinator that handles initialization, UI coordination, and game flow
  */
 
-import { getAllWordLists } from '../../lists/lists-sync.js';
-import { MatchGameCore } from './match-game-core.js';
-import { MatchGameUI } from './match-game-ui.js';
-import { MatchGameMultiplayer } from './match-game-multiplayer.js';
-import { MatchGameLeaderboard } from './match-game-leaderboard.js';
+import { getAllWordLists } from '../../lists/lists-sync.js?v=1.1';
+import { MatchGameCore } from './match-game-core.js?v=1.1';
+import { MatchGameUI } from './match-game-ui.js?v=1.1';
+import { MatchGameMultiplayer } from './match-game-multiplayer.js?v=1.1';
+import { MatchGameLeaderboard } from './match-game-leaderboard.js?v=1.1';
 
 export class MatchGameController {
     constructor() {
@@ -27,7 +27,7 @@ export class MatchGameController {
         try {
             this.ui.setupEventListeners();
             
-            // This is now handled in match-game.js before controller initialization
+            // This is now handled in match-game.js?v=1.1 before controller initialization
             // if (typeof window.firebaseAuth !== 'undefined') {
             //     await window.firebaseAuth.initAuth();
             // }
@@ -279,7 +279,7 @@ export class MatchGameController {
 
         try {
             const user = window.firebaseAuth.getCurrentUser();
-            const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const gameState = this.core.getGameState();
             const accuracy = gameState.gameStats.correct / (gameState.gameStats.correct + gameState.gameStats.incorrect || 1);
 

@@ -3,8 +3,8 @@
  * Manages game state and business logic for multiplayer, coordinating Room and Public Room managers.
  */
 
-import { MatchGameMultiplayerRoom } from './match-game-multiplayer-room.js';
-import { MatchGameMultiplayerPublic } from './match-game-multiplayer-public.js';
+import { MatchGameMultiplayerRoom } from './match-game-multiplayer-room.js?v=1.1';
+import { MatchGameMultiplayerPublic } from './match-game-multiplayer-public.js?v=1.1';
 
 export class MatchGameMultiplayerCore {
     constructor(gameInstance, multiplayerInstance) {
@@ -107,7 +107,7 @@ export class MatchGameMultiplayerCore {
         try {
             const db = window.firebaseAuth.db;
             const user = window.firebaseAuth.getCurrentUser();
-            const { doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
             // Update player as finished in room
             const roomRef = doc(db, 'multiplayerRooms', this.room.currentRoom.id);
@@ -158,7 +158,7 @@ export class MatchGameMultiplayerCore {
             // Update room status to finished if host
             if (this.room.isHost) {
                 const db = window.firebaseAuth.db;
-                const { doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+                const { doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
                 
                 const roomRef = doc(db, 'multiplayerRooms', this.room.currentRoom.id);
                 await updateDoc(roomRef, {

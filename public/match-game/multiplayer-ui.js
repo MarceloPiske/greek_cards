@@ -12,13 +12,13 @@ import {
     GAME_STATES,
     PLAYER_STATES,
     canAccessMultiplayer
-} from './multiplayer-manager.js';
-import { getUserWordLists } from './word-list-manager.js';
+} from './multiplayer-manager.js?v=1.1';
+import { getUserWordLists } from './word-list-manager.js?v=1.1';
 import { 
     showLobby, 
     handleSessionUpdate, 
     closeLobby 
-} from './multiplayer-game.js';
+} from './multiplayer-game.js?v=1.1';
 
 let currentSessionData = null;
 
@@ -29,7 +29,7 @@ export async function showMultiplayerMenu() {
     try {
         // Check if user can access multiplayer
         if (!(await canAccessMultiplayer())) {
-            const { showUpgradeModal } = await import('../plan-manager.js');
+            const { showUpgradeModal } = await import('../plan-manager.js?v=1.1');
             showUpgradeModal('multiplayer', 'cloud');
             return;
         }

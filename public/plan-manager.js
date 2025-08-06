@@ -9,7 +9,7 @@ import {
     getDoc, 
     updateDoc,
     serverTimestamp
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1';
 
 // Available plans - Updated to new 3-tier structure
 export const PLANS = {

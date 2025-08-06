@@ -231,7 +231,7 @@ export async function loadSystemVocabulary() {
                     resolve();
                 } catch (error) {
                     console.error('Error loading system vocabulary from JSON:', error);
-                    // Try to wait for the json_to_indexeddb.js script to populate data
+                    // Try to wait for the json_to_indexeddb.js?v=1.1 script to populate data
                     console.log('Waiting for automatic vocabulary loading...');
                     
                     // Check again after a delay

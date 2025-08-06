@@ -26,7 +26,7 @@ export class MatchGameMultiplayerRoom {
             const db = window.firebaseAuth.db;
             const user = window.firebaseAuth.getCurrentUser();
 
-            const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
             const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
 
@@ -36,7 +36,7 @@ export class MatchGameMultiplayerRoom {
             
             if (listId === 'random') {
                 // Create random list from system vocabulary
-                const { getSystemVocabulary } = await import('../../vocabulary/vocabulary-db.js');
+                const { getSystemVocabulary } = await import('../../vocabulary/vocabulary-db.js?v=1.1');
                 const allWords = await getSystemVocabulary();
                 
                 if (allWords.length < 20) {
@@ -56,8 +56,8 @@ export class MatchGameMultiplayerRoom {
                 actualListName = 'Lista Aleatória';
             } else {
                 // Get word data from existing list
-                const { getWordList } = await import('../../lists/lists-sync.js');
-                const { getWordById } = await import('../../vocabulary/vocabulary-db.js');
+                const { getWordList } = await import('../../lists/lists-sync.js?v=1.1');
+                const { getWordById } = await import('../../vocabulary/vocabulary-db.js?v=1.1');
                 
                 const list = await getWordList(listId);
                 if (!list || !list.wordIds || list.wordIds.length < 5) {
@@ -139,7 +139,7 @@ export class MatchGameMultiplayerRoom {
         try {
             const db = window.firebaseAuth.db;
             const user = window.firebaseAuth.getCurrentUser();
-            const { collection, query, where, getDocs, doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { collection, query, where, getDocs, doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
             const roomsRef = collection(db, 'multiplayerRooms');
             const q = query(roomsRef, where('code', '==', roomCode.toUpperCase()));
@@ -196,7 +196,7 @@ export class MatchGameMultiplayerRoom {
         if (this.unsubscribeRoom) this.unsubscribeRoom(); // Unsubscribe from previous room if any
 
         try {
-            const { doc, onSnapshot } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, onSnapshot } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const roomRef = doc(window.firebaseAuth.db, 'multiplayerRooms', roomId);
             
             this.unsubscribeRoom = onSnapshot(roomRef, (docSnapshot) => {
@@ -228,7 +228,7 @@ export class MatchGameMultiplayerRoom {
     async resetRoomStatus() {
         if (!this.isHost || !this.currentRoom) return;
         try {
-            const { doc, updateDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, updateDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const roomRef = doc(window.firebaseAuth.db, 'multiplayerRooms', this.currentRoom.id);
             await updateDoc(roomRef, { status: 'waiting' });
             console.log('Room status reset to waiting.');
@@ -246,7 +246,7 @@ export class MatchGameMultiplayerRoom {
         try {
             const user = window.firebaseAuth.getCurrentUser();
             const currentReadyState = this.currentRoom.players[user.uid]?.isReady || false;
-            const { doc, updateDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, updateDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
             const roomRef = doc(window.firebaseAuth.db, 'multiplayerRooms', this.currentRoom.id);
             await updateDoc(roomRef, { [`players.${user.uid}.isReady`]: !currentReadyState });
@@ -274,7 +274,7 @@ export class MatchGameMultiplayerRoom {
                 return;
             }
 
-            const { doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const roomRef = doc(window.firebaseAuth.db, 'multiplayerRooms', this.currentRoom.id);
             await updateDoc(roomRef, {
                 status: 'playing',
@@ -296,7 +296,7 @@ export class MatchGameMultiplayerRoom {
 
         try {
             const user = window.firebaseAuth.getCurrentUser();
-            const { doc, updateDoc, increment } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, updateDoc, increment } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const roomRef = doc(window.firebaseAuth.db, 'multiplayerRooms', this.currentRoom.id);
             
             const currentScore = this.currentRoom.players[user.uid].score || 0;
@@ -329,7 +329,7 @@ export class MatchGameMultiplayerRoom {
         }
 
         try {
-            const { doc, updateDoc, deleteField, getDoc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, updateDoc, deleteField, getDoc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const roomRef = doc(window.firebaseAuth.db, 'multiplayerRooms', this.currentRoom.id);
             
             // Get current room state to check remaining players
@@ -402,7 +402,7 @@ export class MatchGameMultiplayerRoom {
 
         try {
             const user = window.firebaseAuth.getCurrentUser();
-            const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             const accuracy = (gameResults.correct + gameResults.incorrect > 0) 
                            ? gameResults.correct / (gameResults.correct + gameResults.incorrect)
                            : 0;

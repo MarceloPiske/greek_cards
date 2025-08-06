@@ -463,5 +463,5 @@
       "education",
       "entertainment"
     ],
-    "service_worker": "service-worker.js"
+    "service_worker": "service-worker.js?v=1.1"
   }

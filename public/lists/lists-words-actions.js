@@ -6,13 +6,13 @@
 import {
     addWordsToList,
     removeWordsFromList,
-} from './lists-sync.js';
+} from './lists-sync.js?v=1.1';
 
-import { getSystemVocabulary } from '../../vocabulary/vocabulary-db.js';
+import { getSystemVocabulary } from '../../vocabulary/vocabulary-db.js?v=1.1';
 import { 
     renderAddWordsModal, 
     reloadModalData,
-} from './lists-words-modal.js';
+} from './lists-words-modal.js?v=1.1';
 
 /**
  * Show modal to add words to a specific list

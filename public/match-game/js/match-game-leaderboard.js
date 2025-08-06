@@ -20,7 +20,7 @@ export class MatchGameLeaderboard {
 
         try {
             const db = window.firebaseAuth.db;
-            const { collection, query, where, orderBy, limit: limitQuery, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { collection, query, where, orderBy, limit: limitQuery, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
             let q = collection(db, 'leaderboard');
 
@@ -269,7 +269,7 @@ export class MatchGameLeaderboard {
             const db = window.firebaseAuth.db;
             const user = window.firebaseAuth.getCurrentUser();
             
-            const { collection, query, where, getDocs, orderBy } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { collection, query, where, getDocs, orderBy } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
             // Get user's all-time stats
             const q = query(

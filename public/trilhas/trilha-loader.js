@@ -2,16 +2,16 @@
  * Módulo para carregamento e gerenciamento de trilhas de estudo
  */
 
-/* import { loadProgress } from '../indexedDB.js'; */
+/* import { loadProgress } from '../indexedDB.js?v=1.1'; */
 import { 
     gerarHTMLModulo 
-} from './trilha-ui-components.js';
+} from './trilha-ui-components.js?v=1.1';
 
 import { 
     setupModuleInteractions,
     adicionarEventListeners,
     carregarProgressoTrilhas
-} from './trilha-ui-interactions.js';
+} from './trilha-ui-interactions.js?v=1.1';
 
 // Função para obter informações sobre todas as trilhas disponíveis
 export async function carregarTrilhasDisponiveis() {

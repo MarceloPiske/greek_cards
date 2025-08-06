@@ -3,7 +3,7 @@
  * Handles UI updates, player displays, and modal management for multiplayer
  */
 
-//import { canSyncToCloud } from '../../plan-manager.js';
+//import { canSyncToCloud } from '../../plan-manager.js?v=1.1';
 
 export class MatchGameMultiplayerUI {
     constructor(multiplayerInstance) {

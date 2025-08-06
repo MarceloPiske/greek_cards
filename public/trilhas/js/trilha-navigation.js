@@ -2,7 +2,7 @@
  * Navigation setup for trilha viewer
  */
 
-import { navigatePrevious, navigateNext } from './trilha-viewer.js';
+import { navigatePrevious, navigateNext } from './trilha-viewer.js?v=1.1';
 
 /**
  * Setup navigation buttons

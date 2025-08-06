@@ -7,10 +7,10 @@ export {
     showLobby, 
     handleSessionUpdate, 
     closeLobby 
-} from './multiplayer-lobby.js';
+} from './multiplayer-lobby.js?v=1.1';
 
 export { 
     startMultiplayerGameUI, 
     handleSessionGameUpdate,
     cleanupGameplay
-} from './multiplayer-gameplay.js';
+} from './multiplayer-gameplay.js?v=1.1';

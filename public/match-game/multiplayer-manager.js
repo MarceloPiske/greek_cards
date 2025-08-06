@@ -2,7 +2,7 @@
  * Multiplayer Manager - Handles multiplayer game sessions
  */
 
-import { getWordsFromList } from './word-list-manager.js';
+import { getWordsFromList } from './word-list-manager.js?v=1.1';
 
 // Game states
 export const GAME_STATES = {
@@ -33,7 +33,7 @@ export async function createMultiplayerSession(hostUserId, hostName, wordListId,
             throw new Error('Firebase authentication required');
         }
 
-        const { doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const sessionId = generateSessionId();
         const sessionRef = doc(window.firebaseAuth.db, 'multiplayerSessions', sessionId);
@@ -98,7 +98,7 @@ export async function joinMultiplayerSession(sessionId, playerId, playerName) {
             throw new Error('Firebase authentication required');
         }
 
-        const { doc, getDoc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, getDoc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const sessionRef = doc(window.firebaseAuth.db, 'multiplayerSessions', sessionId);
         const sessionSnap = await getDoc(sessionRef);
@@ -203,7 +203,7 @@ export async function updatePlayerProgress(sessionId, playerId, progressData) {
     try {
         if (!currentSession || !window.firebaseAuth?.db) return;
 
-        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const updateData = {};
         updateData[`players.${playerId}.score`] = progressData.score;
@@ -227,7 +227,7 @@ export async function startMultiplayerGame(sessionId) {
     try {
         if (!currentSession || !window.firebaseAuth?.db) return;
 
-        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const updateData = {
             status: GAME_STATES.IN_PROGRESS,
@@ -255,7 +255,7 @@ export async function endMultiplayerGame(sessionId, results) {
     try {
         if (!currentSession || !window.firebaseAuth?.db) return;
 
-        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         await updateDoc(currentSession.ref, {
             status: GAME_STATES.FINISHED,
@@ -277,7 +277,7 @@ export async function leaveMultiplayerSession(sessionId, playerId) {
     try {
         if (!currentSession || !window.firebaseAuth?.db) return;
 
-        const { updateDoc, deleteDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { updateDoc, deleteDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const updatedPlayers = { ...currentSession.players };
         delete updatedPlayers[playerId];
@@ -337,7 +337,7 @@ export async function canAccessMultiplayer() {
             return false;
         }
         
-        const { canSyncToCloud } = await import('../plan-manager.js');
+        const { canSyncToCloud } = await import('../plan-manager.js?v=1.1');
         return canSyncToCloud(); // Multiplayer requires cloud sync capability
     } catch (error) {
         console.warn('Could not check multiplayer access:', error);

@@ -15,7 +15,7 @@ import {
     markWordProgressAsSyncedDB,
     getWordProgressNeedingSyncDB,
     bulkUpdateWordProgressDB
-} from './word-progress-db.js';
+} from './word-progress-db.js?v=1.1';
 
 import {
     saveWordProgressFirestore,
@@ -27,9 +27,9 @@ import {
     getWordProgressStatsFirestore,
     wordProgressExistsFirestore,
     performFullWordProgressSync
-} from './word-progress-firestore.js';
+} from './word-progress-firestore.js?v=1.1';
 
-import { canSyncToCloud } from '../plan-manager.js';
+import { canSyncToCloud } from '../plan-manager.js?v=1.1';
 
 // Sync status tracking
 let syncInProgress = false;
@@ -129,26 +129,20 @@ function showSyncSuccess(message) {
  */
 export async function saveWordProgress(wordId, progressData) {
     try {
-        // Always save locally first
+        // Always save locally first - this should be fast
         const localProgress = await saveWordProgressDB(wordId, progressData);
         
-        // Try to sync to cloud if user has cloud access
+        // Try to sync to cloud in background if user has cloud access
         if (await canSyncToCloud() && onlineStatus) {
-            try {
-                const cloudProgress = await saveWordProgressFirestore(wordId, progressData);
-                // Update local with sync timestamp
-                await markWordProgressAsSyncedDB(wordId, cloudProgress.syncedAt);
-                
-                console.log(`Word progress saved and synced: ${wordId}`);
-                return { ...localProgress, syncedAt: cloudProgress.syncedAt };
-            } catch (error) {
-                console.warn('Cloud sync failed during word progress save:', error);
-                showSyncError('Progresso salvo localmente. Sincronização com a nuvem falhará quando a conexão for restaurada.');
-            }
+            // Don't await this - let it run in background
+            syncProgressToCloudInBackground(wordId, progressData, localProgress).catch(error => {
+                console.warn('Background cloud sync failed during word progress save:', error);
+            });
         } else if (await canSyncToCloud() && !onlineStatus) {
             console.log('Word progress saved offline - will sync when connection is restored');
         }
         
+        // Return local data immediately
         return localProgress;
     } catch (error) {
         console.error('Error saving word progress:', error);
@@ -157,49 +151,40 @@ export async function saveWordProgress(wordId, progressData) {
 }
 
 /**
+ * Background sync helper for word progress
+ */
+async function syncProgressToCloudInBackground(wordId, progressData, localProgress) {
+    try {
+        const cloudProgress = await Promise.race([
+            saveWordProgressFirestore(wordId, progressData),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000)) // 5 second timeout
+        ]);
+        
+        // Update local with sync timestamp
+        await markWordProgressAsSyncedDB(wordId, cloudProgress.syncedAt);
+        console.log(`Word progress synced to cloud in background: ${wordId}`);
+    } catch (error) {
+        console.warn('Background sync failed:', error);
+    }
+}
+
+/**
  * Unified get word progress (with sync check)
  */
 export async function getWordProgress(wordId) {
     try {
-        // Get from local storage first
+        // Get from local storage first - this should be fast
         const localProgress = await getWordProgressDB(wordId);
         
-        // If cloud access available and online, check for newer version
+        // If cloud access available and online, check for newer version in background
         if (await canSyncToCloud() && onlineStatus && localProgress) {
-            try {
-                const cloudProgress = await getWordProgressFirestore(wordId);
-                
-                if (cloudProgress) {
-                    const localDate = new Date(localProgress.updatedAt || localProgress.createdAt);
-                    const cloudDate = new Date(cloudProgress.updatedAt || cloudProgress.createdAt);
-                    
-                    // Use most recent version
-                    if (cloudDate > localDate) {
-                        // Cloud is newer, update local
-                        await saveWordProgressDB(wordId, cloudProgress);
-                        console.log(`Updated local word progress from cloud: ${wordId}`);
-                        return cloudProgress;
-                    } else if (localDate > cloudDate) {
-                        // Local is newer, update cloud
-                        try {
-                            await saveWordProgressFirestore(wordId, {
-                                status: localProgress.status,
-                                reviewCount: localProgress.reviewCount,
-                                lastReviewed: localProgress.lastReviewed,
-                                updatedAt: localProgress.updatedAt
-                            });
-                            await markWordProgressAsSyncedDB(wordId);
-                            console.log(`Updated cloud word progress from local: ${wordId}`);
-                        } catch (error) {
-                            console.warn('Failed to update cloud with local word progress changes:', error);
-                        }
-                    }
-                }
-            } catch (error) {
-                console.warn('Could not check cloud word progress version:', error);
-            }
+            // Don't await this - let it run in background
+            checkCloudProgressInBackground(wordId, localProgress).catch(error => {
+                console.warn('Background cloud check failed for word progress:', error);
+            });
         }
         
+        // Return local data immediately
         return localProgress;
     } catch (error) {
         console.error('Error getting word progress:', error);
@@ -208,40 +193,64 @@ export async function getWordProgress(wordId) {
 }
 
 /**
+ * Background cloud check for word progress
+ */
+async function checkCloudProgressInBackground(wordId, localProgress) {
+    try {
+        const cloudProgress = await Promise.race([
+            getWordProgressFirestore(wordId),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 3000)) // 3 second timeout
+        ]);
+        
+        if (cloudProgress) {
+            const localDate = new Date(localProgress.updatedAt || localProgress.createdAt);
+            const cloudDate = new Date(cloudProgress.updatedAt || cloudProgress.createdAt);
+            
+            // Use most recent version
+            if (cloudDate > localDate) {
+                // Cloud is newer, update local
+                await saveWordProgressDB(wordId, cloudProgress);
+                console.log(`Updated local word progress from cloud in background: ${wordId}`);
+            } else if (localDate > cloudDate) {
+                // Local is newer, update cloud
+                try {
+                    await saveWordProgressFirestore(wordId, {
+                        status: localProgress.status,
+                        reviewCount: localProgress.reviewCount,
+                        lastReviewed: localProgress.lastReviewed,
+                        updatedAt: localProgress.updatedAt
+                    });
+                    await markWordProgressAsSyncedDB(wordId);
+                    console.log(`Updated cloud word progress from local in background: ${wordId}`);
+                } catch (error) {
+                    console.warn('Failed to update cloud with local word progress changes:', error);
+                }
+            }
+        }
+    } catch (error) {
+        if (error.message !== 'Timeout') {
+            console.warn('Could not check cloud word progress version:', error);
+        }
+    }
+}
+
+/**
  * Unified get all word progress (with sync)
  */
 export async function getAllWordProgress() {
     try {
-        // Always get local progress first
+        // Always get local progress first - this should be fast
         const localProgress = await getAllWordProgressDB();
         
-        // If cloud access available and online, perform sync
+        // If cloud access available and online, perform sync in background
         if (await canSyncToCloud() && onlineStatus && !syncInProgress) {
-            try {
-                syncInProgress = true;
-                
-                // Get cloud progress
-                const cloudProgress = await getAllWordProgressFirestore();
-                
-                // Merge and sync
-                const syncResults = await syncProgressCollections(localProgress, cloudProgress);
-                
-                if (syncResults.conflicts > 0) {
-                    showSyncError(`${syncResults.conflicts} conflitos de sincronização detectados. Algumas alterações podem ter sido perdidas.`);
-                } else if (syncResults.updated > 0) {
-                    showSyncSuccess(`${syncResults.updated} registros de progresso sincronizados com sucesso.`);
-                }
-                
-                // Return updated local progress
-                return await getAllWordProgressDB();
-            } catch (error) {
-                console.warn('Sync failed during word progress retrieval:', error);
-                showSyncError('Falha na sincronização do progresso. Mostrando dados locais.');
-            } finally {
-                syncInProgress = false;
-            }
+            // Don't await this - let it run in background
+            syncAllProgressInBackground(localProgress).catch(error => {
+                console.warn('Background sync failed during word progress retrieval:', error);
+            });
         }
         
+        // Return local data immediately
         return localProgress;
     } catch (error) {
         console.error('Error getting all word progress:', error);
@@ -250,29 +259,72 @@ export async function getAllWordProgress() {
 }
 
 /**
+ * Background sync for all progress
+ */
+async function syncAllProgressInBackground(localProgress) {
+    try {
+        syncInProgress = true;
+        
+        // Get cloud progress with timeout
+        const cloudProgress = await Promise.race([
+            getAllWordProgressFirestore(),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 10000)) // 10 second timeout
+        ]);
+        
+        // Merge and sync
+        const syncResults = await syncProgressCollections(localProgress, cloudProgress);
+        
+        if (syncResults.conflicts > 0) {
+            showSyncError(`${syncResults.conflicts} conflitos de sincronização detectados. Algumas alterações podem ter sido perdidas.`);
+        } else if (syncResults.updated > 0) {
+            showSyncSuccess(`${syncResults.updated} registros de progresso sincronizados em background.`);
+        }
+    } catch (error) {
+        if (error.message !== 'Timeout') {
+            console.warn('Background sync failed:', error);
+        }
+    } finally {
+        syncInProgress = false;
+    }
+}
+
+/**
  * Unified delete word progress
  */
 export async function deleteWordProgress(wordId) {
     try {
-        // Delete from cloud first if possible (to avoid orphaned cloud data)
-        if (await canSyncToCloud() && onlineStatus) {
-            try {
-                await deleteWordProgressFirestore(wordId);
-                console.log(`Word progress deleted from cloud: ${wordId}`);
-            } catch (error) {
-                console.warn('Cloud deletion failed:', error);
-                // Continue with local deletion anyway
-            }
-        }
-        
-        // Delete locally
+        // Delete locally first - this should be fast
         await deleteWordProgressDB(wordId);
         console.log(`Word progress deleted locally: ${wordId}`);
         
+        // Delete from cloud in background if possible
+        if (await canSyncToCloud() && onlineStatus) {
+            // Don't await this - let it run in background
+            deleteProgressFromCloudInBackground(wordId).catch(error => {
+                console.warn('Background cloud deletion failed:', error);
+            });
+        }
+        
+        // Return immediately
         return true;
     } catch (error) {
         console.error('Error deleting word progress:', error);
         throw new Error('Erro ao excluir progresso da palavra: ' + error.message);
+    }
+}
+
+/**
+ * Background cloud deletion for word progress
+ */
+async function deleteProgressFromCloudInBackground(wordId) {
+    try {
+        await Promise.race([
+            deleteWordProgressFirestore(wordId),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000)) // 5 second timeout
+        ]);
+        console.log(`Word progress deleted from cloud in background: ${wordId}`);
+    } catch (error) {
+        console.warn('Background deletion failed:', error);
     }
 }
 

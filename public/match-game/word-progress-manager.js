@@ -2,7 +2,7 @@
  * Word Progress Manager - Handles word learning progress
  */
 
-import { initDB } from '../indexedDB.js';
+import { initDB } from '../indexedDB.js?v=1.1';
 
 const DB_NAME = 'koineAppDB';
 const STORE_USER_PROGRESS = 'wordProgress';
@@ -25,7 +25,7 @@ async function shouldSyncToCloud() {
     }
     
     try {
-        const { canSyncToCloud } = await import('../plan-manager.js');
+        const { canSyncToCloud } = await import('../plan-manager.js?v=1.1');
         return canSyncToCloud();
     } catch (error) {
         console.warn('Could not check plan permissions:', error);
@@ -43,7 +43,7 @@ async function syncWordProgressToCloud(progressData) {
         const user = window.firebaseAuth.getCurrentUser();
         if (!user || !window.firebaseAuth.db) return;
         
-        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const docRef = doc(window.firebaseAuth.db, 'users', user.uid, 'wordProgress', progressData.wordId);
         await setDoc(docRef, {
@@ -67,7 +67,7 @@ async function loadWordProgressFromCloud() {
         const user = window.firebaseAuth.getCurrentUser();
         if (!user || !window.firebaseAuth.db) return [];
         
-        const { collection, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { collection, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
         
         const querySnapshot = await getDocs(collection(window.firebaseAuth.db, 'users', user.uid, 'wordProgress'));
         const cloudProgress = [];

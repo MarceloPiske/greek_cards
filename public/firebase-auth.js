@@ -14,7 +14,7 @@ const firebaseConfig = {
 };
 
 // Import Firebase modules
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js?v=1.1';
 import { 
     getAuth, 
     signInWithPopup, 
@@ -22,10 +22,10 @@ import {
     OAuthProvider,
     signOut,
     onAuthStateChanged 
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js?v=1.1';
 import { 
     getFirestore
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -51,26 +51,36 @@ export function initAuth() {
             
             if (user) {
                 try {
-                    // Initialize user document with plan management
-                    const { initializeUserDocument } = await import('./plan-manager.js');
-                    await initializeUserDocument(user);
+                    // Initialize user document with plan management - don't block
+                    const { initializeUserDocument } = await import('./plan-manager.js?v=1.1');
+                    initializeUserDocument(user).then(() => {
+                        console.log('User document initialized in background');
+                    }).catch(error => {
+                        console.warn('Failed to initialize user document in background:', error);
+                    });
                     
-                    // Load user data from Firebase when user logs in
-                   /*  const { loadUserDataFromFirebase } = await import('./cards/vocabulary-db.js');
-                    await loadUserDataFromFirebase(); */
+                    // Don't await this - let it run in background
+                    // Load user data from Firebase in background
+                    /* const { loadUserDataFromFirebase } = await import('./cards/vocabulary-db.js?v=1.1');
+                    loadUserDataFromFirebase().then(() => {
+                        console.log('User data loaded from Firebase in background');
+                    }).catch(error => {
+                        console.warn('Failed to load user data from Firebase in background:', error);
+                    }); */
                 } catch (error) {
-                    console.warn('Failed to initialize user or load data from Firebase:', error);
+                    console.warn('Could not start background initialization:', error);
                 }
             } else {
                 // Reset plan data when user logs out
                 try {
-                    const { resetUserData } = await import('./plan-manager.js');
+                    const { resetUserData } = await import('./plan-manager.js?v=1.1');
                     resetUserData();
                 } catch (error) {
                     console.warn('Could not reset user data:', error);
                 }
             }
             
+            // Resolve immediately without waiting for background operations
             resolve(user);
         });
     });
@@ -276,7 +286,12 @@ function showUserMenu(user) {
  */
 async function loadPlanInfo() {
     try {
-        const { getCurrentUserPlan, getPlanCapabilities } = await import('./plan-manager.js');
+        // Use timeout to prevent blocking
+        const { getCurrentUserPlan, getPlanCapabilities } = await Promise.race([
+            import('./plan-manager.js?v=1.1'),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 2000))
+        ]);
+        
         const currentPlan = getCurrentUserPlan();
         const capabilities = getPlanCapabilities(currentPlan);
         
@@ -320,6 +335,19 @@ async function loadPlanInfo() {
         }
     } catch (error) {
         console.warn('Could not load plan information:', error);
+        // Show basic info if plan loading fails
+        const planInfoContainer = document.getElementById('plan-info');
+        if (planInfoContainer) {
+            planInfoContainer.innerHTML = `
+                <div class="plan-status free">
+                    <span class="material-symbols-sharp">person</span>
+                    <div class="plan-details">
+                        <strong>🔹 Gratuito</strong>
+                        <small>Dados locais apenas</small>
+                    </div>
+                </div>
+            `;
+        }
     }
 }
 

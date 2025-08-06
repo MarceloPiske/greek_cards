@@ -15,7 +15,7 @@ export {
     getWordListCount,
     wordListExists,
     forceFullSync
-} from './lists-sync-core.js';
+} from './lists-sync-core.js?v=1.1';
 
 // Re-export sync management functions
 export {
@@ -24,4 +24,4 @@ export {
     retrySyncAll,
     getSyncStatus,
     initSyncSystem
-} from './lists-sync-manager.js';
+} from './lists-sync-manager.js?v=1.1';

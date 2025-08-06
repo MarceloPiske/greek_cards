@@ -3,7 +3,7 @@
  * Handles all cloud operations for word lists with Firestore
  */
 
-import { canSyncToCloud } from '../../plan-manager.js';
+import { canSyncToCloud } from '../../plan-manager.js?v=1.1';
 
 /**
  * Get Firestore database reference
@@ -37,7 +37,7 @@ export async function createWordListFirestore(listData) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
         // Generate unique ID if not provided
         if (!listData.id) {
@@ -77,7 +77,7 @@ export async function getWordListFirestore(listId) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
         const listRef = doc(db, 'users', user.uid, 'wordLists', listId);
         const docSnap = await getDoc(listRef);
@@ -105,7 +105,7 @@ export async function getAllWordListsFirestore() {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { collection, getDocs, query, orderBy } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { collection, getDocs, query, orderBy } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
         const listsRef = collection(db, 'users', user.uid, 'wordLists');
         const q = query(listsRef, orderBy('createdAt', 'desc'));
@@ -136,7 +136,7 @@ export async function updateWordListFirestore(listId, updateData) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { doc, updateDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, updateDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
         const updatePayload = {
             ...updateData,
@@ -177,10 +177,10 @@ export async function deleteWordListFirestore(listId) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
         // Extract original ID if this is a composite key
-        const { extractOriginalIdFromCompositeKey } = await import('./lists-db.js');
+        const { extractOriginalIdFromCompositeKey } = await import('./lists-db.js?v=1.1');
         const originalId = extractOriginalIdFromCompositeKey(listId);
 
         const listRef = doc(db, 'users', user.uid, 'wordLists', originalId);
@@ -253,7 +253,7 @@ export async function getWordListCountFirestore() {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { collection, getCountFromServer } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { collection, getCountFromServer } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
         const listsRef = collection(db, 'users', user.uid, 'wordLists');
         const snapshot = await getCountFromServer(listsRef);
@@ -290,7 +290,7 @@ export async function getWordListsByDateRangeFirestore(startDate, endDate) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { collection, query, where, getDocs, orderBy } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { collection, query, where, getDocs, orderBy } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
         const listsRef = collection(db, 'users', user.uid, 'wordLists');
         const q = query(
@@ -352,7 +352,7 @@ export async function bulkUpdateWordListsFirestore(updates) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { doc, setDoc, writeBatch } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+        const { doc, setDoc, writeBatch } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
         const batch = writeBatch(db);
 
@@ -389,7 +389,7 @@ export async function syncAllListsFromFirestore() {
         const firestoreLists = await getAllWordListsFirestore();
         
         // Import IndexedDB operations
-        const { bulkUpdateWordListsDB } = await import('./lists-db.js');
+        const { bulkUpdateWordListsDB } = await import('./lists-db.js?v=1.1');
         
         // Prepare updates for IndexedDB
         const updates = firestoreLists.map(list => ({
@@ -419,8 +419,8 @@ export async function syncPendingListsToFirestore() {
 
     try {
         // Import IndexedDB operations
-        const { getListsNeedingSyncDB, markListAsSyncedDB } = await import('./lists-db.js');
-        const { getMaxListsAllowed } = await import('../plan-manager.js');
+        const { getListsNeedingSyncDB, markListAsSyncedDB } = await import('./lists-db.js?v=1.1');
+        const { getMaxListsAllowed } = await import('../plan-manager.js?v=1.1');
         
         const pendingLists = await getListsNeedingSyncDB();
         const maxAllowed = getMaxListsAllowed();
@@ -502,7 +502,7 @@ export async function performFullListSync() {
         console.log('Starting full list synchronization...');
 
         // Get current plan limits
-        const { getMaxListsAllowed } = await import('../plan-manager.js');
+        const { getMaxListsAllowed } = await import('../plan-manager.js?v=1.1');
         const maxAllowed = getMaxListsAllowed();
 
         // Get cloud lists
@@ -544,7 +544,7 @@ export async function performFullListSync() {
         // Then, sync cloud changes to local (limited by plan)
         let downloaded = 0;
         if (listsToSync.length > 0) {
-            const { bulkUpdateWordListsDB } = await import('./lists-db.js');
+            const { bulkUpdateWordListsDB } = await import('./lists-db.js?v=1.1');
             
             // Prepare updates for IndexedDB
             const updates = listsToSync.map(list => ({

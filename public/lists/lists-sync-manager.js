@@ -7,16 +7,16 @@ import {
     getAllWordListsDB,
     getListsNeedingSyncDB,
     markListAsSyncedDB
-} from './lists-db.js';
+} from './lists-db.js?v=1.1';
 
 import {
     getAllWordListsFirestore,
     wordListExistsFirestore,
     createWordListFirestore,
     updateWordListFirestore,
-} from './lists-firestore.js';
+} from './lists-firestore.js?v=1.1';
 
-import { canSyncToCloud } from '../plan-manager.js';
+import { canSyncToCloud } from '../plan-manager.js?v=1.1';
 
 let listsCache = null;
 let lastCacheTime = 0;
@@ -170,7 +170,7 @@ async function syncListCollections(localLists, cloudLists) {
         
         if (!localList) {
             // New list from cloud, add locally
-            const { createWordListDB } = await import('./lists-db.js');
+            const { createWordListDB } = await import('./lists-db.js?v=1.1');
             await createWordListDB(cloudList);
             updated++;
         } else {
@@ -180,7 +180,7 @@ async function syncListCollections(localLists, cloudLists) {
             
             if (cloudDate > localDate) {
                 // Cloud is newer, update local
-                const { updateWordListDB } = await import('./lists-db.js');
+                const { updateWordListDB } = await import('./lists-db.js?v=1.1');
                 await updateWordListDB(cloudList.id, cloudList);
                 updated++;
             } else if (localDate > cloudDate) {

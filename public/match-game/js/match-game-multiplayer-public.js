@@ -3,7 +3,7 @@
  * Handles public room listing, pagination, and joining
  */
 
-//import { canSyncToCloud } from '../../plan-manager.js';
+//import { canSyncToCloud } from '../../plan-manager.js?v=1.1';
 
 export class MatchGameMultiplayerPublic {
     constructor(coreInstance) {
@@ -21,7 +21,7 @@ export class MatchGameMultiplayerPublic {
         
         try {
             const db = window.firebaseAuth.db;
-            const { collection, query, where, orderBy, limit: limitQuery, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { collection, query, where, orderBy, limit: limitQuery, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
             
             // Note: Simple implementation. For robust pagination, use startAfter with document snapshots.
             const q = query(
@@ -153,7 +153,7 @@ export class MatchGameMultiplayerPublic {
         try {
             const db = window.firebaseAuth.db;
             const user = window.firebaseAuth.getCurrentUser();
-            const { doc, getDoc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+            const { doc, getDoc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
 
             const roomRef = doc(db, 'multiplayerRooms', roomId);
             const roomDoc = await getDoc(roomRef);

@@ -4,16 +4,16 @@
 
 import { 
     initVocabularyDB
-} from '../vocabulary/vocabulary-db.js';
+} from '../vocabulary/vocabulary-db.js?v=1.1';
 
 // Import unified list functions from sync system
 import { 
     getAllWordLists,
     getWordList
-} from '../lists/lists-sync.js';
+} from '../lists/lists-sync.js?v=1.1';
 
 // Import word progress function
-import { getWordProgress } from '../word_progress/word-progress-sync.js';
+import { getWordProgress } from '../word_progress/word-progress-sync.js?v=1.1';
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
@@ -452,7 +452,7 @@ function setupListContentActions() {
                 const listId = selectedList.getAttribute('data-list-id');
                 try {
                     // Import the enhanced practice session function
-                    const { startPracticeSession } = await import('./modal-practice.js');
+                    const { startPracticeSession } = await import('./modal-practice.js?v=1.1');
                     await startPracticeSession(listId);
                 } catch (error) {
                     console.error('Error starting practice session:', error);

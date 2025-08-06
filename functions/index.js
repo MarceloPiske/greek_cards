@@ -1,3 +1,5 @@
+/* eslint-disable no-fallthrough */
+/* eslint-disable max-len */
 // 1. Configuração Inicial
 /* eslint-disable linebreak-style */
 const functions = require("firebase-functions");
@@ -6,7 +8,7 @@ const express = require("express");
 const cors = require("cors");
 
 // Mercado Pago v2 SDK
-const { MercadoPagoConfig, PreApproval } = require("mercadopago");
+const {MercadoPagoConfig, PreApproval} = require("mercadopago");
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -25,7 +27,7 @@ const PRODUCTS = {
     frequency: 1,
     frequency_type: "months",
   },
-  apoio: {
+  hero: {
     title: "Κοινή – Apoio dos Heróis",
     transaction_amount: 9.90,
     frequency: 1,
@@ -34,25 +36,26 @@ const PRODUCTS = {
 };
 
 const app = express();
-app.use(cors({ origin: true }));
+app.use(cors({origin: true}));
 app.use(express.json());
 
 // 2. Criar Assinatura
 app.post("/criar-assinatura", async (req, res) => {
   try {
-    const { productId, payerEmail, userId } = req.body;
+    const {productId, payerEmail, userId} = req.body;
 
     if (!productId || !payerEmail || !userId) {
-      return res.status(400).json({ error: "Parâmetros incompletos." });
+      return res.status(400).json({error: "Parâmetros incompletos."});
     }
 
     const product = PRODUCTS[productId];
     if (!product) {
-      return res.status(404).json({ error: "Produto não encontrado." });
+      return res.status(404).json({error: "Produto não encontrado."});
     }
 
-    const startDate = new Date();
-    const formattedStartDate = startDate.toISOString().slice(0, -5) + "-03:00";
+    const startDate = new Date(); // ou a data que você precisa
+    const formattedStartDate = startDate.toISOString();
+    console.log(formattedStartDate); // Ex: "2025-08-06T02:44:58.123Z"
 
     const subscriptionData = {
       reason: product.title,
@@ -69,13 +72,15 @@ app.post("/criar-assinatura", async (req, res) => {
       },
     };
 
-    const response = await preapproval.create({ body: subscriptionData });
+    const response = await preapproval.create({body: subscriptionData});
 
-    if (!response || !response.body || !response.body.init_point) {
+    const statusCode = Number(response.status);
+
+    if (statusCode >= 200 && statusCode < 300) {
       throw new Error("Resposta inválida do Mercado Pago.");
     }
 
-    return res.status(200).json({ init_point: response.body.init_point });
+    return res.status(201).json({resposne: response});
   } catch (error) {
     console.error("Erro ao criar assinatura:", error);
     return res.status(500).json({
@@ -88,15 +93,17 @@ app.post("/criar-assinatura", async (req, res) => {
 // 3. Webhook
 app.post("/webhook", async (req, res) => {
   try {
-    const { type, data } = req.body;
+    const {type, data} = req.body;
 
     if (type !== "subscription_preapproval" || !data.id) {
       console.warn("Webhook ignorado ou malformado.");
       return res.sendStatus(200);
     }
 
-    const subscription = await preapproval.get({ id: data.id });
-    const body = subscription.body;
+    const subscription = await preapproval.get({id: data.id});
+    console.log("Dados da assinatura recebidos:", subscription);
+
+    const body = subscription;
 
     const userId = body.external_reference;
     if (!userId) {
@@ -114,19 +121,25 @@ app.post("/webhook", async (req, res) => {
 
         if (body.reason === PRODUCTS.cloud.title) {
           updateData.plan = "cloud";
-        } else if (body.reason === PRODUCTS.apoio.title) {
+        } else if (body.reason === PRODUCTS.hero.title) {
           updateData.plan = "cloud"; // Mesma permissão
           updateData.supporter = true;
         }
         break;
 
       case "cancelled":
+        updateData.subscribed = false;
+        updateData.plan = "cancelled";
       case "paused":
+        updateData.subscribed = false;
+        updateData.plan = "paused";
       case "pending":
+        updateData.subscribed = false;
+        updateData.plan = "pending";
       case "expired":
         updateData.subscribed = false;
-        updateData.plan = "none";
-        updateData.supporter = admin.firestore.FieldValue.delete();
+        updateData.plan = "expired";
+        // updateData.supporter = admin.firestore.FieldValue.delete();
         break;
 
       default:

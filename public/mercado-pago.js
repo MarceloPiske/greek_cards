@@ -15,7 +15,7 @@ export const PRODUCTS = {
         ],
         planId: 'cloud'
     },
-    apoio: {
+    hero: {
         title: "Apoio Hall dos Heróis",
         price: 9.90,
         features: [
@@ -26,7 +26,7 @@ export const PRODUCTS = {
             "Exportação em PDF",
             "Suporte prioritário"
         ],
-        planId: 'ai'
+        planId: 'hero'
     }
 };
 
@@ -180,7 +180,7 @@ export function showPlanSelectionModal() {
                                 `).join('')}
                             </div>
                             <button class="select-plan-btn" data-plan="${key}">
-                                Escolher ${key === 'apoio' ? 'e Apoiar' : 'Plano'}
+                                Escolher ${key === 'hero' ? 'e Apoiar' : 'Plano'}
                             </button>
                         </div>
                     `).join('')}

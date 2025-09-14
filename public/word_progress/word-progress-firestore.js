@@ -37,7 +37,7 @@ export async function saveWordProgressFirestore(wordId, progressData) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
 
         // Prepare progress data for Firestore
         const progressRecord = {
@@ -71,7 +71,7 @@ export async function getWordProgressFirestore(wordId) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
 
         const progressRef = doc(db, 'users', user.uid, 'wordProgress', wordId);
         const docSnap = await getDoc(progressRef);
@@ -99,7 +99,7 @@ export async function getAllWordProgressFirestore() {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { collection, getDocs, query, orderBy } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { collection, getDocs, query, orderBy } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
 
         const progressRef = collection(db, 'users', user.uid, 'wordProgress');
         const q = query(progressRef, orderBy('updatedAt', 'desc'));
@@ -130,7 +130,7 @@ export async function deleteWordProgressFirestore(wordId) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
 
         const progressRef = doc(db, 'users', user.uid, 'wordProgress', wordId);
         await deleteDoc(progressRef);
@@ -155,7 +155,7 @@ export async function getWordProgressCountFirestore() {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { collection, getCountFromServer } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { collection, getCountFromServer } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
 
         const progressRef = collection(db, 'users', user.uid, 'wordProgress');
         const snapshot = await getCountFromServer(progressRef);
@@ -179,7 +179,7 @@ export async function getWordProgressByStatusFirestore(status) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { collection, query, where, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { collection, query, where, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
 
         const progressRef = collection(db, 'users', user.uid, 'wordProgress');
         const q = query(progressRef, where('status', '==', status));
@@ -255,7 +255,7 @@ export async function bulkUpdateWordProgressFirestore(updates) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { doc, setDoc, writeBatch } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { doc, setDoc, writeBatch } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
 
         const batch = writeBatch(db);
 
@@ -306,7 +306,7 @@ export async function getWordProgressByDateRangeFirestore(startDate, endDate) {
         const db = getFirestoreDB();
         const user = getCurrentUser();
         
-        const { collection, query, where, getDocs, orderBy } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { collection, query, where, getDocs, orderBy } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
 
         const progressRef = collection(db, 'users', user.uid, 'wordProgress');
         const q = query(

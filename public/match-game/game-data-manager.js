@@ -124,7 +124,7 @@ async function syncGameDataToCloud(gameData) {
         const user = window.firebaseAuth.getCurrentUser();
         if (!user || !window.firebaseAuth.db) return;
         
-        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         const docRef = doc(window.firebaseAuth.db, 'users', user.uid, 'gameData', gameData.id);
         await setDoc(docRef, {

@@ -21,7 +21,7 @@ export class MatchGameMultiplayerPublic {
         
         try {
             const db = window.firebaseAuth.db;
-            const { collection, query, where, orderBy, limit: limitQuery, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+            const { collection, query, where, orderBy, limit: limitQuery, getDocs } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
             
             // Note: Simple implementation. For robust pagination, use startAfter with document snapshots.
             const q = query(
@@ -153,7 +153,7 @@ export class MatchGameMultiplayerPublic {
         try {
             const db = window.firebaseAuth.db;
             const user = window.firebaseAuth.getCurrentUser();
-            const { doc, getDoc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+            const { doc, getDoc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
 
             const roomRef = doc(db, 'multiplayerRooms', roomId);
             const roomDoc = await getDoc(roomRef);

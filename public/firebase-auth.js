@@ -1,7 +1,18 @@
-/**
- * Firebase Authentication Module
- */
+// Import Firebase modules
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { 
+    getAuth, 
+    signInWithPopup, 
+    GoogleAuthProvider, 
+    OAuthProvider,
+    signOut,
+    onAuthStateChanged 
+} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import { 
+    getFirestore
+} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
+// Initialize Firebase
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAjlnSH9GrSgGNa7w6qlhxbXV-c8kV6n3M",
@@ -12,22 +23,6 @@ const firebaseConfig = {
   appId: "1:509216749797:web:78bfcace1b04617140fc0c",
   measurementId: "G-2L7VC4KHRB"
 };
-
-// Import Firebase modules
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js?v=1.1';
-import { 
-    getAuth, 
-    signInWithPopup, 
-    GoogleAuthProvider, 
-    OAuthProvider,
-    signOut,
-    onAuthStateChanged 
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js?v=1.1';
-import { 
-    getFirestore
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1';
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -46,6 +41,8 @@ let currentUser = null;
 export function initAuth() {
     return new Promise((resolve) => {
         onAuthStateChanged(auth, async (user) => {
+            console.log('Authentication state changed:', user);
+            
             currentUser = user;
             updateUIForUser(user);
             

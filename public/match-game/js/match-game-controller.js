@@ -279,7 +279,7 @@ export class MatchGameController {
 
         try {
             const user = window.firebaseAuth.getCurrentUser();
-            const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+            const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
             const gameState = this.core.getGameState();
             const accuracy = gameState.gameStats.correct / (gameState.gameStats.correct + gameState.gameStats.incorrect || 1);
 

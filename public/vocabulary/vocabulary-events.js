@@ -246,7 +246,7 @@ export class VocabularyEventHandlers {
 
     async saveFeedbackToFirestore(feedbackData) {
         try {
-            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
             const db = window.firebaseAuth.db;
             
             const feedbackRef = doc(collection(db, 'feedback'), Date.now().toString());
@@ -261,7 +261,7 @@ export class VocabularyEventHandlers {
 
     async saveProblemToFirestore(problemData) {
         try {
-            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+            const { doc, setDoc, collection } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
             const db = window.firebaseAuth.db;
             
             const problemRef = doc(collection(db, 'problems'), Date.now().toString());

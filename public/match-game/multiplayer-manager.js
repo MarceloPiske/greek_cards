@@ -33,7 +33,7 @@ export async function createMultiplayerSession(hostUserId, hostName, wordListId,
             throw new Error('Firebase authentication required');
         }
 
-        const { doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         const sessionId = generateSessionId();
         const sessionRef = doc(window.firebaseAuth.db, 'multiplayerSessions', sessionId);
@@ -98,7 +98,7 @@ export async function joinMultiplayerSession(sessionId, playerId, playerName) {
             throw new Error('Firebase authentication required');
         }
 
-        const { doc, getDoc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { doc, getDoc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         const sessionRef = doc(window.firebaseAuth.db, 'multiplayerSessions', sessionId);
         const sessionSnap = await getDoc(sessionRef);
@@ -203,7 +203,7 @@ export async function updatePlayerProgress(sessionId, playerId, progressData) {
     try {
         if (!currentSession || !window.firebaseAuth?.db) return;
 
-        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         const updateData = {};
         updateData[`players.${playerId}.score`] = progressData.score;
@@ -227,7 +227,7 @@ export async function startMultiplayerGame(sessionId) {
     try {
         if (!currentSession || !window.firebaseAuth?.db) return;
 
-        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         const updateData = {
             status: GAME_STATES.IN_PROGRESS,
@@ -255,7 +255,7 @@ export async function endMultiplayerGame(sessionId, results) {
     try {
         if (!currentSession || !window.firebaseAuth?.db) return;
 
-        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         await updateDoc(currentSession.ref, {
             status: GAME_STATES.FINISHED,
@@ -277,7 +277,7 @@ export async function leaveMultiplayerSession(sessionId, playerId) {
     try {
         if (!currentSession || !window.firebaseAuth?.db) return;
 
-        const { updateDoc, deleteDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { updateDoc, deleteDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         const updatedPlayers = { ...currentSession.players };
         delete updatedPlayers[playerId];

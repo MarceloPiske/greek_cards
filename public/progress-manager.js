@@ -139,7 +139,7 @@ export async function saveProgressCloud(moduleId, progressData) {
         const user = window.firebaseAuth.getCurrentUser();
         if (!user || !window.firebaseAuth.db) return null;
         
-        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         const progressRecord = {
             modulo_id: moduleId,
@@ -175,7 +175,7 @@ export async function loadProgressCloud(moduleId) {
         const user = window.firebaseAuth.getCurrentUser();
         if (!user || !window.firebaseAuth.db) return null;
         
-        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js?v=1.1');
+        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         const docRef = doc(window.firebaseAuth.db, 'users', user.uid, 'progresso', moduleId);
         const docSnap = await getDoc(docRef);

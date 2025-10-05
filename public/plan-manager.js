@@ -88,7 +88,7 @@ export async function initializeUserDocument(user) {
                 uid: user.uid,
                 nome: user.displayName || user.email.split('@')[0],
                 email: user.email,
-                plano: PLANS.FREE, // Start with free plan
+                plan: PLANS.FREE, // Start with free plan
                 criadoEm: serverTimestamp(),
                 ultimoAcesso: serverTimestamp(),
                 settings: {

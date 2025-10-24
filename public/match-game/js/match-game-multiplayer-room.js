@@ -36,7 +36,11 @@ export class MatchGameMultiplayerRoom {
             
             if (listId === 'random') {
                 // Create random list from system vocabulary
+<<<<<<< HEAD
                 const { getSystemVocabulary } = await import('../../vocabulary/vocabulary-db.js?v=1.1');
+=======
+                const { getSystemVocabulary } = await import('../../vocabulary/vocabulary-db.js');
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
                 const allWords = await getSystemVocabulary();
                 
                 if (allWords.length < 20) {
@@ -56,8 +60,13 @@ export class MatchGameMultiplayerRoom {
                 actualListName = 'Lista Aleatória';
             } else {
                 // Get word data from existing list
+<<<<<<< HEAD
                 const { getWordList } = await import('../../lists/lists-sync.js?v=1.1');
                 const { getWordById } = await import('../../vocabulary/vocabulary-db.js?v=1.1');
+=======
+                const { getWordList } = await import('../../lists/lists-sync.js');
+                const { getWordById } = await import('../../vocabulary/vocabulary-db.js');
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
                 
                 const list = await getWordList(listId);
                 if (!list || !list.wordIds || list.wordIds.length < 5) {

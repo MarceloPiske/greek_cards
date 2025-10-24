@@ -2,7 +2,11 @@
  * Multiplayer Manager - Handles multiplayer game sessions
  */
 
+<<<<<<< HEAD
 import { getWordsFromList } from './word-list-manager.js?v=1.1';
+=======
+import { getWordsFromList } from './word-list-manager.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // Game states
 export const GAME_STATES = {
@@ -337,7 +341,11 @@ export async function canAccessMultiplayer() {
             return false;
         }
         
+<<<<<<< HEAD
         const { canSyncToCloud } = await import('../plan-manager.js?v=1.1');
+=======
+        const { canSyncToCloud } = await import('../plan-manager.js');
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         return canSyncToCloud(); // Multiplayer requires cloud sync capability
     } catch (error) {
         console.warn('Could not check multiplayer access:', error);

@@ -2,7 +2,11 @@
  * Trilha Viewer Interactions Module
  * Handles user interactions within an activity, such as favoriting, sharing, etc.
  */
+<<<<<<< HEAD
 import { toggleFavoriteBlock } from './trilha-progress-sync.js?v=1.1';
+=======
+import { toggleFavoriteBlock } from './trilha-progress-sync.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 /**
  * Sets up all interaction handlers for the currently displayed activity.
@@ -40,7 +44,11 @@ export function setupActivityInteractions(activity, trilhaData, onFavoriteToggle
     const backToTrilhasBtn = document.getElementById('back-to-trilhas');
     if(backToTrilhasBtn) {
         backToTrilhasBtn.addEventListener('click', () => {
+<<<<<<< HEAD
             window.location.href = '/trilhas/trilha_conteudo.html';
+=======
+            window.location.href = 'trilhas/trilha_conteudo.html';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         });
     }
 }
@@ -186,7 +194,11 @@ function showShareToast(message, type = 'info') {
         padding: 1rem 1.5rem;
         border-radius: 8px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+<<<<<<< HEAD
         /* z-index: 10000; */
+=======
+        z-index: 10000;
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         font-weight: 500;
         display: flex;
         align-items: center;

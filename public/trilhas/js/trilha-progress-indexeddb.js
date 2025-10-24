@@ -1,5 +1,6 @@
 /**
  * IndexedDB Module for Trilha Progress Management
+<<<<<<< HEAD
  * Handles local storage of trilha progress data with multi-user support
  */
 
@@ -10,6 +11,17 @@ const STORE_USER_DATA = 'userData';
 
 /**
  * Initialize IndexedDB for trilha progress with multi-user support
+=======
+ * Handles local storage of trilha progress data
+ */
+
+const DB_NAME = 'koineAppDB';
+const DB_VERSION = 4;
+const STORE_TRILHA_PROGRESS = 'progresso';
+
+/**
+ * Initialize IndexedDB for trilha progress
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
  */
 export async function initTrilhaProgressDB() {
     return new Promise((resolve, reject) => {
@@ -22,6 +34,7 @@ export async function initTrilhaProgressDB() {
         
         request.onsuccess = (event) => {
             const db = event.target.result;
+<<<<<<< HEAD
             
             // Verify that required stores exist
             if (!db.objectStoreNames.contains(STORE_TRILHA_PROGRESS) || 
@@ -42,11 +55,14 @@ export async function initTrilhaProgressDB() {
                 return;
             }
             
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             resolve(db);
         };
         
         request.onupgradeneeded = (event) => {
             const db = event.target.result;
+<<<<<<< HEAD
             const transaction = event.target.transaction;
             
             console.log('Upgrading database from version', event.oldVersion, 'to', event.newVersion);
@@ -152,10 +168,18 @@ export async function initTrilhaProgressDB() {
             console.warn('Database upgrade blocked. Please close other tabs with this app.');
             reject(new Error('Database upgrade blocked'));
         };
+=======
+            
+            if (!db.objectStoreNames.contains(STORE_TRILHA_PROGRESS)) {
+                db.createObjectStore(STORE_TRILHA_PROGRESS, { keyPath: 'modulo_id' });
+            }
+        };
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     });
 }
 
 /**
+<<<<<<< HEAD
  * Get current user ID for IndexedDB operations
  */
 function getCurrentUserId() {
@@ -184,6 +208,17 @@ export async function saveTrilhaProgressLocal(moduleId, progressData, userId = n
         
         const progressRecord = {
             userId: currentUserId,
+=======
+ * Save trilha progress to IndexedDB
+ */
+export async function saveTrilhaProgressLocal(moduleId, progressData) {
+    try {
+        const db = await initTrilhaProgressDB();
+        const tx = db.transaction(STORE_TRILHA_PROGRESS, 'readwrite');
+        const store = tx.objectStore(STORE_TRILHA_PROGRESS);
+        
+        const progressRecord = {
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             modulo_id: moduleId,
             ultimaAtualizacao: new Date().toISOString(),
             blocosConcluidos: progressData.blocosConcluidos || [],
@@ -191,8 +226,12 @@ export async function saveTrilhaProgressLocal(moduleId, progressData, userId = n
             tempoTotal: progressData.tempoTotal || 0,
             notasPessoais: progressData.notasPessoais || '',
             favoritos: progressData.favoritos || [],
+<<<<<<< HEAD
             versaoLocal: Date.now(),
             syncStatus: 'pending' // Track sync status
+=======
+            versaoLocal: Date.now() // For conflict resolution
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         };
         
         await new Promise((resolve, reject) => {
@@ -201,7 +240,11 @@ export async function saveTrilhaProgressLocal(moduleId, progressData, userId = n
             request.onerror = () => reject(request.error);
         });
         
+<<<<<<< HEAD
         console.log(`Trilha progress saved locally for user ${currentUserId}, module: ${moduleId}`);
+=======
+        console.log(`Trilha progress saved locally for module: ${moduleId}`);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         return progressRecord;
     } catch (error) {
         console.error('Error saving trilha progress locally:', error);
@@ -210,6 +253,7 @@ export async function saveTrilhaProgressLocal(moduleId, progressData, userId = n
 }
 
 /**
+<<<<<<< HEAD
  * Load trilha progress from IndexedDB for specific user
  */
 export async function loadTrilhaProgressLocal(moduleId, userId = null) {
@@ -241,10 +285,50 @@ export async function loadTrilhaProgressLocal(moduleId, userId = null) {
     } catch (error) {
         console.error('Error loading trilha progress locally:', error);
         return createDefaultProgress(moduleId, userId);
+=======
+ * Load trilha progress from IndexedDB
+ */
+export async function loadTrilhaProgressLocal(moduleId) {
+    try {
+        const db = await initTrilhaProgressDB();
+        const tx = db.transaction(STORE_TRILHA_PROGRESS, 'readonly');
+        const store = tx.objectStore(STORE_TRILHA_PROGRESS);
+        
+        return new Promise((resolve, reject) => {
+            const request = store.get(moduleId);
+            request.onsuccess = () => {
+                const result = request.result || {
+                    modulo_id: moduleId,
+                    ultimaAtualizacao: null,
+                    blocosConcluidos: [],
+                    respostas: {},
+                    tempoTotal: 0,
+                    notasPessoais: '',
+                    favoritos: [],
+                    versaoLocal: 0
+                };
+                resolve(result);
+            };
+            request.onerror = () => reject(request.error);
+        });
+    } catch (error) {
+        console.error('Error loading trilha progress locally:', error);
+        return {
+            modulo_id: moduleId,
+            ultimaAtualizacao: null,
+            blocosConcluidos: [],
+            respostas: {},
+            tempoTotal: 0,
+            notasPessoais: '',
+            favoritos: [],
+            versaoLocal: 0
+        };
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     }
 }
 
 /**
+<<<<<<< HEAD
  * Create default progress object
  */
 function createDefaultProgress(moduleId, userId = null) {
@@ -289,6 +373,20 @@ export async function getAllTrilhaProgressLocal(userId = null) {
                 console.error('Error getting all progress from IndexedDB:', request.error);
                 resolve([]);
             };
+=======
+ * Get all trilha progress from IndexedDB
+ */
+export async function getAllTrilhaProgressLocal() {
+    try {
+        const db = await initTrilhaProgressDB();
+        const tx = db.transaction(STORE_TRILHA_PROGRESS, 'readonly');
+        const store = tx.objectStore(STORE_TRILHA_PROGRESS);
+        
+        return new Promise((resolve, reject) => {
+            const request = store.getAll();
+            request.onsuccess = () => resolve(request.result || []);
+            request.onerror = () => reject(request.error);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         });
     } catch (error) {
         console.error('Error getting all trilha progress locally:', error);
@@ -299,21 +397,34 @@ export async function getAllTrilhaProgressLocal(userId = null) {
 /**
  * Delete trilha progress from IndexedDB
  */
+<<<<<<< HEAD
 export async function deleteTrilhaProgressLocal(moduleId, userId = null) {
+=======
+export async function deleteTrilhaProgressLocal(moduleId) {
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     try {
         const db = await initTrilhaProgressDB();
         const tx = db.transaction(STORE_TRILHA_PROGRESS, 'readwrite');
         const store = tx.objectStore(STORE_TRILHA_PROGRESS);
         
+<<<<<<< HEAD
         const currentUserId = userId || getCurrentUserId();
         
         await new Promise((resolve, reject) => {
             const request = store.delete([currentUserId, moduleId]);
+=======
+        await new Promise((resolve, reject) => {
+            const request = store.delete(moduleId);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             request.onsuccess = () => resolve();
             request.onerror = () => reject(request.error);
         });
         
+<<<<<<< HEAD
         console.log(`Trilha progress deleted locally for user ${currentUserId}, module: ${moduleId}`);
+=======
+        console.log(`Trilha progress deleted locally for module: ${moduleId}`);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     } catch (error) {
         console.error('Error deleting trilha progress locally:', error);
         throw error;
@@ -323,28 +434,47 @@ export async function deleteTrilhaProgressLocal(moduleId, userId = null) {
 /**
  * Mark progress as needing sync (for offline changes)
  */
+<<<<<<< HEAD
 export async function markTrilhaProgressForSync(moduleId, userId = null) {
     try {
         const progress = await loadTrilhaProgressLocal(moduleId, userId);
         progress.syncStatus = 'pending';
         progress.lastModified = Date.now();
         await saveTrilhaProgressLocal(moduleId, progress, userId);
+=======
+export async function markTrilhaProgressForSync(moduleId) {
+    try {
+        const progress = await loadTrilhaProgressLocal(moduleId);
+        progress.needsSync = true;
+        progress.lastModified = Date.now();
+        await saveTrilhaProgressLocal(moduleId, progress);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     } catch (error) {
         console.error('Error marking trilha progress for sync:', error);
     }
 }
 
 /**
+<<<<<<< HEAD
  * Get all progress that needs sync for a user
  */
 export async function getTrilhaProgressNeedingSync(userId = null) {
     try {
         const allProgress = await getAllTrilhaProgressLocal(userId);
         return allProgress.filter(progress => progress.syncStatus === 'pending');
+=======
+ * Get all progress that needs sync
+ */
+export async function getTrilhaProgressNeedingSync() {
+    try {
+        const allProgress = await getAllTrilhaProgressLocal();
+        return allProgress.filter(progress => progress.needsSync === true);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     } catch (error) {
         console.error('Error getting trilha progress needing sync:', error);
         return [];
     }
+<<<<<<< HEAD
 }
 
 /**
@@ -460,4 +590,6 @@ export async function importUserData(exportedData) {
         console.error('Error importing user data:', error);
         throw error;
     }
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 }

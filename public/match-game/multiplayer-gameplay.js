@@ -6,9 +6,15 @@ import {
     updatePlayerProgress,
     endMultiplayerGame,
     GAME_STATES
+<<<<<<< HEAD
 } from './multiplayer-manager.js?v=1.1';
 import { getCurrentSessionData } from './multiplayer-ui.js?v=1.1';
 import { closeLobby } from './multiplayer-lobby.js?v=1.1';
+=======
+} from './multiplayer-manager.js';
+import { getCurrentSessionData } from './multiplayer-ui.js';
+import { closeLobby } from './multiplayer-lobby.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 let gameTimer = null;
 let gameStartTime = null;

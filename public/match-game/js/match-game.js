@@ -3,7 +3,11 @@
  * Initializes the game controller and sets up global access
  */
 
+<<<<<<< HEAD
 import { MatchGameController } from './match-game-controller.js?v=1.1';
+=======
+import { MatchGameController } from './match-game-controller.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // Initialize the game when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {

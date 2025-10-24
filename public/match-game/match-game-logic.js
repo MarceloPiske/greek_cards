@@ -2,9 +2,15 @@
  * Match Game Logic Module - Handles game logic and data management
  */
 
+<<<<<<< HEAD
 import { getUserWordLists, getWordsFromList, createDefaultWordList } from './word-list-manager.js?v=1.1';
 import { updateWordProgress, getWordsProgress, PROGRESS_STATUS } from './word-progress-manager.js?v=1.1';
 import { saveGameSession } from './game-data-manager.js?v=1.1';
+=======
+import { getUserWordLists, getWordsFromList, createDefaultWordList } from './word-list-manager.js';
+import { updateWordProgress, getWordsProgress, PROGRESS_STATUS } from './word-progress-manager.js';
+import { saveGameSession } from './game-data-manager.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // Game state - exported for UI access
 export const gameData = {

@@ -9,9 +9,15 @@ import {
     leaveMultiplayerSession,
     GAME_STATES,
     PLAYER_STATES
+<<<<<<< HEAD
 } from './multiplayer-manager.js?v=1.1';
 import { getCurrentSessionData, setCurrentSessionData } from './multiplayer-ui.js?v=1.1';
 import { startMultiplayerGameUI, handleSessionGameUpdate } from './multiplayer-gameplay.js?v=1.1';
+=======
+} from './multiplayer-manager.js';
+import { getCurrentSessionData, setCurrentSessionData } from './multiplayer-ui.js';
+import { startMultiplayerGameUI, handleSessionGameUpdate } from './multiplayer-gameplay.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 /**
  * Show lobby

@@ -3,12 +3,21 @@
  * Handles all CRUD operations for word progress with IndexedDB
  */
 
+<<<<<<< HEAD
+<<<<<<<< HEAD:public/word_progress/word-progress-db.js
 import { initVocabularyDB } from '../vocabulary/vocabulary-db.js?v=1.1';
+========
+import { initVocabularyDB } from '../vocabulary-db.js';
+>>>>>>>> 485a7111651673321d36bac1405974bd151865fc:public/cards/word_progress/word-progress-db.js
+=======
+import { initVocabularyDB } from '../vocabulary/vocabulary-db.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // Database store for word progress
 const STORE_USER_PROGRESS = 'wordProgress';
 
 /**
+<<<<<<< HEAD
  * Get current user ID or 'anonymous' if not logged in
  */
 function getCurrentUserId() {
@@ -27,6 +36,8 @@ function createUserKey(wordId, userId = null) {
 }
 
 /**
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
  * Create or update word progress in IndexedDB
  */
 export async function saveWordProgressDB(wordId, progressData) {
@@ -35,21 +46,31 @@ export async function saveWordProgressDB(wordId, progressData) {
         const tx = db.transaction(STORE_USER_PROGRESS, 'readwrite');
         const store = tx.objectStore(STORE_USER_PROGRESS);
 
+<<<<<<< HEAD
         const userId = getCurrentUserId();
         const userKey = createUserKey(wordId, userId);
 
         // Get current progress if it exists
         const currentProgress = await new Promise((resolve, reject) => {
             const request = store.get(userKey);
+=======
+        // Get current progress if it exists
+        const currentProgress = await new Promise((resolve, reject) => {
+            const request = store.get(wordId);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             request.onsuccess = () => resolve(request.result);
             request.onerror = () => reject(request.error);
         });
 
         // Merge with existing data
         const newProgress = {
+<<<<<<< HEAD
             id: userKey,
             wordId,
             userId,
+=======
+            wordId,
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             status: progressData.status || 'unread',
             reviewCount: progressData.reviewCount || (currentProgress?.reviewCount || 0),
             lastReviewed: progressData.lastReviewed || null,
@@ -85,6 +106,7 @@ export async function getWordProgressDB(wordId) {
         const tx = db.transaction(STORE_USER_PROGRESS, 'readonly');
         const store = tx.objectStore(STORE_USER_PROGRESS);
 
+<<<<<<< HEAD
         const userId = getCurrentUserId();
         const userKey = createUserKey(wordId, userId);
 
@@ -95,6 +117,13 @@ export async function getWordProgressDB(wordId) {
                     id: userKey,
                     wordId,
                     userId,
+=======
+        return new Promise((resolve, reject) => {
+            const request = store.get(wordId);
+            request.onsuccess = () => {
+                const result = request.result || {
+                    wordId,
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
                     status: 'unread',
                     reviewCount: 0,
                     lastReviewed: null,
@@ -113,7 +142,11 @@ export async function getWordProgressDB(wordId) {
 }
 
 /**
+<<<<<<< HEAD
  * Get all word progress records for current user from IndexedDB
+=======
+ * Get all word progress records from IndexedDB
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
  */
 export async function getAllWordProgressDB() {
     try {
@@ -121,6 +154,7 @@ export async function getAllWordProgressDB() {
         const tx = db.transaction(STORE_USER_PROGRESS, 'readonly');
         const store = tx.objectStore(STORE_USER_PROGRESS);
 
+<<<<<<< HEAD
         const userId = getCurrentUserId();
 
         return new Promise((resolve, reject) => {
@@ -132,6 +166,15 @@ export async function getAllWordProgressDB() {
                 // Sort by most recently updated
                 userResults.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
                 resolve(userResults);
+=======
+        return new Promise((resolve, reject) => {
+            const request = store.getAll();
+            request.onsuccess = () => {
+                const results = request.result || [];
+                // Sort by most recently updated
+                results.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+                resolve(results);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             };
             request.onerror = () => reject(request.error);
         });
@@ -150,11 +193,16 @@ export async function deleteWordProgressDB(wordId) {
         const tx = db.transaction(STORE_USER_PROGRESS, 'readwrite');
         const store = tx.objectStore(STORE_USER_PROGRESS);
 
+<<<<<<< HEAD
         const userId = getCurrentUserId();
         const userKey = createUserKey(wordId, userId);
 
         return new Promise((resolve, reject) => {
             const request = store.delete(userKey);
+=======
+        return new Promise((resolve, reject) => {
+            const request = store.delete(wordId);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             request.onsuccess = () => resolve(true);
             request.onerror = () => reject(request.error);
         });

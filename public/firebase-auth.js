@@ -56,6 +56,7 @@ export function initAuth() {
                         console.warn('Failed to initialize user document in background:', error);
                     });
                     
+<<<<<<< HEAD
                     // Don't await this - let it run in background
                     // Load user data from Firebase in background
                     /* const { loadUserDataFromFirebase } = await import('./cards/vocabulary-db.js?v=1.1');
@@ -64,6 +65,11 @@ export function initAuth() {
                     }).catch(error => {
                         console.warn('Failed to load user data from Firebase in background:', error);
                     }); */
+=======
+                    // Load user data from Firebase when user logs in
+                   /*  const { loadUserDataFromFirebase } = await import('./cards/vocabulary-db.js');
+                    await loadUserDataFromFirebase(); */
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
                 } catch (error) {
                     console.warn('Could not start background initialization:', error);
                 }

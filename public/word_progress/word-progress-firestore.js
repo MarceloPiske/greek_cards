@@ -3,7 +3,11 @@
  * Handles all cloud operations for word progress with Firestore
  */
 
+<<<<<<< HEAD
 import { canSyncToCloud } from '../plan-manager.js?v=1.1';
+=======
+import { canSyncToCloud } from '../plan-manager.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 /**
  * Get Firestore database reference
@@ -341,7 +345,11 @@ export async function syncAllWordProgressFromFirestore() {
         const firestoreProgress = await getAllWordProgressFirestore();
         
         // Import IndexedDB operations
+<<<<<<< HEAD
         const { bulkUpdateWordProgressDB } = await import('./word-progress-db.js?v=1.1');
+=======
+        const { bulkUpdateWordProgressDB } = await import('./word-progress-db.js');
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         
         // Prepare updates for IndexedDB
         const updates = firestoreProgress.map(progress => ({
@@ -371,7 +379,11 @@ export async function syncPendingWordProgressToFirestore() {
 
     try {
         // Import IndexedDB operations
+<<<<<<< HEAD
         const { getWordProgressNeedingSyncDB, markWordProgressAsSyncedDB } = await import('./word-progress-db.js?v=1.1');
+=======
+        const { getWordProgressNeedingSyncDB, markWordProgressAsSyncedDB } = await import('./word-progress-db.js');
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         
         const pendingProgress = await getWordProgressNeedingSyncDB();
         

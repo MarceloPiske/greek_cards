@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Listas - Koiné</title>
+    <link rel="icon" href="../../img/icon.svg" type="image/png">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../css/cards-base.css">
+    <link rel="stylesheet" href="../css/cards-components.css">
+    <link rel="stylesheet" href="../css/cards-modals.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
+    <style>
+        .lists-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .lists-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--shadow);
+        }
+
+        .lists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .list-card {
+            background: var(--bg-secondary);
+            border-radius: var(--card-border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--card-transition);
+            position: relative;
+            border-left: 4px solid var(--accent);
+        }
+
+        .list-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .list-card.offline {
+            border-left-color: var(--status-unread);
+        }
+
+        .list-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .list-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .list-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .list-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .list-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .list-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        .list-actions .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .list-menu-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .list-menu-btn:hover {
+            background: var(--bg-primary);
+            color: var(--accent);
+        }
+
+        .sync-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--status-memorized);
+        }
+
+        .sync-status.offline {
+            background: var(--status-unread);
+        }
+
+        .sync-status.pending {
+            background: var(--status-reading);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .empty-lists {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-lists .material-symbols-sharp {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            opacity: 0.7;
+        }
+
+        .lists-search {
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--shadow);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .context-menu {
+            position: absolute;
+            background: var(--bg-secondary);
+            border: 1px solid var(--shadow);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow);
+            z-index: 1000;
+            min-width: 150px;
+            padding: 0.5rem 0;
+        }
+
+        .context-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .context-menu-item:hover {
+            background: var(--bg-primary);
+        }
+
+        .context-menu-item.danger {
+            color: #f44336;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .loading-content {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--shadow);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .lists-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .lists-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .list-card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .list-actions {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <button class="back-button" id="back-button" aria-label="Voltar">
+                    <span class="material-symbols-sharp">arrow_back</span>
+                </button>
+                <a href="/" class="logo-link">
+                    <span class="logo-text">Κοινή</span>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="../../trilhas/trilha_conteudo.html" class="nav-link">
+                            <span class="material-symbols-sharp">school</span>
+                            <span>Trilhas de Estudo</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">
+                            <span class="material-symbols-sharp">style</span>
+                            <span>Vocabulário</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="./index.html" class="nav-link">
+                            <span class="material-symbols-sharp">list</span>
+                            <span>Gerenciar Listas</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <div class="user-section">
+                        <div class="user-profile" id="user-profile" style="display: none;">
+                            <img class="user-avatar" id="user-avatar" src="" alt="User Avatar">
+                            <span class="user-name" id="user-name"></span>
+                            <button class="user-menu-btn" id="user-menu-btn" aria-label="Abrir menu do usuário">
+                                <span class="material-symbols-sharp">expand_more</span>
+                            </button>
+                        </div>
+                        <button class="login-button" id="login-button" aria-label="Abrir modal de login">
+                            <span class="material-symbols-sharp">person</span>
+                            <span>Login</span>
+                        </button>
+                    </div>
+                    
+                    <button class="theme-switch" aria-label="Alternar tema claro/escuro">
+                        <svg class="theme-icon sun" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" style="display: none;">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="theme-icon moon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-content">
+            <h1>
+                <span class="material-symbols-sharp page-icon">list</span>
+                Gerenciador de Listas
+            </h1>
+            <p class="page-description">Crie, edite e organize suas listas de vocabulário. Gerencie todas as suas coleções de palavras em um só lugar.</p>
+        </div>
+    </header>
+
+    <main class="lists-container">
+        <div class="lists-header">
+            <div class="lists-search">
+                <input type="text" id="search-lists" class="search-input" placeholder="Buscar listas...">
+            </div>
+            <div class="header-actions">
+                <button id="sync-all-btn" class="btn" title="Sincronizar todas as listas">
+                    <span class="material-symbols-sharp">sync</span>
+                    Sincronizar
+                </button>
+                <button id="new-list-btn" class="btn primary">
+                    <span class="material-symbols-sharp">add</span>
+                    Nova Lista
+                </button>
+            </div>
+        </div>
+
+        <div id="lists-container" class="lists-grid">
+            <div class="loading-state">
+                <span class="material-symbols-sharp loading-icon">sync</span>
+                <p>Carregando listas...</p>
+            </div>
+        </div>
+
+        <div id="empty-lists" class="empty-lists" style="display: none;">
+            <span class="material-symbols-sharp">inventory_2</span>
+            <h3>Nenhuma lista encontrada</h3>
+            <p>Crie sua primeira lista de vocabulário para começar</p>
+            <button id="create-first-list" class="btn primary">
+                <span class="material-symbols-sharp">add</span>
+                Criar primeira lista
+            </button>
+        </div>
+    </main>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="context-menu" style="display: none;">
+        <button class="context-menu-item" id="edit-list">
+            <span class="material-symbols-sharp">edit</span>
+            Editar
+        </button>
+        <button class="context-menu-item" id="duplicate-list">
+            <span class="material-symbols-sharp">content_copy</span>
+            Duplicar
+        </button>
+        <button class="context-menu-item danger" id="delete-list">
+            <span class="material-symbols-sharp">delete</span>
+            Excluir
+        </button>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p id="loading-message">Processando...</p>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Login</h2>
+            <div class="login-options">
+                <button class="login-option-btn" onclick="loginWith('google')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="#4285F4"
+                            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                        <path fill="#34A853"
+                            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                        <path fill="#FBBC05"
+                            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                        <path fill="#EA4335"
+                            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                    </svg>
+                    Continue com Google
+                </button>
+                <button class="login-option-btn" onclick="loginWith('microsoft')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="#F25022" d="M1 1h10v10H1z" />
+                        <path fill="#00A4EF" d="M1 13h10v10H1z" />
+                        <path fill="#7FBA00" d="M13 1h10v10H13z" />
+                        <path fill="#FFB900" d="M13 13h10v10H13z" />
+                    </svg>
+                    Continue com Microsoft
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../../firebase-auth.js"></script>
+    <script type="module">
+        import { ListsApp } from './lists-app.js';
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', async () => {
+            const app = new ListsApp();
+            await app.initialize();
+        });
+    </script>
+</body>
+
+</html>

@@ -2,7 +2,11 @@
  * Word Progress Manager - Handles word learning progress
  */
 
+<<<<<<< HEAD
 import { initDB } from '../indexedDB.js?v=1.1';
+=======
+import { initDB } from '../indexedDB.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 const DB_NAME = 'koineAppDB';
 const STORE_USER_PROGRESS = 'wordProgress';
@@ -25,7 +29,11 @@ async function shouldSyncToCloud() {
     }
     
     try {
+<<<<<<< HEAD
         const { canSyncToCloud } = await import('../plan-manager.js?v=1.1');
+=======
+        const { canSyncToCloud } = await import('../plan-manager.js');
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         return canSyncToCloud();
     } catch (error) {
         console.warn('Could not check plan permissions:', error);

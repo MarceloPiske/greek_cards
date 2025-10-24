@@ -15,7 +15,11 @@ import {
     markWordProgressAsSyncedDB,
     getWordProgressNeedingSyncDB,
     bulkUpdateWordProgressDB
+<<<<<<< HEAD
 } from './word-progress-db.js?v=1.1';
+=======
+} from './word-progress-db.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 import {
     saveWordProgressFirestore,
@@ -27,9 +31,15 @@ import {
     getWordProgressStatsFirestore,
     wordProgressExistsFirestore,
     performFullWordProgressSync
+<<<<<<< HEAD
 } from './word-progress-firestore.js?v=1.1';
 
 import { canSyncToCloud } from '../plan-manager.js?v=1.1';
+=======
+} from './word-progress-firestore.js';
+
+import { canSyncToCloud } from '../plan-manager.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // Sync status tracking
 let syncInProgress = false;
@@ -129,6 +139,7 @@ function showSyncSuccess(message) {
  */
 export async function saveWordProgress(wordId, progressData) {
     try {
+<<<<<<< HEAD
         // Always save locally first - this should be fast
         const localProgress = await saveWordProgressDB(wordId, progressData);
         
@@ -138,11 +149,32 @@ export async function saveWordProgress(wordId, progressData) {
             syncProgressToCloudInBackground(wordId, progressData, localProgress).catch(error => {
                 console.warn('Background cloud sync failed during word progress save:', error);
             });
+=======
+        // Always save locally first
+        const localProgress = await saveWordProgressDB(wordId, progressData);
+        
+        // Try to sync to cloud if user has cloud access
+        if (await canSyncToCloud() && onlineStatus) {
+            try {
+                const cloudProgress = await saveWordProgressFirestore(wordId, progressData);
+                // Update local with sync timestamp
+                await markWordProgressAsSyncedDB(wordId, cloudProgress.syncedAt);
+                
+                console.log(`Word progress saved and synced: ${wordId}`);
+                return { ...localProgress, syncedAt: cloudProgress.syncedAt };
+            } catch (error) {
+                console.warn('Cloud sync failed during word progress save:', error);
+                showSyncError('Progresso salvo localmente. Sincronização com a nuvem falhará quando a conexão for restaurada.');
+            }
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         } else if (await canSyncToCloud() && !onlineStatus) {
             console.log('Word progress saved offline - will sync when connection is restored');
         }
         
+<<<<<<< HEAD
         // Return local data immediately
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         return localProgress;
     } catch (error) {
         console.error('Error saving word progress:', error);
@@ -151,6 +183,7 @@ export async function saveWordProgress(wordId, progressData) {
 }
 
 /**
+<<<<<<< HEAD
  * Background sync helper for word progress
  */
 async function syncProgressToCloudInBackground(wordId, progressData, localProgress) {
@@ -169,10 +202,13 @@ async function syncProgressToCloudInBackground(wordId, progressData, localProgre
 }
 
 /**
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
  * Unified get word progress (with sync check)
  */
 export async function getWordProgress(wordId) {
     try {
+<<<<<<< HEAD
         // Get from local storage first - this should be fast
         const localProgress = await getWordProgressDB(wordId);
         
@@ -185,6 +221,47 @@ export async function getWordProgress(wordId) {
         }
         
         // Return local data immediately
+=======
+        // Get from local storage first
+        const localProgress = await getWordProgressDB(wordId);
+        
+        // If cloud access available and online, check for newer version
+        if (await canSyncToCloud() && onlineStatus && localProgress) {
+            try {
+                const cloudProgress = await getWordProgressFirestore(wordId);
+                
+                if (cloudProgress) {
+                    const localDate = new Date(localProgress.updatedAt || localProgress.createdAt);
+                    const cloudDate = new Date(cloudProgress.updatedAt || cloudProgress.createdAt);
+                    
+                    // Use most recent version
+                    if (cloudDate > localDate) {
+                        // Cloud is newer, update local
+                        await saveWordProgressDB(wordId, cloudProgress);
+                        console.log(`Updated local word progress from cloud: ${wordId}`);
+                        return cloudProgress;
+                    } else if (localDate > cloudDate) {
+                        // Local is newer, update cloud
+                        try {
+                            await saveWordProgressFirestore(wordId, {
+                                status: localProgress.status,
+                                reviewCount: localProgress.reviewCount,
+                                lastReviewed: localProgress.lastReviewed,
+                                updatedAt: localProgress.updatedAt
+                            });
+                            await markWordProgressAsSyncedDB(wordId);
+                            console.log(`Updated cloud word progress from local: ${wordId}`);
+                        } catch (error) {
+                            console.warn('Failed to update cloud with local word progress changes:', error);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.warn('Could not check cloud word progress version:', error);
+            }
+        }
+        
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         return localProgress;
     } catch (error) {
         console.error('Error getting word progress:', error);
@@ -193,6 +270,7 @@ export async function getWordProgress(wordId) {
 }
 
 /**
+<<<<<<< HEAD
  * Background cloud check for word progress
  */
 async function checkCloudProgressInBackground(wordId, localProgress) {
@@ -235,10 +313,13 @@ async function checkCloudProgressInBackground(wordId, localProgress) {
 }
 
 /**
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
  * Unified get all word progress (with sync)
  */
 export async function getAllWordProgress() {
     try {
+<<<<<<< HEAD
         // Always get local progress first - this should be fast
         const localProgress = await getAllWordProgressDB();
         
@@ -251,6 +332,38 @@ export async function getAllWordProgress() {
         }
         
         // Return local data immediately
+=======
+        // Always get local progress first
+        const localProgress = await getAllWordProgressDB();
+        
+        // If cloud access available and online, perform sync
+        if (await canSyncToCloud() && onlineStatus && !syncInProgress) {
+            try {
+                syncInProgress = true;
+                
+                // Get cloud progress
+                const cloudProgress = await getAllWordProgressFirestore();
+                
+                // Merge and sync
+                const syncResults = await syncProgressCollections(localProgress, cloudProgress);
+                
+                if (syncResults.conflicts > 0) {
+                    showSyncError(`${syncResults.conflicts} conflitos de sincronização detectados. Algumas alterações podem ter sido perdidas.`);
+                } else if (syncResults.updated > 0) {
+                    showSyncSuccess(`${syncResults.updated} registros de progresso sincronizados com sucesso.`);
+                }
+                
+                // Return updated local progress
+                return await getAllWordProgressDB();
+            } catch (error) {
+                console.warn('Sync failed during word progress retrieval:', error);
+                showSyncError('Falha na sincronização do progresso. Mostrando dados locais.');
+            } finally {
+                syncInProgress = false;
+            }
+        }
+        
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         return localProgress;
     } catch (error) {
         console.error('Error getting all word progress:', error);
@@ -259,6 +372,7 @@ export async function getAllWordProgress() {
 }
 
 /**
+<<<<<<< HEAD
  * Background sync for all progress
  */
 async function syncAllProgressInBackground(localProgress) {
@@ -289,10 +403,13 @@ async function syncAllProgressInBackground(localProgress) {
 }
 
 /**
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
  * Unified delete word progress
  */
 export async function deleteWordProgress(wordId) {
     try {
+<<<<<<< HEAD
         // Delete locally first - this should be fast
         await deleteWordProgressDB(wordId);
         console.log(`Word progress deleted locally: ${wordId}`);
@@ -306,6 +423,23 @@ export async function deleteWordProgress(wordId) {
         }
         
         // Return immediately
+=======
+        // Delete from cloud first if possible (to avoid orphaned cloud data)
+        if (await canSyncToCloud() && onlineStatus) {
+            try {
+                await deleteWordProgressFirestore(wordId);
+                console.log(`Word progress deleted from cloud: ${wordId}`);
+            } catch (error) {
+                console.warn('Cloud deletion failed:', error);
+                // Continue with local deletion anyway
+            }
+        }
+        
+        // Delete locally
+        await deleteWordProgressDB(wordId);
+        console.log(`Word progress deleted locally: ${wordId}`);
+        
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         return true;
     } catch (error) {
         console.error('Error deleting word progress:', error);
@@ -314,6 +448,7 @@ export async function deleteWordProgress(wordId) {
 }
 
 /**
+<<<<<<< HEAD
  * Background cloud deletion for word progress
  */
 async function deleteProgressFromCloudInBackground(wordId) {
@@ -329,6 +464,8 @@ async function deleteProgressFromCloudInBackground(wordId) {
 }
 
 /**
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
  * Get word progress count (unified)
  */
 export async function getWordProgressCount() {

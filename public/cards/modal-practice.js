@@ -3,8 +3,21 @@
  */
 
 // Import unified word progress function from sync system
+<<<<<<< HEAD
 import { saveWordProgress } from '../word_progress/word-progress-sync.js?v=1.1';
 import { getWordList } from '../lists/lists-sync.js?v=1.1';
+=======
+import { saveWordProgress } from '../word_progress/word-progress-sync.js';
+
+// Import unified list functions from sync system
+import { getWordList } from '../lists/lists-sync.js';
+
+
+
+import {
+    createWordDetailContent
+} from './modal-components.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // Word status constants
 const WordStatus = {
@@ -14,6 +27,7 @@ const WordStatus = {
     MEMORIZED: 'memorized'
 };
 
+<<<<<<< HEAD
 // Practice session state
 let practiceState = {
     startTime: null,
@@ -27,10 +41,13 @@ let practiceState = {
     }
 };
 
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 /**
  * Show modal and set up basic event listeners
  */
 export function showModal(modalElement) {
+<<<<<<< HEAD
     const closeBtn = modalElement.querySelector('.close-practice, .close-modal');
     
     if (closeBtn) {
@@ -66,6 +83,24 @@ export function showModal(modalElement) {
     return modalElement;
 }
 
+=======
+    const closeBtn = modalElement.querySelector('.close-modal');
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => modalElement.remove());
+    }
+
+    // Close on outside click
+    modalElement.addEventListener('click', (e) => {
+        if (e.target === modalElement) {
+            modalElement.remove();
+        }
+    });
+
+    modalElement.style.display = 'flex';
+    return modalElement;
+}
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 export function createAndShowModal(htmlContent) {
     document.body.insertAdjacentHTML('beforeend', htmlContent);
     const modal = document.body.lastElementChild;
@@ -109,7 +144,11 @@ async function getWordListWithWords(listId) {
             const word = allWords.find(w => w.ID === wordId);
             if (word) {
                 try {
+<<<<<<< HEAD
                     const { getWordProgress } = await import('../word_progress/word-progress-sync.js?v=1.1');
+=======
+                    const { getWordProgress } = await import('../word_progress/word-progress-sync.js');
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
                     const progress = await getWordProgress(word.ID);
                     words.push({
                         ...word,

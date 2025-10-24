@@ -1,5 +1,6 @@
 /**
  * Firestore Module for Trilha Progress Management
+<<<<<<< HEAD
  * Handles cloud storage of trilha progress data with async operations
  */
 
@@ -7,6 +8,11 @@
 const syncQueue = new Map();
 let isProcessingQueue = false;
 
+=======
+ * Handles cloud storage of trilha progress data
+ */
+
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 /**
  * Check if Firestore is available and user is authenticated
  */
@@ -18,6 +24,7 @@ function isFirestoreAvailable() {
 }
 
 /**
+<<<<<<< HEAD
  * Add operation to async queue
  */
 function addToSyncQueue(operation, data) {
@@ -115,13 +122,25 @@ export async function saveTrilhaProgressCloud(moduleId, progressData) {
  * Direct save to Firestore (used by queue processor)
  */
 async function saveTrilhaProgressCloudDirect(moduleId, progressData) {
+=======
+ * Save trilha progress to Firestore
+ */
+export async function saveTrilhaProgressCloud(moduleId, progressData) {
+    if (!isFirestoreAvailable()) {
+        throw new Error('Firestore not available or user not authenticated');
+    }
+    
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     try {
         const user = window.firebaseAuth.getCurrentUser();
         const { doc, setDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
         
         const progressRecord = {
             modulo_id: moduleId,
+<<<<<<< HEAD
             userId: user.uid,
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             ultimaAtualizacao: new Date().toISOString(),
             versaoModulo: 'v1.0',
             blocosConcluidos: progressData.blocosConcluidos || [],
@@ -130,11 +149,15 @@ async function saveTrilhaProgressCloudDirect(moduleId, progressData) {
             notasPessoais: progressData.notasPessoais || '',
             favoritos: progressData.favoritos || [],
             syncedAt: serverTimestamp(),
+<<<<<<< HEAD
             versaoCloud: Date.now(),
             deviceInfo: {
                 userAgent: navigator.userAgent,
                 timestamp: new Date().toISOString()
             }
+=======
+            versaoCloud: Date.now()
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         };
         
         const docRef = doc(window.firebaseAuth.db, 'users', user.uid, 'trilhaProgress', moduleId);
@@ -205,6 +228,7 @@ export async function getAllTrilhaProgressCloud() {
 }
 
 /**
+<<<<<<< HEAD
  * Delete trilha progress from Firestore (async)
  */
 export async function deleteTrilhaProgressCloud(moduleId) {
@@ -221,6 +245,15 @@ export async function deleteTrilhaProgressCloud(moduleId) {
  * Direct delete from Firestore (used by queue processor)
  */
 async function deleteTrilhaProgressCloudDirect(moduleId) {
+=======
+ * Delete trilha progress from Firestore
+ */
+export async function deleteTrilhaProgressCloud(moduleId) {
+    if (!isFirestoreAvailable()) {
+        throw new Error('Firestore not available or user not authenticated');
+    }
+    
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     try {
         const user = window.firebaseAuth.getCurrentUser();
         const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
@@ -245,6 +278,7 @@ export async function batchSyncTrilhaProgressCloud(progressRecords) {
     
     const results = { success: 0, failed: 0, errors: [] };
     
+<<<<<<< HEAD
     // Process in batches to avoid overwhelming Firestore
     const batchSize = 5;
     for (let i = 0; i < progressRecords.length; i += batchSize) {
@@ -266,6 +300,18 @@ export async function batchSyncTrilhaProgressCloud(progressRecords) {
         // Small delay between batches
         if (i + batchSize < progressRecords.length) {
             await new Promise(resolve => setTimeout(resolve, 100));
+=======
+    for (const progress of progressRecords) {
+        try {
+            await saveTrilhaProgressCloud(progress.modulo_id, progress);
+            results.success++;
+        } catch (error) {
+            results.failed++;
+            results.errors.push({
+                moduleId: progress.modulo_id,
+                error: error.message
+            });
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         }
     }
     
@@ -274,6 +320,7 @@ export async function batchSyncTrilhaProgressCloud(progressRecords) {
 }
 
 /**
+<<<<<<< HEAD
  * Backup all user data to cloud (async)
  */
 export async function backupUserDataCloud(userData) {
@@ -356,6 +403,8 @@ export async function downloadUserDataFromCloud() {
 }
 
 /**
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
  * Check if cloud data is newer than local data
  */
 export function isCloudDataNewer(localData, cloudData) {
@@ -404,6 +453,7 @@ export function mergeTrilhaProgressData(localData, cloudData) {
         tempoTotal: Math.max(baseData.tempoTotal || 0, otherData.tempoTotal || 0),
         notasPessoais: baseData.notasPessoais || otherData.notasPessoais || '',
         ultimaAtualizacao: new Date().toISOString(),
+<<<<<<< HEAD
         merged: true,
         syncStatus: 'synced'
     };
@@ -424,4 +474,8 @@ if (typeof window !== 'undefined') {
             setTimeout(processQueueAsync, 1000);
         }
     });
+=======
+        merged: true
+    };
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 }

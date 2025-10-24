@@ -1,0 +1,313 @@
+/* Base styles for the trilha page */
+
+.enhanced-main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.enhanced-section {
+    position: relative;
+}
+
+.enhanced-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem;
+    color: var(--text-secondary);
+}
+
+.loading-spinner {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.spinner-circle {
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: loading-bounce 1.4s ease-in-out infinite both;
+}
+
+.spinner-circle:nth-child(1) { animation-delay: -0.32s; }
+.spinner-circle:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes loading-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+.enhanced-error {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+}
+
+.error-icon {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: var(--color-danger);
+    animation: error-shake 0.5s ease-in-out;
+}
+
+@keyframes error-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.study-insights {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px var(--shadow);
+    margin-top: 3rem;
+}
+
+.study-insights h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.insight-card {
+    background: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--shadow);
+}
+
+.insight-card h3 {
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+
+.enhanced-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enhanced-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+}
+
+.enhanced-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.enhanced-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Trilha Container */
+.trilha-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.trilha-timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+/* Search Results and Filters */
+.search-results-message {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.no-results {
+    color: var(--text-secondary);
+}
+
+.no-results .material-symbols-sharp {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.no-results h3 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.no-results p {
+    margin-bottom: 1.5rem;
+}
+
+.search-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+/* Filter visibility states */
+.trilha-module.filter-visible {
+    display: flex;
+}
+
+.trilha-module.search-hidden {
+    display: none;
+}
+
+/* Premium features */
+.premium-badge {
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* Toast notifications */
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 10000;
+    font-weight: 500;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+}
+
+.toast-notification.show {
+    transform: translateX(0);
+}
+
+.toast-notification.success {
+    background: #4caf50;
+}
+
+.toast-notification.error {
+    background: #f44336;
+}
+
+.toast-notification.warning {
+    background: #ff9800;
+}
+
+.toast-notification.info {
+    background: var(--accent);
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toast-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Module completion celebration */
+.module-completion-celebration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(76, 175, 80, 0.95);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.module-completion-celebration.show {
+    opacity: 1;
+}
+
+.celebration-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+/* Module unlock animation */
+.trilha-module.unlocking {
+    animation: unlock-pulse 0.8s ease-in-out;
+}
+
+@keyframes unlock-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .loading-spinner, .error-icon {
+        animation: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .enhanced-main {
+        padding: 1rem 0.5rem;
+    }
+}

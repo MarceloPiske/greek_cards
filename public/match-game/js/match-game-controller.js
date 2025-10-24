@@ -3,11 +3,19 @@
  * Main coordinator that handles initialization, UI coordination, and game flow
  */
 
+<<<<<<< HEAD
 import { getAllWordLists } from '../../lists/lists-sync.js?v=1.1';
 import { MatchGameCore } from './match-game-core.js?v=1.1';
 import { MatchGameUI } from './match-game-ui.js?v=1.1';
 import { MatchGameMultiplayer } from './match-game-multiplayer.js?v=1.1';
 import { MatchGameLeaderboard } from './match-game-leaderboard.js?v=1.1';
+=======
+import { getAllWordLists } from '../../lists/lists-sync.js';
+import { MatchGameCore } from './match-game-core.js';
+import { MatchGameUI } from './match-game-ui.js';
+import { MatchGameMultiplayer } from './match-game-multiplayer.js';
+import { MatchGameLeaderboard } from './match-game-leaderboard.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 export class MatchGameController {
     constructor() {
@@ -27,7 +35,11 @@ export class MatchGameController {
         try {
             this.ui.setupEventListeners();
             
+<<<<<<< HEAD
             // This is now handled in match-game.js?v=1.1 before controller initialization
+=======
+            // This is now handled in match-game.js before controller initialization
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             // if (typeof window.firebaseAuth !== 'undefined') {
             //     await window.firebaseAuth.initAuth();
             // }

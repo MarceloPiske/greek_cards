@@ -5,8 +5,13 @@
 
 // Enhanced toast notification system
 export function showToast(message, type = 'info', duration = 3000) {
+<<<<<<< HEAD
     // Remove existing toasts of the same type to prevent spam
     document.querySelectorAll(`.toast-notification.${type}`).forEach(toast => toast.remove());
+=======
+    // Remove existing toasts
+    document.querySelectorAll('.toast-notification').forEach(toast => toast.remove());
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     
     const toast = document.createElement('div');
     toast.className = `toast-notification ${type}`;
@@ -286,6 +291,7 @@ export function getActivityTypeName(type) {
     return names[type] || 'Atividade';
 }
 
+<<<<<<< HEAD
 // Loading modal functions - ensure proper cleanup
 export function showLoadingModal() {
     // Remove any existing loading modal first
@@ -293,6 +299,12 @@ export function showLoadingModal() {
     
     const loadingHtml = `
         <div class="modal loading-modal" style="display: flex; z-index: 10005;" aria-hidden="false">
+=======
+// Loading modal functions
+export function showLoadingModal() {
+    const loadingHtml = `
+        <div class="modal loading-modal" style="display: flex;">
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             <div class="modal-content loading-content">
                 <div class="loading-spinner">
                     <div class="spinner-circle"></div>
@@ -305,6 +317,7 @@ export function showLoadingModal() {
     `;
     
     document.body.insertAdjacentHTML('beforeend', loadingHtml);
+<<<<<<< HEAD
     document.body.style.overflow = 'hidden';
     
     const modal = document.querySelector('.loading-modal');
@@ -339,15 +352,35 @@ export function closeModalWithAnimation(modal) {
         }
         // Restore body scroll
         document.body.style.overflow = '';
+=======
+}
+
+export function hideLoadingModal() {
+    const loadingModal = document.querySelector('.loading-modal');
+    if (loadingModal) loadingModal.remove();
+}
+
+// Close modal with animation
+export function closeModalWithAnimation(modal) {
+    modal.classList.add('closing');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        modal.classList.remove('closing');
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     }, 300);
 }
 
 // Show reset confirmation dialog
 export function showResetConfirmationDialog(moduloId) {
     const confirmHtml = `
+<<<<<<< HEAD
         <div class="modal confirmation-modal" style="display: flex; z-index: 10001;" aria-hidden="false">
             <div class="modal-content">
                 <button class="close-modal" aria-label="Fechar modal">&times;</button>
+=======
+        <div class="modal confirmation-modal" style="display: flex;">
+            <div class="modal-content">
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
                 <h3>Reiniciar progresso</h3>
                 <p>Tem certeza de que deseja reiniciar todo o progresso deste módulo? Esta ação não pode ser desfeita.</p>
                 <div class="modal-actions">
@@ -363,6 +396,7 @@ export function showResetConfirmationDialog(moduloId) {
     `;
     
     document.body.insertAdjacentHTML('beforeend', confirmHtml);
+<<<<<<< HEAD
     
     const modal = document.querySelector('.confirmation-modal');
     document.body.style.overflow = 'hidden';
@@ -377,21 +411,35 @@ export function showModulePreview(moduleId) {
     // Remove any existing preview first
     hideModulePreview();
     
+=======
+}
+
+// Show module preview on hover
+export function showModulePreview(moduleId) {
+    // Implementation for module preview tooltip
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     const preview = document.createElement('div');
     preview.className = 'module-preview-tooltip';
     preview.innerHTML = `
         <div class="preview-content">
             <h4>Prévia rápida</h4>
+<<<<<<< HEAD
             <p>Clique para ver mais detalhes sobre este módulo.</p>
             <div class="preview-actions">
                 <span class="preview-hint">
                     <span class="material-symbols-sharp">touch_app</span>
                     Clique para iniciar
                 </span>
+=======
+            <p>Passe o mouse para ver mais detalhes sobre este módulo.</p>
+            <div class="preview-actions">
+                <span class="preview-hint">Clique para iniciar</span>
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             </div>
         </div>
     `;
     
+<<<<<<< HEAD
     // Add proper styling
     preview.style.cssText = `
         position: fixed;
@@ -408,12 +456,15 @@ export function showModulePreview(moduleId) {
         pointer-events: none;
     `;
     
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     document.body.appendChild(preview);
     
     // Position tooltip
     const moduleElement = document.querySelector(`[data-modulo-id="${moduleId}"]`);
     if (moduleElement) {
         const rect = moduleElement.getBoundingClientRect();
+<<<<<<< HEAD
         const previewRect = preview.getBoundingClientRect();
         
         let left = rect.right + 10;
@@ -445,12 +496,31 @@ export function hideModulePreview() {
         preview.style.transform = 'scale(0.9)';
         setTimeout(() => preview.remove(), 200);
     });
+=======
+        preview.style.left = `${rect.right + 10}px`;
+        preview.style.top = `${rect.top}px`;
+    }
+    
+    setTimeout(() => preview.classList.add('show'), 50);
+}
+
+export function hideModulePreview() {
+    const preview = document.querySelector('.module-preview-tooltip');
+    if (preview) {
+        preview.classList.remove('show');
+        setTimeout(() => preview.remove(), 200);
+    }
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 }
 
 // Verificar módulo completo (helper function)
 export async function verificarModuloCompleto(moduloId) {
     try {
+<<<<<<< HEAD
         const response = await fetch(`./trilhas/${moduloId}.json`);
+=======
+        const response = await fetch(`trilhas/trilhas/${moduloId}.json`);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         if (response.ok) {
             const data = await response.json();
             return data.trilha ? data.trilha.length : 5;

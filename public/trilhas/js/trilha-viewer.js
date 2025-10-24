@@ -2,15 +2,25 @@
  * Trilha Viewer Core Logic
  */
 
+<<<<<<< HEAD
 import * as UIManager from './trilha-viewer-ui.js?v=1.1';
 import * as InteractionManager from './trilha-viewer-interactions.js?v=1.1';
+=======
+import { saveProgress, loadProgress, markBlockCompleted, addStudyTime } from '../../progress-manager.js';
+import * as UIManager from './trilha-viewer-ui.js';
+import * as InteractionManager from './trilha-viewer-interactions.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // Import new sync system
 import { 
     loadTrilhaProgress, 
     markBlockCompleted as markBlockCompletedSync, 
     addStudyTime as addStudyTimeSync 
+<<<<<<< HEAD
 } from './trilha-progress-sync.js?v=1.1';
+=======
+} from './trilha-progress-sync.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // --- STATE MANAGEMENT ---
 let currentActivityIndex = 0;
@@ -43,7 +53,11 @@ async function loadTrilhaData(moduleId) {
     try {
         UIManager.showLoadingState('Carregando conteúdo do módulo...');
         
+<<<<<<< HEAD
         const response = await fetch(`./trilhas/${moduleId}.json`);
+=======
+        const response = await fetch(`trilhas/trilhas/${moduleId}.json`);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         if (!response.ok) throw new Error(`Trilha não encontrada: ${moduleId}`);
         
         const data = await response.json();

@@ -13,7 +13,11 @@ import {
 } from '../lists/lists-sync.js?v=1.1';
 
 // Import word progress function
+<<<<<<< HEAD
 import { getWordProgress } from '../word_progress/word-progress-sync.js?v=1.1';
+=======
+import { getWordProgress } from '../word_progress/word-progress-sync.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {

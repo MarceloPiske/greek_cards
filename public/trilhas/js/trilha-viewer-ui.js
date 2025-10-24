@@ -194,7 +194,11 @@ function createConfettiPiece(color) {
         top: -100px;
         left: ${Math.random() * 100}vw;
         animation: confetti-fall ${2 + Math.random() * 3}s linear forwards;
+<<<<<<< HEAD
         /* z-index: 10000; */
+=======
+        z-index: 10000;
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         border-radius: 50%;
     `;
     document.body.appendChild(confetti);

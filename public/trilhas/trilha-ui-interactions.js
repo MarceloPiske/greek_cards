@@ -16,10 +16,17 @@ import {
     showModulePreview,
     hideModulePreview,
     verificarModuloCompleto
+<<<<<<< HEAD
 } from './trilha-ui-components.js?v=1.1';
 
 // Import new sync system
 import { loadTrilhaProgress, getCompletionPercentage } from './js/trilha-progress-sync.js?v=1.1';
+=======
+} from './trilha-ui-components.js';
+
+// Import new sync system
+import { loadTrilhaProgress, getCompletionPercentage } from './js/trilha-progress-sync.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // Setup enhanced module interactions
 export function setupModuleInteractions(moduleId, index) {
@@ -44,7 +51,11 @@ export function setupModuleInteractions(moduleId, index) {
                 
                 // Navigate with smooth transition
                 setTimeout(() => {
+<<<<<<< HEAD
                     window.location.href = `./trilha_viewer.html?trilha=${moduleId}`;
+=======
+                    window.location.href = `trilhas/trilha_viewer.html?trilha=${moduleId}`;
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
                 }, 300);
             } else {
                 showUnlockRequirement(index);
@@ -371,7 +382,11 @@ export async function abrirModalInfoEnhanced(moduloId) {
         showLoadingModal();
         
         // Load module data
+<<<<<<< HEAD
         const response = await fetch(`./trilhas/${moduloId}.json`);
+=======
+        const response = await fetch(`trilhas/trilhas/${moduloId}.json`);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         if (!response.ok) throw new Error('Módulo não encontrado');
         
         const data = await response.json();
@@ -388,9 +403,15 @@ export async function abrirModalInfoEnhanced(moduloId) {
         
         // Enhanced modal content
         const modalHtml = `
+<<<<<<< HEAD
             <div class="modal enhanced-modal" id="moduloInfoModal" style="display: flex;" opacity: 100; aria-hidden="false">
                 <div class="modal-content modulo-info-content">
                     <button class="close-modal" aria-label="Fechar modal">&times;</button>
+=======
+            <div class="modal enhanced-modal" id="moduloInfoModal">
+                <div class="modal-content modulo-info-content">
+                    <button class="close-modal">&times;</button>
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
                     
                     <div class="modal-header">
                         <div class="module-icon-container">
@@ -495,6 +516,7 @@ export async function abrirModalInfoEnhanced(moduloId) {
         // Setup enhanced modal interactions
         setupEnhancedModalInteractions(moduloId);
         
+<<<<<<< HEAD
         // Show modal with proper animation
         const modal = document.getElementById('moduloInfoModal');
         modal.setAttribute('aria-hidden', 'false');
@@ -510,6 +532,11 @@ export async function abrirModalInfoEnhanced(moduloId) {
                 firstFocusable.focus();
             }
         }, 50);
+=======
+        // Show modal with animation
+        const modal = document.getElementById('moduloInfoModal');
+        modal.style.display = 'flex';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         
     } catch (error) {
         hideLoadingModal();
@@ -525,26 +552,41 @@ function setupEnhancedModal() {
         if (e.target.classList.contains('close-modal')) {
             const modal = e.target.closest('.modal');
             if (modal) {
+<<<<<<< HEAD
                 closeModalWithAnimationEnhanced(modal);
+=======
+                closeModalWithAnimation(modal);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             }
         }
         
         if (e.target.classList.contains('modal')) {
+<<<<<<< HEAD
             closeModalWithAnimationEnhanced(e.target);
+=======
+            closeModalWithAnimation(e.target);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         }
     });
     
     // Escape key handler
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
+<<<<<<< HEAD
             const openModal = document.querySelector('.modal[style*="flex"], .modal.show');
             if (openModal) {
                 closeModalWithAnimationEnhanced(openModal);
+=======
+            const openModal = document.querySelector('.modal[style*="flex"]');
+            if (openModal) {
+                closeModalWithAnimation(openModal);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             }
         }
     });
 }
 
+<<<<<<< HEAD
 // Enhanced modal close with proper cleanup
 function closeModalWithAnimationEnhanced(modal) {
     if (!modal) return;
@@ -562,11 +604,14 @@ function closeModalWithAnimationEnhanced(modal) {
     }, 400);
 }
 
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 // Enhanced modal interactions setup
 function setupEnhancedModalInteractions(moduloId) {
     const modal = document.getElementById('moduloInfoModal');
     const iniciarBtn = document.getElementById('modulo-iniciar');
     const resetBtn = document.getElementById('modulo-reset');
+<<<<<<< HEAD
     const closeBtn = modal.querySelector('.close-modal');
     
     if (closeBtn) {
@@ -581,6 +626,8 @@ function setupEnhancedModalInteractions(moduloId) {
             closeModalWithAnimationEnhanced(modal);
         }
     });
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     
     if (iniciarBtn) {
         iniciarBtn.addEventListener('click', () => {
@@ -589,7 +636,11 @@ function setupEnhancedModalInteractions(moduloId) {
             const isLocked = moduleCard?.classList.contains('locked');
             
             if (!isLocked) {
+<<<<<<< HEAD
                 closeModalWithAnimationEnhanced(modal);
+=======
+                closeModalWithAnimation(modal);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
                 
                 // Add loading state
                 if (moduleCard) {
@@ -597,22 +648,35 @@ function setupEnhancedModalInteractions(moduloId) {
                 }
                 
                 setTimeout(() => {
+<<<<<<< HEAD
                     window.location.href = `./trilha_viewer.html?trilha=${moduloId}`;
                 }, 300);
             } else {
                 showToast('Este módulo ainda está bloqueado!', 'warning');
                 closeModalWithAnimationEnhanced(modal);
+=======
+                    window.location.href = `trilhas/trilha_viewer.html?trilha=${moduloId}`;
+                }, 300);
+            } else {
+                showToast('Este módulo ainda está bloqueado!', 'warning');
+                closeModalWithAnimation(modal);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             }
         });
     }
     
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
+<<<<<<< HEAD
             showResetConfirmationDialogEnhanced(moduloId);
+=======
+            showResetConfirmationDialog(moduloId);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         });
     }
 }
 
+<<<<<<< HEAD
 // Enhanced reset confirmation dialog
 function showResetConfirmationDialogEnhanced(moduloId) {
     const confirmHtml = `
@@ -643,6 +707,8 @@ function showResetConfirmationDialogEnhanced(moduloId) {
     }, 50);
 }
 
+=======
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 // Global keyboard shortcuts
 function setupGlobalKeyboardShortcuts() {
     document.addEventListener('keydown', (e) => {
@@ -827,9 +893,20 @@ export async function atualizarUIModuloEnhanced(modulo, progresso, index) {
                 statusText.textContent = 'Concluído';
                 moduleStatus.classList.add('completed');
                 
+<<<<<<< HEAD
                 // Add completed animation without celebration notification
                 moduleCard.classList.add('completed');
                 
+=======
+                // Add completed animation
+                moduleCard.classList.add('completed');
+                
+                // Show completion celebration
+                setTimeout(() => {
+                    showModuleCompletionCelebration(moduleElement);
+                }, 500);
+                
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             } else if (percentComplete > 0) {
                 statusIcon.textContent = 'play_arrow';
                 statusText.textContent = 'Continuar';
@@ -837,11 +914,19 @@ export async function atualizarUIModuloEnhanced(modulo, progresso, index) {
             }
         }
         
+<<<<<<< HEAD
         // Unlock next module if current is completed (without notification)
         if (percentComplete >= 100 && index < document.querySelectorAll('.trilha-module').length - 1) {
             const nextModule = document.querySelectorAll('.trilha-module')[index + 1];
             if (nextModule) {
                 unlockModuleWithoutNotification(nextModule);
+=======
+        // Unlock next module if current is completed
+        if (percentComplete >= 100 && index < document.querySelectorAll('.trilha-module').length - 1) {
+            const nextModule = document.querySelectorAll('.trilha-module')[index + 1];
+            if (nextModule) {
+                unlockModuleWithAnimation(nextModule);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
             }
         }
         
@@ -897,8 +982,36 @@ function updateProgressSteps(moduleId, totalSteps, completedSteps) {
     }
 }
 
+<<<<<<< HEAD
 // Unlock module without animation or notification
 function unlockModuleWithoutNotification(moduleElement) {
+=======
+// Show module completion celebration
+function showModuleCompletionCelebration(moduleElement) {
+    const celebration = document.createElement('div');
+    celebration.className = 'module-completion-celebration';
+    celebration.innerHTML = `
+        <div class="celebration-content">
+            <span class="material-symbols-sharp">celebration</span>
+            <span>Módulo concluído!</span>
+        </div>
+    `;
+    
+    moduleElement.appendChild(celebration);
+    
+    setTimeout(() => {
+        celebration.classList.add('show');
+    }, 100);
+    
+    setTimeout(() => {
+        celebration.classList.remove('show');
+        setTimeout(() => celebration.remove(), 300);
+    }, 3000);
+}
+
+// Unlock module with animation
+function unlockModuleWithAnimation(moduleElement) {
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     const moduleBadge = moduleElement.querySelector('.module-badge');
     const moduleCard = moduleElement.querySelector('.module-card');
     const moduleStatus = moduleElement.querySelector('.module-status');
@@ -907,13 +1020,36 @@ function unlockModuleWithoutNotification(moduleElement) {
     moduleBadge.classList.remove('locked');
     moduleCard.classList.remove('locked');
     
+<<<<<<< HEAD
     // Update status without animation
+=======
+    // Add unlock animation
+    moduleElement.classList.add('unlocking');
+    
+    // Update status
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     const statusIcon = moduleStatus.querySelector('.material-symbols-sharp');
     const statusText = moduleStatus.querySelector('.status-text');
     
     statusIcon.textContent = 'play_arrow';
     statusText.textContent = 'Iniciar';
     moduleStatus.classList.remove('locked');
+<<<<<<< HEAD
+=======
+    
+    // Show unlock notification
+    setTimeout(() => {
+        showModuleUnlockNotification(moduleElement);
+        moduleElement.classList.remove('unlocking');
+    }, 500);
+}
+
+// Show module unlock notification
+function showModuleUnlockNotification(moduleElement) {
+    const moduleTitle = moduleElement.querySelector('.module-title').textContent;
+    
+    showToast(`🎉 Novo módulo desbloqueado: ${moduleTitle}!`, 'success', 5000);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 }
 
 // Update premium features visibility
@@ -959,7 +1095,11 @@ window.confirmResetProgress = async function(moduloId) {
         
         // Close info modal
         const infoModal = document.getElementById('moduloInfoModal');
+<<<<<<< HEAD
         if (infoModal) closeModalWithAnimationEnhanced(infoModal);
+=======
+        if (infoModal) closeModalWithAnimation(infoModal);
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         
         // Refresh the page to show updated progress
         window.location.reload();
@@ -975,6 +1115,10 @@ window.confirmResetProgress = async function(moduloId) {
 // Make functions available globally
 if (typeof window !== 'undefined') {
     window.performEnhancedSearch = performEnhancedSearch;
+<<<<<<< HEAD
     window.closeModalWithAnimation = closeModalWithAnimationEnhanced;
     window.closeModalWithAnimationEnhanced = closeModalWithAnimationEnhanced;
+=======
+    window.closeModalWithAnimation = closeModalWithAnimation;
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 }

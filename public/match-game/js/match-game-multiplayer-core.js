@@ -3,8 +3,13 @@
  * Manages game state and business logic for multiplayer, coordinating Room and Public Room managers.
  */
 
+<<<<<<< HEAD
 import { MatchGameMultiplayerRoom } from './match-game-multiplayer-room.js?v=1.1';
 import { MatchGameMultiplayerPublic } from './match-game-multiplayer-public.js?v=1.1';
+=======
+import { MatchGameMultiplayerRoom } from './match-game-multiplayer-room.js';
+import { MatchGameMultiplayerPublic } from './match-game-multiplayer-public.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 export class MatchGameMultiplayerCore {
     constructor(gameInstance, multiplayerInstance) {

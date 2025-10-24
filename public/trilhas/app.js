@@ -2,9 +2,15 @@
  * Enhanced Trilhas Application
  */
 
+<<<<<<< HEAD
 import { carregarTrilhasDisponiveis } from './trilha-loader.js?v=1.1';
 // Import new sync system
 import { initTrilhaProgressSync, getSyncStatus } from './js/trilha-progress-sync.js?v=1.1';
+=======
+import { carregarTrilhasDisponiveis } from './trilha-loader.js';
+// Import new sync system
+import { initTrilhaProgressSync, getSyncStatus } from './js/trilha-progress-sync.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 // Initialize progress manager and enhanced features
 document.addEventListener('DOMContentLoaded', async () => {
@@ -177,6 +183,10 @@ function addSkipToContentLink() {
         padding: 0.5rem 1rem;
         text-decoration: none;
         border-radius: 4px;
+<<<<<<< HEAD
+=======
+        z-index: 10000;
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         transition: top 0.3s;
     `;
     
@@ -491,7 +501,11 @@ function showSearchSuggestions() {
         border: 1px solid var(--shadow);
         border-radius: 8px;
         box-shadow: 0 8px 25px var(--shadow);
+<<<<<<< HEAD
         /* z-index: 1000; */
+=======
+        z-index: 1000;
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
         max-height: 200px;
         overflow-y: auto;
     `;
@@ -732,7 +746,11 @@ function trackPerformanceMetrics() {
  */
 
 function performSearch(query) {
+<<<<<<< HEAD
     // Implementation delegated to trilha-ui.js?v=1.1
+=======
+    // Implementation delegated to trilha-ui.js
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     if (window.performEnhancedSearch) {
         window.performEnhancedSearch(query);
     }
@@ -763,7 +781,11 @@ function setupModalCloseHandlers(modal) {
 }
 
 function showToast(message, type = 'info', duration = 3000) {
+<<<<<<< HEAD
     // Implementation delegated to trilha-ui.js?v=1.1
+=======
+    // Implementation delegated to trilha-ui.js
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
     if (window.trilhaUI && window.trilhaUI.showToast) {
         window.trilhaUI.showToast(message, type, duration);
     } else {

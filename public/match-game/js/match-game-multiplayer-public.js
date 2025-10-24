@@ -3,7 +3,11 @@
  * Handles public room listing, pagination, and joining
  */
 
+<<<<<<< HEAD
 //import { canSyncToCloud } from '../../plan-manager.js?v=1.1';
+=======
+//import { canSyncToCloud } from '../../plan-manager.js';
+>>>>>>> 485a7111651673321d36bac1405974bd151865fc
 
 export class MatchGameMultiplayerPublic {
     constructor(coreInstance) {
